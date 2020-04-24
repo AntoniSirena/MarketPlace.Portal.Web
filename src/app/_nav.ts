@@ -1,5 +1,14 @@
 import { INavData } from '@coreui/angular';
 
+var roleParent = localStorage.getItem('roleParent');
+var currentMenuTemplate = localStorage.getItem('currentMenuTemplate');
+
+let navaData: INavData[];
+
+navaData = JSON.parse(currentMenuTemplate);
+
+var test = JSON.parse(currentMenuTemplate);
+
 export const navItems: INavData[] = [
   {
     name: 'Dashboard',
@@ -249,3 +258,4 @@ export const navItems: INavData[] = [
     attributes: { target: '_blank', rel: 'noopener' }
   }
 ];
+//console.log(navItems);

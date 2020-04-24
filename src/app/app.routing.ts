@@ -9,10 +9,11 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -91,4 +92,6 @@ export const routes: Routes = [
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  
+}

@@ -21,6 +21,9 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -41,6 +44,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -54,7 +60,10 @@ import { ChartsModule } from 'ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -64,10 +73,21 @@ import { ChartsModule } from 'ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true
+    }
+  ],
+
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+
+export class AppModule {
+
+ }
