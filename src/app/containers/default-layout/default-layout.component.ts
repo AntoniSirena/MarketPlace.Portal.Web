@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { navItems } from '../../_nav';
 import {RedirectService} from '../../services/redirect/redirect.service'
 import {BaseService} from '../../services/base/base.service'
 import { from } from 'rxjs';
 import { Profile } from '../../models/profile/profile';
+import { ProfileComponent } from '../../jsViews/profile/profile/profile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,11 @@ export class DefaultLayoutComponent implements OnInit {
 
   public profile = new Profile();
 
-  constructor(private redirectService: RedirectService, private baseService: BaseService){
+
+  @ViewChild(ProfileComponent) profileComponent: ProfileComponent;
+  
+  constructor(private redirectService: RedirectService, 
+    private baseService: BaseService){
   
   }
 
@@ -31,8 +36,15 @@ export class DefaultLayoutComponent implements OnInit {
     this.redirectService.logout();
   }
 
+  //Get profile
   getProfile(){  
     this.profile = this.baseService.getProfile();
   }
+
+  //open Profile Modal
+  openProfileModal(){
+    this.profileComponent.openProfileModal();
+  }
+
 
 }

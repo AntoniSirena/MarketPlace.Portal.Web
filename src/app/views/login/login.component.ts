@@ -56,14 +56,16 @@ export class LoginComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 2000
-        }).then(() => {
-          this.router.navigate(['dashboard']).then(() =>{        
+        }).then(() => {  
           //Cache info
 
           //profile
           this.profile = response.Data;
           localStorage.setItem("profile", `${ JSON.stringify(this.profile.Profile) }`);
           localStorage.setItem("token", `${ JSON.stringify(this.profile.Profile.User.Token)}`);
+
+          //go to dashboard
+          this.router.navigate(['dashboard']);
 
           localStorage.setItem('roleShortName', `${ JSON.stringify(this.profile.Profile.User.RoleShortName) }`);
           localStorage.setItem('roleParent', `${ JSON.stringify(this.profile.Profile.User.RoleParent) }`);
@@ -75,7 +77,6 @@ export class LoginComponent implements OnInit {
           this.systemConfiguration = response.Data;
           localStorage.setItem("systemConfiguration", `${ JSON.stringify(this.systemConfiguration.Configuration) }`);
 
-          });
         });
       }else{
         Swal.fire({

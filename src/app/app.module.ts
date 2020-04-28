@@ -46,6 +46,9 @@ import { ChartsModule } from 'ng2-charts';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
+import { ProfileComponent } from './jsViews/profile/profile/profile.component';
+import { from } from 'rxjs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -63,7 +66,8 @@ import { RequestInterceptorService } from '../app/services/requestInterceptor/re
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
@@ -71,7 +75,8 @@ import { RequestInterceptorService } from '../app/services/requestInterceptor/re
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   providers: [
     {

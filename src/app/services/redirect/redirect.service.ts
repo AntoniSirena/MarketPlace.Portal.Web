@@ -31,7 +31,7 @@ export class RedirectService {
         icon: 'success',
         title: 'Sesión cerrada con exito',
         showConfirmButton: false,
-        timer: 2000
+        timer: 1000
       }).then(() =>{
         window.location.reload();
       });
