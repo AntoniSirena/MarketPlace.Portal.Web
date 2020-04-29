@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
     };
 
     this.loginService.authenticate(login).subscribe((response: Iresponse) => {
-      console.log(response);
 
       if(response.Code === '000'){
         Swal.fire({

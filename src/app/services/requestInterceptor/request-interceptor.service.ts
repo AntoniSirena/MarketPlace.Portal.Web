@@ -21,10 +21,12 @@ export class RequestInterceptorService implements HttpInterceptor  {
   token: string;
 
   constructor(private baseService: BaseService, private redirectService: RedirectService) {
-    this.token = baseService.getUserToke();
+    this.token = this.baseService.getUserToke();
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    this.token = this.baseService.getUserToke();
 
     const headers = new HttpHeaders({
     'Authorization': `${this.token}`,

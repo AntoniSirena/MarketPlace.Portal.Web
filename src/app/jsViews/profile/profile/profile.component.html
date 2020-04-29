@@ -1,17 +1,90 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
+      <h5 class="modal-title">Mi perfil</h5>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        
-        <h4>Profile modal</h4>
+
+        <ngb-tabset [destroyOnHide]="false">
+            <ngb-tab title="Usuario">
+                <ng-template ngbTabContent>
+
+                <form [formGroup]="userForm" (submit)="currentUserOnSubmit(userForm.value)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card">
+                                <div class="card-header">
+                                  <!--<strong>Company</strong>
+                                  <small>Form</small> -->
+                                </div>
+                                <div class="card-body">
+                                  <div class="form-group">
+                                  <a>
+                                    <img src="data:image/png;base64,{{profile.User.Image}}" class="user-image" alt="User Image" 
+                                    class="center img-avatar" style="width: 200; height: 140px;">
+                                  </a>
+                                  <div class="form-group" style="margin-top: 8px;">
+                                    <input type="file" class="form-control-file" id="profileImage" 
+                                    (change)="uploadImage($event)">
+                                 </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="usuario">Usuario</label>
+                                    <input type="text" class="form-control" id="usuario" formControlName="userName">
+                                    <span *ngIf="!userForm.value.userName" class="required">*</span>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" formControlName="password">
+                                    <span *ngIf="!userForm.value.password" class="required">*</span>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="emailAddress">Correo electronico</label>
+                                    <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
+                                    <span *ngIf="!userForm.value.emailAddress" class="required">*</span>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="name">Nombres</label>
+                                    <input type="text" class="form-control" id="name" formControlName="name">
+                                    <span *ngIf="!userForm.value.name" class="required">*</span>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="surName">Apellidos</label>
+                                    <input type="text" class="form-control" id="surName" formControlName="surName">
+                                    <span *ngIf="!userForm.value.surName" class="required">*</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div><!--/.col-->
+                        </div><!--/.row-->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Guardar</button>
+                            </div><!--/.row-->
+                        </div>
+                    </div>
+                </form>
+
+              </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="Persona">
+              <ng-template ngbTabContent>
+              </ng-template>
+            </ngb-tab>
+
+            <ngb-tab title="Localizadores">
+                <ng-template ngbTabContent>
+                </ng-template>
+              </ngb-tab>
+          </ngb-tabset>
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
   </ng-template>

@@ -38,3 +38,41 @@
       IsMain: boolean;
       Type: string;
     }
+
+    export class Gender {
+      Id: number;
+      Description: string;
+      ShortName: string;
+  }
+
+  export class LocatorsTypes {
+    Id: number;
+    Code: string;
+    Description: string;
+}
+
+export class InfoCurrentUser {
+  UserName: string;
+  Password: string;
+  Name: string;
+  SurName: string;
+  EmailAddress: string;
+  Image: string;
+}
+
+export class InfoCurrentPerson {
+  FirstName: string;
+  SecondName: string;
+  SurName: string;
+  SecondSurname: string;
+  BirthDate: string;
+  FullName: string;
+  GenderId: number;
+}
+
+export class InfoCurrentLocators {
+  LocatorTypeId: number;
+  LocatorTypeDescription: string;
+  Description: string;
+  IsMain: boolean;
+}
