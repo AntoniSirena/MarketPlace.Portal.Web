@@ -49,6 +49,9 @@ import { RequestInterceptorService } from '../app/services/requestInterceptor/re
 import { ProfileComponent } from './jsViews/profile/profile/profile.component';
 import { from } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PortadaComponent } from './jsViews/portada/portada/portada.component';
+import { UserComponent } from './jsViews/user/user/user.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -67,7 +70,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule
   ],
   declarations: [
     AppComponent,
@@ -76,7 +80,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PortadaComponent,
+    UserComponent
   ],
   providers: [
     {

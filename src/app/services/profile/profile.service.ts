@@ -47,7 +47,7 @@ export class ProfileService {
 
     let Json = JSON.stringify(data);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(this.apiURL + 'api/common/UpdateInfoCurrentUser', Json, {headers: headers});
+    return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentUser', Json, {headers: headers});
   }
 
   updateInfoCurrentPerson(infoCurrentPerson: InfoCurrentPerson){
@@ -62,7 +62,7 @@ export class ProfileService {
 
     let Json = JSON.stringify(data);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(this.apiURL + 'api/common/UpdateInfoCurrentPerson', Json, {headers: headers});
+    return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentPerson', Json, {headers: headers});
   }
 
 }

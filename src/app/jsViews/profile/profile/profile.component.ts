@@ -188,4 +188,39 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
+  currentPersonOnSubmit(formValue: any){
+    const infoCurrentPerson = new InfoCurrentPerson();
+    infoCurrentPerson.FirstName = formValue.firstName,
+    infoCurrentPerson.SurName = formValue.surName,
+    infoCurrentPerson.SecondName = formValue.secondName,
+    infoCurrentPerson.SecondSurname = formValue.secondSurname,
+    infoCurrentPerson.FullName = formValue.fullName,
+    infoCurrentPerson.BirthDate = formValue.birthDate,
+    infoCurrentPerson.GenderId = formValue.genderId
+
+    this.profileService.updateInfoCurrentPerson(infoCurrentPerson).subscribe((response: Iresponse) => {
+
+      if(response.Code === '000'){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+    error => { console.log(JSON.stringify(error));
+    });
+  }
+
 }

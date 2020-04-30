@@ -9,6 +9,8 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './authorization/authGuard/auth-guard';
+import { PortadaComponent } from './jsViews/portada/portada/portada.component';
+import { UserComponent } from './jsViews/user/user/user.component';
 
 
 export const routes: Routes = [
@@ -52,7 +54,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      
     },
     children: [
       {
@@ -94,12 +96,31 @@ export const routes: Routes = [
         path: 'widgets',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      },
+      {
+        path: 'portada',
+        canActivate: [AuthGuard],
+        component: PortadaComponent,
+        data: {
+          title: 'Portada'
+        }
+      },
+      {
+        path: 'user',
+        canActivate: [AuthGuard],
+        component: UserComponent,
+        data: {
+          title: 'Usuarios'
+        }
       }
+
     ]
   },
   { path: '**', 
   canActivate: [AuthGuard], 
-  component: P404Component }
+  component: P404Component 
+  }
+
 ];
 
 @NgModule({

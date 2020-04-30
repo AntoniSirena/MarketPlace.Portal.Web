@@ -74,6 +74,67 @@
 
             <ngb-tab title="Persona">
               <ng-template ngbTabContent>
+
+                <form [formGroup]="personForm" (submit)="currentPersonOnSubmit(personForm.value)">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card">
+                              <div class="card-header">
+                                <!--<strong>Company</strong>
+                                <small>Form</small> -->
+                              </div>
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="firstName">Primer nombre</label>
+                                  <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                                  <span *ngIf="!personForm.value.firstName" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="secondName">Segundo nombre</label>
+                                  <input type="text" class="form-control" id="secondName" formControlName="secondName">
+                                  <span *ngIf="!personForm.value.secondName" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="surName">Primer apellido</label>
+                                  <input type="text" class="form-control" id="surName" formControlName="surName">
+                                  <span *ngIf="!personForm.value.surName" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="secondSurname">Segundo apellido</label>
+                                  <input type="text" class="form-control" id="secondSurname" formControlName="secondSurname">
+                                  <span *ngIf="!personForm.value.secondSurname" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="fullName">Nombre completo</label>
+                                  <input type="text" class="form-control" id="fullName" formControlName="fullName">
+                                  <span *ngIf="!personForm.value.fullName" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="birthDate">Nombre completo</label>
+                                  <input type="date" class="form-control" id="birthDate" formControlName="birthDate">
+                                  <span *ngIf="!personForm.value.birthDate" class="required">*</span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="birthDate">Genero</label>
+                                  <select formControlName="genderId">
+                                    <option value="g.Id"></option>
+                                    <option *ngFor="let g of genders" [value]="g.Id">{{g.Description}}</option>
+                                  </select>
+                                  <span *ngIf="!personForm.value.genderId" class="required">*</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div><!--/.col-->
+                      </div><!--/.row-->
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <button type="submit" class="btn btn-primary" [disabled]="personForm.invalid">Guardar</button>
+                          </div><!--/.row-->
+                      </div>
+                  </div>
+              </form>
+
               </ng-template>
             </ngb-tab>
 
