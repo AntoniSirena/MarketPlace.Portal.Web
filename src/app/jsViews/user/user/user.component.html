@@ -19,7 +19,7 @@
       <table class="table table-hover table-bordered">
         <thead>
           <tr style="background-color:rgb(167, 184, 201)">
-            <th>ID</th>
+            <th>Codigo</th>
             <th>Usuario</th>
             <th>Correo</th>
             <th>Nombres</th>
@@ -27,6 +27,7 @@
             <th>Estado</th>
             <th>Rol</th>
             <th>Rol padre</th>
+            <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i></button></th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
             <td>{{item.Status}}</td>
             <td>{{item.Role == null ? '' : item.Role.Description}}</td>
             <td>{{item.Role == null ? '' : item.Role.Parent}}</td>
+            <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i></button></td>
           </tr>
         </tbody>
       </table>
@@ -46,4 +48,140 @@
     </div>
   
   </div>
+  
+
+  <!--Edit modal-->
+  <ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Editando a &nbsp;</h4> <h4 class="modal-title" *ngIf="user.Person"><i>{{user.Person.FullName}}</i></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <form [formGroup]="editUserForm" (submit)="edit(editUserForm.value)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <!--<strong>Company</strong>
+                          <small>Form</small> -->
+                        </div>
+                        <div class="card-body">
+                          <label for="statusId">Estado</label>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <select formControlName="statusId" class="form-control" placeholder="Estado">
+                                <option value=""></option>
+                                <option *ngFor="let s of userStatuses" [value]="s.Id">{{s.Description}}</option>
+                            </select>
+                            <div *ngIf="!editUserForm.value.statusId" class="required">*</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--/.col-->
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="editUserForm.invalid">Guardar</button>
+                    </div><!--/.row-->
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>
+
+
+    <!--Create modal-->
+    <ng-template #createModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Creando un nuevo usuario</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <form [formGroup]="createUserForm" (submit)="create(createUserForm.value)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                              <!--<strong>Company</strong>
+                              <small>Form</small> -->
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <input type="text" formControlName="userName" class="form-control" placeholder="Usuario">
+                                    <div *ngIf="!createUserForm.value.userName" class="required">*</div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo">
+                                    <div *ngIf="!createUserForm.value.emailAddress" class="required">*</div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                                    </div>
+                                    <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+                                    <div *ngIf="!createUserForm.value.password" class="required">*</div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <input type="text" formControlName="name" class="form-control" placeholder="Nombres">
+                                    <div *ngIf="!createUserForm.value.name" class="required">*</div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos">
+                                    <div *ngIf="!createUserForm.value.surName" class="required">*</div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <select formControlName="statusId" class="form-control" placeholder="Estado">
+                                        <option value=""></option>
+                                        <option *ngFor="let s of userStatuses" [value]="s.Id">{{s.Description}}</option>
+                                    </select>
+                                    <div *ngIf="!createUserForm.value.statusId" class="required">*</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.col-->
+                    </div><!--/.row-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary" [disabled]="createUserForm.invalid">Guardar</button>
+                        </div><!--/.row-->
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+        </div>
+      </ng-template>
+
   

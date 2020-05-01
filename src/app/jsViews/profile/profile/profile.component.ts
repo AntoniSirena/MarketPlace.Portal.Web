@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, FormBuilder, Validators , FormArray} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 import { BaseService } from '../../../services/base/base.service';
 import { ProfileService } from '../../../services/profile/profile.service';
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
       secondName: ['', ],
       surName: ['', Validators.required],
       secondSurname: ['',],
-      fullName: ['', Validators.required],
+      fullName: [''],
       birthDate: ['', Validators.required],
       genderId: ['', Validators.required]
     });
@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
         secondName: [`${this.infoCurrentPerson.SecondName}`, ],
         surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
         secondSurname: [`${this.infoCurrentPerson.SecondSurname}`, ],
-        fullName: [`${this.infoCurrentPerson.FullName}`, Validators.required],
+        fullName: [`${this.infoCurrentPerson.FullName}`],
         birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
         genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required]
     });
@@ -173,6 +173,8 @@ export class ProfileComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 3000
+        }).then(() =>{
+          this.getInfoCurrentUser();
         });
       }else{
         Swal.fire({
@@ -208,6 +210,8 @@ export class ProfileComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 3000
+        }).then(() =>{
+          this.getInfoCurrentPerson();
         });
       }else{
         Swal.fire({

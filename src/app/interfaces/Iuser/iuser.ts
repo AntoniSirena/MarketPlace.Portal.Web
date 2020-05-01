@@ -12,3 +12,10 @@ export interface Iuser extends Iaudit{
     Image: string;
 }
 
+export interface IuserStatuses{
+    Id: number;
+    Description: string;
+    ShortName: string;
+    Colour: string;
+}
+
