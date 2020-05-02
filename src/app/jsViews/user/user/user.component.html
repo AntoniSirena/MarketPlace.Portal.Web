@@ -27,11 +27,11 @@
             <th>Estado</th>
             <th>Rol</th>
             <th>Rol padre</th>
-            <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i></button></th>
+            <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of users | filter : searchText">
+          <tr *ngFor="let item of users | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
             <td>{{item.Id}}</td>
             <td>{{item.UserName}}</td>
             <td>{{item.EmailAddress}}</td>
@@ -40,18 +40,24 @@
             <td>{{item.Status}}</td>
             <td>{{item.Role == null ? '' : item.Role.Description}}</td>
             <td>{{item.Role == null ? '' : item.Role.Parent}}</td>
-            <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i></button></td>
+            <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
           </tr>
         </tbody>
       </table>
-  
+      <pagination-controls 
+      (pageChange)="_currentPage = $event"
+      autoHide="true"
+      responsive="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente" >
+      </pagination-controls>
     </div>
   
-  </div>
+</div>
   
 
-  <!--Edit modal-->
-  <ng-template #editModal let-modal>
+<!--Edit modal-->
+<ng-template #editModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Editando a &nbsp;</h4> <h4 class="modal-title" *ngIf="user.Person"><i>{{user.Person.FullName}}</i></h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -97,13 +103,13 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
-  </ng-template>
+</ng-template>
 
 
-    <!--Create modal-->
-    <ng-template #createModal let-modal>
+<!--Create modal-->
+<ng-template #createModal let-modal>
         <div class="modal-header">
-          <h4 class="modal-title">Creando un nuevo usuario</h4>
+          <h4 class="modal-title">Nuevo usuario</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -182,6 +188,6 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
         </div>
-      </ng-template>
+</ng-template>
 
   

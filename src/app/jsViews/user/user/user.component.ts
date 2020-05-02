@@ -27,6 +27,7 @@ import Swal from 'sweetalert2';
 })
 export class UserComponent implements OnInit {
 
+  //Variables
   users: any;
   user: Iuser = {
     Id: 0,
@@ -47,7 +48,6 @@ export class UserComponent implements OnInit {
     IsActive: false,
     IsDeleted: false    
   };
-
   userStatuses: IuserStatuses[] = [
     {
       Id: 0,
@@ -55,16 +55,18 @@ export class UserComponent implements OnInit {
       ShortName: '',
       Colour: ''
     }
-  ];
-
+  ]
   editUserForm: FormGroup;
   createUserForm: FormGroup;
+
+  _currentPage: number = 1;
+  totalUsers: number = 0;
 
   //constructor
   constructor(
     private userService: UserService,
     private modalService: NgbModal,
-    private form: FormBuilder) {
+    private form: FormBuilder) {   
   }
 
 
@@ -79,6 +81,7 @@ export class UserComponent implements OnInit {
   getUsers(){
     this.userService.getUsers().subscribe((response: Iresponse) => {
      this.users = response;
+     this.totalUsers = this.users.length;
     },
     error => { console.log(JSON.stringify(error));
     });
@@ -216,7 +219,6 @@ export class UserComponent implements OnInit {
 
   }
 
-
   //create from set value ''
   setValueCreateFrom(){
     this.createUserForm = this.form.group({
@@ -225,14 +227,13 @@ export class UserComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(8)]],
         name: ['', Validators.required],
         surName: ['', Validators.required],
-        statusId: [this.userStatuses[2].Id, Validators.required]
+        statusId: [this.userStatuses[0].Id, Validators.required]
     });
   }
 
   //edit from set value ''
   setValueEditFrom(){
     this.editUserForm = this.form.group({
-      Id: [0],
      statusId: ['', Validators.required],
     });
   }

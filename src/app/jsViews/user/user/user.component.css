@@ -1,0 +1,3 @@
+.ejemplo:hover i::after {
+    content: ' Crear';
+}
