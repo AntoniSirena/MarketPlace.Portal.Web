@@ -1,18 +1,12 @@
-export class UserRole{
+import { Audit } from '../base/audit/audit';
+
+export class UserRole extends Audit{
     Id: number;
     UserId: number;
     UserName: string;
     FullName: string;
     RoleId: number;
     RoleName: string;
-    CreationTime: string;
-    CreatorUserId: string;
-    LastModificationTime: string;
-    LastModifierUserId: number;
-    DeleterUserId: number;
-    DeletionTime: string;
-    IsActive: boolean;
-    IsDeleted: boolean;
 }
 
 export class User{
@@ -21,9 +15,11 @@ export class User{
     FullName: string;
 }
 
-export class Role{
+export class Role  extends Audit{
     Id: number;
     Description: string;
     ShortName: string;
+    MenuTemplate: string;
     Parent: string;
+    Enabled: boolean;
 }

@@ -12,6 +12,7 @@ import { AuthGuard } from './authorization/authGuard/auth-guard';
 import { PortadaComponent } from './jsViews/portada/portada/portada.component';
 import { UserComponent } from './jsViews/user/user/user.component';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
+import { RoleComponent } from './jsViews/role/role/role.component';
 
 
 export const routes: Routes = [
@@ -120,6 +121,14 @@ export const routes: Routes = [
         component: UserRoleComponent,
         data: {
           title: 'Asignar rol'
+        }
+      },
+      {
+        path: 'role',
+        canActivate: [AuthGuard],
+        component: RoleComponent,
+        data: {
+          title: 'Mantenimiento de roles'
         }
       }
 

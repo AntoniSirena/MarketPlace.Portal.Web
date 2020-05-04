@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UserRoleService } from '../../../services/userRole/user-role.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
@@ -45,7 +45,7 @@ export class UserRoleComponent implements OnInit {
   constructor(
     private userRoleService: UserRoleService,
     private modalService: NgbModal,
-    private form: FormBuilder) {   
+    private form: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -53,42 +53,46 @@ export class UserRoleComponent implements OnInit {
     this.getUserRoles();
   }
 
-  getUserRoles(){
+  getUserRoles() {
     this.userRoleService.getUserRoles().subscribe((response: Array<UserRole>) => {
-     this.userRoles = response;
-     this.totalUsers = this.userRoles.length;
+      this.userRoles = response;
+      this.totalUsers = this.userRoles.length;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getUserRoleById(id: number){
+  getUserRoleById(id: number) {
     this.userRoleService.getUserRoleById(id).subscribe((response: UserRole) => {
       this.userRole = response;
 
       //llenando el modal
       this.editUserRoleForm = this.form.group({
-       roleId: [`${this.userRole.RoleId}`, Validators.required]
-      });       
+        roleId: [`${this.userRole.RoleId}`, Validators.required]
+      });
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getRoles(){
+  getRoles() {
     this.userRoleService.getRoles().subscribe((response: Array<Role>) => {
-     this.roles = response;
+      this.roles = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getUsers(){
+  getUsers() {
     this.userRoleService.getUsers().subscribe((response: Array<User>) => {
-     this.users = response;
+      this.users = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
   //open edit modal
@@ -103,111 +107,113 @@ export class UserRoleComponent implements OnInit {
   openCreateModal(createModal) {
     this.getRoles();
     this.getUsers();
-    this.setValueCreateFrom();  
+    this.setValueCreateFrom();
     this.modalService.open(createModal, { size: 'lg' });
   }
 
 
   //edit
-  edit(formValue: any){
-    const userRole: IuserRole ={
-        Id: this.userRole.Id,
-        UserId: this.userRole.UserId,
-        RoleId: formValue.roleId,
-        CreationTime: this.userRole.CreationTime,
-        CreatorUserId: this.userRole.CreatorUserId,
-        LastModificationTime: this.userRole.LastModificationTime,
-        LastModifierUserId: this.userRole.LastModifierUserId,
-        DeleterUserId: this.userRole.DeleterUserId,
-        DeletionTime: this.userRole.DeletionTime,
-        IsActive: this.userRole.IsActive,
-        IsDeleted: this.userRole.IsDeleted
+  edit(formValue: any) {
+    const userRole: IuserRole = {
+      Id: this.userRole.Id,
+      UserId: this.userRole.UserId,
+      RoleId: formValue.roleId,
+      CreationTime: this.userRole.CreationTime,
+      CreatorUserId: this.userRole.CreatorUserId,
+      LastModificationTime: this.userRole.LastModificationTime,
+      LastModifierUserId: this.userRole.LastModifierUserId,
+      DeleterUserId: this.userRole.DeleterUserId,
+      DeletionTime: this.userRole.DeletionTime,
+      IsActive: this.userRole.IsActive,
+      IsDeleted: this.userRole.IsDeleted
     };
-  
-      this.userRoleService.editUserRole(userRole).subscribe((response: Iresponse) => {
-        if(response.Code === '000'){
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 2000
-          }).then(() => {
-            this.getRoles();
-            this.modalService.dismissAll();
-          });
-        }else{
-          Swal.fire({
-            icon: 'warning',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 3000
-          });
-        }
+
+    this.userRoleService.editUserRole(userRole).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getUserRoles();
+          this.modalService.dismissAll();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
     },
-      error => { console.log(JSON.stringify(error));
-    });  
-  
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
   }
 
 
   //create
-  create(formValue: any){
+  create(formValue: any) {
 
-      const userRole: IuserRole ={
-        Id: 0,
-        UserId: formValue.userId,
-        RoleId: formValue.roleId,
-        IsActive: true,
-        IsDeleted: false,
-        CreatorUserId: null,
-        CreationTime: null,
-        LastModifierUserId: null,
-        LastModificationTime: null,
-        DeleterUserId: null,
-        DeletionTime: null
-      };
-  
-      this.userRoleService.createUserRole(userRole).subscribe((response: Iresponse) => {
-        if(response.Code === '000'){
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 2000
-          }).then(() => {
-            this.getUserRoles();
-            this.modalService.dismissAll();
-          });
-        }else{
-          Swal.fire({
-            icon: 'warning',
-            title: response.Message,
-            showConfirmButton: true,
-            timer: 3000
-          });
-        }
-      },
-        error => { console.log(JSON.stringify(error));
-      });  
-  
+    const userRole: IuserRole = {
+      Id: 0,
+      UserId: formValue.userId,
+      RoleId: formValue.roleId,
+      IsActive: true,
+      IsDeleted: false,
+      CreatorUserId: null,
+      CreationTime: null,
+      LastModifierUserId: null,
+      LastModificationTime: null,
+      DeleterUserId: null,
+      DeletionTime: null
+    };
+
+    this.userRoleService.createUserRole(userRole).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getUserRoles();
+          this.modalService.dismissAll();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
   }
 
   //edit from set value ''
-  setValueEditFrom(){
+  setValueEditFrom() {
     this.editUserRoleForm = this.form.group({
       roleId: ['', Validators.required],
     });
   }
 
   //create from set value ''
-  setValueCreateFrom(){
+  setValueCreateFrom() {
     this.createUserRoleForm = this.form.group({
-      roleId: ['', Validators.required],
-      userId: ['', Validators.required],
+      roleId: [0, Validators.required],
+      userId: [0, Validators.required],
     });
   }
-  
+
 
 }

@@ -19,6 +19,18 @@ export const navItems: INavData[] = [
     icon: 'icon-home'
   },
   {
+    name: 'Conf. del sistema',
+    url: '/conf-sistema',
+    icon: 'icon-settings',
+    children: [
+      {
+        name: 'Roles',
+        url: '/role',
+        icon: 'fa fa-group'
+      }
+    ]
+  },
+  {
     name: 'Conf. de usuarios',
     url: '/users',
     icon: 'icon-settings',
@@ -31,7 +43,7 @@ export const navItems: INavData[] = [
       {
         name: 'Asignar rol',
         url: '/userRole',
-        icon: 'icon-user'
+        icon: 'fa fa-group'
       }
     ]
   }

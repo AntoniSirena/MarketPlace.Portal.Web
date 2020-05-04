@@ -1,0 +1,14 @@
+.espacios{
+    white-space: pre-wrap;
+  }
+
+.td_min {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .btn{
+    border-radius: 4px;
+  }
