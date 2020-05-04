@@ -1,0 +1,154 @@
+<!--Contenedor principal-->
+<div class="container">
+
+    <h3>Asignar rol por usuario</h3>
+    <br>
+  
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar" 
+            [(ngModel)]="searchText"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr style="background-color:rgb(167, 184, 201)">
+            <th>Codigo de usuario</th>
+            <th>Usuario</th>
+            <th>Nombre completo</th>
+            <th>Rol</th>
+            <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of userRoles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+            <td>{{item.UserId}}</td>
+            <td>{{item.UserName}}</td>
+            <td>{{item.FullName == null ? '' : item.FullName}}</td>
+            <td>{{item.RoleName}}</td>
+            <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls 
+      (pageChange)="_currentPage = $event"
+      autoHide="true"
+      responsive="true"
+      previousLabel="Anterior"
+      nextLabel="Siguiente" >
+      </pagination-controls>
+    </div>
+  
+</div>
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Editando a &nbsp;</h4> <h4 class="modal-title"><i>{{userRole.UserName}}</i></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <form [formGroup]="editUserRoleForm" (submit)="edit(editUserRoleForm.value)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="card">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body">
+                          <label for="roleId">Rol</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <select formControlName="roleId" class="form-control">
+                                    <option value=""></option>
+                                    <option *ngFor="let r of roles" [value]="r.Id">{{r.Description}}</option>
+                                </select>
+                                <div *ngIf="!editUserRoleForm.value.roleId" class="required">*</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div><!--/.col-->
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="editUserRoleForm.invalid">Guardar</button>
+                    </div><!--/.row-->
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>
+
+
+<!--Create modal-->
+<ng-template #createModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Nuevo registro</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        <form [formGroup]="createUserRoleForm" (submit)="create(createUserRoleForm.value)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body">
+                            <label for="userId">Usuario</label>
+                            <div class="input-group mb-3">
+                                 <div class="input-group-prepend">
+                                     <span class="input-group-text"><i class="icon-user"></i></span>
+                                 </div>
+                                 <select formControlName="userId" class="form-control">
+                                     <option value=""></option>
+                                     <option *ngFor="let u of users" [value]="u.Id">{{u.UserName}}</option>
+                                 </select>
+                                 <div *ngIf="!createUserRoleForm.value.userId" class="required">*</div>
+                             </div> 
+                            <label for="roleId">Rol</label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="icon-user"></i></span>
+                              </div>
+                              <select formControlName="roleId" class="form-control">
+                                  <option value=""></option>
+                                  <option *ngFor="let r of roles" [value]="r.Id">{{r.Description}}</option>
+                              </select>
+                              <div *ngIf="!createUserRoleForm.value.roleId" class="required">*</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.col-->
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="createUserRoleForm.invalid">Guardar</button>
+                    </div><!--/.row-->
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>
