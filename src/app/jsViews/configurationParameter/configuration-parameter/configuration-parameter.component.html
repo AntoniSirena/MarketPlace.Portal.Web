@@ -1,7 +1,8 @@
+
 <!--Contenedor principal-->
 <div class="container">
 
-    <h3>Mantenimiento de roles</h3>
+    <h3>Mantenimiento de parámetros de configuraciones del sistema</h3>
     <br>
 
     <div class="row">
@@ -18,24 +19,24 @@
             <thead>
                 <tr style="background-color:rgb(167, 184, 201)">
                     <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
                     <th>Descripción</th>
-                    <th>Nombre corto</th>
-                    <th>Rol padre</th>
-                    <th>Plantilla del menu</th>
                     <th>Habilidato</th>
-                    <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+                    <th></th>
+                    <th> <button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                    *ngFor="let item of roles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+                    *ngFor="let item of configurationParameters | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
                     <td>{{item.Id}}</td>
+                    <td class="td_min">{{item.Name}}</td>
+                    <td class="td_min">{{item.Value}}</td>
                     <td class="td_min">{{item.Description}}</td>
-                    <td class="td_min">{{item.ShortName}}</td>
-                    <td>{{item.Parent}}</td>
-                    <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
                     <td> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
-                    <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+                    <td> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+                    <td> <button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button> </td>
                 </tr>
             </tbody>
         </table>
@@ -50,15 +51,15 @@
 <!--Edit modal-->
 <ng-template #editModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Editando al rol &nbsp;</h4>
-        <h4 class="modal-title"><i>{{role.Description}}</i></h4>
+        <h4 class="modal-title">Editando el parámetro&nbsp;</h4>
+        <h4 class="modal-title"><i>{{configurationParameter.Name}}</i></h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
 
-        <form [formGroup]="editRoleForm" (submit)="edit(editRoleForm.value)">
+        <form [formGroup]="editConfigurationParameterForm" (submit)="edit(editConfigurationParameterForm.value)">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -67,6 +68,27 @@
                             </div>
                             <div class="card-body">
 
+                                <label for="name">Nombre</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Nombre">
+                                    <div *ngIf="!editConfigurationParameterForm.value.name" class="required">*</div>
+                                </div>
+
+                                <label for="name">Valor</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea class="espacios" formControlName="value" class="form-control" placeholder="Value">
+                                        {{configurationParameter.Value}}
+                                    </textarea>
+                                    <div *ngIf="!editConfigurationParameterForm.value.value" class="required">*</div>
+                                </div>
+
                                 <label for="description">Descripción</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -74,41 +96,10 @@
                                     </div>
                                     <input type="text" formControlName="description" class="form-control"
                                         placeholder="Descripción">
-                                    <div *ngIf="!editRoleForm.value.description" class="required">*</div>
+                                    <div *ngIf="!editConfigurationParameterForm.value.description" class="required">*</div>
                                 </div>
 
-                                <label for="shortName">Nombre corto</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="shortName" class="form-control"
-                                        placeholder="Nombre corto">
-                                    <div *ngIf="!editRoleForm.value.shortName" class="required">*</div>
-                                </div>
-
-                                <label for="parent">Rol padre</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="parent" class="form-control"
-                                        placeholder="Rol padre">
-                                    <div *ngIf="!editRoleForm.value.parent" class="required">*</div>
-                                </div>
-
-                                <label for="menuTemplate">Plantilla del menu</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <textarea formControlName="menuTemplate" class="form-control"
-                                        placeholder="Plantilla del menu">
-                                         {{role.MenuTemplate}}
-                                    </textarea>
-                                </div>
-
-                                <label for="menuTemplate">Habilidar</label>
+                                <label for="enabled">Habilidar</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                     </div>
@@ -124,7 +115,7 @@
                 <!--/.row-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary" [disabled]="editRoleForm.invalid">Guardar</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="editConfigurationParameterForm.invalid">Guardar</button>
                     </div>
                     <!--/.row-->
                 </div>
@@ -138,7 +129,6 @@
 </ng-template>
 
 
-
 <!--Create modal-->
 <ng-template #createModal let-modal>
     <div class="modal-header">
@@ -149,7 +139,7 @@
     </div>
     <div class="modal-body">
 
-        <form [formGroup]="createRoleForm" (submit)="create(createRoleForm.value)">
+        <form [formGroup]="createConfigurationParameterForm" (submit)="create(createConfigurationParameterForm.value)">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -158,6 +148,27 @@
                             </div>
                             <div class="card-body">
 
+                                <label for="name">Nombre</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Nombre">
+                                    <div *ngIf="!createConfigurationParameterForm.value.name" class="required">*</div>
+                                </div>
+
+                                <label for="name">Valor</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea class="espacios" formControlName="value" class="form-control" placeholder="Value">
+                                        {{configurationParameter.Value}}
+                                    </textarea>
+                                    <div *ngIf="!createConfigurationParameterForm.value.value" class="required">*</div>
+                                </div>
+
                                 <label for="description">Descripción</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -165,40 +176,10 @@
                                     </div>
                                     <input type="text" formControlName="description" class="form-control"
                                         placeholder="Descripción">
-                                    <div *ngIf="!createRoleForm.value.description" class="required">*</div>
+                                    <div *ngIf="!createConfigurationParameterForm.value.description" class="required">*</div>
                                 </div>
 
-                                <label for="shortName">Nombre corto</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="shortName" class="form-control"
-                                        placeholder="Nombre corto">
-                                    <div *ngIf="!createRoleForm.value.shortName" class="required">*</div>
-                                </div>
-
-                                <label for="parent">Rol padre</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="parent" class="form-control"
-                                        placeholder="Rol padre">
-                                    <div *ngIf="!createRoleForm.value.parent" class="required">*</div>
-                                </div>
-
-                                <label for="menuTemplate">Plantilla del menu</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <textarea formControlName="menuTemplate" class="form-control" placeholder="Plantilla del menu">
-                                         {{role.MenuTemplate}}
-                                    </textarea>
-                                </div>
-
-                                <label for="menuTemplate">Habilidar</label>
+                                <label for="enabled">Habilidar</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                     </div>
@@ -214,7 +195,7 @@
                 <!--/.row-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary" [disabled]="createRoleForm.invalid">Crear</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="createConfigurationParameterForm.invalid">Crear</button>
                     </div>
                     <!--/.row-->
                 </div>

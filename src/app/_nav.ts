@@ -27,6 +27,11 @@ export const navItems: INavData[] = [
         name: 'Roles',
         url: '/role',
         icon: 'fa fa-group'
+      },
+      {
+        name: 'Parámetros de configuraciones del sistema',
+        url: '/configuration-parameter',
+        icon: 'icon-settings'
       }
     ]
   },

@@ -55,6 +55,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
+import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { RoleComponent } from './jsViews/role/role/role.component';
     PortadaComponent,
     UserComponent,
     UserRoleComponent,
-    RoleComponent
+    RoleComponent,
+    ConfigurationParameterComponent
   ],
   providers: [
     {

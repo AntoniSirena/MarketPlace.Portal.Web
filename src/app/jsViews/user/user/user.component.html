@@ -33,7 +33,7 @@
         <tr *ngFor="let item of users | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
           <td>{{item.Id}}</td>
           <td>{{item.UserName}}</td>
-          <td>{{item.EmailAddress}}</td>
+          <td class="td_min">{{item.EmailAddress}}</td>
           <td>{{item.Name}}</td>
           <td>{{item.Surname}}</td>
           <td>{{item.Status}}</td>
@@ -188,7 +188,7 @@
         <!--/.row-->
         <div class="row">
           <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary" [disabled]="createUserForm.invalid">Guardar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="createUserForm.invalid">Crear</button>
           </div>
           <!--/.row-->
         </div>

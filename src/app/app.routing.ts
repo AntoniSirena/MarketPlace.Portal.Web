@@ -13,6 +13,7 @@ import { PortadaComponent } from './jsViews/portada/portada/portada.component';
 import { UserComponent } from './jsViews/user/user/user.component';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
+import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 
 
 export const routes: Routes = [
@@ -129,6 +130,14 @@ export const routes: Routes = [
         component: RoleComponent,
         data: {
           title: 'Mantenimiento de roles'
+        }
+      },
+      {
+        path: 'configuration-parameter',
+        canActivate: [AuthGuard],
+        component: ConfigurationParameterComponent,
+        data: {
+          title: 'Mantenimiento de parámetros de configuraciones del sistema'
         }
       }
 
