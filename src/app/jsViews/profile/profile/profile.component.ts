@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { BaseService } from '../../../services/base/base.service';
 import { ProfileService } from '../../../services/profile/profile.service';
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
     private baseService: BaseService,
     private profileService: ProfileService,
     private form: FormBuilder
-    ) {
+  ) {
 
     //Cagando la data desde el servidor
     this.profile = this.baseService.getProfile();
@@ -70,27 +70,11 @@ export class ProfileComponent implements OnInit {
 
   //Init
   ngOnInit(): void {
-    this.userForm = this.form.group({
-      userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      name: ['', Validators.required],
-      surName: ['', Validators.required],
-      emailAddress: ['', [Validators.required, Validators.email]]
-    });
-
-    this.personForm = this.form.group({
-      firstName: ['', Validators.required],
-      secondName: ['', ],
-      surName: ['', Validators.required],
-      secondSurname: ['',],
-      fullName: [''],
-      birthDate: ['', Validators.required],
-      genderId: ['', Validators.required]
-    });
-
+    this.setValueEditFrom();
+    this.setValueCreateFrom();
   }
 
-  openProfileModal(){
+  openProfileModal() {
 
     //abriendo el modal
     this.modalService.open(this._content, { size: 'lg', scrollable: true })
@@ -105,115 +89,121 @@ export class ProfileComponent implements OnInit {
     });
 
     //Llenando los input del tab persona
-     this.personForm = this.form.group({
-        firstName: [`${this.infoCurrentPerson.FirstName}`, Validators.required],
-        secondName: [`${this.infoCurrentPerson.SecondName}`, ],
-        surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
-        secondSurname: [`${this.infoCurrentPerson.SecondSurname}`, ],
-        fullName: [`${this.infoCurrentPerson.FullName}`],
-        birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
-        genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required]
+    this.personForm = this.form.group({
+      firstName: [`${this.infoCurrentPerson.FirstName}`, Validators.required] || '',
+      secondName: [`${this.infoCurrentPerson.SecondName}`,],
+      surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
+      secondSurname: [`${this.infoCurrentPerson.SecondSurname}`,],
+      fullName: [`${this.infoCurrentPerson.FullName}`],
+      birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
+      genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required]
     });
   }
 
-  getGenders(){
+  getGenders() {
     this.profileService.getGenders().subscribe((response: Gender) => {
       this.genders = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getLocatorsTypes(){
+  getLocatorsTypes() {
     this.profileService.getLocatorsTypes().subscribe((response: LocatorsTypes) => {
       this.locatorsTypes = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getInfoCurrentUser(){
+  getInfoCurrentUser() {
     this.profileService.getInfoCurrentUser().subscribe((response: InfoCurrentUser) => {
       this.infoCurrentUser = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getInfoCurrentPerson(){
+  getInfoCurrentPerson() {
     this.profileService.getInfoCurrentPerson().subscribe((response: InfoCurrentPerson) => {
       this.infoCurrentPerson = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getInfoCurrentLocators(){
+  getInfoCurrentLocators() {
     this.profileService.getInfoCurrentLocators().subscribe((response: InfoCurrentLocators) => {
       this.infoCurrentLocators = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  currentUserOnSubmit(formValue: any){
+  currentUserOnSubmit(formValue: any) {
     const infoCurrentUser = new InfoCurrentUser();
     infoCurrentUser.UserName = formValue.userName,
-    infoCurrentUser.Password = formValue.password,
-    infoCurrentUser.Name = formValue.name,
-    infoCurrentUser.SurName = formValue.surName,
-    infoCurrentUser.EmailAddress = formValue.emailAddress,
+      infoCurrentUser.Password = formValue.password,
+      infoCurrentUser.Name = formValue.name,
+      infoCurrentUser.SurName = formValue.surName,
+      infoCurrentUser.EmailAddress = formValue.emailAddress,
 
-    this.profileService.updateInfoCurrentUser(infoCurrentUser).subscribe((response: Iresponse) => {
+      this.profileService.updateInfoCurrentUser(infoCurrentUser).subscribe((response: Iresponse) => {
 
-      if(response.Code === '000'){
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 3000
-        }).then(() =>{
-          this.getInfoCurrentUser();
+        if (response.Code === '000') {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 3000
+          }).then(() => {
+            this.getInfoCurrentUser();
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 4000
+          });
+        }
+
+      },
+        error => {
+          console.log(JSON.stringify(error));
         });
-      }else{
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 4000
-        });
-      }
-
-    },
-    error => { console.log(JSON.stringify(error));
-    });
   }
 
 
-  currentPersonOnSubmit(formValue: any){
+  currentPersonOnSubmit(formValue: any) {
     const infoCurrentPerson = new InfoCurrentPerson();
     infoCurrentPerson.FirstName = formValue.firstName,
-    infoCurrentPerson.SurName = formValue.surName,
-    infoCurrentPerson.SecondName = formValue.secondName,
-    infoCurrentPerson.SecondSurname = formValue.secondSurname,
-    infoCurrentPerson.FullName = formValue.fullName,
-    infoCurrentPerson.BirthDate = formValue.birthDate,
-    infoCurrentPerson.GenderId = formValue.genderId
+      infoCurrentPerson.SurName = formValue.surName,
+      infoCurrentPerson.SecondName = formValue.secondName,
+      infoCurrentPerson.SecondSurname = formValue.secondSurname,
+      infoCurrentPerson.FullName = formValue.fullName,
+      infoCurrentPerson.BirthDate = formValue.birthDate,
+      infoCurrentPerson.GenderId = formValue.genderId
 
     this.profileService.updateInfoCurrentPerson(infoCurrentPerson).subscribe((response: Iresponse) => {
 
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
           timer: 3000
-        }).then(() =>{
+        }).then(() => {
           this.getInfoCurrentPerson();
         });
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -223,7 +213,51 @@ export class ProfileComponent implements OnInit {
       }
 
     },
-    error => { console.log(JSON.stringify(error));
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //edit from set value ''
+  setValueEditFrom() {
+    this.userForm = this.form.group({
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]]
+    });
+
+    this.personForm = this.form.group({
+      firstName: ['', Validators.required],
+      secondName: ['',],
+      surName: ['', Validators.required],
+      secondSurname: ['',],
+      fullName: [''],
+      birthDate: ['', Validators.required],
+      genderId: ['', Validators.required]
+    });
+  }
+
+  //create from set value ''
+  setValueCreateFrom() {
+    this.userForm = this.form.group({
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]]
+    });
+
+    this.personForm = this.form.group({
+      firstName: ['', Validators.required],
+      secondName: ['',],
+      surName: ['', Validators.required],
+      secondSurname: ['',],
+      fullName: [''],
+      birthDate: ['', Validators.required],
+      genderId: ['', Validators.required]
     });
   }
 
