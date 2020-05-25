@@ -25,6 +25,7 @@
           <th>Estado</th>
           <th>Rol</th>
           <th>Rol padre</th>
+          <th>Ver</th>
           <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
@@ -36,9 +37,10 @@
           <td class="td_min">{{item.EmailAddress}}</td>
           <td>{{item.Name}}</td>
           <td>{{item.Surname}}</td>
-          <td>{{item.Status}}</td>
+          <td> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
           <td>{{item.Role == null ? '' : item.Role.Parent}}</td>
+          <td> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
           <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
@@ -194,6 +196,169 @@
         </div>
       </div>
     </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+
+<!--Details Modal -->
+<ng-template #details let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Información del usuario : {{userDetails.UserName}} </h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <ngb-tabset [destroyOnHide]="false">
+
+      <ngb-tab title="Persona">
+        <ng-template ngbTabContent>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+    
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Primer nombre</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.FirstName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Segundo nombre</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.SecondName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Primer apellido</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.Surname}}</span>
+                      </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Segundo apellido</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.secondSurname}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Nombre completo</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.FullName}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Fecha de nacim</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.BirthDate}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Género</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.Gender}}</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+
+          </div>
+
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab title="Localizadores">
+        <ng-template ngbTabContent>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="_searchText"
+                            [ngModelOptions]="{standalone: true}">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table class="table table-hover table-bordered">
+                        <thead>
+                          <tr style="background-color:rgb(167, 184, 201)">
+                            <th>Description</th>
+                            <th>Tipo</th>
+                            <th>Es principal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of locators | filter : _searchText">
+                            <td>{{item.Description}}</td>
+                            <td>{{item.Type}}</td>
+                            <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+            
+          </div>
+          
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
 
   </div>
   <div class="modal-footer">

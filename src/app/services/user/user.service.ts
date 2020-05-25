@@ -40,4 +40,8 @@ export class UserService {
     return this.httpClient.post(`${this.apiURL}api/user`, Json, {headers: headers} );
   }
 
+  getUserDetails(userId: number):Observable<object>{
+    return this.httpClient.get(this.apiURL +'api/user/GetUserDetails/' + userId);
+  }
+
 }

@@ -94,8 +94,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"></span>
                                     </div>
-                                    <input type="text" formControlName="description" class="form-control"
-                                        placeholder="Descripción">
+                                    <textarea class="espacios" formControlName="description" class="form-control" placeholder="Descripción">
+                                        {{configurationParameter.Description}}
+                                    </textarea>
                                     <div *ngIf="!editConfigurationParameterForm.value.description" class="required">*</div>
                                 </div>
 
@@ -174,8 +175,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"></span>
                                     </div>
-                                    <input type="text" formControlName="description" class="form-control"
-                                        placeholder="Descripción">
+                                    <textarea class="espacios" formControlName="description" class="form-control" placeholder="Descripción">
+                                        {{configurationParameter.Description}}
+                                    </textarea>
                                     <div *ngIf="!createConfigurationParameterForm.value.description" class="required">*</div>
                                 </div>
 

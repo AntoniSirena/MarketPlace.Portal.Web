@@ -8,6 +8,7 @@ import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 import { Profile } from '../../models/profile/profile';
 import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
+import { ExternalService } from '../../services/external/external.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService, 
     private redirectService: RedirectService,
-    //private externalService: ExternalService,
+    private externalService: ExternalService,
     private form: FormBuilder, 
     private router :Router
   ){  }
@@ -29,11 +30,17 @@ export class LoginComponent implements OnInit {
   profile = new Profile();
   systemConfiguration = new SystemConfiguration();
 
+  valueRegisterButton: string;
+
   ngOnInit(){
+
     this.loginForm = this.form.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    this.getValueRegisterButton();
+
   };
 
 
@@ -95,6 +102,16 @@ export class LoginComponent implements OnInit {
 
   register(){
     this.redirectService.register();
+  }
+
+
+  getValueRegisterButton() {
+    this.externalService.getValueRegisterButton().subscribe((response: any) => {
+      this.valueRegisterButton = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 }

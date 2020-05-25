@@ -46,4 +46,8 @@ export class ExternalService {
     return this.httpClient.get(this.apiURL +'api/external/GetEnterpriseInfo');
   }
 
+  getValueRegisterButton():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/external/GetValueRegisterButton');
+  }
+
 }

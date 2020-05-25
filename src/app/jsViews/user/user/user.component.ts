@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { UserService } from '../../../services/user/user.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iuser, IuserStatuses } from '../../../interfaces/Iuser/iuser';
 import Swal from 'sweetalert2';
+import { UserDetails } from '../../../models/user/user';
+import { Person, Locators } from '../../../models/profile/profile';
 
 
 @Component({
@@ -55,12 +57,20 @@ export class UserComponent implements OnInit {
       ShortName: '',
       Colour: ''
     }
-  ]
+  ];
+  userDetails = new UserDetails();
+  person = new Person();
+  locators = new Array<Locators>();
+
   editUserForm: FormGroup;
   createUserForm: FormGroup;
 
   _currentPage: number = 1;
   totalUsers: number = 0;
+  totalLocators: number = 0;
+
+  @ViewChild('details') detailsModal: ElementRef;
+
 
   //constructor
   constructor(
@@ -70,6 +80,7 @@ export class UserComponent implements OnInit {
   }
 
 
+  //Init
   ngOnInit() {
     this.getUsers();
     this.getUserStatuses();
@@ -78,6 +89,7 @@ export class UserComponent implements OnInit {
   }
 
 
+  //getUsers
   getUsers(){
     this.userService.getUsers().subscribe((response: Iresponse) => {
      this.users = response;
@@ -87,6 +99,7 @@ export class UserComponent implements OnInit {
     });
   }
 
+  //getUserById
   getUserById(id: number){
     this.userService.getUserById(id).subscribe((response: any) => {
       this.user = response;
@@ -100,6 +113,19 @@ export class UserComponent implements OnInit {
     });
   }
 
+  //getUserDetails
+  getUserDetails(userId: number){
+    this.userService.getUserDetails(userId).subscribe((response: UserDetails) => {
+     this.userDetails = response;
+     this.person = this.userDetails.Person;
+     this.locators = this.userDetails.Person.Locators;
+     this.totalLocators = this.locators.length;
+     console.log(this.locators);
+    },
+    error => { console.log(JSON.stringify(error));
+    });
+  }
+
   getUserStatuses(){
     this.userService.getUserStatuses().subscribe((response: IuserStatuses[]) => {
       this.userStatuses = response;
@@ -108,6 +134,12 @@ export class UserComponent implements OnInit {
     });
   }
 
+
+  //open details modal
+  openDetailModal(userId: number){
+    this.getUserDetails(userId);
+    this.modalService.open(this.detailsModal, { size: 'lg' });
+  }
 
   //open edit modal
   openEditModal(editModal, id: number) {
