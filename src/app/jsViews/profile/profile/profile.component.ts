@@ -12,6 +12,9 @@ import { InfoCurrentPerson } from '../../../models/profile/profile';
 import { InfoCurrentLocators } from '../../../models/profile/profile';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import Swal from 'sweetalert2';
+import { Locator } from '../../../models/locator/locator';
+import { LocatorService } from '../../../services/locator/locator.service';
+import { Ilocator } from '../../../interfaces/Ilocator/ilocator';
 
 
 @Component({
@@ -39,6 +42,7 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal,
     private baseService: BaseService,
     private profileService: ProfileService,
+    private locatorService: LocatorService,
     private form: FormBuilder
   ) {
 
@@ -56,22 +60,29 @@ export class ProfileComponent implements OnInit {
   //Variables
   @ViewChild('content') _content: ElementRef;
 
+  _currentPage: number = 1;
+
   genders = new Gender();
   locatorsTypes = new LocatorsTypes();
   infoCurrentUser = new InfoCurrentUser();
   infoCurrentPerson = new InfoCurrentPerson();
   infoCurrentLocators = new InfoCurrentLocators();
+  locator = new Locator();
   profile = new Profile();
 
   userForm: FormGroup;
   personForm: FormGroup;
-  locatorsForm: FormGroup;
+  createLocatorForm: FormGroup;
+  editLocatorForm: FormGroup;
+
+
 
 
   //Init
   ngOnInit(): void {
     this.setValueEditFrom();
     this.setValueCreateFrom();
+    this.setValueCreateLocatorFrom();
   }
 
   openProfileModal() {
@@ -218,7 +229,6 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-
   //edit from set value ''
   setValueEditFrom() {
     this.userForm = this.form.group({
@@ -258,6 +268,202 @@ export class ProfileComponent implements OnInit {
       fullName: [''],
       birthDate: ['', Validators.required],
       genderId: ['', Validators.required]
+    });
+  }
+
+
+
+  //open create locator modal
+  openCreateLocatorModal(createLocatorModal) {
+    this.setValueCreateLocatorFrom();
+    this.modalService.open(createLocatorModal, { size: 'lg' });
+  }
+
+  //open edit modal
+  openEditLocatorModal(editLocatorModal, id: number) {
+    this.getLocatorById(id);
+    this.getLocatorsTypes();
+    this.setValueEditLocatorFrom();
+    this.modalService.open(editLocatorModal, { size: 'lg' });
+  }
+
+  //Get Locator by Id
+  getLocatorById(id: number) {
+    this.locatorService.getLocatorById(id).subscribe((response: Locator) => {
+      this.locator = response;
+
+      //llenando el modal
+      this.editLocatorForm = this.form.group({
+        id: [this.locator.Id],
+        locatorTypeId: [this.locator.LocatorTypeId, Validators.required],
+        description: [`${this.locator.Description}`, Validators.required],
+        isMain: [this.locator.IsMain],
+      });
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  isMainTrue() {
+    this.locator.IsMain = true;
+  }
+
+  isMainFalse() {
+    this.locator.IsMain = false;
+  }
+
+  //create locator
+  createLocator(formValue: any) {
+    const locator: Ilocator = {
+      Id: 0,
+      PersonId: 0,
+      LocatorTypeId: formValue.locatorTypeId,
+      Description: formValue.description,
+      IsMain: this.locator.IsMain,
+      IsActive: true,
+      IsDeleted: false,
+      CreatorUserId: null,
+      CreationTime: null,
+      LastModifierUserId: null,
+      LastModificationTime: null,
+      DeleterUserId: null,
+      DeletionTime: null
+    }
+
+    this.locatorService.createLocator(locator).subscribe((response: Iresponse) => {
+
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        }).then(() => {
+          this.getInfoCurrentLocators();
+          this.setValueCreateLocatorFrom();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //edit locator
+  editLocator(formValue: any) {
+    const locator: Ilocator = {
+      Id: this.locator.Id,
+      PersonId: this.locator.PersonId,
+      LocatorTypeId: formValue.locatorTypeId,
+      Description: formValue.description,
+      IsMain: this.locator.IsMain,
+      IsActive: this.locator.IsActive,
+      IsDeleted: this.locator.IsDeleted,
+      CreatorUserId: this.locator.CreatorUserId,
+      CreationTime: this.locator.CreationTime,
+      LastModifierUserId: this.locator.LastModifierUserId,
+      LastModificationTime: this.locator.LastModificationTime,
+      DeleterUserId: this.locator.DeleterUserId,
+      DeletionTime: this.locator.DeletionTime
+    }
+
+    this.locatorService.editLocator(locator).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.getInfoCurrentLocators();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+
+  //delete locator
+  deleteLocator(id: number) {
+
+    Swal.fire({
+      title: 'Esta seguro que desea eliminar el registro ?',
+      text: "Los cambios no podran ser revertidos!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        //delete service
+        this.locatorService.deleteLocator(id).subscribe((response: Iresponse) => {
+          if (response.Code === '000') {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 2000
+            }).then(() => {
+              this.getInfoCurrentLocators();
+            });
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            });
+          }
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+
+      }
+    })
+  }
+
+  
+  //create locator from set value ''
+  setValueCreateLocatorFrom() {
+    this.createLocatorForm = this.form.group({
+      locatorTypeId: ['', Validators.required],
+      description: ['', Validators.required],
+      isMain: [false],
+    });
+  }
+
+  //edit locator from set value ''
+  setValueEditLocatorFrom() {
+    this.editLocatorForm = this.form.group({
+      locatorTypeId: ['', Validators.required],
+      description: ['', Validators.required],
+      isMain: [false],
     });
   }
 

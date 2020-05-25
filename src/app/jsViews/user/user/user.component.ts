@@ -120,7 +120,6 @@ export class UserComponent implements OnInit {
      this.person = this.userDetails.Person;
      this.locators = this.userDetails.Person.Locators;
      this.totalLocators = this.locators.length;
-     console.log(this.locators);
     },
     error => { console.log(JSON.stringify(error));
     });

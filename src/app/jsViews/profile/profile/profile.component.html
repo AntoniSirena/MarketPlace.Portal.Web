@@ -140,6 +140,60 @@
 
             <ngb-tab title="Localizadores">
                 <ng-template ngbTabContent>
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="card">
+                          <div class="card-header">
+                          </div>
+                          <div class="card-body">
+        
+                            <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-lg-12">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="_searchText"
+                                    [ngModelOptions]="{standalone: true}">
+                                </div>
+                              </div>
+                            </div>
+        
+                            <div class="table-responsive">
+                              <table class="table table-hover table-bordered">
+                                <thead>
+                                  <tr style="background-color:rgb(167, 184, 201)">
+                                    <th>Tipo</th>
+                                    <th>Description</th>
+                                    <th>Es principal ?</th>
+                                    <th></th>
+                                    <th><button type="button" class="btn btn-success" (click)="openCreateLocatorModal(createLocatorModal)"><i
+                                      class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 3, currentPage: _currentPage}">
+                                    <td>{{item.LocatorTypeDescription}}</td>
+                                    <td>{{item.Description}}</td>
+                                    <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
+                                    <td> <button type="button" class="btn btn-danger" (click)="deleteLocator(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+                                    <td><button type="button" class="btn btn-primary" (click)="openEditLocatorModal(editLocatorModal, item.Id)"><i
+                                      class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true"
+                                  previousLabel="Anterior" nextLabel="Siguiente">
+                                </pagination-controls>       
+                            </div>
+        
+                          </div>
+                        </div>
+                      </div>
+                      <!--/.col-->
+                    </div>                
+                    
+                  </div>
+
                 </ng-template>
               </ngb-tab>
           </ngb-tabset>
@@ -149,3 +203,150 @@
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
   </ng-template>
+
+
+
+<!--Create locator modal-->
+<ng-template #createLocatorModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Nuevo registro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="createLocatorForm" (submit)="createLocator(createLocatorForm.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+
+                <label for="locatorTypeId">Tipo de localizador</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                  </div>
+                  <select formControlName="locatorTypeId" class="form-control">
+                    <option value=""></option>
+                    <option *ngFor="let item of locatorsTypes" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!createLocatorForm.value.locatorTypeId" class="required">*</div>
+                </div>
+
+                <label for="description">Descripción</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-info"> </i>
+                        </span>
+                    </div>
+                    <input type="text" formControlName="description" class="form-control"
+                        placeholder="Descripción">
+                    <div *ngIf="!createLocatorForm.value.description" class="required">*</div>
+                </div>
+                
+                <label for="menuTemplate">Es principal ?</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="checkbox"
+                        (change)="$event.target.checked ? isMainTrue() : isMainFalse()"
+                        formControlName="isMain">
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--/.col-->
+        </div>
+        <!--/.row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" [disabled]="createLocatorForm.invalid">Crear</button>
+          </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--Edit locator modal-->
+<ng-template #editLocatorModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Nuevo registro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="editLocatorForm" (submit)="editLocator(editLocatorForm.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+
+                <label for="locatorTypeId">Tipo de localizador</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                  </div>
+                  <select formControlName="locatorTypeId" class="form-control">
+                    <option value=""></option>
+                    <option *ngFor="let item of locatorsTypes" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!editLocatorForm.value.locatorTypeId" class="required">*</div>
+                </div>
+
+                <label for="description">Descripción</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-info"> </i>
+                        </span>
+                    </div>
+                    <input type="text" formControlName="description" class="form-control"
+                        placeholder="Descripción">
+                    <div *ngIf="!editLocatorForm.value.description" class="required">*</div>
+                </div>
+                
+                <label for="menuTemplate">Es principal ?</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="checkbox"
+                        (change)="$event.target.checked ? isMainTrue() : isMainFalse()"
+                        formControlName="isMain">
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--/.col-->
+        </div>
+        <!--/.row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" [disabled]="editLocatorForm.invalid">Guardar</button>
+          </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>

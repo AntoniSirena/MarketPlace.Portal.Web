@@ -71,6 +71,7 @@ export class InfoCurrentPerson {
 }
 
 export class InfoCurrentLocators {
+  Id: number;
   LocatorTypeId: number;
   LocatorTypeDescription: string;
   Description: string;
