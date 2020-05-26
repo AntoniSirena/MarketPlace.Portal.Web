@@ -1,44 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RedirectService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginSevice: LoginService) { }
 
-  login(){
+  login() {
     localStorage.clear();
-    this.router.navigate(['login']).then(() =>{
+    this.router.navigate(['login']).then(() => {
       Swal.fire({
         icon: 'warning',
         title: 'Su sesión ha expirado',
         showConfirmButton: false,
         timer: 3000
-      }).then(() =>{
+      }).then(() => {
         window.location.reload();
       });
     });
   }
 
 
-  logout(){
+  logout() {
+
+    this.loginSevice.logOut().subscribe((response: any) => {
+    },
+      error => {
+        console.log(JSON.stringify(error));
+    });
+
     localStorage.clear();
-    this.router.navigate(['login']).then(() =>{
+    this.router.navigate(['login']).then(() => {
       Swal.fire({
         icon: 'success',
         title: 'Sesión cerrada con exito',
         showConfirmButton: false,
         timer: 1000
-      }).then(() =>{
+      }).then(() => {
         window.location.reload();
       });
     });
   }
 
-  register(){
+  register() {
     this.router.navigate(['register']);
   }
 

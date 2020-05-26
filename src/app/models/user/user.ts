@@ -8,7 +8,16 @@ export class UserDetails {
     Surname: string;
     EmailAddress: string;
     Image: string;
+    LastLoginTime: string;
+    LastLoginTimeEnd: string;
+    IsOnline: string;
+    Role: Role;
     Person: Person;
+}
+
+export class Role{
+    Description: string;
+    Parent: string;
 }
 
 export class Person {

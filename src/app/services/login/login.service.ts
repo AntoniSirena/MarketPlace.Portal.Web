@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable} from 'rxjs';
-import { environment} from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 
 @Injectable({
@@ -11,15 +11,22 @@ export class LoginService {
 
   apiURL
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
     this.apiURL = environment.apiURL;
   }
 
-  authenticate(login: Ilogin){
+  authenticate(login: Ilogin) {
     let Json = JSON.stringify(login);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
- 
-    return this.httpClient.post(this.apiURL + 'api/login/authenticate', Json, {headers: headers});
-   }
+
+    return this.httpClient.post(this.apiURL + 'api/login/authenticate', Json, { headers: headers });
+  }
+
+  logOut() {
+    let Json = JSON.stringify("");
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.httpClient.post(this.apiURL + 'api/login/logOut', Json, { headers: headers });
+  }
 
 }

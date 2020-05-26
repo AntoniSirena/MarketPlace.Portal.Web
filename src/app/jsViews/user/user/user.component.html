@@ -20,12 +20,10 @@
           <th>Código</th>
           <th>Usuario</th>
           <th>Correo</th>
-          <th>Nombres</th>
-          <th>Apllidos</th>
           <th>Estado</th>
           <th>Rol</th>
-          <th>Rol padre</th>
-          <th>Ver</th>
+          <th>En linea</th>
+          <th>Detalles</th>
           <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
@@ -35,11 +33,9 @@
           <td>{{item.Id}}</td>
           <td>{{item.UserName}}</td>
           <td class="td_min">{{item.EmailAddress}}</td>
-          <td>{{item.Name}}</td>
-          <td>{{item.Surname}}</td>
           <td> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
-          <td>{{item.Role == null ? '' : item.Role.Parent}}</td>
+          <td> <button class="btn" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
           <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -358,6 +354,59 @@
           
         </ng-template>
       </ngb-tab>
+
+      <ngb-tab title="Generales">
+        <ng-template ngbTabContent>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+    
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Rol padre</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{role.Parent}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Última hora que inicio sesión</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{userDetails.LastLoginTime | date :'short'}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Última hora que finalizó sesión</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{userDetails.LastLoginTimeEnd | date :'short'}}</span>
+                      </div>
+                    </div>
+                    
+
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+
+          </div>
+
+        </ng-template>
+      </ngb-tab>
+
     </ngb-tabset>
 
   </div>

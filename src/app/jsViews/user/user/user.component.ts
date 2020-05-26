@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef  } from '@angular/core';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user/user.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iuser, IuserStatuses } from '../../../interfaces/Iuser/iuser';
 import Swal from 'sweetalert2';
-import { UserDetails } from '../../../models/user/user';
+import { UserDetails, Role } from '../../../models/user/user';
 import { Person, Locators } from '../../../models/profile/profile';
+import { IpDiviceService } from '../../../services/ipDivice/ip-divice.service';
 
 
 @Component({
@@ -41,6 +42,10 @@ export class UserComponent implements OnInit {
     StatusId: 0,
     PersonId: 0,
     Image: '',
+    LastLoginTime: '',
+    LastLoginTimeEnd: '',
+    IsOnline: false,
+    DiviceIP: '',
     CreationTime: '',
     CreatorUserId: '',
     LastModificationTime: '',
@@ -48,7 +53,7 @@ export class UserComponent implements OnInit {
     DeletionTime: '',
     DeleterUserId: 0,
     IsActive: false,
-    IsDeleted: false    
+    IsDeleted: false
   };
   userStatuses: IuserStatuses[] = [
     {
@@ -61,6 +66,7 @@ export class UserComponent implements OnInit {
   userDetails = new UserDetails();
   person = new Person();
   locators = new Array<Locators>();
+  role =  new Role();
 
   editUserForm: FormGroup;
   createUserForm: FormGroup;
@@ -69,6 +75,8 @@ export class UserComponent implements OnInit {
   totalUsers: number = 0;
   totalLocators: number = 0;
 
+  ipAddress: object;
+
   @ViewChild('details') detailsModal: ElementRef;
 
 
@@ -76,7 +84,8 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private modalService: NgbModal,
-    private form: FormBuilder) {   
+    private form: FormBuilder,
+    private ipDiviceService: IpDiviceService) {
   }
 
 
@@ -86,56 +95,68 @@ export class UserComponent implements OnInit {
     this.getUserStatuses();
     this.setValueCreateFrom();
     this.setValueEditFrom();
+    this.getIPAddress();
   }
 
 
+
+  //get IP address
+  getIPAddress() {
+    this.ipDiviceService.getIPAddress();
+  }
+
   //getUsers
-  getUsers(){
+  getUsers() {
     this.userService.getUsers().subscribe((response: Iresponse) => {
-     this.users = response;
-     this.totalUsers = this.users.length;
+      this.users = response;
+      this.totalUsers = this.users.length;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
   //getUserById
-  getUserById(id: number){
+  getUserById(id: number) {
     this.userService.getUserById(id).subscribe((response: any) => {
       this.user = response;
 
       //llenando el modal
       this.editUserForm = this.form.group({
-       statusId: [`${this.user.StatusId}`, Validators.required]
-       });       
+        statusId: [`${this.user.StatusId}`, Validators.required]
+      });
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
   //getUserDetails
-  getUserDetails(userId: number){
+  getUserDetails(userId: number) {
     this.userService.getUserDetails(userId).subscribe((response: UserDetails) => {
-     this.userDetails = response;
-     this.person = this.userDetails.Person;
-     this.locators = this.userDetails.Person.Locators;
-     this.totalLocators = this.locators.length;
+      this.userDetails = response;
+      this.role = this.userDetails.Role;
+      this.person = this.userDetails.Person;
+      this.locators = this.userDetails.Person.Locators;
+      this.totalLocators = this.locators.length;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
-  getUserStatuses(){
+  getUserStatuses() {
     this.userService.getUserStatuses().subscribe((response: IuserStatuses[]) => {
       this.userStatuses = response;
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
   //open details modal
-  openDetailModal(userId: number){
+  openDetailModal(userId: number) {
     this.getUserDetails(userId);
     this.modalService.open(this.detailsModal, { size: 'lg' });
   }
@@ -149,13 +170,13 @@ export class UserComponent implements OnInit {
 
   //open create modal
   openCreateModal(createModal) {
-    this.setValueCreateFrom();  
+    this.setValueCreateFrom();
     this.modalService.open(createModal, { size: 'lg' });
   }
 
   //edit
-  edit(formValue: any){
-    const user: Iuser ={
+  edit(formValue: any) {
+    const user: Iuser = {
       Id: this.user.Id,
       UserName: this.user.UserName,
       Password: this.user.Password,
@@ -165,6 +186,10 @@ export class UserComponent implements OnInit {
       StatusId: formValue.statusId,
       PersonId: this.user.PersonId,
       Image: this.user.Image,
+      LastLoginTime: this.user.LastLoginTime,
+      LastLoginTimeEnd: this.user.LastLoginTimeEnd,
+      IsOnline: this.user.IsOnline,
+      DiviceIP: this.user.DiviceIP,
       CreationTime: this.user.CreationTime,
       CreatorUserId: this.user.CreatorUserId,
       LastModificationTime: this.user.LastModificationTime,
@@ -176,7 +201,7 @@ export class UserComponent implements OnInit {
     };
 
     this.userService.editUser(user).subscribe((response: Iresponse) => {
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -187,7 +212,7 @@ export class UserComponent implements OnInit {
           this.getUsers();
           this.modalService.dismissAll();
         });
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -196,15 +221,16 @@ export class UserComponent implements OnInit {
         });
       }
     },
-      error => { console.log(JSON.stringify(error));
-    });  
+      error => {
+        console.log(JSON.stringify(error));
+      });
 
   }
 
   //create
-  create(formValue: any){
+  create(formValue: any) {
 
-    const user: Iuser ={
+    const user: Iuser = {
       Id: 0,
       UserName: formValue.userName,
       EmailAddress: formValue.emailAddress,
@@ -214,6 +240,10 @@ export class UserComponent implements OnInit {
       StatusId: formValue.statusId,
       PersonId: null,
       Image: null,
+      LastLoginTime: null,
+      LastLoginTimeEnd: null,
+      IsOnline: false,
+      DiviceIP: null,
       IsActive: true,
       IsDeleted: false,
       CreatorUserId: null,
@@ -225,7 +255,7 @@ export class UserComponent implements OnInit {
     };
 
     this.userService.createUser(user).subscribe((response: Iresponse) => {
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -236,7 +266,7 @@ export class UserComponent implements OnInit {
           this.getUsers();
           this.modalService.dismissAll();
         });
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -245,27 +275,28 @@ export class UserComponent implements OnInit {
         });
       }
     },
-      error => { console.log(JSON.stringify(error));
-    });  
+      error => {
+        console.log(JSON.stringify(error));
+      });
 
   }
 
   //create from set value ''
-  setValueCreateFrom(){
+  setValueCreateFrom() {
     this.createUserForm = this.form.group({
-        userName: ['', Validators.required],
-        emailAddress: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        name: ['', Validators.required],
-        surName: ['', Validators.required],
-        statusId: [this.userStatuses[0].Id, Validators.required]
+      userName: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      statusId: [this.userStatuses[0].Id, Validators.required]
     });
   }
 
   //edit from set value ''
-  setValueEditFrom(){
+  setValueEditFrom() {
     this.editUserForm = this.form.group({
-     statusId: ['', Validators.required],
+      statusId: ['', Validators.required],
     });
   }
 

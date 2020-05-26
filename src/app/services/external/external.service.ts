@@ -16,27 +16,8 @@ export class ExternalService {
   }
 
   createUser(user: Iuser){
-    const data: Iuser = {
-      Id: user.Id,
-      UserName: user.UserName,
-      Password: user.Password,
-      Name: user.Name,
-      SurName: user.SurName,
-      EmailAddress: user.EmailAddress,
-      StatusId: user.StatusId,
-      PersonId: user.PersonId,
-      Image: user.Image,
-      IsActive: user.IsActive,
-      IsDeleted: user.IsDeleted,
-      CreationTime: user.CreationTime,
-      CreatorUserId: user.CreatorUserId,
-      LastModificationTime: user.LastModificationTime,
-      LastModifierUserId: user.LastModifierUserId,
-      DeletionTime: user.DeletionTime,
-      DeleterUserId: user.DeleterUserId,
-    };
 
-    let Json = JSON.stringify(data);
+    let Json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient.post(this.apiURL + 'api/external/CreateUser', Json, {headers: headers});

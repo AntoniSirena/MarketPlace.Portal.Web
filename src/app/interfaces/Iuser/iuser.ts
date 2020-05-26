@@ -10,6 +10,10 @@ export interface Iuser extends Iaudit{
     StatusId: number;
     PersonId: number;
     Image: string;
+    LastLoginTime: string;
+    LastLoginTimeEnd: string;
+    IsOnline: boolean;
+    DiviceIP: string;
 }
 
 export interface IuserStatuses{
