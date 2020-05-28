@@ -72,6 +72,8 @@ export class UserComponent implements OnInit {
   createUserForm: FormGroup;
 
   _currentPage: number = 1;
+  currentPageLocators: number = 1;
+
   totalUsers: number = 0;
   totalLocators: number = 0;
 

@@ -171,7 +171,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 3, currentPage: _currentPage}">
+                                  <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 4, currentPage: _currentPage}">
                                     <td>{{item.LocatorTypeDescription}}</td>
                                     <td>{{item.Description}}</td>
                                     <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>

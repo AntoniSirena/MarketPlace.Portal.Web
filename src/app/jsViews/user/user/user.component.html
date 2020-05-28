@@ -35,7 +35,7 @@
           <td class="td_min">{{item.EmailAddress}}</td>
           <td> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
-          <td> <button class="btn" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
+          <td> <button class="btn" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
           <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -334,13 +334,17 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of locators | filter : _searchText">
+                          <tr *ngFor="let item of locators | filter : _searchText | paginate: { itemsPerPage: 4, currentPage: currentPageLocators}">
                             <td>{{item.Description}}</td>
                             <td>{{item.Type}}</td>
-                            <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
+                            <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
                           </tr>
                         </tbody>
                       </table>
+
+                      <pagination-controls (pageChange)="currentPageLocators = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+                        nextLabel="Siguiente">
+                      </pagination-controls>
 
                     </div>
 

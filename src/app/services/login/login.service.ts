@@ -22,8 +22,8 @@ export class LoginService {
     return this.httpClient.post(this.apiURL + 'api/login/authenticate', Json, { headers: headers });
   }
 
-  logOut() {
-    let Json = JSON.stringify("");
+  logOut(userName: string) {
+    let Json = JSON.stringify(userName);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient.post(this.apiURL + 'api/login/logOut', Json, { headers: headers });

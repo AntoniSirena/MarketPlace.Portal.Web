@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
           this.profile = response.Data;
           localStorage.setItem("profile", `${ JSON.stringify(this.profile.Profile) }`);
           localStorage.setItem("token", `${ JSON.stringify(this.profile.Profile.User.Token)}`);
+          localStorage.setItem("userName", `${ JSON.stringify(this.profile.Profile.User.UserName)}`);
 
           //go to dashboard
           this.router.navigate(['dashboard']);

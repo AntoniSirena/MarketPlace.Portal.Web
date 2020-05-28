@@ -34,7 +34,7 @@
                     <td class="td_min">{{item.ShortName}}</td>
                     <td>{{item.Parent}}</td>
                     <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
-                    <td> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
+                    <td> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
                     <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
                 </tr>
             </tbody>

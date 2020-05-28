@@ -32,6 +32,7 @@ export class Person {
 }
 
 export class Locators {
+    Id: number;
     Description:string;
     IsMain: boolean;
     Type: string;
