@@ -21,7 +21,7 @@
           <th>Usuario</th>
           <th>Nombre completo</th>
           <th>Rol</th>
-          <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
@@ -32,7 +32,7 @@
           <td>{{item.UserName}}</td>
           <td>{{item.FullName == null ? '' : item.FullName}}</td>
           <td>{{item.RoleName}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>

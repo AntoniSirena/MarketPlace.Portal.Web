@@ -7,4 +7,5 @@ export interface Irole extends Iaudit{
     MenuTemplate: string;
     Parent: string;
     Enabled: boolean;
+    Code: string;
 }

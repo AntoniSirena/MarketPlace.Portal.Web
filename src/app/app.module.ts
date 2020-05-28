@@ -56,6 +56,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
+import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 
 @NgModule({
   imports: [
@@ -90,7 +91,8 @@ import { ConfigurationParameterComponent } from './jsViews/configurationParamete
     UserComponent,
     UserRoleComponent,
     RoleComponent,
-    ConfigurationParameterComponent
+    ConfigurationParameterComponent,
+    PersonTypeComponent
   ],
   providers: [
     {

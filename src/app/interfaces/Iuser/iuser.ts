@@ -14,6 +14,7 @@ export interface Iuser extends Iaudit{
     LastLoginTimeEnd: string;
     IsOnline: boolean;
     DiviceIP: string;
+    Code: string;
 }
 
 export interface IuserStatuses{

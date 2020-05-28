@@ -36,6 +36,26 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Mantenimientos',
+    url: '/Mantenimientos',
+    icon: 'fa fa-wrench',
+    children: [
+      {
+        name: 'Persona',
+        url: '/Mantenimientos/Persona',
+        icon: 'icon-user',
+        children: [
+          {
+            name: 'Tipos',
+            url: '/person-type',
+            icon: 'fa fa-circle-o'
+          }
+        ]
+      }
+
+    ]
+  },
+  {
     name: 'Conf. de usuarios',
     url: '/users',
     icon: 'icon-settings',
@@ -52,4 +72,5 @@ export const navItems: INavData[] = [
       }
     ]
   }
+
 ];

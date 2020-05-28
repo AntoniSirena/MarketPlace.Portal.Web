@@ -22,9 +22,9 @@
                     <th>Nombre</th>
                     <th>Valor</th>
                     <th>Descripción</th>
-                    <th>Habilidato</th>
-                    <th></th>
-                    <th> <button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+                    <th class="right">Habilidato</th>
+                    <th class="right"></th>
+                    <th class="right"> <button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,9 +34,9 @@
                     <td class="td_min">{{item.Name}}</td>
                     <td class="td_min">{{item.Value}}</td>
                     <td class="td_min">{{item.Description}}</td>
-                    <td> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
-                    <td> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-                    <td> <button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button> </td>
+                    <td class="right"> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
+                    <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+                    <td class="right"> <button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button> </td>
                 </tr>
             </tbody>
         </table>

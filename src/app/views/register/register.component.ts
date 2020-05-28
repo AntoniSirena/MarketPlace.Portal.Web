@@ -22,7 +22,8 @@ export class RegisterComponent {
       emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       name: ['', Validators.required],
-      surName: ['', Validators.required]
+      surName: ['', Validators.required],
+      code: ['']
     });
 
   }
@@ -40,6 +41,7 @@ export class RegisterComponent {
     StatusId: 0,
     PersonId: null,
     Image: null,
+    Code: formValue.code,
     LastLoginTime: null,
     LastLoginTimeEnd: null,
     IsOnline: false,

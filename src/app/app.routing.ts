@@ -14,6 +14,7 @@ import { UserComponent } from './jsViews/user/user/user.component';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
+import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 
 
 export const routes: Routes = [
@@ -138,6 +139,14 @@ export const routes: Routes = [
         component: ConfigurationParameterComponent,
         data: {
           title: 'Mantenimiento de parámetros de configuraciones del sistema'
+        }
+      },
+      {
+        path: 'person-type',
+        canActivate: [AuthGuard],
+        component: PersonTypeComponent,
+        data: {
+          title: 'Mantenimiento de tipos de personas'
         }
       }
 

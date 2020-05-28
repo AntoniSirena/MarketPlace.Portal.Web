@@ -51,6 +51,13 @@
                   <div *ngIf="!myForm.value.surName" class="required">*</div>
                 </div>
 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                  </div>
+                  <input type="text" formControlName="code" class="form-control" placeholder="Código de seguridad si posee" autocomplete="code">
+                </div>
+
                 <button type="submit" class="btn btn-block btn-twitter" style="background-color:rgb(97, 170, 219);" [disabled]="myForm.invalid" >Crear cuenta</button>
 
               </form>

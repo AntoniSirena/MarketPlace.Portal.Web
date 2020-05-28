@@ -18,24 +18,26 @@
             <thead>
                 <tr style="background-color:rgb(167, 184, 201)">
                     <th>Código</th>
+                    <th>Código seguridad</th>
                     <th>Descripción</th>
                     <th>Nombre corto</th>
                     <th>Rol padre</th>
                     <th>Plantilla del menu</th>
-                    <th>Habilidato</th>
-                    <th><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+                    <th class="right">Habilidato</th>
+                    <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr
                     *ngFor="let item of roles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
                     <td>{{item.Id}}</td>
+                    <td>{{item.Code == null || '' ? '' : item.Code}}</td>
                     <td class="td_min">{{item.Description}}</td>
                     <td class="td_min">{{item.ShortName}}</td>
                     <td>{{item.Parent}}</td>
                     <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
-                    <td> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
-                    <td><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+                    <td class="right"> <button class="btn" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
+                    <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
                 </tr>
             </tbody>
         </table>

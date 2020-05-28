@@ -29,7 +29,7 @@ export class RedirectService {
         icon: 'warning',
         title: 'Su sesión ha expirado',
         showConfirmButton: false,
-        timer: 3000
+        timer: 4000
       }).then(() => {
         window.location.reload();
       });
