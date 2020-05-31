@@ -1,42 +1,162 @@
-
 <!--Contenedor principal-->
 <div class="container">
 
-    <h3>Mantenimiento de tipos de personas</h3>
-    <br>
-  
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-lg-12">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
-            [ngModelOptions]="{standalone: true}">
-        </div>
+  <h3>Mantenimiento de tipos de personas</h3>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
+          [ngModelOptions]="{standalone: true}">
       </div>
     </div>
-  
-    <div class="table-responsive">
-      <table class="table table-hover table-bordered">
-        <thead>
-          <tr style="background-color:rgb(167, 184, 201)">
-            <th>Código</th>
-            <th>Descripción</th>
-            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
-                  class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let item of userRoles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
-            <td>{{item.UserId}}</td>
-            <td>{{item.UserName}}</td>
-            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
-                  class="fa fa-pencil"></i>&nbsp;Editar</button></td>
-          </tr>
-        </tbody>
-      </table>
-      <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
-        nextLabel="Siguiente">
-      </pagination-controls>
-    </div>
-  
   </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr style="background-color:rgb(167, 184, 201)">
+          <th>Código</th>
+          <th>Descripción</th>
+          <th class="right"></th>
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+                class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of personTypes | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+          <td>{{item.Code}}</td>
+          <td>{{item.Description}}</td>
+          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+                class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+      nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+
+</div>
+
+
+<!--Create modal-->
+<ng-template #createModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Nuevo registro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="createPersonTypeForm" (submit)="create(createPersonTypeForm.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+
+                <label for="code">Código</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="code" class="form-control" placeholder="Código">
+                  <div *ngIf="!createPersonTypeForm.value.code" class="required">*</div>
+                </div>
+
+                <label for="description">Descripción</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="description" class="form-control" placeholder="Descripción">
+                  <div *ngIf="!createPersonTypeForm.value.description" class="required">*</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--/.col-->
+        </div>
+        <!--/.row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" [disabled]="createPersonTypeForm.invalid">Crear</button>
+          </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title">Editando el tipo de persona&nbsp;</h4>
+      <h4 class="modal-title"><i>{{personType.Description}}</i></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+
+      <form [formGroup]="editPersonTypeForm" (submit)="edit(editPersonTypeForm.value)">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="card">
+                          <div class="card-header">
+                          </div>
+                          <div class="card-body">
+
+                            <label for="code">Código</label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-info"></i></span>
+                              </div>
+                              <input type="text" formControlName="code" class="form-control" placeholder="Código">
+                              <div *ngIf="!editPersonTypeForm.value.code" class="required">*</div>
+                            </div>
+            
+                            <label for="description">Descripción</label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-info"></i></span>
+                              </div>
+                              <input type="text" formControlName="description" class="form-control" placeholder="Descripción">
+                              <div *ngIf="!editPersonTypeForm.value.description" class="required">*</div>
+                            </div>
+                   
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.col-->
+              </div>
+              <!--/.row-->
+              <div class="row">
+                  <div class="col-sm-12">
+                      <button type="submit" class="btn btn-primary" [disabled]="editPersonTypeForm.invalid">Guardar</button>
+                  </div>
+                  <!--/.row-->
+              </div>
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>

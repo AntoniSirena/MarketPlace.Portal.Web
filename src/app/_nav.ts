@@ -1,6 +1,6 @@
 import { INavData } from '@coreui/angular';
 
-var roleParent = localStorage.getItem('roleParent');
+var roleParent = JSON.parse(localStorage.getItem('roleParent'));
 var currentMenuTemplate = localStorage.getItem('currentMenuTemplate');
 
 let navaData: INavData[];
