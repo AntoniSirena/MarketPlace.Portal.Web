@@ -23,4 +23,5 @@ export class Role  extends Audit{
     Parent: string;
     Enabled: boolean;
     Code: string;
+    PersonTypeId: number;
 }

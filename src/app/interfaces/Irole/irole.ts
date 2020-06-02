@@ -8,4 +8,5 @@ export interface Irole extends Iaudit{
     Parent: string;
     Enabled: boolean;
     Code: string;
+    PersonTypeId: number;
 }

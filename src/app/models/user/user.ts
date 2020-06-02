@@ -28,6 +28,7 @@ export class Person {
     BirthDate: string;
     FullName: string;
     Gender: string;
+    PersonType: string;
     Locators: Array<Locators>;
 }
 

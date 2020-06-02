@@ -6,6 +6,8 @@ import { RoleService } from '../../../services/role/role.service';
 import { Role } from '../../../models/userRole/user-role';
 import { Irole } from '../../../interfaces/Irole/irole';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
+import { CommonService } from '../../../services/common/common.service';
+import { PersonType } from '../../../models/personType/person-type';
 
 
 @Component({
@@ -36,10 +38,13 @@ export class RoleComponent implements OnInit {
   roles = new Array<Role>();
   role = new Role();
 
+  personTypes = new Array<PersonType>();
+
   //constructor
   constructor(
     private roleService: RoleService,
     private modalService: NgbModal,
+    private commonService: CommonService,
     private form: FormBuilder) {
   }
 
@@ -47,6 +52,7 @@ export class RoleComponent implements OnInit {
   ngOnInit(): void {
     this.getRoles();
     this.role.Description = '';
+    this.getPersonTyes();
   }
 
   getRoles() {
@@ -70,6 +76,7 @@ export class RoleComponent implements OnInit {
         menuTemplate: [`${this.role.MenuTemplate}`],
         parent: [`${this.role.Parent}`, Validators.required],
         enabled: [this.role.Enabled],
+        personTypeId: [`${this.role.PersonTypeId}`, Validators.required]
       });
     },
       error => {
@@ -77,6 +84,14 @@ export class RoleComponent implements OnInit {
       });
   }
 
+  getPersonTyes() {
+    this.commonService.getPersonTypes().subscribe((response: Array<PersonType>) => {
+      this.personTypes = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
 
   //open edit modal
   openEditModal(editModal, id: number) {
@@ -112,6 +127,7 @@ export class RoleComponent implements OnInit {
       Parent: formValue.parent,
       Enabled: formValue.enabled,
       Code: this.role.Code,
+      PersonTypeId: formValue.personTypeId,
       CreationTime: this.role.CreationTime,
       CreatorUserId: this.role.CreatorUserId,
       LastModificationTime: this.role.LastModificationTime,
@@ -163,6 +179,7 @@ export class RoleComponent implements OnInit {
       IsActive: true,
       IsDeleted: false,
       Code: null,
+      PersonTypeId: formValue.personTypeId,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -207,7 +224,8 @@ export class RoleComponent implements OnInit {
       shortName: ['', Validators.required],
       menuTemplate: [''],
       parent: ['', Validators.required],
-      enabled: [false]
+      enabled: [false],
+      personTypeId: [0, Validators.required]
     });
   }
 
@@ -219,7 +237,8 @@ export class RoleComponent implements OnInit {
       shortName: ['', Validators.required],
       menuTemplate: [''],
       parent: ['', Validators.required],
-      enabled: [false]
+      enabled: [false],
+      personTypeId: [0, Validators.required]
     });
   }
 
