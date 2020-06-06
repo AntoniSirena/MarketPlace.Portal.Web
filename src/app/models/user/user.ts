@@ -29,6 +29,8 @@ export class Person {
     FullName: string;
     Gender: string;
     PersonType: string;
+    DocumentNumber: string;
+    DocumentDescription: string;
     Locators: Array<Locators>;
 }
 

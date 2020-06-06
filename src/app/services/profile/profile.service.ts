@@ -38,29 +38,15 @@ export class ProfileService {
   }
 
   updateInfoCurrentUser(infoCurrentUser: InfoCurrentUser){
-    const data = new InfoCurrentUser();
-    data.UserName = infoCurrentUser.UserName,
-    data.Password = infoCurrentUser.Password,
-    data.Name = infoCurrentUser.Name,
-    data.SurName = infoCurrentUser.SurName,
-    data.EmailAddress = infoCurrentUser.EmailAddress
 
-    let Json = JSON.stringify(data);
+    let Json = JSON.stringify(infoCurrentUser);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentUser', Json, {headers: headers});
   }
 
   updateInfoCurrentPerson(infoCurrentPerson: InfoCurrentPerson){
-    const data = new InfoCurrentPerson();
-    data.FirstName = infoCurrentPerson.FirstName,
-    data.SecondName = infoCurrentPerson.SecondName,
-    data.SurName = infoCurrentPerson.SurName,
-    data.SecondSurname = infoCurrentPerson.SecondSurname,
-    data.FullName = infoCurrentPerson.FullName,
-    data.BirthDate = infoCurrentPerson.BirthDate,
-    data.GenderId = infoCurrentPerson.GenderId
 
-    let Json = JSON.stringify(data);
+    let Json = JSON.stringify(infoCurrentPerson);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentPerson', Json, {headers: headers});
   }

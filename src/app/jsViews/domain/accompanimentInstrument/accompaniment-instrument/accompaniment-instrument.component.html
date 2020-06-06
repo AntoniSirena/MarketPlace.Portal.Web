@@ -1,0 +1,260 @@
+<div class="container">
+    <h5>INSTRUMENTO DE ACOMPAÑAMIENTO</h5>
+
+    <br>
+    <button class="btn btn-primary" (click)="openCreateAccompanimentInstrument(createAccompanimentInstrument)">Iniciar acompañamiento</button>
+</div>
+
+
+<!--Create accompaniment-instrument-->
+<ng-template #createAccompanimentInstrument let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Nuevo registro</h4>
+        <h4 class="modal-title"><i></i></h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="textCenter bold">INSTRUMENTO DE ACOMPAÑAMIENTO</h4>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h5 class="textCenter bold">INSTRUCCIONES</h5>
+                                    </div>
+                                </div>
+
+                                <ul class="li-zise">
+                                    <li>Este instrumento de acompañamiento ha sido diseñado para utilizarse en un máximo
+                                        de tres visitas.</li>
+                                    <li>Llene todos los campos con letras de molde y con letra clara.</li>
+                                    <li>Lea y familiarícese con el instrumento completo antes de empezar el
+                                        acompañamiento.</li>
+                                    <li>Lea cada indicador y coloque el nivel que corresponde de acuerdo a su
+                                        observación, según la siguiente escala :</li>
+                                    <ul class="bold">
+                                        <li>4= Excede las Expectativas</li>
+                                        <li>3 = Cumple con las Expectativas</li>
+                                        <li>2 = Se Acerca a las Expectativas</li>
+                                        <li>1 = Por Debajo de las Expectativas</li>
+                                        <li>N/A = No Aplica en esta Visita</li>
+                                    </ul>
+                                    <li>Utilice la rúbrica para revisar la descripción de cada nivel para cada
+                                        indicador, de manera que pueda otorgar la
+                                        valoración más objetiva posible.</li>
+                                    <li>Observe el período completo de la clase. Asegúrese de conversar con el docente
+                                        luego del acompañamiento y
+                                        de destacar las(s) evidencia(s) que no haya podido recoger durante la
+                                        observación.</li>
+                                    <li>Especifique el área en que observó la clase utilizando las siguientes
+                                        abreviaturas :</li>
+                                    <ul class="bold">
+                                        <li>LENGUA ESPAÑOL: LEN </li>
+                                        <li>MATEMÁTICA: MAT</li>
+                                        <li>CIENCIAS DE LA NATURALEZA: NAT</li>
+                                        <li>CIENCIAS SOCIALES: SOC</li>
+                                    </ul>
+                                </ul>
+
+                                <div class="border">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4 class="textCenter bold">DATOS DE IDENTIFICACIÓN :</h4>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="bold center">Regional:</label>
+                                            <input type="text" class="form-control" placeholder="Regional">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="bold center">Distrito:</label>
+                                            <input type="text" class="form-control" placeholder="Distrito">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label class="bold center">Nombre Completo del Centro:</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Nombre Completo del Centro">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label class="bold center">Tanda:</label>
+                                            <input type="text" class="form-control" placeholder="Tanda">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="bold center">Grado:</label>
+                                            <input type="text" class="form-control" placeholder="Grado">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label class="bold">Nombre y Apellido del Docente:</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Nombre y Apellido del Docente">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="bold">Cédula:</label>
+                                            <input type="text" class="form-control" placeholder="Cédula">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label class="bold">Nombre y Apellido del Acompañante:</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Nombre y Apellido del Acompañante">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="bold">Cédula:</label>
+                                            <input type="text" class="form-control" placeholder="Cédula">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label class="bold">Visita #</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="bold">Fecha:</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="bold">Cantidad de alumnos(as) asistentes el día de la
+                                                visita:</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="bold">Escriba el total de minutos dedicados a la
+                                                clase:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-4">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="bold">Tiempo Esperado</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="bold">Tiempo Real</label>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niños">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niñas">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niños">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niñas">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niños">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" placeholder="Niñas">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                    <!--/.row-->
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>

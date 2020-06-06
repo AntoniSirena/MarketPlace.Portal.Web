@@ -161,20 +161,20 @@ export class UserComponent implements OnInit {
   //open details modal
   openDetailModal(userId: number) {
     this.getUserDetails(userId);
-    this.modalService.open(this.detailsModal, { size: 'lg' });
+    this.modalService.open(this.detailsModal, { size: 'lg', scrollable: true });
   }
 
   //open edit modal
   openEditModal(editModal, id: number) {
     this.getUserById(id);
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', scrollable: true });
   }
 
   //open create modal
   openCreateModal(createModal) {
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', scrollable: true });
   }
 
   //edit

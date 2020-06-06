@@ -116,13 +116,27 @@
                                   <span *ngIf="!personForm.value.birthDate" class="required">*</span>
                                 </div>
                                 <div class="form-group">
-                                  <label for="birthDate">Genero</label>
-                                  <select formControlName="genderId">
-                                    <option value=""></option>
+                                  <label for="genderId">Genero</label>
+                                  <select formControlName="genderId" class="form-control">
                                     <option *ngFor="let g of genders" [value]="g.Id">{{g.Description}}</option>
                                   </select>
                                   <span *ngIf="!personForm.value.genderId" class="required">*</span>
                                 </div>
+
+                                <div class="form-group">
+                                  <label for="documentTypeId">Tipo de documento</label>
+                                  <select formControlName="documentTypeId" class="form-control">
+                                    <option *ngFor="let item of documentTypes" [value]="item.Id">{{item.Description}}</option>
+                                  </select>
+                                  <span *ngIf="!personForm.value.documentTypeId" class="required">*</span>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="documentNumber">Número de documento</label>
+                                  <input type="text" class="form-control" id="documentNumber" formControlName="documentNumber">
+                                  <span *ngIf="!personForm.value.documentNumber" class="required">*</span>
+                                </div>
+
                               </div>
                             </div>
                           </div><!--/.col-->

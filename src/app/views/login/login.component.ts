@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {LoginService } from '../../services/login/login.service';
-import {RedirectService} from '../../services/redirect/redirect.service'
+import { LoginService } from '../../services/login/login.service';
+import { RedirectService } from '../../services/redirect/redirect.service'
 import Swal from 'sweetalert2';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   //constructor
   constructor(
-    private loginService: LoginService, 
+    private loginService: LoginService,
     private redirectService: RedirectService,
     private externalService: ExternalService,
-    private form: FormBuilder, 
-    private router :Router
-  ){  }
+    private form: FormBuilder,
+    private router: Router
+  ) { }
 
   loginForm: FormGroup;
   profile = new Profile();
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   valueRegisterButton: string;
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.loginForm = this.form.group({
       userName: ['', Validators.required],
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
 
   //Login
-  onSubmit(loginForm: any){
+  onSubmit(loginForm: any) {
 
     const login: Ilogin = {
       UserName: loginForm.userName,
@@ -55,37 +55,36 @@ export class LoginComponent implements OnInit {
 
     this.loginService.authenticate(login).subscribe((response: Iresponse) => {
 
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
           timer: 2000
-        }).then(() => {  
+        }).then(() => {
           //Cache info
 
           //profile
           this.profile = response.Data;
-          localStorage.setItem("profile", `${ JSON.stringify(this.profile.Profile) }`);
-          localStorage.setItem("token", `${ JSON.stringify(this.profile.Profile.User.Token)}`);
-          localStorage.setItem("userName", `${ JSON.stringify(this.profile.Profile.User.UserName)}`);
+          localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
+          localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
+          localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
 
-          //go to dashboard
-          this.router.navigate(['dashboard']);
-
-          localStorage.setItem('roleShortName', `${ JSON.stringify(this.profile.Profile.User.RoleShortName) }`);
-          localStorage.setItem('roleParent', `${ JSON.stringify(this.profile.Profile.User.RoleParent) }`);
-          localStorage.setItem('currentMenuTemplate', `${ JSON.stringify(this.profile.Profile.User.MenuTemplate) }`);
-
+          localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
+          localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
+          localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
           //template
+
+          //welcome to system
+          this.redirectService.welcomeToSystem();
 
           //systemConfiguration
           this.systemConfiguration = response.Data;
-          localStorage.setItem("systemConfiguration", `${ JSON.stringify(this.systemConfiguration.Configuration) }`);
+          localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
 
         });
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -95,13 +94,14 @@ export class LoginComponent implements OnInit {
       }
 
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
 
   }
   //end
 
-  register(){
+  register() {
     this.redirectService.register();
   }
 

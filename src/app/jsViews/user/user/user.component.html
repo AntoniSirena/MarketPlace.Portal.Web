@@ -30,10 +30,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of users | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
-          <td>{{item.Id}}</td>
-          <td>{{item.UserName}}</td>
+          <td class="td_min">{{item.Id}}</td>
+          <td class="td_min">{{item.UserName}}</td>
           <td class="td_min">{{item.EmailAddress}}</td>
-          <td> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
+          <td class="td_min"> <span class="colorBorder" [style.background-color]= "item.StatusColor">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
           <td class="right"> <button class="btn" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(89, 226, 96)' : 'rgb(240, 80, 80)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
@@ -300,6 +300,16 @@
                       </div>
                       <div class="col-sm-7">
                         <span class="form-control">{{person.PersonType}}</span>
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">{{person.DocumentDescription}}</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{person.DocumentNumber}}</span>
                       </div>
                     </div>
 

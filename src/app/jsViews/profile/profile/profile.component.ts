@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 import { Locator } from '../../../models/locator/locator';
 import { LocatorService } from '../../../services/locator/locator.service';
 import { Ilocator } from '../../../interfaces/Ilocator/ilocator';
+import { DocumentType } from '../../../models/common/documentType/document-type';
+import { CommonService } from '../../../services/common/common.service';
 
 
 @Component({
@@ -43,12 +45,14 @@ export class ProfileComponent implements OnInit {
     private baseService: BaseService,
     private profileService: ProfileService,
     private locatorService: LocatorService,
+    private commonService: CommonService,
     private form: FormBuilder
   ) {
 
     //Cagando la data desde el servidor
     this.profile = this.baseService.getProfile();
     this.getGenders();
+    this.getDocumentTypes();
     this.getInfoCurrentUser();
     this.getInfoCurrentPerson();
     this.getLocatorsTypes();
@@ -69,6 +73,7 @@ export class ProfileComponent implements OnInit {
   infoCurrentLocators = new InfoCurrentLocators();
   locator = new Locator();
   profile = new Profile();
+  documentTypes = new Array<DocumentType>();
 
   userForm: FormGroup;
   personForm: FormGroup;
@@ -107,13 +112,24 @@ export class ProfileComponent implements OnInit {
       secondSurname: [`${this.infoCurrentPerson.SecondSurname}`,],
       fullName: [`${this.infoCurrentPerson.FullName}`],
       birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
-      genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required]
+      genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required],
+      documentTypeId: [`${this.infoCurrentPerson.DocumentTypeId}`, Validators.required],
+      documentNumber: [`${this.infoCurrentPerson.DocumentNumber}`, Validators.required]
     });
   }
 
   getGenders() {
     this.profileService.getGenders().subscribe((response: Gender) => {
       this.genders = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getDocumentTypes() {
+    this.commonService.getDocumentTypes().subscribe((response: Array<DocumentType>) => {
+      this.documentTypes = response;
     },
       error => {
         console.log(JSON.stringify(error));
@@ -193,6 +209,7 @@ export class ProfileComponent implements OnInit {
 
 
   currentPersonOnSubmit(formValue: any) {
+
     const infoCurrentPerson = new InfoCurrentPerson();
     infoCurrentPerson.FirstName = formValue.firstName,
       infoCurrentPerson.SurName = formValue.surName,
@@ -200,7 +217,9 @@ export class ProfileComponent implements OnInit {
       infoCurrentPerson.SecondSurname = formValue.secondSurname,
       infoCurrentPerson.FullName = formValue.fullName,
       infoCurrentPerson.BirthDate = formValue.birthDate,
-      infoCurrentPerson.GenderId = formValue.genderId
+      infoCurrentPerson.GenderId = formValue.genderId,
+      infoCurrentPerson.DocumentTypeId = formValue.documentTypeId,
+      infoCurrentPerson.DocumentNumber = formValue.documentNumber
 
     this.profileService.updateInfoCurrentPerson(infoCurrentPerson).subscribe((response: Iresponse) => {
 
@@ -246,7 +265,9 @@ export class ProfileComponent implements OnInit {
       secondSurname: ['',],
       fullName: [''],
       birthDate: ['', Validators.required],
-      genderId: ['', Validators.required]
+      genderId: ['', Validators.required],
+      documenTypeId: ['', Validators.required],
+      documentNumber: ['', Validators.required]
     });
   }
 
@@ -267,7 +288,9 @@ export class ProfileComponent implements OnInit {
       secondSurname: ['',],
       fullName: [''],
       birthDate: ['', Validators.required],
-      genderId: ['', Validators.required]
+      genderId: ['', Validators.required],
+      documenTypeId: ['', Validators.required],
+      documentNumber: ['', Validators.required]
     });
   }
 
@@ -448,7 +471,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  
+
   //create locator from set value ''
   setValueCreateLocatorFrom() {
     this.createLocatorForm = this.form.group({

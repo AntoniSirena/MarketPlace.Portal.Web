@@ -16,7 +16,7 @@
       Image: string;
       Token: string;
       WelcomeMessage: string;
-      MenuTemplate: string;
+      MenuTemplate: Object;
       RoleDescription: string;
       RoleShortName: string;   
       RoleParent: string;  
@@ -69,6 +69,10 @@ export class InfoCurrentPerson {
   BirthDate: string;
   FullName: string;
   GenderId: number;
+  DocumentTypeId: number;
+  DocumentNumber: string;
+  DocumentDescription: string;
+
 }
 
 export class InfoCurrentLocators {

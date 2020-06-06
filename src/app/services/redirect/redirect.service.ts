@@ -61,6 +61,12 @@ export class RedirectService {
 
   }
 
+  welcomeToSystem(){
+    this.router.navigate(['dashboard']).then(() => {
+      window.location.reload();
+    });
+  }
+
   register() {
     this.router.navigate(['register']);
   }

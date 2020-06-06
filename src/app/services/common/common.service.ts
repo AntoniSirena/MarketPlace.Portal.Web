@@ -18,4 +18,8 @@ export class CommonService {
     return this.httpClient.get(this.apiURL +'api/common/GetPesonTypes');
   }
 
+  getDocumentTypes():Observable<object>{    
+    return this.httpClient.get(this.apiURL +'api/common/GetDocumentTypes');
+  }
+
 }
