@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoleService } from '../../../services/role/role.service';
@@ -40,6 +40,7 @@ export class RoleComponent implements OnInit {
 
   personTypes = new Array<PersonType>();
 
+
   //constructor
   constructor(
     private roleService: RoleService,
@@ -76,7 +77,21 @@ export class RoleComponent implements OnInit {
         menuTemplate: [`${this.role.MenuTemplate}`],
         parent: [`${this.role.Parent}`, Validators.required],
         enabled: [this.role.Enabled],
-        personTypeId: [`${this.role.PersonTypeId}`, Validators.required]
+        personTypeId: [`${this.role.PersonTypeId}`, Validators.required],
+        code: [this.role.Code],
+        canCreate: [this.role.CanCreate],
+        canEdit: [this.role.CanEdit],
+        canDelete: [this.role.CanDelete],
+
+        //Accompainen Instrument
+        canCreateRequest: [this.role.CanCreateRequest],
+        canEditRequest: [this.role.CanEditRequest],
+        canViewActionsButton: [this.role.CanViewActionsButton],
+        canApprove: [this.role.CanApprove],
+        canSendToObservation: [this.role.CanSendToObservation],
+        canProcess: [this.role.CanProcess],
+        canCancel: [this.role.CanCancel]
+
       });
     },
       error => {
@@ -108,6 +123,8 @@ export class RoleComponent implements OnInit {
     this.modalService.open(createModal, { size: 'lg' });
   }
 
+
+  //Enabled check
   enabledTrue() {
     this.role.Enabled = true;
   }
@@ -115,6 +132,90 @@ export class RoleComponent implements OnInit {
   enabledFalse() {
     this.role.Enabled = false;
   }
+
+  canCreateTrue() {
+    this.role.CanCreate = true;
+  }
+
+  canCreateFalse() {
+    this.role.CanCreate = false;
+  }
+
+  canEditTrue() {
+    this.role.CanEdit = true;
+  }
+
+  canEditFalse() {
+    this.role.CanEdit = false;
+  }
+
+  canDeleteTrue() {
+    this.role.CanDelete = true;
+  }
+
+  canDeleteFalse() {
+    this.role.CanDelete = false;
+  }
+
+  canViewActionsButtonTrue() {
+    this.role.CanViewActionsButton = true;
+  }
+
+  canViewActionsButtonFalse() {
+    this.role.CanViewActionsButton = false;
+  }
+
+  canApproveTrue() {
+    this.role.CanApprove = true;
+  }
+
+  canApproveFalse() {
+    this.role.CanApprove = false;
+  }
+
+  canSendToObservationTrue() {
+    this.role.CanSendToObservation = true;
+  }
+
+  canSendToObservationFalse() {
+    this.role.CanSendToObservation = false;
+  }
+
+  canProcessTrue() {
+    this.role.CanProcess = true;
+  }
+
+  canProcessFalse() {
+    this.role.CanProcess = false;
+  }
+
+  canCancelTrue() {
+    this.role.CanProcess = true;
+  }
+
+  canCancelFalse() {
+    this.role.CanProcess = false;
+  }
+
+  canCreateRequestTrue() {
+    this.role.CanCreateRequest = true;
+  }
+
+  canCreateRequestFalse() {
+    this.role.CanCreateRequest = false;
+  }
+
+  canEditRequestTrue() {
+    this.role.CanEditRequest = true;
+  }
+
+  canEditRequestFalse() {
+    this.role.CanEditRequest = false;
+  }
+
+  //End Enabled check
+
+
 
   //edit
   edit(formValue: any) {
@@ -128,6 +229,18 @@ export class RoleComponent implements OnInit {
       Enabled: formValue.enabled,
       Code: this.role.Code,
       PersonTypeId: formValue.personTypeId,
+      CanCreate: formValue.canCreate,
+      CanEdit: formValue.canEdit,
+      CanDelete: formValue.canDelete,
+
+      CanCreateRequest: formValue.canCreateRequest,
+      CanEditRequest: formValue.canEditRequest,
+      CanViewActionsButton: formValue.canViewActionsButton,
+      CanApprove: formValue.canApprove,
+      CanSendToObservation: formValue.canSendToObservation,
+      CanProcess: formValue.canProcess,
+      CanCancel: formValue.canProcess,
+
       CreationTime: this.role.CreationTime,
       CreatorUserId: this.role.CreatorUserId,
       LastModificationTime: this.role.LastModificationTime,
@@ -180,6 +293,18 @@ export class RoleComponent implements OnInit {
       IsDeleted: false,
       Code: null,
       PersonTypeId: formValue.personTypeId,
+      CanCreate: formValue.canCreate,
+      CanEdit: formValue.canEdit,
+      CanDelete: formValue.canDelete,
+
+      CanCreateRequest: formValue.canCreateRequest,
+      CanEditRequest: formValue.canEditRequest,
+      CanViewActionsButton: formValue.canViewActionsButton,
+      CanApprove: formValue.canApprove,
+      CanSendToObservation: formValue.canSendToObservation,
+      CanProcess: formValue.canProcess,
+      CanCancel: formValue.canProcess,
+
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -225,7 +350,19 @@ export class RoleComponent implements OnInit {
       menuTemplate: [''],
       parent: ['', Validators.required],
       enabled: [false],
-      personTypeId: [0, Validators.required]
+      personTypeId: [0, Validators.required],
+      code: [''],
+      canEdit: [false],
+      canDelete: [false],
+      canCreate: [false],
+
+      canCreateRequest: [false],
+      canEditRequest: [false],
+      canViewActionsButton: [false],
+      canApprove: [false],
+      canSendToObservation: [false],
+      canProcess: [false],
+      canCancel: [false]
     });
   }
 
@@ -238,7 +375,18 @@ export class RoleComponent implements OnInit {
       menuTemplate: [''],
       parent: ['', Validators.required],
       enabled: [false],
-      personTypeId: [0, Validators.required]
+      personTypeId: [0, Validators.required],
+      canEdit: [false],
+      canDelete: [false],
+      canCreate: [false],
+
+      canCreateRequest: [false],
+      canEditRequest: [false],
+      canViewActionsButton: [false],
+      canApprove: [false],
+      canSendToObservation: [false],
+      canProcess: [false],
+      canCancel: [false]
     });
   }
 

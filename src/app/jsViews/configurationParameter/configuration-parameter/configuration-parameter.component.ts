@@ -36,7 +36,6 @@ export class ConfigurationParameterComponent implements OnInit {
   configurationParameters = new Array<ConfigurationParameter>();
   configurationParameter = new ConfigurationParameter();
 
-
   //constructor
   constructor(
     private configurationParameterService: ConfigurationParameterService,

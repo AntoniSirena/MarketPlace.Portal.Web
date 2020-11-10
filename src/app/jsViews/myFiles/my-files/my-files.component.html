@@ -1,0 +1,45 @@
+
+
+<!--Contenedor principal-->
+<div class="container-fluid" style="width: 90%;">
+
+    <h3>Galería de archivos</h3>
+    <br>
+  
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered table-condensed">
+        <thead>
+          <tr class="tabl_eHeader_Color">
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of files | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+            <td>{{item.Id}}</td>
+            <td class="td_min">{{item.Name}}</td>
+            <td class="td_min">{{item.Description}}</td>
+            <td class="right"><button type="button" class="btn btn-danger" (click)="viewFileById(item.Id, item.ContentType)"><i class="fa fa-eye"></i>&nbsp;Ver detalles</button></td>
+            <td class="right"><button type="button" class="btn btn-primary" (click)="getFileById(item.Id, item.Name, item.ContentType)"><i class="fa fa-cloud-download"></i>&nbsp;Descargar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+        nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+  
+</div>

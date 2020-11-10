@@ -31,4 +31,8 @@ export class ExternalService {
     return this.httpClient.get(this.apiURL +'api/external/GetValueRegisterButton');
   }
 
+  getTemplateByOperation(operation: string): Observable<object> {
+    return this.httpClient.get(this.apiURL +  `api/external/GetTemplate?operation=${operation}`);
+  }
+
 }

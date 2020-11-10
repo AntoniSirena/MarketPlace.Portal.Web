@@ -1,0 +1,190 @@
+
+
+<!--Contenedor principal-->
+<div class="container-fluid" style="width: 90%;">
+
+    <h3>Mantenimiento de Areas</h3>
+    <br>
+  
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+  
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered table-condensed">
+        <thead>
+          <tr class="tabl_eHeader_Color">
+            <th>Código</th>
+            <th>Nombre corto</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th class="right"></th>
+            <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
+                  class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of areas | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+            <td>{{item.Id}}</td>
+            <td>{{item.ShortName}}</td>
+            <td>{{item.Name}}</td>
+            <td class="td_min">{{item.Description}}</td>
+            <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete || item.ShortName == 'Pendiente' "><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+            <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit  || item.ShortName == 'Pendiente' "><i
+                  class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+        nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+  
+</div>
+
+
+<!--Create modal-->
+<ng-template #createModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Nuevo registro</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+      <form [formGroup]="createAreaForm" (submit)="create(createAreaForm.value)">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+  
+                  <label for="shortName">Nombre corto</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-info"></i></span>
+                    </div>
+                    <input type="text" formControlName="shortName" class="form-control" placeholder="Nombre corto">
+                    <div *ngIf="!createAreaForm.value.shortName" class="required">*</div>
+                  </div>
+
+                  <label for="name">Nombre</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-info"></i></span>
+                    </div>
+                    <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
+                    <div *ngIf="!createAreaForm.value.name" class="required">*</div>
+                  </div>
+  
+                    <label for="description">Descripción</label>                               
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"></span>
+                      </div>
+                      <textarea formControlName="description" class="form-control"
+                          placeholder="Descripción">
+                           {{area.Description}}
+                      </textarea>
+                   </div>
+  
+                </div>
+              </div>
+            </div>
+            <!--/.col-->
+          </div>
+          <!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary" [disabled]="createAreaForm.invalid">Crear</button>
+            </div>
+            <!--/.row-->
+          </div>
+        </div>
+      </form>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editando el área de &nbsp;</h4>
+        <h4 class="modal-title"><i>{{area.Name}}</i></h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+  
+        <form [formGroup]="editAreaForm" (submit)="edit(editAreaForm.value)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+                                
+                                <label for="shortName">Nombre corto</label>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                                  </div>
+                                  <input type="text" formControlName="shortName" class="form-control" placeholder="Nombre corto">
+                                  <div *ngIf="!editAreaForm.value.shortName" class="required">*</div>
+                                </div>
+              
+                                <label for="name">Nombre</label>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                                  </div>
+                                  <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
+                                  <div *ngIf="!editAreaForm.value.name" class="required">*</div>
+                                </div>
+                
+                                <label for="description">Descripción</label>                               
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea formControlName="description" class="form-control"
+                                        placeholder="Descripción">
+                                         {{area.Description}}
+                                    </textarea>
+                                </div>
+                     
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="editAreaForm.invalid">Guardar</button>
+                    </div>
+                    <!--/.row-->
+                </div>
+            </div>
+        </form>
+  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>

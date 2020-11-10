@@ -51,4 +51,10 @@ export class ProfileService {
     return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentPerson', Json, {headers: headers});
   }
 
+  updateProfileImagen(request: string){
+    let Json = JSON.stringify(request);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.put(this.apiURL + 'api/profile/UpdateProfileImagen', Json, {headers: headers});
+  }
+
 }

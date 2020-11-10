@@ -82,8 +82,12 @@ export class RegisterComponent {
   }
 
 
-  goToBack(){
+  goToLogin(){
     this.router.navigate(['login']);
+  }
+
+  goToPortada(){
+    this.router.navigate(['portada']);
   }
 
 }

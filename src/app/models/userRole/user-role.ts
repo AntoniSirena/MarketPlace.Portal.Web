@@ -24,4 +24,15 @@ export class Role  extends Audit{
     Enabled: boolean;
     Code: string;
     PersonTypeId: number;
+    CanCreate: boolean;
+    CanEdit: boolean;
+    CanDelete: boolean;
+
+    CanCreateRequest: boolean;
+    CanEditRequest: boolean;
+    CanViewActionsButton: boolean;
+    CanApprove: boolean;
+    CanSendToObservation: boolean;
+    CanProcess: boolean;
+    CanCancel: boolean;
 }

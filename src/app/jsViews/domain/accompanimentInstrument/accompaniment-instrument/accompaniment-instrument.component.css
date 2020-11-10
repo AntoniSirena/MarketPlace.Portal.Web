@@ -5,10 +5,46 @@
 
 .border{
     border-style: ridge;
-    border-width: 4px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-width: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     background-color: rgb(190, 224, 224);
+}
+
+.textColor{
+    color: red;
+}
+
+.hrStyle{
+    border: 3px solid rgb(54, 119, 204);
+    border-radius: 5px;
+}
+
+._center{
+    align-items: center;
+}
+  
+.completeStyle{
+    font-size: 20px;
+    width: 250px;
+    border-radius: 6px;
+}
+
+.statusTextColor{
+    color: rgb(236, 225, 225);
+}
+
+.textBoxDetail{
+    background-color: rgb(209, 236, 238);
+    font-size: 15px;
+}
+
+.textDetail{
+    font-size: 15px;
+}
+
+.labelDetail{
+    font-size: 17px;
 }

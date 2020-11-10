@@ -40,6 +40,10 @@ export class UserRoleComponent implements OnInit {
   roles = new Array<Role>();
   users = new Array<User>();
 
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canEdit = JSON.parse(localStorage.getItem("canEdit"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
 
   //constructor
   constructor(

@@ -1,5 +1,5 @@
 <!--Contenedor principal-->
-<div class="container">
+<div class="container-fluid" style="width: 90%;">
 
   <h3>Mantenimiento de tipos de personas</h3>
   <br>
@@ -14,13 +14,13 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered table-condensed">
       <thead>
-        <tr style="background-color:rgb(167, 184, 201)">
+        <tr class="tabl_eHeader_Color">
           <th>Código</th>
-          <th>Descripción</th>
+          <th class="td_min">Descripción</th>
           <th class="right"></th>
-          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
@@ -29,8 +29,8 @@
           *ngFor="let item of personTypes | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
           <td>{{item.Code}}</td>
           <td>{{item.Description}}</td>
-          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)" [disabled]="!canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>

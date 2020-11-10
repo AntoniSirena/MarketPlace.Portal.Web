@@ -1,0 +1,37 @@
+<!-- <div class="container">
+    <div class="center">
+        <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
+        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              Optional custom content that replaces the the entire default content.
+              <button type="button" (click)="openFileSelector()">Seleccione el archivo</button>
+            </ng-template>
+        </ngx-file-drop>
+        <div class="upload-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody class="upload-name-style">
+                    <tr *ngFor="let item of files; let i=index">
+                        <td><strong>{{ item.relativePath }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+<br>
+<div class="form-group">
+    <label for="file">Seleccione el archivo</label>
+    <input type="file" multiple="multiple" id="file" (change)="handleFileInput($event.target.files)">
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary" (click)="uploadFileToActivity()">Guardar</button>
+    </div>
+</div>

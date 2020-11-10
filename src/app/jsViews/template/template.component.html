@@ -1,0 +1,140 @@
+
+
+<!--Contenedor principal-->
+<div class="container-fluid" style="width: 90%;">
+
+  <h3>Mantenimiento de Plantillas</h3>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+      <thead>
+        <tr class="tabl_eHeader_Color">
+          <th>Código</th>
+          <th>Nombre corto</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Body</th>
+          <th class="right">Eesta habilitado ?</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of templates | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+          <td>{{item.Id}}</td>
+          <td>{{item.ShortName}}</td>
+          <td class="td_min">{{item.Name}}</td>
+          <td class="td_min">{{item.Description}}</td>
+          <td class="td_min">{{item.Body}}</td>
+          <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)">
+            <i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+      nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+
+</div>
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title">Editando la Plantilla &nbsp;</h4>
+      <h4 class="modal-title"><i>{{template.Name}}</i></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+
+      <form [formGroup]="editTemplateForm" (submit)="edit(editTemplateForm.value)">
+          <div class="container-fluid" style="width: 97%;">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="card">
+                          <div class="card-header">
+                          </div>
+                          <div class="card-body">
+                              
+                              <label for="shortName">Nombre corto</label>
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-info"></i></span>
+                                </div>
+                                <input type="text" formControlName="shortName" class="form-control" placeholder="Nombre corto">
+                                <div *ngIf="!editTemplateForm.value.shortName" class="required">*</div>
+                              </div>
+            
+                              <label for="name">Nombre</label>
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-info"></i></span>
+                                </div>
+                                <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
+                                <div *ngIf="!editTemplateForm.value.name" class="required">*</div>
+                              </div>
+              
+                              <label for="description">Descripción</label>                               
+                              <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text"></span>
+                                  </div>
+                                  <textarea formControlName="description" class="form-control"
+                                      placeholder="Descripción">
+                                       {{template.Description}}
+                                  </textarea>
+                              </div>
+
+                              <label for="menuTemplate">Habilidar</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="checkbox"
+                                        (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
+                                        formControlName="enabled">
+                                </div>
+
+                                <div class="row center">
+                                  <ck-editor name="body" 
+                                  formControlName="body" 
+                                  skin="moono-lisa" 
+                                  language="es" 
+                                  [fullPage]="true">
+                          
+                                  </ck-editor>                    
+                              </div>
+                   
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.col-->
+              </div>
+              <!--/.row-->
+              <div class="row">
+                  <div class="col-sm-12">
+                      <button type="submit" class="btn btn-primary buttonSize_Save" [disabled]="editTemplateForm.invalid">Guardar</button>
+                  </div>
+                  <!--/.row-->
+              </div>
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>

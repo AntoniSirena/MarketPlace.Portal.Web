@@ -37,6 +37,12 @@ export class PersonTypeComponent implements OnInit {
   personType = new PersonType();
   personTypes = new Array<PersonType>();
 
+
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canEdit = JSON.parse(localStorage.getItem("canEdit"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
+
   //constructor
   constructor(
     private personTypeService: PersonTypeService,

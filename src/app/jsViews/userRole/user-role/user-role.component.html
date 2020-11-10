@@ -1,5 +1,5 @@
 <!--Contenedor principal-->
-<div class="container">
+<div class="container-fluid" style="width: 90%;">
 
   <h3>Asignar rol por usuario</h3>
   <br>
@@ -14,14 +14,14 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered table-condensed">
       <thead>
-        <tr style="background-color:rgb(167, 184, 201)">
+        <tr class="tabl_eHeader_Color">
           <th>Codigo de usuario</th>
           <th>Usuario</th>
           <th>Nombre completo</th>
           <th>Rol</th>
-          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"><i
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
                 class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
@@ -32,7 +32,7 @@
           <td>{{item.UserName}}</td>
           <td>{{item.FullName == null ? '' : item.FullName}}</td>
           <td>{{item.RoleName}}</td>
-          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"><i
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>
@@ -48,7 +48,7 @@
 <!--Edit modal-->
 <ng-template #editModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Editando a &nbsp;</h4>
+    <h4 class="modal-title">Editando el usuario &nbsp;</h4>
     <h4 class="modal-title"><i>{{userRole.UserName}}</i></h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>

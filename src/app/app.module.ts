@@ -44,20 +44,58 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 
+import { DatePipe } from "@angular/common";
+
+//File Reader
+import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
+import { NgxFileDropModule } from 'ngx-file-drop';
+
+//Text Edit
+import { CKEditorModule } from 'ngx-ckeditor';
+
+//ng-Search
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+//ng-Pagination
+import { NgxPaginationModule } from 'ngx-pagination';
+
+// Marquee
+import { NgMarqueeModule } from 'ng-marquee';
+
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
-import { ProfileComponent } from './jsViews/profile/profile/profile.component';
 import { from } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+//Componets
+import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
+import { ProfileComponent } from './jsViews/profile/profile/profile.component';
 import { PortadaComponent } from './jsViews/portada/portada/portada.component';
 import { UserComponent } from './jsViews/user/user/user.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
+import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
+import { DistrictComponent } from './jsViews/domain/district/district.component';
+import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
+import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
+import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
+import { AreaComponent } from './jsViews/domain/area/area/area.component';
+import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
+import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
+import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
+import { TemplateComponent } from './jsViews/template/template.component';
+import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
+import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
+import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
+import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
+import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-password/confirm-password.component';
+import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthentication/second-factor-authentication/second-factor-authentication.component';
+
+
 
 @NgModule({
   imports: [
@@ -78,8 +116,13 @@ import { AccompanimentInstrumentComponent } from './jsViews/domain/accompaniment
     HttpClientModule,
     NgbModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
-  ],
+    NgxPaginationModule,
+    CKEditorModule,
+    NgxFileDropModule,
+    FctrlxAngularFileReader,
+    NgMarqueeModule,
+    
+    ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
@@ -94,7 +137,24 @@ import { AccompanimentInstrumentComponent } from './jsViews/domain/accompaniment
     RoleComponent,
     ConfigurationParameterComponent,
     PersonTypeComponent,
-    AccompanimentInstrumentComponent
+    AccompanimentInstrumentComponent,
+    RegionalComponent,
+    DistrictComponent,
+    EducativeCenterComponent,
+    TandaComponent,
+    GradeComponent,
+    AreaComponent,
+    DocentComponent,
+    VisitComponent,
+    IndicatorComponent,
+    TemplateComponent,
+    PrePortadaComponent,
+    FileUploadComponent,
+    MyFilesComponent,
+    NoveltyComponent,
+    ConfirmPasswordComponent,
+    SecondFactorAuthenticationComponent
+
   ],
   providers: [
     {
@@ -105,12 +165,14 @@ import { AccompanimentInstrumentComponent } from './jsViews/domain/accompaniment
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
       multi: true
-    }
+    },
+    DatePipe
+
   ],
 
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {
 
- }
+}

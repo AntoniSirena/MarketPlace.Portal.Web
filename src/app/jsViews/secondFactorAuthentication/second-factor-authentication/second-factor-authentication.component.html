@@ -1,0 +1,54 @@
+
+<div class="container">
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="modal-body">
+
+        <form [formGroup]="validate2FAForm" (submit)="submit(validate2FAForm.value)">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h4 class="center header">Favor ingrese el código de seguridad que ha recibido en su teléfono movil ó correo electrónico</h4>
+                          </div>
+                        </div>
+                    </div>
+
+                  <div class="card-body">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="icon-lock"></i></span>
+                            </div>
+                            <input type="text" formControlName="securityCode" class="form-control" placeholder="Código de seguridad">
+                            <div *ngIf="!validate2FAForm.value.securityCode" class="required">*</div>
+                        </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <!--/.col-->
+            </div>
+            <!--/.row-->
+            <div class="row">
+              <div class="col-sm-8">
+                <button type="submit" class="btn btn-primary buttonConfirm" [disabled]="validate2FAForm.invalid">Confirmar</button>
+              </div>
+            </div>
+            <br>
+            
+          </div>
+        </form>
+    
+    </div>
+
+
+</div>

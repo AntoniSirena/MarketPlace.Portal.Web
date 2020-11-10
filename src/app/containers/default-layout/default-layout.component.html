@@ -1,8 +1,8 @@
 <app-header
-  [navbarBrandRouterLink]="['/dashboard']"
+  [navbarBrandRouterLink]="['/portada']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/jsirena/logoDist1007.jpg', width: 125, height: 52, alt: 'jssoluctech'}"
+  [navbarBrandMinimized]="{src: 'assets/img/jsirena/logoDist1007.jpg', width: 30, height: 30, alt: 'jssoluctech'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
@@ -17,16 +17,29 @@
     </li> -->
   </ul>
   <ul class="nav navbar-nav ml-auto">
-    <!-- <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
+    <li class="nav-item d-md-down-none">
+      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle"></i>Inisiar sesión</button>
     </li>
+
+    <li class="nav-item d-md-down-none"></li>
+
+    <li class="nav-item d-md-down-none">
+      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle"></i>Registrarme</button>
+    </li>
+
+
+    <li class="nav-item d-md-down-none">
+      <button *ngIf="isVisitorUser != true" class="btn btn-danger portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-power-off"></i>Cerrar sesión</button>
+    </li>
+
+    <!-- 
     <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-list"></i></a>
     </li>
     <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
     </li> -->
-    <li class="nav-item dropdown" dropdown placement="bottom right">
+    <li *ngIf="roleShortName != 'Visitador'" class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
         <img src="data:image/png;base64,{{profile.User.Image}}" class="img-avatar" alt="{{profile.User.EmailAddress}}"/>
       </a>
@@ -83,7 +96,8 @@
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->
   </main>
-  <app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
+
+  <!--<app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
     <tabset>
       <tab>
         <ng-template tabHeading><i class="icon-list"></i></ng-template>
@@ -334,10 +348,12 @@
       </tab>
     </tabset>
   </app-aside>
+
 </div>
 <app-footer>
 
 </app-footer>
 
 <!--Component injection-->
+
 <app-profile></app-profile>

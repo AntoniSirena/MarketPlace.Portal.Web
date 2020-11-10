@@ -23,14 +23,26 @@
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
-                                  <a>
+                                  <a *ngIf="imgProfileOriginServer">
                                     <img src="data:image/png;base64,{{profile.User.Image}}" class="user-image" alt="User Image" 
                                     class="center img-avatar" style="width: 200; height: 140px;">
                                   </a>
-                                  <div class="form-group" style="margin-top: 8px;">
-                                    <input type="file" class="form-control-file" id="profileImage" 
-                                    (change)="uploadImage($event)">
-                                 </div>
+
+                                  <a *ngIf="imgProfileOriginServer == false">
+                                    <img src="{{imgProfile}}" class="user-image" alt="User Image" 
+                                    class="center img-avatar" style="width: 200; height: 140px;">
+                                  </a>
+
+                                  <div class="form-group">                         
+                                    <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)" multiple="">
+                                  </div>
+
+                                  <div *ngIf="inputFiles !== ''" class="row">
+                                    <div class="cold-md-12 center">
+                                      <button type="button" class="btn btn-primary button_size" (click)="updateProfileImg()">Actualizar imagen</button>                                                              
+                                    </div>
+                                  </div>
+
                                   </div>
                                   <div class="form-group">
                                     <label for="usuario">Usuario</label>
@@ -93,7 +105,6 @@
                                 <div class="form-group">
                                   <label for="secondName">Segundo nombre</label>
                                   <input type="text" class="form-control" id="secondName" formControlName="secondName">
-                                  <span *ngIf="!personForm.value.secondName" class="required">*</span>
                                 </div>
                                 <div class="form-group">
                                   <label for="surName">Primer apellido</label>
@@ -103,12 +114,10 @@
                                 <div class="form-group">
                                   <label for="secondSurname">Segundo apellido</label>
                                   <input type="text" class="form-control" id="secondSurname" formControlName="secondSurname">
-                                  <span *ngIf="!personForm.value.secondSurname" class="required">*</span>
                                 </div>
                                 <div class="form-group">
                                   <label for="fullName">Nombre completo</label>
                                   <input type="text" class="form-control" id="fullName" formControlName="fullName" [readonly]="true">
-                                  <span *ngIf="!personForm.value.fullName" class="required">*</span>
                                 </div>
                                 <div class="form-group">
                                   <label for="birthDate">Fecha de nacimiento</label>
@@ -175,12 +184,12 @@
                             <div class="table-responsive">
                               <table class="table table-hover table-bordered">
                                 <thead>
-                                  <tr style="background-color:rgb(167, 184, 201)">
+                                  <tr class="tabl_eHeader_Color">
                                     <th>Tipo</th>
                                     <th>Description</th>
-                                    <th>Es principal ?</th>
-                                    <th></th>
-                                    <th><button type="button" class="btn btn-success" (click)="openCreateLocatorModal(createLocatorModal)"><i
+                                    <th class="center">Es principal ?</th>
+                                    <th class="right"></th>
+                                    <th class="right"><button type="button" class="btn btn-success" (click)="openCreateLocatorModal(createLocatorModal)"><i
                                       class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                                   </tr>
                                 </thead>
@@ -188,9 +197,9 @@
                                   <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 4, currentPage: _currentPage}">
                                     <td>{{item.LocatorTypeDescription}}</td>
                                     <td>{{item.Description}}</td>
-                                    <td><button class="btn" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(49, 233, 95)' : 'rgb(243, 41, 41)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
-                                    <td> <button type="button" class="btn btn-danger" (click)="deleteLocator(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-                                    <td><button type="button" class="btn btn-primary" (click)="openEditLocatorModal(editLocatorModal, item.Id)"><i
+                                    <td class="center"><button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
+                                    <td class="right"> <button type="button" class="btn btn-danger" (click)="deleteLocator(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+                                    <td class="right"><button type="button" class="btn btn-primary" (click)="openEditLocatorModal(editLocatorModal, item.Id)"><i
                                       class="fa fa-pencil"></i>&nbsp;Editar</button></td>
                                   </tr>
                                 </tbody>
