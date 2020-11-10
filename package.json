@@ -2,17 +2,9 @@
   "name": "@coreui/coreui-free-angular-admin-template",
   "version": "2.9.2",
   "description": "CoreUI Free Angular 2+ Admin Template",
-  "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
-  },
+  "author": "Łukasz Holeczek (http://holeczek.pl)",
   "contributors": [
-    {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
-    }
+    "Andrzej Kopański (https://github.com/xidedix)"
   ],
   "homepage": "https://coreui.io/angular",
   "copyright": "Copyright 2020 creativeLabs Łukasz Holeczek",
@@ -97,5 +89,13 @@
   "engines": {
     "node": ">= 10.13",
     "npm": ">= 6"
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntoniSirena/Guerra.Portal.Web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AntoniSirena/Guerra.Portal.Web/issues"
   }
 }
