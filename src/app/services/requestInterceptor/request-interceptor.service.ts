@@ -22,11 +22,11 @@ import { Router } from '@angular/router';
 export class RequestInterceptorService implements HttpInterceptor  {
 
   token: string;
-  apiURL;
+  coreURL;
 
   constructor(private baseService: BaseService, private redirectService: RedirectService, private router: Router) {
     this.token = this.baseService.getUserToke();
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

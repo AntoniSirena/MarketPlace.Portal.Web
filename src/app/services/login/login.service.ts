@@ -9,38 +9,38 @@ import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 })
 export class LoginService {
 
-  apiURL
+  coreURL
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   authenticate(request: Ilogin) {
     let Json = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.apiURL + 'api/login/authenticate', Json, { headers: headers });
+    return this.httpClient.post(this.coreURL + 'api/login/authenticate', Json, { headers: headers });
   }
 
   logOut(value: string) {
     let Json = JSON.stringify(value);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.apiURL + 'api/login/logOut', Json, { headers: headers });
+    return this.httpClient.post(this.coreURL + 'api/login/logOut', Json, { headers: headers });
   }
 
   resetPassword(request: Ilogin) {
     let Json = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.apiURL + 'api/login/resetPassword', Json, { headers: headers });
+    return this.httpClient.post(this.coreURL + 'api/login/resetPassword', Json, { headers: headers });
   }
 
   confirmPassword(request: Ilogin) {
     let Json = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.apiURL + 'api/login/updatePassword', Json, { headers: headers });
+    return this.httpClient.post(this.coreURL + 'api/login/updatePassword', Json, { headers: headers });
   }
 
 }

@@ -10,38 +10,38 @@ import { Iuser } from '../../interfaces/Iuser/iuser';
 })
 export class UserService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getUsers():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/user');
+    return this.httpClient.get(this.coreURL +'api/user');
   }
 
   getUserById(id: number):Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/user/' + id);
+    return this.httpClient.get(this.coreURL +'api/user/' + id);
   }
 
   getUserStatuses():Observable<object>{
-    return this.httpClient.get(this.apiURL +'api/user/GetUserStatuses');
+    return this.httpClient.get(this.coreURL +'api/user/GetUserStatuses');
   }
 
   editUser(user: Iuser){
     let Json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/user`, Json, {headers: headers} );
+    return this.httpClient.put(`${this.coreURL}api/user`, Json, {headers: headers} );
   }
   
   createUser(user: Iuser){
     let Json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/user`, Json, {headers: headers} );
+    return this.httpClient.post(`${this.coreURL}api/user`, Json, {headers: headers} );
   }
 
   getUserDetails(userId: number):Observable<object>{
-    return this.httpClient.get(this.apiURL +'api/user/GetUserDetails/' + userId);
+    return this.httpClient.get(this.coreURL +'api/user/GetUserDetails/' + userId);
   }
 
 }

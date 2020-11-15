@@ -9,18 +9,18 @@ import { environment } from '../../environments/environment';
 })
 export class PortadaService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getTemplateByOperation(operation: string): Observable<object> {
-    return this.httpClient.get(this.apiURL +  `api/portada/GetTemplate?operation=${operation}`);
+    return this.httpClient.get(this.coreURL +  `api/portada/GetTemplate?operation=${operation}`);
   }
 
   getNoveltiesByType(noveltyType: string): Observable<object> {
-    return this.httpClient.get(this.apiURL +  `api/portada/GetNovelties?noveltyType=${noveltyType}`);
+    return this.httpClient.get(this.coreURL +  `api/portada/GetNovelties?noveltyType=${noveltyType}`);
   }
 
 }

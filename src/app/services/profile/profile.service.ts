@@ -11,50 +11,50 @@ import { InfoCurrentUser, InfoCurrentPerson } from '../../models/profile/profile
 })
 export class ProfileService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient, private baseService: BaseService ) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getGenders():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/profile/GetGenders');
+    return this.httpClient.get(this.coreURL +'api/profile/GetGenders');
   }
 
   getLocatorsTypes():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/profile/GetLocatorsTypes');
+    return this.httpClient.get(this.coreURL +'api/profile/GetLocatorsTypes');
   }
 
   getInfoCurrentUser():Observable<object>{
-    return this.httpClient.get(this.apiURL +'api/profile/GetInfoCurrentUser');
+    return this.httpClient.get(this.coreURL +'api/profile/GetInfoCurrentUser');
   }
 
   getInfoCurrentPerson():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/profile/GetInfoCurrentPerson');
+    return this.httpClient.get(this.coreURL +'api/profile/GetInfoCurrentPerson');
   }
 
   getInfoCurrentLocators():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/profile/GetInfoCurrentLocators');
+    return this.httpClient.get(this.coreURL +'api/profile/GetInfoCurrentLocators');
   }
 
   updateInfoCurrentUser(infoCurrentUser: InfoCurrentUser){
 
     let Json = JSON.stringify(infoCurrentUser);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentUser', Json, {headers: headers});
+    return this.httpClient.put(this.coreURL + 'api/profile/UpdateInfoCurrentUser', Json, {headers: headers});
   }
 
   updateInfoCurrentPerson(infoCurrentPerson: InfoCurrentPerson){
 
     let Json = JSON.stringify(infoCurrentPerson);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(this.apiURL + 'api/profile/UpdateInfoCurrentPerson', Json, {headers: headers});
+    return this.httpClient.put(this.coreURL + 'api/profile/UpdateInfoCurrentPerson', Json, {headers: headers});
   }
 
   updateProfileImagen(request: string){
     let Json = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(this.apiURL + 'api/profile/UpdateProfileImagen', Json, {headers: headers});
+    return this.httpClient.put(this.coreURL + 'api/profile/UpdateProfileImagen', Json, {headers: headers});
   }
 
 }

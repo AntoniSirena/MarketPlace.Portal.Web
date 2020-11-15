@@ -9,30 +9,30 @@ import { Ilocator } from '../../interfaces/Ilocator/ilocator';
 })
 export class LocatorService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getLocatorById(id: number): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/locator/' + id);
+    return this.httpClient.get(this.coreURL + 'api/locator/' + id);
   }
 
   editLocator(locator: Ilocator) {
     let Json = JSON.stringify(locator);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/locator`, Json, { headers: headers });
+    return this.httpClient.put(`${this.coreURL}api/locator`, Json, { headers: headers });
   }
 
   createLocator(locator: Ilocator) {
     let Json = JSON.stringify(locator);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/locator`, Json, { headers: headers });
+    return this.httpClient.post(`${this.coreURL}api/locator`, Json, { headers: headers });
   }
 
   deleteLocator(id: number): Observable<object> {
-    return this.httpClient.delete(this.apiURL + 'api/locator/' + id);
+    return this.httpClient.delete(this.coreURL + 'api/locator/' + id);
   }
 
 }

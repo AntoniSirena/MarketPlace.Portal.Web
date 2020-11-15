@@ -9,38 +9,38 @@ import { IuserRole } from '../../interfaces/IuserRole/iuser-role';
 })
 export class UserRoleService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getUserRoles():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/userRole');
+    return this.httpClient.get(this.coreURL +'api/userRole');
   }
 
   getUserRoleById(id: number):Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/userRole/' + id);
+    return this.httpClient.get(this.coreURL +'api/userRole/' + id);
   }
 
   getUsers():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/userRole/GetUsers');
+    return this.httpClient.get(this.coreURL +'api/userRole/GetUsers');
   }
 
   getRoles():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/userRole/GetRoles');
+    return this.httpClient.get(this.coreURL +'api/userRole/GetRoles');
   }
 
   editUserRole(userRole: IuserRole){
     let Json = JSON.stringify(userRole);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/userRole`, Json, {headers: headers} );
+    return this.httpClient.put(`${this.coreURL}api/userRole`, Json, {headers: headers} );
   }
   
   createUserRole(userRole: IuserRole){
     let Json = JSON.stringify(userRole);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/userRole`, Json, {headers: headers} );
+    return this.httpClient.post(`${this.coreURL}api/userRole`, Json, {headers: headers} );
   }
 
 }

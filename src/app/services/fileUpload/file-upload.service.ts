@@ -10,10 +10,10 @@ import { environment } from '../../environments/environment';
 })
 export class FileUploadService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
 
@@ -35,7 +35,7 @@ export class FileUploadService {
 
 
   postFile(fileToUpload: File): Observable<boolean> {
-    let endpoint = this.apiURL + 'api/file/UploadFile';
+    let endpoint = this.coreURL + 'api/file/UploadFile';
     let formData: FormData = new FormData();
     formData.append('fileKey', fileToUpload, fileToUpload.name);
     console.log(formData);

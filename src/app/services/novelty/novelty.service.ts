@@ -9,38 +9,38 @@ import { INovelty } from '../../interfaces/novelty/inovelty';
 })
 export class NoveltyService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getAll(): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/novelty/GetNovelties');
+    return this.httpClient.get(this.coreURL + 'api/novelty/GetNovelties');
   }
 
   getById(id: number): Observable<object> {
-    return this.httpClient.get(this.apiURL + `api/novelty/GetNoveltyById?Id=${id}`);
+    return this.httpClient.get(this.coreURL + `api/novelty/GetNoveltyById?Id=${id}`);
   }
 
   getNoveltyTypes(): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/novelty/GetNoveltyTypes');
+    return this.httpClient.get(this.coreURL + 'api/novelty/GetNoveltyTypes');
   }
 
   create(request: INovelty) {
     let data = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/novelty/create`, data, { headers: headers });
+    return this.httpClient.post(`${this.coreURL}api/novelty/create`, data, { headers: headers });
   }
 
   update(request: INovelty) {
     let data = JSON.stringify(request);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/novelty/update`, data, { headers: headers });
+    return this.httpClient.put(`${this.coreURL}api/novelty/update`, data, { headers: headers });
   }
 
   delete(id: number): Observable<object> {
-    return this.httpClient.delete(this.apiURL + `api/novelty/delete?Id=${id}`);
+    return this.httpClient.delete(this.coreURL + `api/novelty/delete?Id=${id}`);
   }
 
 }

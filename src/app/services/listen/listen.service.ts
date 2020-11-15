@@ -8,13 +8,13 @@ import { environment} from '../../environments/environment';
 })
 export class ListenService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   readyToRequest():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/login/readyToRequest');
+    return this.httpClient.get(this.coreURL +'api/login/readyToRequest');
   }
 }

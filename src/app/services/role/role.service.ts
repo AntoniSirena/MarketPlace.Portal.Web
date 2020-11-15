@@ -9,30 +9,30 @@ import { Irole } from '../../interfaces/Irole/irole';
 })
 export class RoleService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getRoles(): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/role');
+    return this.httpClient.get(this.coreURL + 'api/role');
   }
 
   getRoleById(id: number): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/role/' + id);
+    return this.httpClient.get(this.coreURL + 'api/role/' + id);
   }
 
   editRole(role: Irole) {
     let Json = JSON.stringify(role);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/role`, Json, { headers: headers });
+    return this.httpClient.put(`${this.coreURL}api/role`, Json, { headers: headers });
   }
 
   createRole(role: Irole) {
     let Json = JSON.stringify(role);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/role`, Json, { headers: headers });
+    return this.httpClient.post(`${this.coreURL}api/role`, Json, { headers: headers });
   }
 
 }

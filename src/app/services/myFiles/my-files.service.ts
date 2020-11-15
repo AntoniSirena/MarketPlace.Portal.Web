@@ -9,18 +9,18 @@ import { environment } from '../../environments/environment';
 })
 export class MyFilesService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getFiles(): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/file/GetFiles');
+    return this.httpClient.get(this.coreURL + 'api/file/GetFiles');
   }
 
   getFileById(id: number): Observable<object> {
-    return this.httpClient.get(this.apiURL +`api/file/GetFileById?id=${id}`);
+    return this.httpClient.get(this.coreURL +`api/file/GetFileById?id=${id}`);
   }
 
 }

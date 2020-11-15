@@ -8,22 +8,22 @@ import { environment} from '../../environments/environment';
 })
 export class CommonService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getPersonTypes():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/common/GetPesonTypes');
+    return this.httpClient.get(this.coreURL +'api/common/GetPesonTypes');
   }
 
   getDocumentTypes():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/common/GetDocumentTypes');
+    return this.httpClient.get(this.coreURL +'api/common/GetDocumentTypes');
   }
 
   getCurrentUserInfo(id: number):Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/common/GetCurrentUserInfo/' + id);
+    return this.httpClient.get(this.coreURL +'api/common/GetCurrentUserInfo/' + id);
   }
 
 }

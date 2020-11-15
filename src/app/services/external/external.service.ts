@@ -9,10 +9,10 @@ import { Iuser } from '../../interfaces/Iuser/iuser';
 })
 export class ExternalService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) { 
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   createUser(user: Iuser){
@@ -20,19 +20,19 @@ export class ExternalService {
     let Json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.apiURL + 'api/external/CreateUser', Json, {headers: headers});
+    return this.httpClient.post(this.coreURL + 'api/external/CreateUser', Json, {headers: headers});
   }
 
   getEnterpriseInfo():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/external/GetEnterpriseInfo');
+    return this.httpClient.get(this.coreURL +'api/external/GetEnterpriseInfo');
   }
 
   getValueRegisterButton():Observable<object>{    
-    return this.httpClient.get(this.apiURL +'api/external/GetValueRegisterButton');
+    return this.httpClient.get(this.coreURL +'api/external/GetValueRegisterButton');
   }
 
   getTemplateByOperation(operation: string): Observable<object> {
-    return this.httpClient.get(this.apiURL +  `api/external/GetTemplate?operation=${operation}`);
+    return this.httpClient.get(this.coreURL +  `api/external/GetTemplate?operation=${operation}`);
   }
 
 }

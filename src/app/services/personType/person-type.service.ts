@@ -10,34 +10,34 @@ import { IPersonType } from '../../interfaces/IpersonType/iperson-type';
 })
 export class PersonTypeService {
 
-  apiURL;
+  coreURL;
 
   constructor(private httpClient: HttpClient) {
-    this.apiURL = environment.apiURL;
+    this.coreURL = environment.coreURL;
   }
 
   getPersonTypes(): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/personType');
+    return this.httpClient.get(this.coreURL + 'api/personType');
   }
 
   getPersonTypeId(id: number): Observable<object> {
-    return this.httpClient.get(this.apiURL + 'api/personType/' + id);
+    return this.httpClient.get(this.coreURL + 'api/personType/' + id);
   }
 
   createPersonType(personType: IPersonType) {
     let Json = JSON.stringify(personType);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.apiURL}api/personType`, Json, { headers: headers });
+    return this.httpClient.post(`${this.coreURL}api/personType`, Json, { headers: headers });
   }
 
   editPersonType(personType: IPersonType) {
     let Json = JSON.stringify(personType);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.apiURL}api/personType`, Json, { headers: headers });
+    return this.httpClient.put(`${this.coreURL}api/personType`, Json, { headers: headers });
   }
 
   delete(id: number): Observable<object> {
-    return this.httpClient.delete(this.apiURL + 'Api/personType/' + id);
+    return this.httpClient.delete(this.coreURL + 'Api/personType/' + id);
   }
 
 
