@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -77,16 +78,6 @@ import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.compon
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
-import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
-import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
-import { DistrictComponent } from './jsViews/domain/district/district.component';
-import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
-import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
-import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
-import { AreaComponent } from './jsViews/domain/area/area/area.component';
-import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
-import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
-import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
 import { TemplateComponent } from './jsViews/template/template.component';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
@@ -137,16 +128,6 @@ import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthe
     RoleComponent,
     ConfigurationParameterComponent,
     PersonTypeComponent,
-    AccompanimentInstrumentComponent,
-    RegionalComponent,
-    DistrictComponent,
-    EducativeCenterComponent,
-    TandaComponent,
-    GradeComponent,
-    AreaComponent,
-    DocentComponent,
-    VisitComponent,
-    IndicatorComponent,
     TemplateComponent,
     PrePortadaComponent,
     FileUploadComponent,

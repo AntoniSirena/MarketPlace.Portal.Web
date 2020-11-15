@@ -194,10 +194,10 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 4, currentPage: _currentPage}">
+                                  <tr *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 3, currentPage: _currentPage}">
                                     <td>{{item.LocatorTypeDescription}}</td>
                                     <td>{{item.Description}}</td>
-                                    <td class="center"><button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
+                                    <td class="right"><button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
                                     <td class="right"> <button type="button" class="btn btn-danger" (click)="deleteLocator(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
                                     <td class="right"><button type="button" class="btn btn-primary" (click)="openEditLocatorModal(editLocatorModal, item.Id)"><i
                                       class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -225,7 +225,7 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
     </div>
-  </ng-template>
+</ng-template>
 
 
 

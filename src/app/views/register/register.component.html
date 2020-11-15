@@ -9,12 +9,12 @@
               <form [formGroup]="myForm" (submit)="onSubmit(myForm.value)">
                 <div class="row">
                   <div class="col-md-12 center">
-                    <h2>Registro de nuevos miembros</h2>
+                    <h2>Registro de nuevos Suscriptores</h2>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 center">
-                   <i> <h4 style="font-weight: bold;">Unete y forma parte de nuestra familia Educativa</h4> </i>
+                   <i> <h4 style="font-weight: bold;">Unete y forma parte de Guerra Info</h4> </i>
                   </div>
                 </div>
                 <br>
@@ -60,12 +60,12 @@
                   <div *ngIf="!myForm.value.surName" class="required">*</div>
                 </div>
 
-                <div class="input-group mb-3">
+               <!-- <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
                   <input type="text" formControlName="code" class="form-control" placeholder="Código de seguridad si posee" autocomplete="code">
-                </div>
+                </div> --> 
 
                 <button type="submit" class="btn btn-block btn-primary loginButton" [disabled]="myForm.invalid" >Crear cuenta</button>
 

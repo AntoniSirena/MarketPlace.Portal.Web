@@ -53,18 +53,7 @@ export class RedirectService {
             localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
             localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
 
-            //Accompainen Instrument
-            localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
-            localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
-            localStorage.setItem("canViewActionsButton", `${JSON.stringify(this.profile.Profile.User.CanViewActionsButton)}`);
-            localStorage.setItem("canApprove", `${JSON.stringify(this.profile.Profile.User.CanApprove)}`);
-            localStorage.setItem("canSendToObservation", `${JSON.stringify(this.profile.Profile.User.CanSendToObservation)}`);
-            localStorage.setItem("canProcess", `${JSON.stringify(this.profile.Profile.User.CanProcess)}`);
-            localStorage.setItem("canCancel", `${JSON.stringify(this.profile.Profile.User.CanCancel)}`);
-
-
             localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
-
 
             localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
             localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
@@ -91,15 +80,6 @@ export class RedirectService {
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
           localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
           localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
-
-          //Accompainen Instrument
-          localStorage.setItem("canCreateRequest", `${JSON.stringify(this.profile.Profile.User.CanCreateRequest)}`);
-          localStorage.setItem("canEditRequest", `${JSON.stringify(this.profile.Profile.User.CanEditRequest)}`);
-          localStorage.setItem("canViewActionsButton", `${JSON.stringify(this.profile.Profile.User.CanViewActionsButton)}`);
-          localStorage.setItem("canApprove", `${JSON.stringify(this.profile.Profile.User.CanApprove)}`);
-          localStorage.setItem("canSendToObservation", `${JSON.stringify(this.profile.Profile.User.CanSendToObservation)}`);
-          localStorage.setItem("canProcess", `${JSON.stringify(this.profile.Profile.User.CanProcess)}`);
-          localStorage.setItem("canCancel", `${JSON.stringify(this.profile.Profile.User.CanCancel)}`);
 
           localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
 

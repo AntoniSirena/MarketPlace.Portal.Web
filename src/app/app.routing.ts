@@ -15,16 +15,6 @@ import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.compon
 import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
-import { AccompanimentInstrumentComponent } from './jsViews/domain/accompanimentInstrument/accompaniment-instrument/accompaniment-instrument.component';
-import { RegionalComponent } from './jsViews/domain/regional/regional/regional.component';
-import { DistrictComponent } from './jsViews/domain/district/district.component';
-import { EducativeCenterComponent } from './jsViews/domain/educativeCenter/educative-center/educative-center.component';
-import { TandaComponent } from './jsViews/domain/tanda/tanda/tanda.component';
-import { GradeComponent } from './jsViews/domain/grade/grade/grade.component';
-import { AreaComponent } from './jsViews/domain/area/area/area.component';
-import { DocentComponent } from './jsViews/domain/docent/docent/docent.component';
-import { VisitComponent } from './jsViews/domain/visit/visit/visit.component';
-import { IndicatorComponent } from './jsViews/domain/indicator/indicator/indicator.component';
 import { TemplateComponent } from './jsViews/template/template.component';
 import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
@@ -192,86 +182,7 @@ export const routes: Routes = [
       },
 
       //domain
-      {
-        path: 'accompaniment-instrument',
-        canActivate: [AuthGuard],
-        component: AccompanimentInstrumentComponent,
-        data: {
-          title: 'Instrumentos de Acompañamientos'
-        }
-      },
-      {
-        path: 'regional',
-        canActivate: [AuthGuard],
-        component: RegionalComponent,
-        data: {
-          title: 'Regionales'
-        }
-      },
-      {
-        path: 'district',
-        canActivate: [AuthGuard],
-        component: DistrictComponent,
-        data: {
-          title: 'Distritos'
-        }
-      },
-      {
-        path: 'educative-center',
-        canActivate: [AuthGuard],
-        component: EducativeCenterComponent,
-        data: {
-          title: 'Centros Educativos'
-        }
-      },
-      {
-        path: 'tanda',
-        canActivate: [AuthGuard],
-        component: TandaComponent,
-        data: {
-          title: 'Tandas'
-        }
-      },
-      {
-        path: 'grade',
-        canActivate: [AuthGuard],
-        component: GradeComponent,
-        data: {
-          title: 'Grados'
-        }
-      },
-      {
-        path: 'area',
-        canActivate: [AuthGuard],
-        component: AreaComponent,
-        data: {
-          title: 'Areas'
-        }
-      },
-      {
-        path: 'docent',
-        canActivate: [AuthGuard],
-        component: DocentComponent,
-        data: {
-          title: 'Docentes'
-        }
-      },
-      {
-        path: 'visit',
-        canActivate: [AuthGuard],
-        component: VisitComponent,
-        data: {
-          title: 'Visitas'
-        }
-      },
-      {
-        path: 'indicator',
-        canActivate: [AuthGuard],
-        component: IndicatorComponent,
-        data: {
-          title: 'Indicadores'
-        }
-      },
+     
       {
         path: 'template',
         canActivate: [AuthGuard],

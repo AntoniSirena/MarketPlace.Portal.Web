@@ -35,12 +35,7 @@ export class PortadaComponent implements OnInit {
   showNavigationArrows = false;
   showNavigationIndicators = false;
   images = [
-    //'assets/img/portada/PadrePatría.jpg',
-    //'assets/img/portada/Dist1007.jpg',
-    'assets/img/portada/Dist1007_1.jpg',
-    //'assets/img/portada/utileria.jpg',
-    //'assets/img/portada/acompañamiento.jpg',
-    //'assets/img/portada/merito.jpg',
+    'assets/img/portada/SAGuerra_ParqueEcológico.jpg'
   ];
 
   isLogin: Boolean = false;
@@ -48,16 +43,26 @@ export class PortadaComponent implements OnInit {
   @ViewChild('misionModal') misionModal: ElementRef;
   @ViewChild('visionModal') visionModal: ElementRef;
   @ViewChild('valoresModal') valoresModal: ElementRef;
-  @ViewChild('planEstrategicoModal') planEstrategicoModal: ElementRef;
+  @ViewChild('farmaceModal') farmaceModal: ElementRef;
+  @ViewChild('beautyStyleModal') beautyStyleModal: ElementRef;
+  @ViewChild('mobileComputerStores') mobileComputerStores: ElementRef;
+  @ViewChild('foodModal') foodModal: ElementRef;
+  @ViewChild('supermarketProvisionsModal') supermarketProvisionsModal: ElementRef;
+  @ViewChild('hardwareStoreReplacementModal') hardwareStoreReplacementModal: ElementRef;
 
-
-  public editorValue: string = '<html> <head> <title></title> </head> <body> <p style="text-align:center">&nbsp;</p> <p style="text-align:center">El&nbsp;<strong>Escudo de armas de la&nbsp;<a href="https://es.wikipedia.org/wiki/Rep%C3%BAblica_Dominicana" title="República Dominicana">Rep&uacute;blica Dominicana</a></strong>&nbsp;es el emblema her&aacute;ldico que representa al pa&iacute;s y que, junto con la&nbsp;<a href="https://es.wikipedia.org/wiki/Bandera_de_la_Rep%C3%BAblica_Dominicana" title="Bandera de la República Dominicana">Bandera</a>&nbsp;y el&nbsp;<a href="https://es.wikipedia.org/wiki/Himno_nacional_de_la_Rep%C3%BAblica_Dominicana" title="Himno nacional de la República Dominicana">Himno Nacional</a>, tiene la categor&iacute;a de s&iacute;mbolo patrio.</p> <p style="text-align:center">La existencia del escudo est&aacute; consagrada en la constituci&oacute;n de la rep&uacute;blica, que lo describe de la manera siguiente:</p> <p style="text-align:center"><strong>Art&iacute;culo 32.</strong>- El Escudo Nacional tiene los mismos colores de la Bandera Nacional dispuestos en igual forma. Lleva en el centro la Biblia abierta en el Evangelio de San Juan cap&iacute;tulo 8, vers&iacute;culo 32 y encima una cruz, lo cual surge de un trofeo integrado por dos lanzas y cuatro banderas nacionales sin escudo, dispuestas a ambos lados; lleva un ramo de&nbsp;<strong>laurel</strong>&nbsp;del lado izquierdo y uno de palma al lado derecho. Est&aacute; coronado por una cinta azul ultramar en la cual se lee el lema &ldquo;Dios Patria Libertad&rdquo;. En la base hay otra cinta de color rojo bermell&oacute;n&nbsp;<strong>cuyos extremos se orientan hacia arriba</strong>&nbsp;con las palabras &ldquo;Rep&uacute;blica Dominicana&rdquo;. La forma del Escudo Nacional es de un cuadrilongo, con los &aacute;ngulos superiores salientes y los inferiores redondeados, el centro de cuya base termina en punta, y est&aacute; dispuesto en forma tal que resulte un cuadrado perfecto al trazar una l&iacute;nea horizontal que una las dos verticales del cuadrilongo desde donde comienzan los &aacute;ngulos inferiores.</p> <p style="text-align:center">&nbsp;</p> </body> </html>';
 
   portada = new Portada();
 
-  leftInfo = new Portada();
-  rightInfo = new Portada();
+  leftInfo_A = new Portada();
+  leftInfo_B = new Portada();
+  leftInfo_C = new Portada();
+
+  rightInfo_A = new Portada();
+  rightInfo_B = new Portada();
+  rightInfo_C = new Portada();
+
   centerInfo = new Portada();
+
   bannerA = new Portada();
 
   novelties = new Array<NoveltiesByType>();
@@ -77,13 +82,18 @@ export class PortadaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getTemplateBannerA('BannerPortada_A');    
-    this.getTemplateLeftInfo('LeftInfo');
-    this.getTemplateRightInfo('RightInfo');
+    this.getTemplateBannerA('BannerPortada_A');
+    this.getTemplateLeftInfo_A('LeftInfo_A');
+    this.getTemplateLeftInfo_B('LeftInfo_B');
+    this.getTemplateLeftInfo_C('LeftInfo_C');
+
+    this.getTemplateRightInfo_A('RightInfo_A');
+    this.getTemplateRightInfo_B('RightInfo_B');
+    this.getTemplateRightInfo_C('RightInfo_C');
 
     this.getNoveltiesByType("Science");
   }
-  
+
 
   //Get template
   getTemplate(operation: string) {
@@ -106,11 +116,11 @@ export class PortadaComponent implements OnInit {
 
   }
 
-  //Get template right info
-  getTemplateRightInfo(operation: string) {
+  //Get template right info A
+  getTemplateRightInfo_A(operation: string) {
     this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
-        this.rightInfo = response.Data;
+        this.rightInfo_A = response.Data;
       } else {
         Swal.fire({
           icon: 'warning',
@@ -125,11 +135,108 @@ export class PortadaComponent implements OnInit {
       });
   }
 
-  //Get template right left
-  getTemplateLeftInfo(operation: string) {
+  //Get template right info B
+  getTemplateRightInfo_B(operation: string) {
     this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
-        this.leftInfo = response.Data;
+        this.rightInfo_B = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get template right info C
+  getTemplateRightInfo_C(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.rightInfo_C = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Get template left A
+  getTemplateLeftInfo_A(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.leftInfo_A = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get template left B
+  getTemplateLeftInfo_B(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.leftInfo_B = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get template left C
+  getTemplateLeftInfo_C(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.leftInfo_C = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Get template right center
+  getTemplateCenterInfo(operation: string) {
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.centerInfo = response.Data;
       } else {
         Swal.fire({
           icon: 'warning',
@@ -155,24 +262,6 @@ export class PortadaComponent implements OnInit {
       });
   }
 
-  //Get template right center
-  getTemplateCenterInfo(operation: string) {
-    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
-      if (response.Code === '000') {
-        this.centerInfo = response.Data;
-      } else {
-        Swal.fire({
-          icon: 'warning',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 4000
-        });
-      }
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
-  }
 
   //Get template banner A
   getTemplateBannerA(operation: string) {
@@ -214,10 +303,44 @@ export class PortadaComponent implements OnInit {
   }
 
 
-  //open valores modal
-  openPlanEstrategicoModal(operation: string) {
+  //open farmace modal
+  openFarmaceModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.planEstrategicoModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.farmaceModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open beauty style modal
+  openBeautyStyleModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.beautyStyleModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open mobile computer stores modal
+  openMobileComputerStoresModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.mobileComputerStores, { size: 'xl', scrollable: true });
+  }
+
+
+  //open food modal
+  openFoodModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.foodModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open super market provisions modal
+  openSupermarketProvisionsModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.supermarketProvisionsModal, { size: 'xl', scrollable: true });
+  }
+
+  //open hardware store replacement modal
+  openHardwareStoreReplacementModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.hardwareStoreReplacementModal, { size: 'xl', scrollable: true });
   }
 
 

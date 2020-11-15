@@ -29,7 +29,7 @@
 
   .imglogin{
     background: transparent;
-    background-image: url(assets/img/portada/BandDom.jpg);
+    background-image: url(assets/img/portada/SAGuerra_ParqueEcológico.jpg);
     height: 100%;
     /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
     background-position: center center;
@@ -84,14 +84,23 @@
     text-align: justify;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 22px;
+    font-size: 16px;
   }
 
   ._templateStyle{
     text-align: center;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 22px;
+    font-size: 17px;
+  }
+
+  .templateHeader{
+    font-size: 25px;
+    color: rgb(43, 161, 207);
+  }
+
+  .templateBodyColor{
+    background-color: rgb(198, 231, 238);
   }
 
   .tabl_eHeader_Color{
@@ -143,18 +152,22 @@
 
   .portadaLoginButton{
     font-size: 17px;
-    width: 120px;
+    width: 140px;
     border-radius: 4px;
   }
 
   .portadaRegisterButton{
     font-size: 17px;
-    width: 120px;
+    width: 140px;
     border-radius: 4px;
   }
 
   .marqueeStyle_Login{
     font-size: 20px;
     width: 100%;
-}
+  }
+
+  .style_NavButton{
+    margin-right: 5px;
+  }
   

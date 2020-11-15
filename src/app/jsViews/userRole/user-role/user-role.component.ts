@@ -214,8 +214,8 @@ export class UserRoleComponent implements OnInit {
   //create from set value ''
   setValueCreateFrom() {
     this.createUserRoleForm = this.form.group({
-      roleId: [0, Validators.required],
-      userId: [0, Validators.required],
+      roleId: ['', Validators.required],
+      userId: ['', Validators.required],
     });
   }
 

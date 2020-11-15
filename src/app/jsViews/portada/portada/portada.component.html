@@ -7,7 +7,7 @@
     <!--Principal title-->
     <div class="row">
       <div class="col-md-12">
-        <button class="btn btn-primary Header">Bienvenido al Distrito Educativo 10-07</button>
+        <button class="btn btn-primary Header">Bienvenido al Municipio San Antonio de Guerra</button>
       </div>
     </div>
     <br>  
@@ -33,7 +33,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">FILOSOFIA INSTITUCIONAL</span>
+                  <span style="font-weight: bold;">FILOSOFIA MUNICIPAL</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
@@ -41,20 +41,36 @@
                   <a class="dropdown-item" (click)="openValoresModal('Valores')">Valores</a>
                 </div>
               </li>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">SOBRE NOSOTROS</span>
+                  <span style="font-weight: bold;">CULTURA</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" (click)="openPlanEstrategicoModal('PlanEstrategico')">Plan estrategico
-                    2019-2004</a>
+                  <a class="dropdown-item">Hisotiría del municipio</a>
                 </div>
               </li>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">SERVICIOS</span>
+                  <span style="font-weight: bold;">DIRECTORIOS</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="openFarmaceModal('FarmaceDirectory')">Farmacias</a>
+                  <a class="dropdown-item" (click)="openBeautyStyleModal('BeautyStyle_Directory')">Salones, Uñas y Barberías</a>
+                  <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tiendas de Celulares y Computadoras</a>
+                  <a class="dropdown-item" (click)="openFoodModal('Food_Directory')">Comidas</a>
+                  <a class="dropdown-item" (click)="openSupermarketProvisionsModal('SupermarketProvisions_Directory')">Comerciantes y Detallistas de Provisiones</a>
+                  <a class="dropdown-item" (click)="openHardwareStoreReplacementModal('HardwareStoreReplacement_Directory')">Ferreterías y Repuestos</a>
+                </div>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span style="font-weight: bold;">TURISMO INTERNO</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 </div>
@@ -76,26 +92,15 @@
 
       <!--Col1-->
       <div class="col-md-2">
-        <!-- <div class="container-fluid">
-          <br>
-          <br>
-          
-          <div class="row textLateralStyle">
-            <div class="col-md-12">
-              <p [innerHTML]="leftInfo.Body"> </p>
-            </div>
-          </div>
-
-        </div> -->
 
         <div class="row">
           <div class="col-sm-12">
             <div class="card">
               <div class="card-body">               
                 
-                <div class="row textLateralStyle lateralsDivScroll">
+                <div class="row lateralsDivScroll">
                   <div class="col-md-12">
-                    <p [innerHTML]="leftInfo.Body"> </p>
+                    <p [innerHTML]="leftInfo_A.Body"> </p>
                   </div>
                 </div>
                 
@@ -111,7 +116,7 @@
                 
                 <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
-                    <p [innerHTML]="leftInfo.Body"> </p>
+                    <p [innerHTML]="leftInfo_B.Body"> </p>
                   </div>
                 </div>
                 
@@ -127,7 +132,7 @@
                 
                 <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
-                    <p [innerHTML]="leftInfo.Body"> </p>
+                    <p [innerHTML]="leftInfo_C.Body"> </p>
                   </div>
                 </div>
                 
@@ -161,12 +166,6 @@
     
             <br>
             <br>
-
-            <!--<div class="row textColorWhite">
-              <div class="col-md-12">
-                <span [innerHTML]="centerInfo.Body"> </span>
-              </div>
-            </div> -->
 
               <div class="row">
                 <div class="col-sm-12">
@@ -397,17 +396,6 @@
 
       <!--Col3-->
       <div class="col-md-2">
-        <!-- <div class="container-fluid">
-          <br>
-          <br>
-
-          <div class="row textLateralStyle">
-            <div class="col-md-12">
-              <span [innerHTML]="rightInfo.Body"> </span>
-            </div>
-          </div>
-
-        </div> -->
 
         <div class="row">
           <div class="col-sm-12">
@@ -416,7 +404,7 @@
                 
                 <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
-                    <span [innerHTML]="rightInfo.Body"> </span>
+                    <span [innerHTML]="rightInfo_A.Body"> </span>
                   </div>
                 </div> 
 
@@ -432,7 +420,7 @@
                 
                 <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
-                    <span [innerHTML]="rightInfo.Body"> </span>
+                    <span [innerHTML]="rightInfo_B.Body"> </span>
                   </div>
                 </div> 
 
@@ -448,7 +436,7 @@
                 
                 <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
-                    <span [innerHTML]="rightInfo.Body"> </span>
+                    <span [innerHTML]="rightInfo_C.Body"> </span>
                   </div>
                 </div> 
 
@@ -483,9 +471,9 @@
     <!--Misión-->
     <div class="row">
       <div class="col-sm-12">
-        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+        <div class="card border-primary templateBodyColor">
           <br>
-          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Misión</strong>
+          <strong class="center templateHeader">Misión</strong>
           <div class="card-body">
             <div>
               <span [innerHTML]="portada.Body" class="templateStyle"> </span>
@@ -515,9 +503,9 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+        <div class="card border-primary templateBodyColor">
           <br>
-          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Visión</strong>
+          <strong class="center templateHeader">Visión</strong>
           <div class="card-body">
             <div>
               <span [innerHTML]="portada.Body" class="templateStyle"> </span>
@@ -547,9 +535,9 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+        <div class="card border-primary templateBodyColor">
           <br>
-          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Valores</strong>
+          <strong class="center templateHeader">Valores</strong>
           <div class="card-body">
             <div>
               <span [innerHTML]="portada.Body" class="templateStyle"> </span>
@@ -567,10 +555,10 @@
 </ng-template>
 
 
-<!--plan estrategico Modal -->
-<ng-template #planEstrategicoModal let-modal class="modal-dialog">
+<!--farmace Modal -->
+<ng-template #farmaceModal let-modal class="modal-dialog">
   <div class="modal-header">
-    <h3 class="modal-title">Plan Estrategico</h3>
+    <h3 class="modal-title">Farmacias</h3>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -579,12 +567,172 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="card border-primary" style="background-color: rgb(206, 238, 247);">
+        <div class="card border-primary templateBodyColor">
           <br>
-          <strong class="center" style="color: rgb(43, 161, 207); font-size: 35px;">Plan Estrategico</strong>
+          <strong class="center templateHeader">Farmacias de nuesto Municipio y zonas aledañas</strong>
           <div class="card-body">
             <div>
               <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--beauty style Modal -->
+<ng-template #beautyStyleModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Belleza y Estilo</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Salones, Centro de Uñas y Barbería de nuesto Municipio y zonas aledañas</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--mobile computer stores Modal -->
+<ng-template #mobileComputerStores let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Tecnología</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Tiendas de Celulares y Computadoras de nuesto Municipio y zonas aledañas</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--food Modal -->
+<ng-template #foodModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Comidas</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Centros de Comidas de nuesto Municipio y zonas aledañas</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--supermarket provisions Modal -->
+<ng-template #supermarketProvisionsModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Comerciantes y Detallistas de Provisiones</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Super Mercados, Almacenes y Colmados de nuesto Municipio y zonas aledañas</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--hardware store replacement Modal -->
+<ng-template #hardwareStoreReplacementModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Ferreterías y Repuestos</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Ferreterías y Repuestos de nuesto Municipio y zonas aledañas</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
             </div>
           </div>
         </div>

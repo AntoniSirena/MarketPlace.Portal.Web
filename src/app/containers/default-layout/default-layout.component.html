@@ -1,8 +1,8 @@
 <app-header
   [navbarBrandRouterLink]="['/portada']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/jsirena/logoDist1007.jpg', width: 125, height: 52, alt: 'jssoluctech'}"
-  [navbarBrandMinimized]="{src: 'assets/img/jsirena/logoDist1007.jpg', width: 30, height: 30, alt: 'jssoluctech'}"
+  [navbarBrandFull]="{src: 'assets/img/portada/SAGuerra_ParqueEcológico.jpg', width: 125, height: 52, alt: 'jssoluctech'}"
+  [navbarBrandMinimized]="{src: 'assets/img/portada/SAGuerra_ParqueEcológico.jpg', width: 30, height: 30, alt: 'jssoluctech'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
@@ -18,18 +18,18 @@
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
-      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle"></i>Inisiar sesión</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle style_NavButton"></i>Inisiar sesión</button>
     </li>
 
     <li class="nav-item d-md-down-none"></li>
 
     <li class="nav-item d-md-down-none">
-      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle"></i>Registrarme</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle style_NavButton"></i>Suscribirme</button>
     </li>
 
 
     <li class="nav-item d-md-down-none">
-      <button *ngIf="isVisitorUser != true" class="btn btn-danger portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-power-off"></i>Cerrar sesión</button>
+      <button *ngIf="isVisitorUser != true" class="btn btn-danger portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-power-off style_NavButton"></i>Cerrar sesión</button>
     </li>
 
     <!-- 

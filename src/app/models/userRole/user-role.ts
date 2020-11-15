@@ -27,12 +27,4 @@ export class Role  extends Audit{
     CanCreate: boolean;
     CanEdit: boolean;
     CanDelete: boolean;
-
-    CanCreateRequest: boolean;
-    CanEditRequest: boolean;
-    CanViewActionsButton: boolean;
-    CanApprove: boolean;
-    CanSendToObservation: boolean;
-    CanProcess: boolean;
-    CanCancel: boolean;
 }

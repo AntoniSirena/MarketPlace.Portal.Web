@@ -26,13 +26,6 @@
                     <th>Puede crear ?</th>
                     <th>Puede editar ?</th>
                     <th>Puede eliminar ?</th>
-                    <th>Puede crear solicitud ?</th>
-                    <th>Puede editar solicitud ?</th>
-                    <th>Puede ver el boton de acciones?</th>
-                    <th>Puede aprobar?</th>
-                    <th>Puede enviar a observación?</th>
-                    <th>Puede procesar?</th>
-                    <th>Puede cancelar?</th>
                     <th class="right">Esta habilitado ?</th>
                     <th class="right"><button type="button" class="btn btn-success"
                             (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
@@ -51,14 +44,6 @@
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanEdit == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEdit == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanDelete == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDelete == true ? 'sí' : 'No'}} </button> </td>
                     
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanCreateRequest == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreateRequest == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanEditRequest == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEditRequest == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanViewActionsButton == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanViewActionsButton == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanApprove == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanApprove == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanSendToObservation == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanSendToObservation == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanProcess == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanProcess == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanCancel == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCancel == true ? 'sí' : 'No'}} </button> </td>
-
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"><button type="button" class="btn btn-primary"
                             (click)="openEditModal(editModal, item.Id)"><i
@@ -182,73 +167,7 @@
                                         formControlName="canDelete">
                                 </div>
 
-                                <hr>
-                                <h5>Permisos del Instrumento de Acompañamiento</h5>
-                                <label for="canCreateRequest">Puede crear solicitud?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCreateRequestTrue() : canCreateRequestFalse()"
-                                        formControlName="canCreateRequest">
-                                </div>
-
-                                <label for="canEditRequest">Puede editar solicitud?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canEditRequestTrue() : canEditRequestFalse()"
-                                        formControlName="canEditRequest">
-                                </div>
-
-                                <label for="canViewActionsButton">Puede ver el boton de acciones?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canViewActionsButtonTrue() : canViewActionsButtonFalse()"
-                                        formControlName="canViewActionsButton">
-                                </div>
-
-                                <label for="canApprove">Puede aprobar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canApproveTrue() : canApproveFalse()"
-                                        formControlName="canApprove">
-                                </div>
-
-                                <label for="canSendToObservation">Puede enviar a observación?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canSendToObservationTrue() : canSendToObservationFalse()"
-                                        formControlName="canSendToObservation">
-                                </div>
-
-                                <label for="canProcess">Puede procesar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canProcessTrue() : canProcessFalse()"
-                                        formControlName="canProcess">
-                                </div>
-
-                                <label for="canCancel">Puede cancelar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCancelTrue() : canCancelFalse()"
-                                        formControlName="canCancel">
-                                </div>
-
-                                <hr>
-                                <label for="menuTemplate">Habilidar</label>
+                                <label for="menuTemplate">Habilitar</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                     </div>
@@ -377,71 +296,7 @@
                                         formControlName="canDelete">
                                 </div>
 
-                                <label for="canCreateRequest">Puede crear solicitud?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCreateRequestTrue() : canCreateRequestFalse()"
-                                        formControlName="canCreateRequest">
-                                </div>
-
-                                <label for="canEditRequest">Puede editar solicitud?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canEditRequestTrue() : canEditRequestFalse()"
-                                        formControlName="canEditRequest">
-                                </div>
-
-                                <label for="canViewActionsButton">Puede ver el boton de acciones?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canViewActionsButtonTrue() : canViewActionsButtonFalse()"
-                                        formControlName="canViewActionsButton">
-                                </div>
-
-                                <label for="canApprove">Puede aprobar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canApproveTrue() : canApproveFalse()"
-                                        formControlName="canApprove">
-                                </div>
-
-                                <label for="canSendToObservation">Puede enviar a observación?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canSendToObservationTrue() : canSendToObservationFalse()"
-                                        formControlName="canSendToObservation">
-                                </div>
-
-                                <label for="canProcess">Puede procesar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canProcessTrue() : canProcessFalse()"
-                                        formControlName="canProcess">
-                                </div>
-
-                                <label for="canCancel">Puede cancelar?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCancelTrue() : canCancelFalse()"
-                                        formControlName="canCancel">
-                                </div>
-
-                                <hr>
-                                <label for="menuTemplate">Habilidar</label>
+                                <label for="menuTemplate">Habilitar</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                     </div>
