@@ -32,4 +32,6 @@ export class  NoveltiesByType {
     ImgBase64: string;
     ContenTypeShort: string;
     ContenTypeLong: string;
+    StartDate: string;
+    EndDate: string;
 }
