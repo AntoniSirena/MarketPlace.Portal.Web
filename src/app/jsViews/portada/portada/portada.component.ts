@@ -49,6 +49,7 @@ export class PortadaComponent implements OnInit {
   @ViewChild('foodModal') foodModal: ElementRef;
   @ViewChild('supermarketProvisionsModal') supermarketProvisionsModal: ElementRef;
   @ViewChild('hardwareStoreReplacementModal') hardwareStoreReplacementModal: ElementRef;
+  @ViewChild('historyGuerraModal') historyGuerraModal: ElementRef;
 
 
   portada = new Portada();
@@ -341,6 +342,13 @@ export class PortadaComponent implements OnInit {
   openHardwareStoreReplacementModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.hardwareStoreReplacementModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open history guerra modal
+  openHistoryGuerraModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.historyGuerraModal, { size: 'xl', scrollable: true });
   }
 
 

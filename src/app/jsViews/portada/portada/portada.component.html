@@ -48,7 +48,7 @@
                   <span style="font-weight: bold;">CULTURA</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item">Hisotiría del municipio</a>
+                  <a class="dropdown-item" (click)="openHistoryGuerraModal('History_Guerra')">Hisotiria del municipio</a>
                 </div>
               </li>
 
@@ -98,7 +98,7 @@
             <div class="card">
               <div class="card-body">               
                 
-                <div class="row lateralsDivScroll">
+                <div class="row textLateralStyle lateralsDivScroll">
                   <div class="col-md-12">
                     <p [innerHTML]="leftInfo_A.Body"> </p>
                   </div>
@@ -733,6 +733,38 @@
           <div class="card-body">
             <div>
               <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--hhistory guerra Modal -->
+<ng-template #historyGuerraModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Cultura</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-primary templateBodyColor">
+          <br>
+          <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra</strong>
+          <div class="card-body">
+            <div>
+              <p [innerHTML]="portada.Body" class="historyGuerra_Stayle"> </p>
             </div>
           </div>
         </div>

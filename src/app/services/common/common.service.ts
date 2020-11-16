@@ -26,4 +26,8 @@ export class CommonService {
     return this.httpClient.get(this.coreURL +'api/common/GetCurrentUserInfo/' + id);
   }
 
+  getCompanyCategories():Observable<object>{ 
+    return this.httpClient.get(this.coreURL +'api/common/GetCompanyCategories');
+  }
+
 }
