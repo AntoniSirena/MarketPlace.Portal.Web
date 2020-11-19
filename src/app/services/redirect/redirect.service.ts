@@ -201,6 +201,8 @@ export class RedirectService {
 
     if (localStorage.length > 0) {
       let userName = JSON.parse(localStorage.getItem('userName'));
+      let isVisitorUser = JSON.parse(localStorage.getItem('isVisitorUser'));
+
       localStorage.clear();
       this.loginSevice.logOut(userName).subscribe((response: any) => {
       },
@@ -208,21 +210,24 @@ export class RedirectService {
           console.log(JSON.stringify(error));
         });
 
-      Swal.fire({
-        icon: 'warning',
-        title: 'Estimado usuario la solicitud no fué autorizada',
-        showConfirmButton: false,
-        timer: 4000
-      }).then(() => {
-        this.router.navigate(['login']);
-        //window.location.reload();
-      });
+        if(!isVisitorUser){
+          Swal.fire({
+            icon: 'warning',
+            title: 'Estimado usuario la solicitud no fué autorizada',
+            showConfirmButton: false,
+            timer: 4000
+          }).then(() => {
+            this.router.navigate(['login']);          
+          });
+        }else{
+          this.router.navigate(['login']);
+        }
     }
   }
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      window.location.reload();
+      //window.location.reload();
     });
   }
 

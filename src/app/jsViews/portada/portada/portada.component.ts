@@ -83,16 +83,35 @@ export class PortadaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getTemplateBannerA('BannerPortada_A');
-    this.getTemplateLeftInfo_A('LeftInfo_A');
-    this.getTemplateLeftInfo_B('LeftInfo_B');
-    this.getTemplateLeftInfo_C('LeftInfo_C');
+   this.showMessage();
+  }
 
-    this.getTemplateRightInfo_A('RightInfo_A');
-    this.getTemplateRightInfo_B('RightInfo_B');
-    this.getTemplateRightInfo_C('RightInfo_C');
 
-    this.getNoveltiesByType("Science");
+  showMessage() {
+    Swal.fire({
+      title: 'Sistema cargando',
+      showConfirmButton: false,
+      timer: 2500,
+      background: 'rgb(218, 231, 231)',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    }).then(() => {
+      this.getTemplateBannerA('BannerPortada_A')
+    }).then(() => {
+      this.getTemplateLeftInfo_A('LeftInfo_A');
+      this.getTemplateLeftInfo_B('LeftInfo_B');
+      this.getTemplateLeftInfo_C('LeftInfo_C');
+
+      this.getTemplateRightInfo_A('RightInfo_A');
+      this.getTemplateRightInfo_B('RightInfo_B');
+      this.getTemplateRightInfo_C('RightInfo_C');
+    }).then(() =>{
+      this.getNoveltiesByType("Science");
+    })
   }
 
 
