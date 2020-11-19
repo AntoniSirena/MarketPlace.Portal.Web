@@ -1,8 +1,6 @@
-<!--Contenedor principal-->
+
+<!--Contenedor I-->
 <div class="container-fluid imgPortada" style="width: 100%;">
-
-  <div class="container-fluid" style="width: 100%;">
-
     <br>
     <!--Principal title-->
     <div class="row">
@@ -10,13 +8,12 @@
         <button class="btn btn-primary Header">Bienvenido al Municipio San Antonio de Guerra</button>
       </div>
     </div>
-    <br>  
-    
+    <br>
+
     <ng-marquee speed="drowsy">
       <span class="marqueeStyle" [innerHTML]="bannerA.Body"></span>
     </ng-marquee>
 
-    <br>
     <!--Menú-->
     <div class="row">
       <div class="col-md-12">
@@ -87,11 +84,295 @@
     </div>
     <br>
 
+
     <!--Principal row-->
     <div class="row">
+      <br>
+      <br>
+      <!--Firt column-->
+      <div class="col-md-8">         
+        <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
+          [showNavigationIndicators]="showNavigationIndicators">
+          <ng-template ngbSlide *ngFor="let image of images">
+            <div class="picsum-img-wrapper">
+              <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
+            </div>
+          </ng-template>
+        </ngb-carousel>
 
-      <!--Col1-->
-      <div class="col-md-2">
+        <br>
+
+        <!--Novelties and news-->
+        <div class="row">
+          <div class="col-sm-12">
+
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3 class="center" style="color: red;">Novedades y Noticias</h3>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
+                <ngb-tabset [destroyOnHide]="false">
+                  
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Science')" class="bold">Ciencia y Tecnología</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="center noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="right noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Sporty')" class="bold">Deporte</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="center noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="right noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>                               
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Politics')" class="bold">Política</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="justify noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="center noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Show')" class="bold">Espectáculo</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="center noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="right noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Unusual')" class="bold">Insólita</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="justify noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Economy')" class="bold">Economía</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="justify noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="center noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Art')" class="bold">Arte</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="justify noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="center noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Police')" class="bold">Policiale</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="justify noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="center noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <div (click)="getNoveltiesByType('Education')" class="bold">Educación</div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+
+                      <div class="centerDivScroll">
+                        <div *ngFor="let item of novelties" class="novelty">
+                          <h4 class="noveltyText">{{item.Title}}</h4>
+                          <div class="col-md-4">
+                            <img src="{{item.ImgBase64}}" class="imgStyle">
+                          </div>
+                          <p class="center noveltyText">
+                            {{item.Description}}
+                          </p>
+                          <p class="right noveltyText" style="font-weight: bold;">
+                            Publicada el : {{item.StartDate}}
+                          </p>
+                        </div>
+                      </div>
+
+                    </ng-template>
+                  </ngb-tab>
+
+                </ngb-tabset>
+
+          </div>
+        </div>
+
+        <br>
+        <ng-marquee speed="drowsy">
+          <span class="marqueeStyle" [innerHTML]="bannerA.Body"></span>
+        </ng-marquee>
+        
+        <br>
+        <ng-marquee speed="drowsy">
+          <div class="card">
+            <div class="card-body">               
+              
+              <div class="row textLateralStyle lateralsDivScroll">
+                <div class="col-md-12">
+                  <h3>Monta tu publicidad totalmente GRATIS</h3>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </ng-marquee>
+
+      </div>
+
+
+      <!--Second column-->
+      <div class="col-md-4">
+        <br>
 
         <div class="row">
           <div class="col-sm-12">
@@ -141,289 +422,6 @@
           </div>
         </div>
 
-      </div>
-
-
-      <!--Col2-->
-      <div class="col-md-8">
-
-        <div class="row centerTextStyle">
-          <div class="col-md-12">
-            <br>
-
-            <!--carousel-->
-    
-            <br>
-    
-            <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
-              [showNavigationIndicators]="showNavigationIndicators">
-              <ng-template ngbSlide *ngFor="let image of images">
-                <div class="picsum-img-wrapper">
-                  <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
-                </div>
-              </ng-template>
-            </ngb-carousel>
-    
-            <br>
-            <br>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-body">
-
-                      <div class="card-header">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <h3 class="center">Novedades y Noticias</h3>
-                          </div>
-                        </div>
-                      </div>
-
-                      <br>
-                      <ngb-tabset [destroyOnHide]="false">
-                        
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Science')" class="bold">Ciencia y Tecnología</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Sporty')" class="bold">Deporte</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>                               
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Politics')" class="bold">Política</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Show')" class="bold">Espectáculo</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Unusual')" class="bold">Insólita</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Economy')" class="bold">Economía</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Art')" class="bold">Arte</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Police')" class="bold">Policiale</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <div (click)="getNoveltiesByType('Education')" class="bold">Educación</div>
-                          </ng-template>
-
-                          <ng-template ngbTabContent>
-
-                            <div class="centerDivScroll">
-                              <div *ngFor="let item of novelties" class="border novelty">
-                                <h4 class="noveltyText">{{item.Title}}</h4>
-                                <div class="col-md-4">
-                                  <img src="{{item.ImgBase64}}" class="imgStyle">
-                                </div>
-                                <p class="justify noveltyText">
-                                  {{item.Description}}
-                                </p>
-                                <p class="right noveltyText" style="font-weight: bold;">
-                                  Publicada el : {{item.StartDate}}
-                                </p>
-                              </div>
-                            </div>
-
-                          </ng-template>
-                        </ngb-tab>
-
-                      </ngb-tabset>
-      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-          </div>
-        </div>
-
-      </div>
-
-
-      <!--Col3-->
-      <div class="col-md-2">
-
         <div class="row">
           <div class="col-sm-12">
             <div class="card">
@@ -472,17 +470,14 @@
           </div>
         </div>
 
+
       </div>
 
     </div>
-    <!--End principal row-->
 
 
-  </div>
 
 </div>
-
-
 
 
 <!--Mision Modal -->
@@ -513,7 +508,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -545,7 +540,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -577,7 +572,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -592,8 +587,8 @@
   </div>
   <div class="modal-body templateBodyColor">
     <strong class="center templateHeader">Farmacias de nuesto Municipio y zonas aledañas</strong>
-      <div>
-        <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
   </div>
   <div class="modal-footer">
@@ -610,26 +605,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Salones, Centro de Uñas y Barbería de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Salones, Centro de Uñas y Barbería de nuesto Municipio y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -642,26 +627,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Tiendas de Celulares y Computadoras de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Tiendas de Celulares y Computadoras de nuesto Municipio y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -674,26 +649,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Centros de Comidas de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Centros de Comidas de nuesto Municipio y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -706,26 +671,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Super Mercados, Almacenes y Colmados de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Supermercados, Almacenes y Colmados de nuesto Municipio y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -738,26 +693,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Ferreterías y Repuestos de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="_templateStyle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Ferreterías y Repuestos de nuesto Municipio y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 
@@ -770,25 +715,15 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body templateBodyColor">
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra</strong>
-          <div class="card-body">
-            <div>
-              <p [innerHTML]="portada.Body" class="historyGuerra_Stayle"> </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+    <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>

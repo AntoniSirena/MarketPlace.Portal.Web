@@ -96,12 +96,13 @@
 
 .lateralsDivScroll{
     overflow-y:scroll;
-    height: 318px;
+    height: 250px;
 }
 
 .centerDivScroll{
     overflow-y:scroll;
     height: 500px;
+    background-color: rgb(216, 235, 236);
 }
 
 .marqueeStyle{
@@ -114,4 +115,4 @@
     margin-left: 10px;
     margin-right: 10px;
     font-size: 17px;
-  }
+}
