@@ -590,26 +590,14 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card border-primary templateBodyColor">
-          <br>
-          <strong class="center templateHeader">Farmacias de nuesto Municipio y zonas aledañas</strong>
-          <div class="card-body">
-            <div>
-              <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.col-->
+  <div class="modal-body templateBodyColor">
+    <strong class="center templateHeader">Farmacias de nuesto Municipio y zonas aledañas</strong>
+      <div>
+        <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
-
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger buttonSize_Closed" (click)="modal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
   </div>
 </ng-template>
 

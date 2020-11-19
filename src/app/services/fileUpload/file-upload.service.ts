@@ -28,7 +28,7 @@ export class FileUploadService {
     });
 
 
-    this.httpClient.post('http://localhost:61048/api/file/UploadFile', file, { headers: headers })
+    this.httpClient.post(this.coreURL +'api/file/UploadFile', file, { headers: headers })
       .subscribe(data => {
       });
   }
