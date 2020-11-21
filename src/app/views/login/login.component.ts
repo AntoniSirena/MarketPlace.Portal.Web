@@ -74,16 +74,7 @@ export class LoginComponent implements OnInit {
 
 
   redirectPortada() {
-    const login: Ilogin = {
-      UserName: 'visitador',
-      Password: 'visitador123',
-      EmailAddress: null,
-      SecurityCode: '',
-      Token2AF: '',
-    };
-
-    this.redirectService.SubmitLogin(login, true, true);
-    localStorage.setItem("canViewLoginForm", JSON.stringify(true));
+    this.redirectService.loginUserVisitador();
   }
 
 

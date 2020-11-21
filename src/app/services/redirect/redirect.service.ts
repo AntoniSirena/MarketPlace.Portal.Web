@@ -227,12 +227,26 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      //window.location.reload();
+      window.location.reload();
     });
   }
 
   register() {
     this.router.navigate(['register']);
+  }
+
+
+  loginUserVisitador(){
+    const login: Ilogin = {
+      UserName: 'visitador',
+      Password: 'visitador123',
+      EmailAddress: null,
+      SecurityCode: '',
+      Token2AF: '',
+    };
+
+    this.SubmitLogin(login, true, true);
+    localStorage.setItem("canViewLoginForm", JSON.stringify(true));
   }
 
 }

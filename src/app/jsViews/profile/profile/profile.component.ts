@@ -19,6 +19,8 @@ import { DocumentType } from '../../../models/common/documentType/document-type'
 import { CommonService } from '../../../services/common/common.service';
 
 import { FileReaderPromiseLikeService, FileReaderObservableLikeService } from 'fctrlx-angular-file-reader';
+import { RedirectService } from '../../../services/redirect/redirect.service';
+import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
 
 
 @Component({
@@ -49,6 +51,7 @@ export class ProfileComponent implements OnInit {
 
   //constructor
   constructor(
+    private redirectService: RedirectService,
     private modalService: NgbModal,
     private baseService: BaseService,
     private profileService: ProfileService,
@@ -60,7 +63,7 @@ export class ProfileComponent implements OnInit {
   ) {
 
     //Cagando la data desde el servidor
-    if(!this.isVisitorUser){
+    if(!this.isVisitorUser && localStorage.length > 0){
       this.profile = this.baseService.getProfile();
       this.getGenders();
       this.getDocumentTypes();
@@ -68,6 +71,10 @@ export class ProfileComponent implements OnInit {
       this.getInfoCurrentPerson();
       this.getLocatorsTypes();
       this.getInfoCurrentLocators();
+    }
+
+    if(localStorage.length === 0){
+      this.redirectService.loginUserVisitador();
     }
 
   }
