@@ -370,21 +370,4 @@ export class PortadaComponent implements OnInit {
     this.modalService.open(this.historyGuerraModal, { size: 'xl', scrollable: true });
   }
 
-
-
-  loginUserVisit() {
-    const login: Ilogin = {
-      UserName: 'admin',
-      Password: 'admin123',
-      EmailAddress: null,
-      SecurityCode: '',
-      Token2AF: '',
-    };
-
-    this.redirectService.SubmitLogin(login, true);
-    this.router.navigate(['portada']).then(() => {
-      window.location.reload();
-    });
-  }
-
 }
