@@ -60,6 +60,7 @@
                   <a class="dropdown-item" (click)="openHardwareStoreReplacementModal('HardwareStoreReplacement_Directory')">Ferreterías y Repuestos</a>
                   <a class="dropdown-item" (click)="openBeautyStyleModal('BeautyStyle_Directory')">Salones, Uñas y Barberías</a>
                   <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tiendas de Celulares y Computadoras</a>
+                  <a class="dropdown-item" (click)="openWorkshopsModal('Workshops_Directory')">Talleres</a>
                 </div>
               </li>
 
@@ -714,6 +715,28 @@
   <div class="modal-body templateBodyColor">
 
     <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--hhistory guerra Modal -->
+<ng-template #workshopsModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Talleres</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Talleres del Municipio San Antonio de Guerra</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>

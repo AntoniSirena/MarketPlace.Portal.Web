@@ -50,6 +50,7 @@ export class PortadaComponent implements OnInit {
   @ViewChild('supermarketProvisionsModal') supermarketProvisionsModal: ElementRef;
   @ViewChild('hardwareStoreReplacementModal') hardwareStoreReplacementModal: ElementRef;
   @ViewChild('historyGuerraModal') historyGuerraModal: ElementRef;
+  @ViewChild('workshopsModal') workshopsModal: ElementRef;
 
 
   portada = new Portada();
@@ -83,7 +84,7 @@ export class PortadaComponent implements OnInit {
 
 
   ngOnInit(): void {
-   this.showMessage();
+    this.showMessage();
   }
 
 
@@ -109,7 +110,7 @@ export class PortadaComponent implements OnInit {
       this.getTemplateRightInfo_A('RightInfo_A');
       this.getTemplateRightInfo_B('RightInfo_B');
       this.getTemplateRightInfo_C('RightInfo_C');
-    }).then(() =>{
+    }).then(() => {
       this.getNoveltiesByType("Science");
     })
   }
@@ -368,6 +369,13 @@ export class PortadaComponent implements OnInit {
   openHistoryGuerraModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.historyGuerraModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open workshops modal
+  openWorkshopsModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.workshopsModal, { size: 'xl', scrollable: true });
   }
 
 }
