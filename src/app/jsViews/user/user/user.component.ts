@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { UserDetails, Role } from '../../../models/user/user';
 import { Person, Locators } from '../../../models/profile/profile';
 import { IpDiviceService } from '../../../services/ipDivice/ip-divice.service';
+import { UserType } from '../../../models/common/userType/user-type';
+import { CommonService } from './../../../services/common/common.service';
 
 
 @Component({
@@ -41,8 +43,10 @@ export class UserComponent implements OnInit {
     EmailAddress: '',
     StatusId: 0,
     PersonId: 0,
+    UserTypeId: 0,
     Image: '',
     Code: '',
+    PhoneNumber: '',
     LastLoginTime: '',
     LastLoginTimeEnd: '',
     IsOnline: false,
@@ -67,7 +71,8 @@ export class UserComponent implements OnInit {
   userDetails = new UserDetails();
   person = new Person();
   locators = new Array<Locators>();
-  role =  new Role();
+  role = new Role();
+  userTypes = new Array<UserType>();
 
   editUserForm: FormGroup;
   createUserForm: FormGroup;
@@ -83,14 +88,15 @@ export class UserComponent implements OnInit {
   @ViewChild('details') detailsModal: ElementRef;
 
 
-    //Permissions
-    canCreate = JSON.parse(localStorage.getItem("canCreate"));
-    canEdit = JSON.parse(localStorage.getItem("canEdit"));
-    canDelete = JSON.parse(localStorage.getItem("canDelete"));
+  //Permissions
+  canCreate = JSON.parse(localStorage.getItem("canCreate"));
+  canEdit = JSON.parse(localStorage.getItem("canEdit"));
+  canDelete = JSON.parse(localStorage.getItem("canDelete"));
 
   //constructor
   constructor(
     private userService: UserService,
+    private commonService: CommonService,
     private modalService: NgbModal,
     private form: FormBuilder,
     private ipDiviceService: IpDiviceService) {
@@ -111,6 +117,16 @@ export class UserComponent implements OnInit {
   //get IP address
   getIPAddress() {
     this.ipDiviceService.getIPAddress();
+  }
+
+  //Get user types
+  getUserTyes() {
+    this.commonService.getUserTypes().subscribe((response: Array<UserType>) => {
+      this.userTypes = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
   //getUsers
@@ -178,6 +194,7 @@ export class UserComponent implements OnInit {
 
   //open create modal
   openCreateModal(createModal) {
+    this.getUserTyes();
     this.setValueCreateFrom();
     this.modalService.open(createModal, { size: 'lg', scrollable: true });
   }
@@ -193,8 +210,10 @@ export class UserComponent implements OnInit {
       EmailAddress: this.user.EmailAddress,
       StatusId: formValue.statusId,
       PersonId: this.user.PersonId,
+      UserTypeId: this.user.UserTypeId,
       Image: this.user.Image,
       Code: this.user.Code,
+      PhoneNumber: this.user.PhoneNumber,
       LastLoginTime: this.user.LastLoginTime,
       LastLoginTimeEnd: this.user.LastLoginTimeEnd,
       IsOnline: this.user.IsOnline,
@@ -248,8 +267,10 @@ export class UserComponent implements OnInit {
       SurName: formValue.surName,
       StatusId: formValue.statusId,
       PersonId: null,
+      UserTypeId: formValue.userTypeId,
       Image: null,
       Code: null,
+      PhoneNumber: formValue.phoneNumber,
       LastLoginTime: null,
       LastLoginTimeEnd: null,
       IsOnline: false,
@@ -299,7 +320,9 @@ export class UserComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       name: ['', Validators.required],
       surName: ['', Validators.required],
-      statusId: [this.userStatuses[0].Id, Validators.required]
+      statusId: [this.userStatuses[0].Id, Validators.required],
+      phoneNumber: [''],
+      userTypeId: ['', Validators.required],
     });
   }
 

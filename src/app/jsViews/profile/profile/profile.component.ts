@@ -129,9 +129,10 @@ export class ProfileComponent implements OnInit {
     this.userForm = this.form.group({
       userName: [`${this.infoCurrentUser.UserName}`, Validators.required],
       password: [`${this.infoCurrentUser.Password}`, [Validators.required, Validators.minLength(8)]],
-      name: [`${this.infoCurrentUser.Name}`, Validators.required],
-      surName: [`${this.infoCurrentUser.SurName}`, Validators.required],
-      emailAddress: [`${this.infoCurrentUser.EmailAddress}`, [Validators.required, Validators.email]]
+      name: [`${this.infoCurrentUser.Name}`, Validators.required] || '',
+      surName: [`${this.infoCurrentUser.SurName}`, Validators.required] || '',
+      emailAddress: [`${this.infoCurrentUser.EmailAddress}`, [Validators.required, Validators.email]],
+      phoneNumber: [`${this.infoCurrentUser.PhoneNumber}`, Validators.required] || '',
     });
 
     //Llenando los input del tab persona
@@ -139,7 +140,7 @@ export class ProfileComponent implements OnInit {
       firstName: [`${this.infoCurrentPerson.FirstName}`, Validators.required] || '',
       secondName: [`${this.infoCurrentPerson.SecondName}`],
       surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
-      secondSurname: [`${this.infoCurrentPerson.SecondSurname}`],
+      secondSurname: [`${this.infoCurrentPerson.SecondSurname}`] || '',
       fullName: [`${this.infoCurrentPerson.FullName}`],
       birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
       genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required],
@@ -209,6 +210,7 @@ export class ProfileComponent implements OnInit {
       infoCurrentUser.Name = formValue.name,
       infoCurrentUser.SurName = formValue.surName,
       infoCurrentUser.EmailAddress = formValue.emailAddress,
+      infoCurrentUser.PhoneNumber = formValue.phoneNumber,
 
       this.profileService.updateInfoCurrentUser(infoCurrentUser).subscribe((response: Iresponse) => {
 

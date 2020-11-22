@@ -9,12 +9,14 @@ export interface Iuser extends Iaudit{
     EmailAddress: string;
     StatusId: number;
     PersonId: number;
+    UserTypeId: number;
     Image: string;
     LastLoginTime: string;
     LastLoginTimeEnd: string;
     IsOnline: boolean;
     DiviceIP: string;
     Code: string;
+    PhoneNumber: string;
 }
 
 export interface IuserStatuses{

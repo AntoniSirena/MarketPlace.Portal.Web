@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Iuser } from '../../interfaces/Iuser/iuser';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
+import { UserType } from '../../models/common/userType/user-type';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 export class RegisterComponent {
 
   myForm: FormGroup;
+  userTypes = new Array<UserType>();
 
   constructor(private externalService: ExternalService, private form: FormBuilder, private router :Router) { }
 
@@ -23,9 +25,23 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
       name: ['', Validators.required],
       surName: ['', Validators.required],
-      code: ['']
+      code: [''],
+      phoneNumber: ['', Validators.required],
+      userTypeId: ['', Validators.required]
     });
 
+    this.getUserTyes();
+  }
+
+
+  //Get user types
+  getUserTyes() {
+    this.externalService.getUserTypes().subscribe((response: Array<UserType>) => {
+      this.userTypes = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
  //Create user
@@ -40,8 +56,10 @@ export class RegisterComponent {
     SurName: formValue.surName,
     StatusId: 0,
     PersonId: null,
+    UserTypeId: formValue.userTypeId,
     Image: null,
     Code: formValue.code,
+    PhoneNumber: formValue.phoneNumber,
     LastLoginTime: null,
     LastLoginTimeEnd: null,
     IsOnline: false,

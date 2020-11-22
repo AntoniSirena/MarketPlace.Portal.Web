@@ -30,4 +30,8 @@ export class CommonService {
     return this.httpClient.get(this.coreURL +'api/common/GetCompanyCategories');
   }
 
+  getUserTypes():Observable<object>{    
+    return this.httpClient.get(this.coreURL +'api/external/GetUserTypes');
+  }
+  
 }

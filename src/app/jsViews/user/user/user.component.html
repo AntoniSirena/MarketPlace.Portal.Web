@@ -1,5 +1,5 @@
 <!--Contenedor principal-->
-<div class="container-fluid" style="width: 90%;">
+<div class="container-fluid" style="width: 100%;">
 
   <h3>Mantenimiento de usuarios</h3>
   <br>
@@ -22,6 +22,7 @@
           <th>Correo</th>
           <th>Estado</th>
           <th>Rol</th>
+          <th>Tipo de usuario</th>
           <th class="right">En linea</th>
           <th class="right">Detalles</th>
           <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)" [disabled]="!canCreate"><i
@@ -35,6 +36,7 @@
           <td class="td_min">{{item.EmailAddress}}</td>
           <td class="td_min"> <span class="{{item.StatusColor}} center">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
+          <td class="td_min">{{item.Type}}</td>
           <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
           <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
           <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
@@ -76,7 +78,6 @@
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
                   <select formControlName="statusId" class="form-control" placeholder="Estado">
-                    <option value=""></option>
                     <option *ngFor="let s of userStatuses" [value]="s.Id">{{s.Description}}</option>
                   </select>
                   <div *ngIf="!editUserForm.value.statusId" class="required">*</div>
@@ -122,6 +123,17 @@
               </div>
               <div class="card-body">
 
+                <label for="userTypeId">Tipo de usuario</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                  <select formControlName="userTypeId" class="form-control">
+                    <option *ngFor="let item of userTypes" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!createUserForm.value.userTypeId" class="required">*</div>
+                </div>
+
                 <label for="userName">Usuario</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -165,6 +177,14 @@
                   </div>
                   <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos">
                   <div *ngIf="!createUserForm.value.surName" class="required">*</div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-mobile"></i></span>
+                  </div>
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Celular" autocomplete="phoneNumber">
+                  <div *ngIf="!createUserForm.value.phoneNumber" class="required">*</div>
                 </div>
 
                 <label for="statusId">Estado</label>
@@ -396,6 +416,15 @@
                       </div>
                       <div class="col-sm-7">
                         <span class="form-control">{{role.Parent}}</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <span class="form-control bold">Tipo de usuario</span>
+                      </div>
+                      <div class="col-sm-7">
+                        <span class="form-control">{{userDetails.Type}}</span>
                       </div>
                     </div>
 

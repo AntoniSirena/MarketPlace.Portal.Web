@@ -71,6 +71,7 @@ export class InfoCurrentUser {
   Name: string;
   SurName: string;
   EmailAddress: string;
+  PhoneNumber: string;
   Image: string;
 }
 

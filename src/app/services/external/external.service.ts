@@ -35,4 +35,8 @@ export class ExternalService {
     return this.httpClient.get(this.coreURL +  `api/external/GetTemplate?operation=${operation}`);
   }
 
+  getUserTypes():Observable<object>{    
+    return this.httpClient.get(this.coreURL +'api/external/GetUserTypes');
+  }
+
 }

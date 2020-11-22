@@ -22,7 +22,7 @@ import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component'
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
 import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-password/confirm-password.component';
 import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthentication/second-factor-authentication/second-factor-authentication.component';
-import { CompanyRegisterComponent } from './jsViews/domin/companyRegister/company-register/company-register.component';
+import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/company-register/company-register.component';
 
 
 

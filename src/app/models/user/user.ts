@@ -7,6 +7,8 @@ export class UserDetails {
     UserName: string;
     Surname: string;
     EmailAddress: string;
+    PhoneNumber: string;
+    Type: string;
     Image: string;
     LastLoginTime: string;
     LastLoginTimeEnd: string;
