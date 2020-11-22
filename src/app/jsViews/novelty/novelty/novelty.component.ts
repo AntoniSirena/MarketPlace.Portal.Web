@@ -49,8 +49,7 @@ export class NoveltyComponent implements OnInit {
     private modalService: NgbModal,
     private form: FormBuilder
   ) {
-    this.setValueCreateFrom();
-    this.setValueEditFrom();
+
   }
 
   ngOnInit(): void {
@@ -79,7 +78,7 @@ export class NoveltyComponent implements OnInit {
       //llenando el modal
       this.editForm = this.form.group({
         id: [`${this.novelty.Id}`, Validators.required],
-        title: [`${this.novelty.Title}`, Validators.required],
+        title: [this.novelty.Title, Validators.required],
         description: [`${this.novelty.Description}`, Validators.required],
         isEnabled: [this.novelty.IsEnabled],
         isPublic: [this.novelty.IsPublic],

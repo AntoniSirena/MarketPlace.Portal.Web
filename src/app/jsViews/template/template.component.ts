@@ -69,7 +69,7 @@ export class TemplateComponent implements OnInit {
         shortName: [`${this.template.ShortName}`, Validators.required],
         name: [`${this.template.Name}`, Validators.required],
         description: [`${this.template.Description}`, Validators.required],
-        body: [`${this.template.Body}`, Validators.required],
+        body: [this.template.Body, Validators.required],
         enabled: [this.template.Enabled],
       });
     },

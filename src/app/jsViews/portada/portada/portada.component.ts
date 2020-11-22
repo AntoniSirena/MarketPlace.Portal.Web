@@ -35,7 +35,8 @@ export class PortadaComponent implements OnInit {
   showNavigationArrows = false;
   showNavigationIndicators = false;
   images = [
-    'assets/img/portada/SAGuerra_ParqueEcológico.jpg'
+    'assets/img/portada/SAGuerra_ParqueEcológico.jpg',
+    'assets/img/portada/CTC1.jpeg'
   ];
 
   isLogin: Boolean = false;
@@ -93,7 +94,7 @@ export class PortadaComponent implements OnInit {
       title: 'Sistema cargando',
       showConfirmButton: false,
       timer: 2500,
-      background: 'rgb(218, 231, 231)',
+      background: 'rgb(145, 216, 219)',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
       },
