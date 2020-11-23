@@ -33,5 +33,9 @@ export class CommonService {
   getUserTypes():Observable<object>{    
     return this.httpClient.get(this.coreURL +'api/external/GetUserTypes');
   }
+
+  getConfigurationParameter(name: string):Observable<object>{ 
+    return this.httpClient.get(this.coreURL +`api/common/GetConfigurationParameter?name=${name}`);
+  }
   
 }

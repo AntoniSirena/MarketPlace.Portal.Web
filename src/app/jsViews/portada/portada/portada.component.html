@@ -12,16 +12,50 @@
     <br>
     <br>
     <br>
+    <br>
+    <div class="row">
 
+      <div class="col-md-6">
+        <ngb-carousel class="center" *ngIf="images_B" [showNavigationArrows]="true"
+        [showNavigationIndicators]="showNavigationIndicators">
+        <ng-template ngbSlide *ngFor="let image of images_B">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" alt="Random slide" style="width:50%; height:60%;">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      </div>
+      <br>
+      <br>
+
+      <div class="col-md-6">
+        <ngb-carousel class="center" *ngIf="images_C" [showNavigationArrows]="true"
+        [showNavigationIndicators]="showNavigationIndicators">
+        <ng-template ngbSlide *ngFor="let image of images_C">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" alt="Random slide" style="width:50%; height:60%;">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <!-- <span>
     <ng-marquee speed="drowsy">
       <span class="marqueeStyle" [innerHTML]="bannerA.Body"></span>
     </ng-marquee>
+   </span> -->
 
+    <br>
     <!--Menú-->
     <div class="row">
       <div class="col-md-12">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-success">
           <a class="navbar-brand btn-white" style="font-weight: bold;">MENU</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +67,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">FILOSOFIA MUNICIPAL</span>
+                  <span style="font-weight: bold; color: white;">FILOSOFIA MUNICIPAL</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openMisionModal('Mision')">Misión</a>
@@ -45,7 +79,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">CULTURA</span>
+                  <span style="font-weight: bold; color: white;">CULTURA</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openHistoryGuerraModal('History_Guerra')">Hisotiria del municipio</a>
@@ -55,7 +89,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">DIRECTORIOS</span>
+                  <span style="font-weight: bold; color: white;">DIRECTORIOS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" (click)="openFoodModal('Food_Directory')">Comidas</a>
@@ -63,7 +97,7 @@
                   <a class="dropdown-item" (click)="openFarmaceModal('FarmaceDirectory')">Farmacias</a>
                   <a class="dropdown-item" (click)="openHardwareStoreReplacementModal('HardwareStoreReplacement_Directory')">Ferreterías y Repuestos</a>
                   <a class="dropdown-item" (click)="openBeautyStyleModal('BeautyStyle_Directory')">Salones, Uñas y Barberías</a>
-                  <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tiendas de Celulares y Computadoras</a>
+                  <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
                   <a class="dropdown-item" (click)="openWorkshopsModal('Workshops_Directory')">Talleres</a>
                 </div>
               </li>
@@ -71,7 +105,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold;">TURISMO INTERNO</span>
+                  <span style="font-weight: bold; color: white;">TURISMO INTERNO</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 </div>
@@ -87,6 +121,7 @@
       </div>
     </div>
     <br>
+    <br>
 
 
     <!--Principal row-->
@@ -95,15 +130,16 @@
       <br>
       <!--Firt column-->
       <div class="col-md-8">         
-        <ngb-carousel class="center" *ngIf="images" [showNavigationArrows]="true"
+        <ngb-carousel class="center" *ngIf="images_A" [showNavigationArrows]="true"
           [showNavigationIndicators]="showNavigationIndicators">
-          <ng-template ngbSlide *ngFor="let image of images">
+          <ng-template ngbSlide *ngFor="let image of images_A">
             <div class="picsum-img-wrapper">
               <img [src]="image" alt="Random slide" style="width:70%; height:50%;">
             </div>
           </ng-template>
         </ngb-carousel>
 
+        <br>
         <br>
 
         <!--Novelties and news-->
@@ -371,7 +407,6 @@
 
       <!--Second column-->
       <div class="col-md-4">
-        <br>
 
         <div class="row">
           <div class="col-sm-12">

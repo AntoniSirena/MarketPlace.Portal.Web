@@ -8,6 +8,7 @@ import { PortadaService } from '../../../services/portada/portada.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { Portada } from '../../../models/portada/portada';
 import { NoveltiesByType } from '../../../models/novelty/novelty';
+import { CommonService } from './../../../services/common/common.service';
 
 
 @Component({
@@ -34,10 +35,12 @@ export class PortadaComponent implements OnInit {
 
   showNavigationArrows = false;
   showNavigationIndicators = false;
-  images = [
-    'assets/img/portada/SAGuerra_ParqueEcológico.jpg',
-    'assets/img/portada/CTC1.jpeg'
-  ];
+
+  images_A: any;
+
+  images_B: any;
+
+  images_C: any;
 
   isLogin: Boolean = false;
 
@@ -72,8 +75,8 @@ export class PortadaComponent implements OnInit {
 
   constructor(
     config: NgbCarouselConfig,
-    private redirectService:
-      RedirectService,
+    private commonService: CommonService,
+    private redirectService: RedirectService,
     private router: Router,
     private modalService: NgbModal,
     private portadaService: PortadaService) {
@@ -102,7 +105,9 @@ export class PortadaComponent implements OnInit {
         popup: 'animate__animated animate__fadeOutUp'
       }
     }).then(() => {
-      this.getTemplateBannerA('BannerPortada_A')
+      this.getCarousel_Images_A('Carousel_Images_A_Portada');
+      this.getCarousel_Images_B('Carousel_Images_B_Portada');
+      this.getCarousel_Images_C('Carousel_Images_C_Portada');
     }).then(() => {
       this.getTemplateLeftInfo_A('LeftInfo_A');
       this.getTemplateLeftInfo_B('LeftInfo_B');
@@ -116,6 +121,35 @@ export class PortadaComponent implements OnInit {
     })
   }
 
+  //Get Carousel_Images_A
+   getCarousel_Images_A(name: string) {
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.images_A = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get Carousel_Images_B
+  getCarousel_Images_B(name: string) {
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.images_B = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  //Get Carousel_Images_C
+  getCarousel_Images_C(name: string) {
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.images_C = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
 
   //Get template
   getTemplate(operation: string) {
