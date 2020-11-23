@@ -55,6 +55,13 @@ export class PortadaComponent implements OnInit {
   @ViewChild('hardwareStoreReplacementModal') hardwareStoreReplacementModal: ElementRef;
   @ViewChild('historyGuerraModal') historyGuerraModal: ElementRef;
   @ViewChild('workshopsModal') workshopsModal: ElementRef;
+  @ViewChild('driverModal') driverModal: ElementRef;
+  @ViewChild('autoModal') autoModal: ElementRef;
+  @ViewChild('civilEngineerModal') civilEngineerModal: ElementRef;
+  @ViewChild('hotelCottageModal') hotelCottageModal: ElementRef;
+  @ViewChild('entertainmentModal') entertainmentModal: ElementRef;
+
+
 
 
   portada = new Portada();
@@ -106,23 +113,24 @@ export class PortadaComponent implements OnInit {
       }
     }).then(() => {
       this.getCarousel_Images_A('Carousel_Images_A_Portada');
+    }).then(() => {
       this.getCarousel_Images_B('Carousel_Images_B_Portada');
       this.getCarousel_Images_C('Carousel_Images_C_Portada');
-    }).then(() => {
+
       this.getTemplateLeftInfo_A('LeftInfo_A');
       this.getTemplateLeftInfo_B('LeftInfo_B');
       this.getTemplateLeftInfo_C('LeftInfo_C');
 
+    }).then(() => {
       this.getTemplateRightInfo_A('RightInfo_A');
       this.getTemplateRightInfo_B('RightInfo_B');
       this.getTemplateRightInfo_C('RightInfo_C');
-    }).then(() => {
       this.getNoveltiesByType("Science");
     })
   }
 
   //Get Carousel_Images_A
-   getCarousel_Images_A(name: string) {
+  getCarousel_Images_A(name: string) {
     this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
       this.images_A = response;
     },
@@ -411,6 +419,36 @@ export class PortadaComponent implements OnInit {
   openWorkshopsModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.workshopsModal, { size: 'xl', scrollable: true });
+  }
+
+  //open driver modal
+  openDriveModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.driverModal, { size: 'xl', scrollable: true });
+  }
+
+  //open auto modal
+  openAutoModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.autoModal, { size: 'xl', scrollable: true });
+  }
+
+  //open civil engineer modal
+  openCivilEngineerModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.civilEngineerModal, { size: 'xl', scrollable: true });
+  }
+
+  //open hotel cottage modal
+  openHotelCottageModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.hotelCottageModal, { size: 'xl', scrollable: true });
+  }
+
+  //open entertainmentmodal
+  openEntertainmentModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.entertainmentModal, { size: 'xl', scrollable: true });
   }
 
 }

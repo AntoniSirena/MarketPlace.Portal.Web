@@ -44,12 +44,6 @@
     <br>
     <br>
 
-    <!-- <span>
-    <ng-marquee speed="drowsy">
-      <span class="marqueeStyle" [innerHTML]="bannerA.Body"></span>
-    </ng-marquee>
-   </span> -->
-
     <br>
     <!--Menú-->
     <div class="row">
@@ -92,13 +86,18 @@
                   <span style="font-weight: bold; color: white;">DIRECTORIOS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="openAutoModal('Auto_Directory')">Autos: (RentCars y Dealers)</a>
                   <a class="dropdown-item" (click)="openFoodModal('Food_Directory')">Comidas</a>
                   <a class="dropdown-item" (click)="openSupermarketProvisionsModal('SupermarketProvisions_Directory')">Comerciantes y Detallistas de Provisiones</a>
+                  <a class="dropdown-item" (click)="openEntertainmentModal('Entertainment_Directory')">Entretenimientos: (Club Night, Billar, Drink y Piscina)</a>
                   <a class="dropdown-item" (click)="openFarmaceModal('FarmaceDirectory')">Farmacias</a>
                   <a class="dropdown-item" (click)="openHardwareStoreReplacementModal('HardwareStoreReplacement_Directory')">Ferreterías y Repuestos</a>
+                  <a class="dropdown-item" (click)="openHotelCottageModal('HotelCottage_Directory')">Hoteles y Casas de campo</a>
+                  <a class="dropdown-item" (click)="openCivilEngineerModal('CivilEngineer_Directory')">Ingeniería Civil: (Agrimensura, Construcción, Electricidad y Plomería)</a>
                   <a class="dropdown-item" (click)="openBeautyStyleModal('BeautyStyle_Directory')">Salones, Uñas y Barberías</a>
-                  <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
                   <a class="dropdown-item" (click)="openWorkshopsModal('Workshops_Directory')">Talleres</a>
+                  <a class="dropdown-item" (click)="openDriveModal('Driver_Directory')">Taxis y Deliverys</a>
+                  <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
                 </div>
               </li>
 
@@ -738,7 +737,7 @@
 </ng-template>
 
 
-<!--hhistory guerra Modal -->
+<!--history guerra Modal -->
 <ng-template #historyGuerraModal let-modal class="modal-dialog">
   <div class="modal-header">
     <h3 class="modal-title">Cultura</h3>
@@ -760,7 +759,7 @@
 </ng-template>
 
 
-<!--hhistory guerra Modal -->
+<!--history guerra Modal -->
 <ng-template #workshopsModal let-modal class="modal-dialog">
   <div class="modal-header">
     <h3 class="modal-title">Talleres</h3>
@@ -771,6 +770,116 @@
   <div class="modal-body templateBodyColor">
 
     <strong class="center templateHeader">Talleres del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--auto Modal -->
+<ng-template #autoModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Autos</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">RentCars y Dealers del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--driver Modal -->
+<ng-template #driverModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Taxis y Deliverys</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Taxistas y Deliverys del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--civil engineer modal -->
+<ng-template #civilEngineerModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Ingeniería Civil</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Servicios de ingeniería civil del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--hotel cottage modal -->
+<ng-template #hotelCottageModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Hoteles y Casas de Campo</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Hoteles y Casas de Campo del Municipio San Antonio de Guerra</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--entertainment modal -->
+<ng-template #entertainmentModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Entretenimiento</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Centros de entretenimiento del Municipio San Antonio de Guerra</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
