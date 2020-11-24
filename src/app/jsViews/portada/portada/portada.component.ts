@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { NgbCarouselConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
+
 import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
 import { RedirectService } from '../../../services/redirect/redirect.service';
 import { Router } from '@angular/router';
@@ -83,7 +85,7 @@ export class PortadaComponent implements OnInit {
   constructor(
     config: NgbCarouselConfig,
     private commonService: CommonService,
-    private redirectService: RedirectService,
+    private spinnerService: NgxSpinnerService,
     private router: Router,
     private modalService: NgbModal,
     private portadaService: PortadaService) {
@@ -95,39 +97,33 @@ export class PortadaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.showMessage();
+    this.loadingPortada();
   }
 
 
-  showMessage() {
-    Swal.fire({
-      title: 'Sistema cargando',
-      showConfirmButton: false,
-      timer: 2500,
-      background: 'rgb(145, 216, 219)',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
-    }).then(() => {
-      this.getCarousel_Images_A('Carousel_Images_A_Portada');
-    }).then(() => {
-      this.getCarousel_Images_B('Carousel_Images_B_Portada');
-      this.getCarousel_Images_C('Carousel_Images_C_Portada');
+  ///loading
+  loadingPortada(){
+    this.spinnerService.show();
+    this.getCarousel_Images_A('Carousel_Images_A_Portada');
+    this.getCarousel_Images_B('Carousel_Images_B_Portada');
+    this.getCarousel_Images_C('Carousel_Images_C_Portada');
+
+    setTimeout(() => {
+      this.spinnerService.hide();
 
       this.getTemplateLeftInfo_A('LeftInfo_A');
       this.getTemplateLeftInfo_B('LeftInfo_B');
       this.getTemplateLeftInfo_C('LeftInfo_C');
 
-    }).then(() => {
       this.getTemplateRightInfo_A('RightInfo_A');
       this.getTemplateRightInfo_B('RightInfo_B');
       this.getTemplateRightInfo_C('RightInfo_C');
+
       this.getNoveltiesByType("Science");
-    })
+
+    }, 2000);
   }
+
 
   //Get Carousel_Images_A
   getCarousel_Images_A(name: string) {

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
 import { RedirectService } from '../../services/redirect/redirect.service'
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private redirectService: RedirectService,
+    private spinnerService: NgxSpinnerService,
     private externalService: ExternalService,
     private modalService: NgbModal,
     private form: FormBuilder
@@ -78,6 +81,17 @@ export class LoginComponent implements OnInit {
   }
 
 
+  //loading OnSubmit Login
+  loadingOnSubmitLogin(loginForm: any){
+    this.spinnerService.show();
+ 
+    setTimeout(() => {
+      this.onSubmit(loginForm);
+      this.spinnerService.hide();
+    }, 2000);
+  }
+
+
   //Login
   onSubmit(loginForm: any) {
 
@@ -115,6 +129,17 @@ export class LoginComponent implements OnInit {
   }
 
 
+  //loading Reset Password
+  loadingResetPassword(resetPasswordForm: any){
+    this.spinnerService.show();
+ 
+    setTimeout(() => {
+      this.resetPassword(resetPasswordForm);
+      this.spinnerService.hide();
+    }, 8000);
+  }
+
+
   resetPassword(resetPasswordForm: any) {
     const login: Ilogin = {
       UserName: resetPasswordForm.userName,
@@ -149,6 +174,7 @@ export class LoginComponent implements OnInit {
       });
 
   }
+
 
   setValueResetPasswordForm() {
     this.resetPasswordForm = this.form.group({

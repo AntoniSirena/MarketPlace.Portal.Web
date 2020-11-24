@@ -63,6 +63,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // Marquee
 import { NgMarqueeModule } from 'ng-marquee';
 
+//spinner
+import { NgxSpinnerModule } from "ngx-spinner"
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { from } from 'rxjs';
@@ -113,6 +115,7 @@ import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/compa
     NgxFileDropModule,
     FctrlxAngularFileReader,
     NgMarqueeModule,
+    NgxSpinnerModule,
     
     ],
   declarations: [

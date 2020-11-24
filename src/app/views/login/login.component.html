@@ -1,3 +1,16 @@
+
+
+<!--Call spinner-->
+<ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="rgb(152, 214, 218)"
+type="timer"
+>
+<p style="font-size: 20px; color: white">Cangando...</p>
+</ngx-spinner>
+
+
 <div class="app-body imglogin">
   <main class="main d-flex align-items-center">
     <div class="container">
@@ -7,7 +20,7 @@
             <div class="card p-4 cardLoginStyle">
               <div class="card-body">
                 <!--Form-->
-                <form [formGroup]="loginForm" (submit)="onSubmit(loginForm.value)">
+                <form [formGroup]="loginForm" (submit)="loadingOnSubmitLogin(loginForm.value)">
                   <div class="row">
                     <div class="col-md-12 center">
                       <h2>Municipio San Antonio de Guerra</h2>
@@ -89,7 +102,7 @@
   </div>
   <div class="modal-body">
 
-    <form [formGroup]="resetPasswordForm" (submit)="resetPassword(resetPasswordForm.value)">
+    <form [formGroup]="resetPasswordForm" (submit)="loadingResetPassword(resetPasswordForm.value)">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
