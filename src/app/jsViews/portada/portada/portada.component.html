@@ -97,6 +97,7 @@ type="timer"
                   <span style="font-weight: bold; color: white;">DIRECTORIOS</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="openLawyerModal('Lawyer_Directory')">Abogados</a>
                   <a class="dropdown-item" (click)="openAutoModal('Auto_Directory')">Autos: (RentCars y Dealers)</a>
                   <a class="dropdown-item" (click)="openFoodModal('Food_Directory')">Comidas</a>
                   <a class="dropdown-item" (click)="openSupermarketProvisionsModal('SupermarketProvisions_Directory')">Comerciantes y Detallistas de Provisiones</a>
@@ -109,6 +110,7 @@ type="timer"
                   <a class="dropdown-item" (click)="openWorkshopsModal('Workshops_Directory')">Talleres</a>
                   <a class="dropdown-item" (click)="openDriveModal('Driver_Directory')">Taxis y Deliverys</a>
                   <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
+                  <a class="dropdown-item" (click)="openStoreModal('Store_Directory')">Tiendas</a>
                 </div>
               </li>
 
@@ -758,7 +760,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Historia del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -780,7 +782,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Talleres del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Talleres del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -802,7 +804,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">RentCars y Dealers del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">RentCars y Dealers del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -824,7 +826,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Taxistas y Deliverys del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Taxistas y Deliverys del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -846,7 +848,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Servicios de ingeniería civil del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Servicios de ingeniería civil del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -868,7 +870,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Hoteles y Casas de Campo del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Hoteles y Casas de Campo del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -890,7 +892,51 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Centros de entretenimiento del Municipio San Antonio de Guerra</strong>
+    <strong class="center templateHeader">Centros de entretenimiento del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--lawyer modal -->
+<ng-template #lawyerModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Abogado</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Abogados del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--store modal -->
+<ng-template #storeModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Tienda</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Tiendas del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>

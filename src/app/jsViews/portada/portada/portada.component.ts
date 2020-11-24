@@ -62,8 +62,8 @@ export class PortadaComponent implements OnInit {
   @ViewChild('civilEngineerModal') civilEngineerModal: ElementRef;
   @ViewChild('hotelCottageModal') hotelCottageModal: ElementRef;
   @ViewChild('entertainmentModal') entertainmentModal: ElementRef;
-
-
+  @ViewChild('lawyerModal') lawyerModal: ElementRef;
+  @ViewChild('storeModal') storeModal: ElementRef;
 
 
   portada = new Portada();
@@ -441,10 +441,22 @@ export class PortadaComponent implements OnInit {
     this.modalService.open(this.hotelCottageModal, { size: 'xl', scrollable: true });
   }
 
-  //open entertainmentmodal
+  //open entertainment modal
   openEntertainmentModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.entertainmentModal, { size: 'xl', scrollable: true });
+  }
+
+  //open lawyer modal
+  openLawyerModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.lawyerModal, { size: 'xl', scrollable: true });
+  }
+
+  //open store modal
+  openStoreModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.storeModal, { size: 'xl', scrollable: true });
   }
 
 }

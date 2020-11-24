@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.onSubmit(loginForm);
       this.spinnerService.hide();
-    }, 2000);
+    }, 10000);
   }
 
 
