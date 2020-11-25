@@ -116,3 +116,9 @@
     margin-right: 10px;
     font-size: 17px;
 }
+
+.scrollable-menu {
+    height: auto;
+    max-height: 310px;
+    overflow-x: hidden;
+}
