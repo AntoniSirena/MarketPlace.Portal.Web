@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr
-                    *ngFor="let item of roles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+                    *ngFor="let item of roles | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
                     <td class="td_min">{{item.Id}}</td>
                     <td class="td_min">{{item.Code == null || '' ? '' : item.Code}}</td>
                     <td class="td_min">{{item.Description}}</td>

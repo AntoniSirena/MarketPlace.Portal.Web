@@ -42,7 +42,7 @@
                     <span class="input-group-text">@</span>
                   </div>
                   <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo" autocomplete="email" required>
-                  <div *ngIf="!myForm.value.emailAddress" class="required" style="font-size:15px;">debes ingresar un correo válido</div>
+                  <span *ngIf="!myForm.value.emailAddress" class="required" style="font-size:15px;">debes ingresar un correo válido, para continuar</span>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">

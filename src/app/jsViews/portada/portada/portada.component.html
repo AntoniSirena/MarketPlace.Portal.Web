@@ -102,6 +102,8 @@ type="timer"
                   <a class="dropdown-item" (click)="openFoodModal('Food_Directory')">Comidas</a>
                   <a class="dropdown-item" (click)="openSupermarketProvisionsModal('SupermarketProvisions_Directory')">Comerciantes y Detallistas de Provisiones</a>
                   <a class="dropdown-item" (click)="openEntertainmentModal('Entertainment_Directory')">Entretenimientos: (Club Night, Billar, Drink y Piscina)</a>
+                  <a class="dropdown-item" (click)="openAccountingModal('Accounting_Directory')">Contabilidad</a>
+                  <a class="dropdown-item" (click)="openGraphicDesignModal('GraphicDesign_Directory')">Diseño: (Gráfico, de Moda y más)</a>
                   <a class="dropdown-item" (click)="openFarmaceModal('FarmaceDirectory')">Farmacias</a>
                   <a class="dropdown-item" (click)="openHardwareStoreReplacementModal('HardwareStoreReplacement_Directory')">Ferreterías y Repuestos</a>
                   <a class="dropdown-item" (click)="openHotelCottageModal('HotelCottage_Directory')">Hoteles y Casas de campo</a>
@@ -716,7 +718,7 @@ type="timer"
   </div>
   <div class="modal-body templateBodyColor">
 
-    <strong class="center templateHeader">Supermercados, Almacenes y Colmados de nuesto Municipio y zonas aledañas</strong>
+    <strong class="center templateHeader">Comerciantes y Detallistas de Provisiones del Mun/ San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
@@ -937,6 +939,52 @@ type="timer"
   <div class="modal-body templateBodyColor">
 
     <strong class="center templateHeader">Tiendas del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+
+<!--accounting modal -->
+<ng-template #accountingModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Cotabilidad</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Contadores del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+
+<!--graphic design modal -->
+<ng-template #graphicDesignModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Diseño</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Diseñadores del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: true,
-  coreURL: 'http://localhost:61049/'
+  coreURL: 'http://guerrainfo.jssoluctech.com/core/'
 };

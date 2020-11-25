@@ -71,7 +71,7 @@ export class NoveltyComponent implements OnInit {
       });
   }
 
-  getById(id: number) {
+  getById(editModal, id: number) {
     this.noveltyService.getById(id).subscribe((response: Novelty) => {
       this.novelty = response;
 
@@ -88,6 +88,9 @@ export class NoveltyComponent implements OnInit {
         startDate: [`${this.novelty.StartDate}`],
         endDate: [`${this.novelty.EndDate}`],
       });
+
+      this.modalService.open(editModal, { size: 'lg' });
+
     },
       error => {
         console.log(JSON.stringify(error));
@@ -127,9 +130,8 @@ export class NoveltyComponent implements OnInit {
   //open edit modal
   openEditModal(editModal, id: number) {
     this.setValueEditFrom();
-    this.getById(id);
+    this.getById(editModal, id);
     this.getNoveltyTypes();
-    this.modalService.open(editModal, { size: 'lg' });
   }
 
 

@@ -27,7 +27,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of userRoles | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+          *ngFor="let item of userRoles | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
           <td>{{item.UserId}}</td>
           <td>{{item.UserName}}</td>
           <td>{{item.FullName == null ? '' : item.FullName}}</td>

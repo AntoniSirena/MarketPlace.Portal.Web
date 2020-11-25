@@ -34,7 +34,8 @@ export class TemplateComponent implements OnInit {
 
   templates = new Array<Template>();
   template = new Template();
-
+  
+  
   //constructor
   constructor(
     private templateService: TemplateService,
@@ -58,7 +59,7 @@ export class TemplateComponent implements OnInit {
       });
   }
 
-  getTemplateById(id: number) {
+  getTemplateById(editModal, id: number) {
     this.templateService.getTemplateById(id).subscribe((response: Template) => {
       this.template = response;
 
@@ -72,12 +73,18 @@ export class TemplateComponent implements OnInit {
         body: [this.template.Body, Validators.required],
         enabled: [this.template.Enabled],
       });
+
+      this.modalService.open(editModal, { size: 'xl' });
+
     },
       error => {
         console.log(JSON.stringify(error));
       });
   }
 
+  cleanTemplateBody(){
+    
+  }
   
   enabledTrue() {
     this.template.Enabled = true;
@@ -90,9 +97,8 @@ export class TemplateComponent implements OnInit {
 
   //open edit modal
   openEditModal(editModal, id: number) {
-    this.getTemplateById(id);
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'xl' });
+    this.getTemplateById(editModal, id);
   }
 
   //edit
@@ -127,7 +133,6 @@ export class TemplateComponent implements OnInit {
         }).then(() => {
           this.getTemplates();
           this.modalService.dismissAll();
-          location.reload();
         });
       } else {
         Swal.fire({

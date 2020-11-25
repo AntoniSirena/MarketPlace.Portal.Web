@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           <tr
-            *ngFor="let item of companyRegisters | filter : searchText | paginate: { itemsPerPage: 6, currentPage: _currentPage}">
+            *ngFor="let item of companyRegisters | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
             <td>{{item.Name}}</td>
             <td class="td_min">{{item.Addreess}}</td>
             <td>{{item.PhoneNumber}}</td>
