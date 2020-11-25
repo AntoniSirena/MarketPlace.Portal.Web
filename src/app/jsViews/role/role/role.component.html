@@ -22,7 +22,8 @@
                     <th>Descripción</th>
                     <th>Nombre corto</th>
                     <th>Rol padre</th>
-                    <th>Plantilla del menu</th>
+                    <th>Plantilla del menu de persona</th>
+                    <th>Plantilla del menu de empresa</th>
                     <th>Puede crear ?</th>
                     <th>Puede editar ?</th>
                     <th>Puede eliminar ?</th>
@@ -40,6 +41,7 @@
                     <td class="td_min">{{item.ShortName}}</td>
                     <td>{{item.Parent}}</td>
                     <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
+                    <td class="td_min">{{item.EnterpriseMenuTemplate == null || '' ? '' : item.EnterpriseMenuTemplate}}</td>
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanCreate == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreate == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanEdit == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEdit == true ? 'sí' : 'No'}} </button> </td>
                     <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanDelete == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDelete == true ? 'sí' : 'No'}} </button> </td>
@@ -129,7 +131,7 @@
                                     <div *ngIf="!editRoleForm.value.parent" class="required">*</div>
                                 </div>
 
-                                <label for="menuTemplate">Plantilla del menu</label>
+                                <label for="menuTemplate">Plantilla del menu de persona</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"></span>
@@ -137,6 +139,17 @@
                                     <textarea formControlName="menuTemplate" class="form-control"
                                         placeholder="Plantilla del menu">
                                          {{role.MenuTemplate}}
+                                    </textarea>
+                                </div>
+
+                                <label for="enterpriseMenuTemplate">Plantilla del menu de empresa</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea formControlName="enterpriseMenuTemplate" class="form-control"
+                                        placeholder="Plantilla del menu">
+                                         {{role.EnterpriseMenuTemplate}}
                                     </textarea>
                                 </div>
 
@@ -258,7 +271,7 @@
                                     <div *ngIf="!createRoleForm.value.parent" class="required">*</div>
                                 </div>
 
-                                <label for="menuTemplate">Plantilla del menu</label>
+                                <label for="menuTemplate">Plantilla del menu de persona</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"></span>
@@ -266,6 +279,17 @@
                                     <textarea formControlName="menuTemplate" class="form-control"
                                         placeholder="Plantilla del menu">
                                          {{role.MenuTemplate}}
+                                    </textarea>
+                                </div>
+
+                                <label for="enterpriseMenuTemplate">Plantilla del menu de empresa</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea formControlName="enterpriseMenuTemplate" class="form-control"
+                                        placeholder="Plantilla del menu">
+                                         {{role.EnterpriseMenuTemplate}}
                                     </textarea>
                                 </div>
 

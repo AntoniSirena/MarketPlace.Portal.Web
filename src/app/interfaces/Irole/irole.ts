@@ -5,6 +5,7 @@ export interface Irole extends Iaudit{
     Description: string;
     ShortName: string;
     MenuTemplate: string;
+    EnterpriseMenuTemplate: string;
     Parent: string;
     Enabled: boolean;
     Code: string;

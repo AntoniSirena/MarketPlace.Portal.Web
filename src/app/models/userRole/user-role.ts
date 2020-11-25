@@ -20,6 +20,7 @@ export class Role  extends Audit{
     Description: string;
     ShortName: string;
     MenuTemplate: string;
+    EnterpriseMenuTemplate: string;
     Parent: string;
     Enabled: boolean;
     Code: string;

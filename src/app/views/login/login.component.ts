@@ -83,12 +83,13 @@ export class LoginComponent implements OnInit {
 
   //loading OnSubmit Login
   loadingOnSubmitLogin(loginForm: any){
+    
+    this.onSubmit(loginForm);
     this.spinnerService.show();
- 
+
     setTimeout(() => {
-      this.onSubmit(loginForm);
       this.spinnerService.hide();
-    }, 10000);
+    }, 4000);
   }
 
 
