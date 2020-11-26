@@ -19,7 +19,7 @@
                 </div>
                 <br>
 
-                <label for="userTypeId">Tipo de usuario</label>
+                <label for="userTypeId" style="font-weight: bold;">Tipo de usuario</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -34,21 +34,21 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="userName" class="form-control" placeholder="Usuario" autocomplete="username" required>
+                  <input type="text" formControlName="userName" class="form-control" placeholder="Usuario" style="font-weight: bold;" autocomplete="username" required>
                   <div *ngIf="!myForm.value.userName" class="required">*</div>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo" autocomplete="email" required>
+                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo" style="font-weight: bold;" autocomplete="email" required>
                   <span *ngIf="!myForm.value.emailAddress" class="required" style="font-size:15px;">debes ingresar un correo válido, para continuar</span>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" required>
+                  <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" style="font-weight: bold;" autocomplete="new-password" required>
                   <span *ngIf="!myForm.value.password" class="required" style="font-size:15px;">la contraseña debe tener más 8 caracteres</span>
                 </div>
 
@@ -62,14 +62,14 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="name" class="form-control" placeholder="Nombres" autocomplete="username" required>
+                  <input type="text" formControlName="name" class="form-control" placeholder="Nombres" style="font-weight: bold;" autocomplete="username" required>
                   <div *ngIf="!myForm.value.name" class="required">*</div>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos" autocomplete="username" required>
+                  <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos" style="font-weight: bold;" autocomplete="username" required>
                   <div *ngIf="!myForm.value.surName" class="required">*</div>
                 </div>
 
@@ -77,7 +77,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-mobile"></i></span>
                   </div>
-                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Celular" autocomplete="phoneNumber">
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Celular" style="font-weight: bold;" autocomplete="phoneNumber">
                   <div *ngIf="!myForm.value.phoneNumber" class="required">*</div>
                 </div>
 

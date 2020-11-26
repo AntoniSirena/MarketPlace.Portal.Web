@@ -45,6 +45,23 @@
 
   }
 
+  .imgloginCard{
+    background: transparent;
+    background-image: url(assets/img/portada/NavidadA.jpg);
+    height: 100%;
+    /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
+    background-position: center center;
+
+    /* Para que la imagen de fondo no se repita */
+    background-repeat: no-repeat;
+
+    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-attachment: fixed;
+
+    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    background-size: cover;
+  }
+
   .portadaButton{
     font-size: 30px;
     width: 100%;
@@ -118,10 +135,10 @@
   }
 
   .cardLoginStyle{
-    border-top: rgb(23, 137, 182) 10px solid;
-    border-bottom: rgb(201, 12, 12) 10px solid;
-    border-left: rgb(23, 137, 182) 10px solid;
-    border-right: rgb(201, 12, 12) 10px solid;
+    border-top: rgb(144, 198, 219) 10px solid;
+    border-bottom: rgb(144, 198, 219) 10px solid;
+    border-left: rgb(144, 198, 219) 10px solid;
+    border-right: rgb(144, 198, 219) 10px solid;
   }
 
   

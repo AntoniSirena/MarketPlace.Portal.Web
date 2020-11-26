@@ -15,9 +15,17 @@ type="timer"
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 mx-auto ">
+        <div class="col-md-8 mx-auto">
+
           <div class="card-group">
-            <div class="card p-4 cardLoginStyle">
+            <div class="card p-4 cardLoginStyle imgloginCard">
+              
+              <ng-marquee speed="drowsy">
+                <span class="bold" style="color: rgb(16, 111, 189); font-size: 30px;">GUERRA</span>
+                <span class="bold" style="color: rgb(209, 24, 24); font-size: 30px;">INFO</span>
+                <span class="bold" style="color: rgb(18, 131, 18); font-size: 30px;">&nbsp;LES DESEA FELIZ NAVIDAD</span>
+              </ng-marquee>
+
               <div class="card-body">
                 <!--Form-->
                 <form [formGroup]="loginForm" (submit)="loadingOnSubmitLogin(loginForm.value)">
@@ -36,14 +44,14 @@ type="timer"
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Usuario o Correo" autocomplete="username" formControlName="userName">
+                    <input type="text" class="form-control" placeholder="Usuario ó Correo" style="font-weight: bold;" autocomplete="username" formControlName="userName">
                     <div *ngIf="!loginForm.value.userName" class="required">*</div>
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Contraseña" autocomplete="current-password" formControlName="password">
+                    <input type="password" class="form-control" placeholder="Contraseña" style="font-weight: bold;" autocomplete="current-password" formControlName="password">
                     <div *ngIf="!loginForm.value.password" class="required">*</div>
                   </div>
                   <div class="row">
@@ -61,7 +69,7 @@ type="timer"
                   </div>
                   <div class="row">
                     <div class="col-12">
-                      <button type="button" class="btn btn-success loginButton" (click)="openResetPasswordModal()"><span style="color: white;">Olvide mi contraseña ?</span></button>
+                      <button type="button" class="btn btn-success loginButton" (click)="openResetPasswordModal()"><span style="color: white;">Cambiar ó recuperar mi contraseña ?</span></button>
                     </div>
                   </div>
 
