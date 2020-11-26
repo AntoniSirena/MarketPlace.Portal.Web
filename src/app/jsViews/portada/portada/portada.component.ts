@@ -105,7 +105,7 @@ export class PortadaComponent implements OnInit {
 
 
   ///loading
-  loadingPortada(){
+  loadingPortada() {
     this.spinnerService.show();
     this.getCarousel_Images_A('Carousel_Images_A_Portada');
     this.getCarousel_Images_B('Carousel_Images_B_Portada');
@@ -314,6 +314,17 @@ export class PortadaComponent implements OnInit {
       });
   }
 
+
+  //loading Novelties by type
+  loadindGetNoveltiesByType(type: string) {
+    this.spinnerService.show();
+
+    setTimeout(() => {
+      this.getNoveltiesByType(type);
+      this.spinnerService.hide();
+    },3000);
+
+  }
 
   //Get novelties by type
   getNoveltiesByType(type: string) {
