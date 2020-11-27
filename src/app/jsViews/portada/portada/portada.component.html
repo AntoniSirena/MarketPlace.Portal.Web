@@ -535,6 +535,37 @@ type="timer"
 
     
 
+
+
+<!--Automatic Publicity Modal -->
+<ng-template #automaticPublicityModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Anuncios</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <!--Misión-->
+    <div class="row">
+      <div class="col-sm-12">
+        <strong class="center templateHeader">Encontré algo interesante pa ti</strong>
+        <br>
+        <div class="center" [innerHTML]="automaticPublicityPortada.Body">
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+  
 <!--Mision Modal -->
 <ng-template #misionModal let-modal class="modal-dialog">
   <div class="modal-header">

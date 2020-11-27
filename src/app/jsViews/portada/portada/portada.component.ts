@@ -67,9 +67,18 @@ export class PortadaComponent implements OnInit {
   @ViewChild('graphicDesignModal') graphicDesignModal: ElementRef;
   @ViewChild('accountingModal') accountingModal: ElementRef;
 
+  @ViewChild('automaticPublicityModal') automaticPublicityModal: ElementRef;
 
+
+  automaticPublicityValue: any;
+  automaticPublicityTime: number;
+  automaticPublicityTemplates: any;
+  isEnabled_AutomaticPublicity: boolean;
+  currentOperation: any;
+  currentOperationPosition: number = 0;
 
   portada = new Portada();
+  automaticPublicityPortada = new Portada();
 
   leftInfo_A = new Portada();
   leftInfo_B = new Portada();
@@ -96,11 +105,16 @@ export class PortadaComponent implements OnInit {
     // customize default values of carousels used by this component tree
     config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
+
   }
 
 
   ngOnInit(): void {
     this.loadingPortada();
+
+    //AutomaticPublicity
+    this.isEnabledAutomaticPublicity('IsEnabled_AutomaticPublicity');
+    
   }
 
 
@@ -125,6 +139,63 @@ export class PortadaComponent implements OnInit {
       this.getNoveltiesByType("Science");
 
     }, 2000);
+  }
+
+
+  //Is Enabled Automatic Publicity
+  isEnabledAutomaticPublicity(name: string){
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.isEnabled_AutomaticPublicity = response;
+      
+      if(this.isEnabled_AutomaticPublicity){
+        this.getAutomaticPublicityTemplates('AutomaticPublicityTemplates');
+        this.getTimeAutomaticPublicity('AutomaticPublicityTime');
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Get Time Automatic Publicity
+  getTimeAutomaticPublicity(name: string): any {
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.automaticPublicityTime = response;
+      this.getAutomaticPublicity();
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  //Get Automatic Publicity
+  getAutomaticPublicity() {
+    setInterval(() => {
+      this.currentOperation = this.automaticPublicityTemplates[this.currentOperationPosition];
+
+      this.openAutomaticPublicityModal(this.currentOperation);
+
+      if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
+        this.currentOperationPosition = 0;
+      } else {
+        this.currentOperationPosition = this.currentOperationPosition + 1;
+      }
+
+    }, this.automaticPublicityTime);
+
+  }
+
+
+  //Get Automatic Publicity Templates
+  getAutomaticPublicityTemplates(name: string){
+    this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
+      this.automaticPublicityTemplates = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
@@ -158,12 +229,35 @@ export class PortadaComponent implements OnInit {
       });
   }
 
+
   //Get template
   getTemplate(operation: string) {
 
     this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         this.portada = response.Data;
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        });
+      }
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+
+  //Get automatic publicity template
+  getAutomaticPublicityTemplate(operation: string) {
+
+    this.portadaService.getTemplateByOperation(operation).subscribe((response: Iresponse) => {
+      if (response.Code === '000') {
+        this.automaticPublicityPortada = response.Data;
       } else {
         Swal.fire({
           icon: 'warning',
@@ -322,7 +416,7 @@ export class PortadaComponent implements OnInit {
     setTimeout(() => {
       this.getNoveltiesByType(type);
       this.spinnerService.hide();
-    },3000);
+    }, 3000);
 
   }
 
@@ -356,6 +450,12 @@ export class PortadaComponent implements OnInit {
       });
   }
 
+
+  //open automatic publicity modal
+  openAutomaticPublicityModal(operation: string) {
+    this.getAutomaticPublicityTemplate(operation);
+    this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true });
+  }
 
   //open misión modal
   openMisionModal(operation: string) {
