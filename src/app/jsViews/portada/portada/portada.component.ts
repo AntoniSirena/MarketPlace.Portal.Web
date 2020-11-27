@@ -454,6 +454,11 @@ export class PortadaComponent implements OnInit {
   //open automatic publicity modal
   openAutomaticPublicityModal(operation: string) {
     this.getAutomaticPublicityTemplate(operation);
+
+    if(this.modalService.hasOpenModals()){
+      this.modalService.dismissAll();
+    }
+
     this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true });
   }
 
