@@ -114,7 +114,7 @@ export class PortadaComponent implements OnInit {
 
     //AutomaticPublicity
     this.isEnabledAutomaticPublicity('IsEnabled_AutomaticPublicity');
-    
+
   }
 
 
@@ -143,11 +143,11 @@ export class PortadaComponent implements OnInit {
 
 
   //Is Enabled Automatic Publicity
-  isEnabledAutomaticPublicity(name: string){
+  isEnabledAutomaticPublicity(name: string) {
     this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
       this.isEnabled_AutomaticPublicity = response;
-      
-      if(this.isEnabled_AutomaticPublicity){
+
+      if (this.isEnabled_AutomaticPublicity) {
         this.getAutomaticPublicityTemplates('AutomaticPublicityTemplates');
         this.getTimeAutomaticPublicity('AutomaticPublicityTime');
       }
@@ -180,7 +180,7 @@ export class PortadaComponent implements OnInit {
       if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
         this.currentOperationPosition = 0;
       } else {
-        this.currentOperationPosition = this.currentOperationPosition + 1;
+        this.currentOperationPosition = + 1;
       }
 
     }, this.automaticPublicityTime);
@@ -189,7 +189,7 @@ export class PortadaComponent implements OnInit {
 
 
   //Get Automatic Publicity Templates
-  getAutomaticPublicityTemplates(name: string){
+  getAutomaticPublicityTemplates(name: string) {
     this.commonService.getConfigurationParameter(name).subscribe((response: any) => {
       this.automaticPublicityTemplates = response;
     },
@@ -455,9 +455,7 @@ export class PortadaComponent implements OnInit {
   openAutomaticPublicityModal(operation: string) {
     this.getAutomaticPublicityTemplate(operation);
 
-    if(this.modalService.hasOpenModals()){
-      this.modalService.dismissAll();
-    }
+    this.modalService.dismissAll();
 
     this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true });
   }

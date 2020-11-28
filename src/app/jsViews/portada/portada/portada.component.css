@@ -122,3 +122,36 @@
     max-height: 310px;
     overflow-x: hidden;
 }
+
+.novelty-tab{
+    font-weight: bold;
+    color: rgb(18, 131, 18);
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  outline: rgb(209, 24, 24);
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid rgb(209, 24, 24);;
+  background-image: none;
+  background-color: rgb(96, 204, 204);
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 30px;
+  color: rgb(18, 131, 18);
+  font-weight: bold;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 30px;
+  color: rgb(18, 131, 18);
+  font-weight: bold;
+}
