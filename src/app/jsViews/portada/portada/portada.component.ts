@@ -177,10 +177,12 @@ export class PortadaComponent implements OnInit {
 
       this.openAutomaticPublicityModal(this.currentOperation);
 
+      console.log(this.currentOperationPosition)
+
       if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
         this.currentOperationPosition = 0;
       } else {
-        this.currentOperationPosition = + 1;
+        this.currentOperationPosition += 1;
       }
 
     }, this.automaticPublicityTime);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ExternalService } from '../../services/external/external.service';
-import { FormControl, FormGroup, FormBuilder, Validators , FormArray} from '@angular/forms';
+import { ExternalService } from '../../services/external/external.service';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Iuser } from '../../interfaces/Iuser/iuser';
@@ -16,13 +16,13 @@ export class RegisterComponent {
   myForm: FormGroup;
   userTypes = new Array<UserType>();
 
-  constructor(private externalService: ExternalService, private form: FormBuilder, private router :Router) { }
+  constructor(private externalService: ExternalService, private form: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.myForm = this.form.group({
       userName: ['', Validators.required],
-      emailAddress: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      emailAddress: [''],
+      password: [''],
       name: ['', Validators.required],
       surName: ['', Validators.required],
       code: [''],
@@ -44,38 +44,42 @@ export class RegisterComponent {
       });
   }
 
- //Create user
-  onSubmit(formValue: any){
+  //Create user
+  onSubmit(formValue: any) {
 
-    const user: Iuser ={
-    Id: 0,
-    UserName: formValue.userName,
-    EmailAddress: formValue.emailAddress,
-    Password: formValue.password,
-    Name: formValue.name,
-    SurName: formValue.surName,
-    StatusId: 0,
-    PersonId: null,
-    UserTypeId: formValue.userTypeId,
-    Image: null,
-    Code: formValue.code,
-    PhoneNumber: formValue.phoneNumber,
-    LastLoginTime: null,
-    LastLoginTimeEnd: null,
-    IsOnline: false,
-    DiviceIP: null,
-    IsActive: true,
-    IsDeleted: false,
-    CreatorUserId: null,
-    CreationTime: null,
-    LastModifierUserId: null,
-    LastModificationTime: null,
-    DeleterUserId: null,
-    DeletionTime: null
+    if (!this.validateInput(formValue.emailAddress, formValue.password)) {
+      return
+    }
+
+    const user: Iuser = {
+      Id: 0,
+      UserName: formValue.userName,
+      EmailAddress: formValue.emailAddress,
+      Password: formValue.password,
+      Name: formValue.name,
+      SurName: formValue.surName,
+      StatusId: 0,
+      PersonId: null,
+      UserTypeId: formValue.userTypeId,
+      Image: null,
+      Code: formValue.code,
+      PhoneNumber: formValue.phoneNumber,
+      LastLoginTime: null,
+      LastLoginTimeEnd: null,
+      IsOnline: false,
+      DiviceIP: null,
+      IsActive: true,
+      IsDeleted: false,
+      CreatorUserId: null,
+      CreationTime: null,
+      LastModifierUserId: null,
+      LastModificationTime: null,
+      DeleterUserId: null,
+      DeletionTime: null
     };
 
     this.externalService.createUser(user).subscribe((response: Iresponse) => {
-      if(response.Code === '000'){
+      if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -85,7 +89,7 @@ export class RegisterComponent {
         }).then(() => {
           this.router.navigate(['/login']);
         });
-      }else{
+      } else {
         Swal.fire({
           icon: 'warning',
           title: response.Message,
@@ -95,16 +99,47 @@ export class RegisterComponent {
       }
 
     },
-    error => { console.log(JSON.stringify(error));
-    });
+      error => {
+        console.log(JSON.stringify(error));
+      });
   }
 
 
-  goToLogin(){
+  validateInput(email: string, password: string): boolean {
+
+    if (!this.validateEmail(email)) {
+      Swal.fire({
+        icon: 'warning',
+        title: "El correo no es válido, favor ingrese un correo válido",
+        showConfirmButton: true,
+        timer: 10000
+      });
+      return false;
+    }
+
+    if (password.length < 8) {
+      Swal.fire({
+        icon: 'warning',
+        title: "La contraseña debe tener más de 8 caracteres, favor vuelva a ingresarla",
+        showConfirmButton: true,
+        timer: 10000
+      });
+      return false;
+    }
+
+    return true;
+  }
+
+  validateEmail(email) {
+    const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regularExpression.test(String(email).toLowerCase());
+  }
+
+  goToLogin() {
     this.router.navigate(['login']);
   }
 
-  goToPortada(){
+  goToPortada() {
     this.router.navigate(['portada']);
   }
 
