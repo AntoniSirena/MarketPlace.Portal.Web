@@ -66,6 +66,7 @@ export class PortadaComponent implements OnInit {
   @ViewChild('storeModal') storeModal: ElementRef;
   @ViewChild('graphicDesignModal') graphicDesignModal: ElementRef;
   @ViewChild('accountingModal') accountingModal: ElementRef;
+  @ViewChild('nurseryModal') nurseryModal: ElementRef;
 
   @ViewChild('automaticPublicityModal') automaticPublicityModal: ElementRef;
 
@@ -590,6 +591,12 @@ export class PortadaComponent implements OnInit {
   openGraphicDesignModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.graphicDesignModal, { size: 'xl', scrollable: true });
+  }
+
+  //open nursery modal
+  openNurseryModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.nurseryModal, { size: 'xl', scrollable: true });
   }
 
 }

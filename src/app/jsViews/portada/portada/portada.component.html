@@ -121,6 +121,7 @@ type="timer"
                   <a class="dropdown-item" (click)="openDriveModal('Driver_Directory')">Taxis y Deliverys</a>
                   <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
                   <a class="dropdown-item" (click)="openStoreModal('Store_Directory')">Tiendas</a>
+                  <a class="dropdown-item" (click)="openNurseryModal('Nursery_Directory')">Viveros</a>
                 </div>
               </li>
 
@@ -1026,6 +1027,28 @@ type="timer"
   <div class="modal-body templateBodyColor">
 
     <strong class="center templateHeader">Diseñadores del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--nursery modal -->
+<ng-template #nurseryModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Vivero</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Viveros del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>
