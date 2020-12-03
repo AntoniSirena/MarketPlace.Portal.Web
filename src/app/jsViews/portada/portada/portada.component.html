@@ -411,7 +411,7 @@ type="timer"
         </div>
 
         <br>
-        <ng-marquee speed="drowsy">
+        <marquee speed="drowsy" id="mymarqueeA">
           <div class="card">
             <div class="card-body">               
               
@@ -423,7 +423,16 @@ type="timer"
               
             </div>
           </div>
-        </ng-marquee>
+        </marquee>
+
+        <div class="row">
+          <div class="col-md-6 center">
+            <input type="button" class="btn btn-danger marquee_Button"  value="Detener" onClick="document.getElementById('mymarqueeA').stop();">
+            <input type="button" class="btn btn-success marquee_Button" value="Seguir" onClick="document.getElementById('mymarqueeA').start();">
+          </div>
+        </div>
+        <br>
+        <br>
 
       </div>
 

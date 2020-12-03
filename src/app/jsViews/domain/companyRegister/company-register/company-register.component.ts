@@ -160,7 +160,7 @@ export class CompanyRegisterComponent implements OnInit {
           this.modalService.dismissAll();
           Swal.fire({
             icon: 'warning',
-            title: "Su Negocio ó Compañia sera actualizdo en el Directorio de la Portada en o antes de 24 hora",
+            title: "Su Negocio ó Compañia sera actualizdo en el Directorio de la Portada en ó antes de 24 horas",
             showConfirmButton: true,
             timer: 10000
           });

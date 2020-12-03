@@ -155,3 +155,10 @@
   color: rgb(18, 131, 18);
   font-weight: bold;
 }
+
+.marquee_Button{
+    font-size: 22px;
+    width: 100px;
+    border-radius: 15px;
+    margin: 8px;
+}
