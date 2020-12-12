@@ -1,6 +1,6 @@
 import { Iaudit } from '../base/Iaudit/iaudit';
 
-export interface Irole extends Iaudit{
+export interface Irole extends Iaudit {
     Id: number;
     Description: string;
     ShortName: string;
@@ -10,7 +10,14 @@ export interface Irole extends Iaudit{
     Enabled: boolean;
     Code: string;
     PersonTypeId: number;
+
+    //Crud
     CanCreate: boolean;
     CanEdit: boolean;
     CanDelete: boolean;
+
+    //Enterprise
+    CanCreateEnterprise: boolean;
+    CanEditEnterprise: boolean;
+    CanDeleteEnterprise: boolean;
 }

@@ -80,10 +80,14 @@ export class RoleComponent implements OnInit {
         enabled: [this.role.Enabled],
         personTypeId: [`${this.role.PersonTypeId}`, Validators.required],
         code: [this.role.Code],
+
         canCreate: [this.role.CanCreate],
         canEdit: [this.role.CanEdit],
         canDelete: [this.role.CanDelete],
 
+        canCreateEnterprise: [this.role.CanCreateEnterprise],
+        canEditEnterprise: [this.role.CanEditEnterprise],
+        canDeleteEnterprise: [this.role.CanDeleteEnterprise],
       });
     },
       error => {
@@ -117,36 +121,62 @@ export class RoleComponent implements OnInit {
 
 
   //Enabled check
-  enabledTrue() {
-    this.role.Enabled = true;
+  enabled(flag: number) {
+    if(flag === 1){
+      this.role.Enabled = true;
+    }else{
+      this.role.Enabled = false;
+    }
   }
 
-  enabledFalse() {
-    this.role.Enabled = false;
+  canCreate(flag: number) {
+    if(flag === 1){
+      this.role.CanCreate = true;
+    }else{
+      this.role.CanCreate = false;
+    }
   }
 
-  canCreateTrue() {
-    this.role.CanCreate = true;
+  canEdit(flag: number) {
+    if(flag === 1){
+      this.role.CanEdit = true;
+    }else{
+      this.role.CanEdit = false;
+    }
   }
 
-  canCreateFalse() {
-    this.role.CanCreate = false;
+  canDelete(flag: number) {
+    if(flag === 1){
+      this.role.CanDelete = true;
+    }else{
+      this.role.CanDelete = false;
+    }
   }
 
-  canEditTrue() {
-    this.role.CanEdit = true;
+
+  //Enterprise
+  canCreateEnterprise(flag: number) {
+    if(flag === 1){
+      this.role.CanCreateEnterprise = true
+    }else{
+      this.role.CanCreateEnterprise = false;
+    }
   }
 
-  canEditFalse() {
-    this.role.CanEdit = false;
+  canEditEnterprise(flag: number) {
+    if(flag === 1){
+      this.role.CanEditEnterprise = true
+    }else{
+      this.role.CanEditEnterprise = false;
+    }
   }
 
-  canDeleteTrue() {
-    this.role.CanDelete = true;
-  }
-
-  canDeleteFalse() {
-    this.role.CanDelete = false;
+  canDeleteEnterprise(flag: number) {
+    if(flag === 1){
+      this.role.CanDeleteEnterprise = true
+    }else{
+      this.role.CanDeleteEnterprise = false;
+    }
   }
 
   //End Enabled check
@@ -166,9 +196,14 @@ export class RoleComponent implements OnInit {
       Enabled: formValue.enabled,
       Code: this.role.Code,
       PersonTypeId: formValue.personTypeId,
+
       CanCreate: formValue.canCreate,
       CanEdit: formValue.canEdit,
       CanDelete: formValue.canDelete,
+
+      CanCreateEnterprise: formValue.canCreateEnterprise,
+      CanEditEnterprise: formValue.canEditEnterprise,
+      CanDeleteEnterprise: formValue.canDeleteEnterprise,
 
       CreationTime: this.role.CreationTime,
       CreatorUserId: this.role.CreatorUserId,
@@ -223,9 +258,14 @@ export class RoleComponent implements OnInit {
       IsDeleted: false,
       Code: null,
       PersonTypeId: formValue.personTypeId,
+
       CanCreate: formValue.canCreate,
       CanEdit: formValue.canEdit,
       CanDelete: formValue.canDelete,
+
+      CanCreateEnterprise: formValue.canCreateEnterprise,
+      CanEditEnterprise: formValue.canEditEnterprise,
+      CanDeleteEnterprise: formValue.canDeleteEnterprise,
 
       CreatorUserId: null,
       CreationTime: null,
@@ -275,9 +315,14 @@ export class RoleComponent implements OnInit {
       enabled: [false],
       personTypeId: [0, Validators.required],
       code: [''],
+
       canEdit: [false],
       canDelete: [false],
       canCreate: [false],
+
+      canCreateEnterprise: [false],
+      canEditEnterprise: [false],
+      canDeleteEnterprise: [false],
     });
   }
 
@@ -292,9 +337,14 @@ export class RoleComponent implements OnInit {
       parent: ['', Validators.required],
       enabled: [false],
       personTypeId: [0, Validators.required],
+
       canEdit: [false],
       canDelete: [false],
       canCreate: [false],
+
+      canCreateEnterprise: [false],
+      canEditEnterprise: [false],
+      canDeleteEnterprise: [false],
     });
   }
 

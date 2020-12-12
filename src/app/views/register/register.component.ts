@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Iuser } from '../../interfaces/Iuser/iuser';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 import { UserType } from '../../models/common/userType/user-type';
+import { ValidationsService } from './../../utilities/validation/validations.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,14 @@ export class RegisterComponent {
   myForm: FormGroup;
   userTypes = new Array<UserType>();
 
-  constructor(private externalService: ExternalService, private form: FormBuilder, private router: Router) { }
+  constructor(
+    private externalService: ExternalService,
+    private form: FormBuilder,
+    private router: Router,
+    private validationsService: ValidationsService,
+    ) {
+
+  }
 
   ngOnInit() {
     this.myForm = this.form.group({
@@ -107,7 +115,7 @@ export class RegisterComponent {
 
   validateInput(email: string, password: string): boolean {
 
-    if (!this.validateEmail(email)) {
+    if (!this.validationsService.email(email)) {
       Swal.fire({
         icon: 'warning',
         title: "El correo no es válido, favor ingrese un correo válido",
@@ -128,11 +136,6 @@ export class RegisterComponent {
     }
 
     return true;
-  }
-
-  validateEmail(email) {
-    const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regularExpression.test(String(email).toLowerCase());
   }
 
   goToLogin() {

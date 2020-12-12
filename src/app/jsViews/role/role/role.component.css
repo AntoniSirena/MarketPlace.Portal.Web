@@ -12,3 +12,8 @@
   .btn{
     border-radius: 4px;
   }
+
+  .permission{
+    overflow-y:scroll;
+    height: 300px;
+  }

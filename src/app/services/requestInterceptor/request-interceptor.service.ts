@@ -30,8 +30,6 @@ export class RequestInterceptorService implements HttpInterceptor  {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    this.token = this.baseService.getUserToke();
      
     let headers = new HttpHeaders();
      

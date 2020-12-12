@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Profile } from '../../models/profile/profile';
+import { Person, Profile } from '../../models/profile/profile';
 import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
+import { User } from './../../models/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,9 @@ export class BaseService {
   constructor() { }
 
   profile = new Profile();
+  perosn = new Person();
+  user = new User();
+
   systemConfiguration = new SystemConfiguration();
 
   value: string;

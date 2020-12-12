@@ -174,16 +174,17 @@ export class PortadaComponent implements OnInit {
   //Get Automatic Publicity
   getAutomaticPublicity() {
     setInterval(() => {
-      this.currentOperation = this.automaticPublicityTemplates[this.currentOperationPosition];
 
-      this.openAutomaticPublicityModal(this.currentOperation);
+      if(location.hash.match('portada')){
+        this.currentOperation = this.automaticPublicityTemplates[this.currentOperationPosition];
 
-      console.log(this.currentOperationPosition)
-
-      if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
-        this.currentOperationPosition = 0;
-      } else {
-        this.currentOperationPosition += 1;
+        this.openAutomaticPublicityModal(this.currentOperation);
+  
+        if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
+          this.currentOperationPosition = 0;
+        } else {
+          this.currentOperationPosition += 1;
+        }
       }
 
     }, this.automaticPublicityTime);

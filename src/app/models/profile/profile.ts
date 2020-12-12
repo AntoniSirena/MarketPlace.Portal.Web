@@ -1,68 +1,67 @@
-    export class Profile {
-    Profile: _Profile;
-    }
-  
-    export class _Profile {
-      User: User;
-      Person: Person;
-    }
-  
-    export class User{
-      Id: number;
-      UserName: string;
-      Name: string;
-      Surname: string;
-      EmailAddress: string;
-      Image: string;
-      Token: string;
-      WelcomeMessage: string;
-      MenuTemplate: Object;
-      RoleDescription: string;
-      RoleShortName: string;   
-      RoleParent: string;
-      CanCreate: boolean;
-      CanEdit: boolean;
-      CanDelete: boolean;
+export class Profile {
+  Profile: _Profile;
+}
 
-      CanCreateRequest: boolean;
-      CanEditRequest: boolean;
-      CanViewActionsButton: boolean;
-      CanApprove: boolean;
-      CanSendToObservation: boolean;
-      CanProcess: boolean;
-      CanCancel: boolean;
+export class _Profile {
+  User: User;
+  Person: Person;
+}
 
-      IsVisitorUser: boolean;
-    }
-  
-    export class Person{
-      FirstName: string;
-      SecondName: string;
-      Surname: string;
-      secondSurname: string;
-      BirthDate: string;
-      FullName: string;
-      Gender: string;
-      Locators: Locators[];   
-    }
-  
-    export class Locators{
-      Id: number;
-      Description: string;
-      IsMain: boolean;
-      Type: string;
-    }
+export class User {
+  Id: number;
+  UserName: string;
+  Name: string;
+  Surname: string;
+  EmailAddress: string;
+  Image: string;
+  Token: string;
+  WelcomeMessage: string;
+  MenuTemplate: Object;
+  RoleDescription: string;
+  RoleShortName: string;
+  RoleParent: string;
 
-    export class Gender {
-      Id: number;
-      Description: string;
-      ShortName: string;
-  }
+  //Crud
+  CanCreate: boolean;
+  CanEdit: boolean;
+  CanDelete: boolean;
 
-  export class LocatorsTypes {
-    Id: number;
-    Code: string;
-    Description: string;
+  //Enterprise
+  CanCreateEnterprise: boolean;
+  CanEditEnterprise: boolean;
+  CanDeleteEnterprise: boolean;
+
+  IsVisitorUser: boolean;
+}
+
+export class Person {
+  FirstName: string;
+  SecondName: string;
+  Surname: string;
+  secondSurname: string;
+  BirthDate: string;
+  FullName: string;
+  Gender: string;
+  Locators: Locators[];
+}
+
+export class Locators {
+  Id: number;
+  Description: string;
+  IsMain: boolean;
+  Type: string;
+}
+
+export class Gender {
+  Id: number;
+  Description: string;
+  ShortName: string;
+}
+
+export class LocatorsTypes {
+  Id: number;
+  Code: string;
+  Description: string;
 }
 
 export class InfoCurrentUser {

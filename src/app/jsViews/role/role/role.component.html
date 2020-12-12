@@ -24,10 +24,15 @@
                     <th>Rol padre</th>
                     <th>Plantilla del menu de persona</th>
                     <th>Plantilla del menu de empresa</th>
+                    <th class="right">Esta habilitado ?</th>
                     <th>Puede crear ?</th>
                     <th>Puede editar ?</th>
                     <th>Puede eliminar ?</th>
-                    <th class="right">Esta habilitado ?</th>
+
+                    <th>Puede crear empresa ?</th>
+                    <th>Puede editar empresa ?</th>
+                    <th>Puede eliminar empresa ?</th>
+
                     <th class="right"><button type="button" class="btn btn-success"
                             (click)="openCreateModal(createModal)"> <i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
                 </tr>
@@ -41,12 +46,32 @@
                     <td class="td_min">{{item.ShortName}}</td>
                     <td>{{item.Parent}}</td>
                     <td class="td_min">{{item.MenuTemplate == null || '' ? '' : item.MenuTemplate}}</td>
-                    <td class="td_min">{{item.EnterpriseMenuTemplate == null || '' ? '' : item.EnterpriseMenuTemplate}}</td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanCreate == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreate == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanEdit == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEdit == true ? 'sí' : 'No'}} </button> </td>
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.CanDelete == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDelete == true ? 'sí' : 'No'}} </button> </td>
-                    
-                    <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.Enabled == true ? 'sí' : 'No'}} </button> </td>
+                    <td class="td_min">{{item.EnterpriseMenuTemplate == null || '' ? '' : item.EnterpriseMenuTemplate}}
+                    </td>
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.Enabled == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.Enabled == true ? 'sí' : 'No'}}
+                        </button> </td>
+
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanCreate == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreate == true ? 'sí' : 'No'}}
+                        </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanEdit == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEdit == true ? 'sí' : 'No'}}
+                        </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanDelete == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDelete == true ? 'sí' : 'No'}}
+                        </button> </td>
+
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanCreateEnterprise == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanCreateEnterprise == true ? 'sí' : 'No'}}
+                        </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanEditEnterprise == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanEditEnterprise == true ? 'sí' : 'No'}}
+                        </button> </td>
+                    <td class="right"> <button class="btn buttonCheckbox"
+                            [ngStyle]="{'background-color': item.CanDeleteEnterprise == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.CanDeleteEnterprise == true ? 'sí' : 'No'}}
+                        </button> </td>
+
                     <td class="right"><button type="button" class="btn btn-primary"
                             (click)="openEditModal(editModal, item.Id)"><i
                                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
@@ -59,6 +84,202 @@
     </div>
 
 </div>
+
+
+
+<!--Create modal-->
+<ng-template #createModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Nuevo registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form [formGroup]="createRoleForm" (submit)="create(createRoleForm.value)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+
+                                <label for="shortName">Nombre corto</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="shortName" class="form-control"
+                                        placeholder="Nombre corto">
+                                    <div *ngIf="!createRoleForm.value.shortName" class="required">*</div>
+                                </div>
+
+                                <label for="description">Descripción</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="description" class="form-control"
+                                        placeholder="Descripción">
+                                    <div *ngIf="!createRoleForm.value.description" class="required">*</div>
+                                </div>
+
+                                <label for="personTypeId">Tipo de persona</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <select formControlName="personTypeId" class="form-control"
+                                        placeholder="Tipo de persona">
+                                        <option value=""></option>
+                                        <option *ngFor="let item of personTypes" [value]="item.Id">{{item.Description}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="!createRoleForm.value.personTypeId" class="required">*</div>
+                                </div>
+
+                                <label for="parent">Rol padre</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <input type="text" formControlName="parent" class="form-control"
+                                        placeholder="Rol padre">
+                                    <div *ngIf="!createRoleForm.value.parent" class="required">*</div>
+                                </div>
+
+                                <label for="menuTemplate">Plantilla del menu de persona</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea formControlName="menuTemplate" class="form-control"
+                                        placeholder="Plantilla del menu">
+                                         {{role.MenuTemplate}}
+                                    </textarea>
+                                </div>
+
+                                <label for="enterpriseMenuTemplate">Plantilla del menu de empresa</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"></span>
+                                    </div>
+                                    <textarea formControlName="enterpriseMenuTemplate" class="form-control"
+                                        placeholder="Plantilla del menu">
+                                         {{role.EnterpriseMenuTemplate}}
+                                    </textarea>
+                                </div>
+
+                                <label for="enabled">Habilitar</label>
+                                <div class="input-group mb-3">
+                                    <label class="switch switch-label switch-pill switch-primary">
+                                        <input type="checkbox" class="switch-input" checked
+                                            (change)="$event.target.checked ? enabled(1) : enabled(0)"
+                                            formControlName="enabled">
+                                        <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                    </label>
+                                </div>
+
+                                
+                                <!--Permissions-->
+                                <hr>
+                                <h3>Permisos</h3>
+                                <br>
+                                <div class="permission">
+
+                                    <h5>Crud genérico</h5>
+
+                                    <label for="canCreate">Puede crear ?</label>                                   
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canCreate(1) : canCreate(0)"
+                                                formControlName="canCreate">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canEdit">Puede editar ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canEdit(1) : canEdit(0)"
+                                                formControlName="canEdit">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canDelete">Puede eliminar ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canDelete(1) : canDelete(0)"
+                                                formControlName="canDelete">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <hr>
+
+                                    <!--Enterprise-->
+                                    <h5>Empresa</h5>
+
+                                    <label for="canCreateEnterprise">Puede crear empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canCreateEnterprise(1) : canCreateEnterprise(0)"
+                                                formControlName="canCreateEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canEditEnterprise">Puede editar empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canEditEnterprise(1) : canEditEnterprise(0)"
+                                                formControlName="canEditEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canDeleteEnterprise">Puede eliminar empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canDeleteEnterprise(1) : canDeleteEnterprise(0)"
+                                                formControlName="canDeleteEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.col-->
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
+                            [disabled]="createRoleForm.invalid">Crear</button>
+                    </div>
+                    <!--/.row-->
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger buttonSize_Standar_Close"
+            (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>
 
 
 <!--Edit modal-->
@@ -114,9 +335,11 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="icon-user"></i></span>
                                     </div>
-                                    <select formControlName="personTypeId" class="form-control" placeholder="Tipo de persona">
+                                    <select formControlName="personTypeId" class="form-control"
+                                        placeholder="Tipo de persona">
                                         <option value=""></option>
-                                        <option *ngFor="let item of personTypes" [value]="item.Id">{{item.Description}}</option>
+                                        <option *ngFor="let item of personTypes" [value]="item.Id">{{item.Description}}
+                                        </option>
                                     </select>
                                     <div *ngIf="!editRoleForm.value.personTypeId" class="required">*</div>
                                 </div>
@@ -153,181 +376,91 @@
                                     </textarea>
                                 </div>
 
-                                <label for="canCreate">Puede crear ?</label>
+                                <label for="enabled">Habilitar</label>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCreateTrue() : canCreateFalse()"
-                                        formControlName="canCreate">
+                                    <label class="switch switch-label switch-pill switch-primary">
+                                        <input type="checkbox" class="switch-input" checked
+                                            (change)="$event.target.checked ? enabled(1) : enabled(0)"
+                                            formControlName="enabled">
+                                        <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                    </label>
                                 </div>
 
-                                <label for="canEdit">Puede editar ?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                <!--Permissions-->
+                                <hr>
+                                <h3>Permisos</h3>
+                                <br>
+                                <div class="permission">
+
+                                    <h5>Crud genérico</h5>
+
+                                    <label for="canCreate">Puede crear ?</label>                                   
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canCreate(1) : canCreate(0)"
+                                                formControlName="canCreate">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
                                     </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canEditTrue() : canEditFalse()"
-                                        formControlName="canEdit">
+
+                                    <label for="canEdit">Puede editar ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canEdit(1) : canEdit(0)"
+                                                formControlName="canEdit">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canDelete">Puede eliminar ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canDelete(1) : canDelete(0)"
+                                                formControlName="canDelete">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <hr>
+
+                                    <!--Enterprise-->
+                                    <h5>Empresa</h5>
+
+                                    <label for="canCreateEnterprise">Puede crear empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canCreateEnterprise(1) : canCreateEnterprise(0)"
+                                                formControlName="canCreateEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canEditEnterprise">Puede editar empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canEditEnterprise(1) : canEditEnterprise(0)"
+                                                formControlName="canEditEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
+                                    <label for="canDeleteEnterprise">Puede eliminar empresa ?</label>
+                                    <div class="input-group mb-3">
+                                        <label class="switch switch-label switch-pill switch-primary">
+                                            <input type="checkbox" class="switch-input" checked
+                                                (change)="$event.target.checked ? canDeleteEnterprise(1) : canDeleteEnterprise(0)"
+                                                formControlName="canDeleteEnterprise">
+                                            <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                                        </label>
+                                    </div>
+
                                 </div>
 
-                                <label for="canDelete">Puede eliminar ?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canDeleteTrue() : canDeleteFalse()"
-                                        formControlName="canDelete">
-                                </div>
-
-                                <label for="menuTemplate">Habilitar</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
-                                        formControlName="enabled">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.col-->
-                </div>
-                <!--/.row-->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary buttonSize_Standar_Save" [disabled]="editRoleForm.invalid">Guardar</button>
-                    </div>
-                    <!--/.row-->
-                </div>
-            </div>
-        </form>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
-    </div>
-</ng-template>
-
-
-<!--Create modal-->
-<ng-template #createModal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Nuevo registro</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-
-        <form [formGroup]="createRoleForm" (submit)="create(createRoleForm.value)">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                            </div>
-                            <div class="card-body">
-
-                                <label for="shortName">Nombre corto</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="shortName" class="form-control"
-                                        placeholder="Nombre corto">
-                                    <div *ngIf="!createRoleForm.value.shortName" class="required">*</div>
-                                </div>
-
-                                <label for="description">Descripción</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="description" class="form-control"
-                                        placeholder="Descripción">
-                                    <div *ngIf="!createRoleForm.value.description" class="required">*</div>
-                                </div>
-
-                                <label for="personTypeId">Tipo de persona</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="icon-user"></i></span>
-                                    </div>
-                                    <select formControlName="personTypeId" class="form-control" placeholder="Tipo de persona">
-                                        <option value=""></option>
-                                        <option *ngFor="let item of personTypes" [value]="item.Id">{{item.Description}}</option>
-                                    </select>
-                                    <div *ngIf="!createRoleForm.value.personTypeId" class="required">*</div>
-                                </div>
-
-                                <label for="parent">Rol padre</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <input type="text" formControlName="parent" class="form-control"
-                                        placeholder="Rol padre">
-                                    <div *ngIf="!createRoleForm.value.parent" class="required">*</div>
-                                </div>
-
-                                <label for="menuTemplate">Plantilla del menu de persona</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <textarea formControlName="menuTemplate" class="form-control"
-                                        placeholder="Plantilla del menu">
-                                         {{role.MenuTemplate}}
-                                    </textarea>
-                                </div>
-
-                                <label for="enterpriseMenuTemplate">Plantilla del menu de empresa</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"></span>
-                                    </div>
-                                    <textarea formControlName="enterpriseMenuTemplate" class="form-control"
-                                        placeholder="Plantilla del menu">
-                                         {{role.EnterpriseMenuTemplate}}
-                                    </textarea>
-                                </div>
-
-                                <label for="canCreate">Puede crear ?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canCreateTrue() : canCreateFalse()"
-                                        formControlName="canCreate">
-                                </div>
-
-                                <label for="canEdit">Puede editar ?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canEditTrue() : canEditFalse()"
-                                        formControlName="canEdit">
-                                </div>
-
-                                <label for="canDelete">Puede eliminar ?</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? canDeleteTrue() : canDeleteFalse()"
-                                        formControlName="canDelete">
-                                </div>
-
-                                <label for="menuTemplate">Habilitar</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="checkbox"
-                                        (change)="$event.target.checked ? enabledTrue() : enabledFalse()"
-                                        formControlName="enabled">
-                                </div>
 
                             </div>
                         </div>
@@ -337,7 +470,8 @@
                 <!--/.row-->
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary buttonSize_Standar_Save" [disabled]="createRoleForm.invalid">Crear</button>
+                        <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
+                            [disabled]="editRoleForm.invalid">Guardar</button>
                     </div>
                     <!--/.row-->
                 </div>
@@ -346,6 +480,7 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-danger buttonSize_Standar_Close"
+            (click)="modal.close('Close click')">Cerrar</button>
     </div>
 </ng-template>

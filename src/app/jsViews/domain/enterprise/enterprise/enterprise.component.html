@@ -1,0 +1,383 @@
+<!--Contenedor principal-->
+<div class="container-fluid" style="width: 100%;">
+
+  <h3>Mantenimiento de Empresas</h3>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+      <thead>
+        <tr class="tabl_eHeader_Color">
+          <th>Código</th>
+          <th>Propietario</th>
+          <th>Nombre</th>
+          <th>Sigla</th>
+          <th>RNC</th>
+          <th>Reg. Comercial</th>
+          <th>Teléfono</th>
+          <th>Tiempo de servicio</th>
+          <th class="right">Puede recibir Cita ?</th>
+          <th class="right"></th>
+          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"
+              *ngIf="canCreate"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of enterprises | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
+          <td>{{item.Id}}</td>
+          <td>{{item.PropetaryName}}</td>
+          <td>{{item.Name}}</td>
+          <td>{{item.Sigla}}</td>
+          <td>{{item.RNC}}</td>
+          <td>{{item.CommercialRegister}}</td>
+          <td>{{item.PhoneNumber}}</td>
+          <td>{{item.ServiceTime}}&nbsp;minuto</td>
+          <td class="right"> <button class="btn buttonCheckbox"
+              [ngStyle]="{'background-color': item.AvailableOnlineAppointment == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.AvailableOnlineAppointment == true ? 'sí' : 'No'}}
+            </button> </td>
+          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"
+            *ngIf="canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"
+            *ngIf="canEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior"
+      nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+
+</div>
+
+
+<!--Create modal-->
+<ng-template #createModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Nuevo registro</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="createForm" (submit)="create(createForm.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+
+                <a>
+                  <img src="{{enterprise.Image}}" class="center" style="width: 200; height: 140px;">
+                </a>
+
+                <div class="form-group">
+                  <div class="form-group">
+                    <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
+                      multiple="">
+                  </div>
+                </div>
+
+                <label for="propetaryName">Propietario</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="propetaryName" class="form-control" placeholder="Propietario">
+                  <div *ngIf="!createForm.value.propetaryName" class="required">*</div>
+                </div>
+
+                <label for="name">Nombre</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
+                  <div *ngIf="!createForm.value.name" class="required">*</div>
+                </div>
+
+                <label for="rnc">RNC</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="rnc" class="form-control" placeholder="RNC">
+                </div>
+
+                <label for="commercialRegister">Reg.Comercial</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="commercialRegister" class="form-control"
+                    placeholder="Reg.Comercial">
+                </div>
+
+                <label for="phoneNumber">No.Teléfono</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="No.Teléfono">
+                  <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
+                </div>
+
+                <label for="email">Correo</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                  </div>
+                  <input type="email" formControlName="email" class="form-control" placeholder="Correo">
+                </div>
+
+                <label for="address">Dirección</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="address" class="form-control" placeholder="Dirección">
+                  <div *ngIf="!createForm.value.address" class="required">*</div>
+                </div>
+
+                <label for="sigla">Sigla</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="sigla" class="form-control" placeholder="Sigla">
+                  <div *ngIf="!createForm.value.sigla" class="required">*</div>
+                </div>
+
+                <label for="slogan">Eslogan</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="slogan" class="form-control" placeholder="Eslogan">
+                </div>
+
+                <label for="workSchedule">Horaio de trabajo</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="workSchedule" class="form-control"
+                    placeholder="Horaio de trabajo">
+                  <div *ngIf="!createForm.value.workSchedule" class="required">*</div>
+                </div>
+
+                <label for="serviceTime">Timpo de servicio en minutos</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="number" formControlName="serviceTime" class="form-control" placeholder="Timpo de servicio en minutos">
+                  <div *ngIf="!createForm.value.serviceTime" class="required">*</div>
+                </div>
+
+                <label for="availableOnlineAppointment">Puede recibir Cita ?</label>
+                <div class="input-group mb-3">
+                  <label class="switch switch-label switch-pill switch-primary">
+                    <input type="checkbox" class="switch-input" checked
+                      (change)="$event.target.checked ? availableOnlineAppointment(1) : availableOnlineAppointment(0)"
+                      formControlName="availableOnlineAppointment">
+                    <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--/.col-->
+        </div>
+        <!--/.row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
+              [disabled]="createForm.invalid">Crear</button>
+          </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close"
+      (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--Edit modal-->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Editando la compañia&nbsp;</h4>
+    <h4 class="modal-title"><i>{{enterprise.Name}}</i></h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="editForm" (submit)="edit(editForm.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+
+                <a>
+                  <img src="{{enterprise.Image}}" class="center" style="width: 200; height: 140px;">
+                </a>
+
+                <div class="form-group">
+                  <div class="form-group">
+                    <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
+                      multiple="">
+                  </div>
+                </div>
+
+                <label for="propetaryName">Propietario</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="propetaryName" class="form-control" placeholder="Propietario">
+                  <div *ngIf="!editForm.value.propetaryName" class="required">*</div>
+                </div>
+
+                <label for="name">Nombre</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
+                  <div *ngIf="!editForm.value.name" class="required">*</div>
+                </div>
+
+                <label for="rnc">RNC</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="rnc" class="form-control" placeholder="RNC">
+                </div>
+
+                <label for="commercialRegister">Reg.Comercial</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="commercialRegister" class="form-control"
+                    placeholder="Reg.Comercial">
+                </div>
+
+                <label for="phoneNumber">No.Teléfono</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="No.Teléfono">
+                  <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
+                </div>
+
+                <label for="email">Correo</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                  </div>
+                  <input type="email" formControlName="email" class="form-control" placeholder="Correo">
+                </div>
+
+                <label for="address">Dirección</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="address" class="form-control" placeholder="Dirección">
+                  <div *ngIf="!editForm.value.address" class="required">*</div>
+                </div>
+
+                <label for="sigla">Sigla</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="sigla" class="form-control" placeholder="Sigla">
+                  <div *ngIf="!editForm.value.sigla" class="required">*</div>
+                </div>
+
+                <label for="slogan">Eslogan</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="slogan" class="form-control" placeholder="Eslogan">
+                </div>
+
+                <label for="workSchedule">Horaio de trabajo</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="workSchedule" class="form-control"
+                    placeholder="Horaio de trabajo">
+                  <div *ngIf="!editForm.value.workSchedule" class="required">*</div>
+                </div>
+
+                <label for="serviceTime">Timpo de servicio en minutos</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="number" formControlName="serviceTime" class="form-control" placeholder="Timpo de servicio en minutos">
+                  <div *ngIf="!editForm.value.serviceTime" class="required">*</div>
+                </div>
+
+                <label for="availableOnlineAppointment">Puede recibir Cita ?</label>
+                <div class="input-group mb-3">
+                  <label class="switch switch-label switch-pill switch-primary">
+                    <input type="checkbox" class="switch-input" checked
+                      (change)="$event.target.checked ? availableOnlineAppointment(1) : availableOnlineAppointment(0)"
+                      formControlName="availableOnlineAppointment">
+                    <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--/.col-->
+        </div>
+        <!--/.row-->
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
+              [disabled]="editForm.invalid">Guardar</button>
+          </div>
+          <!--/.row-->
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close"
+      (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>

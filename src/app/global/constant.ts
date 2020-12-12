@@ -1,6 +1,6 @@
 
 
-export class Role {
-    Suscriptor: string = 'Suscriptor';
-    Visitor: string = 'Visitador';
+export const Role = {
+    Suscriptor: 'Suscriptor',
+    Visitor: 'Visitador',
 }
