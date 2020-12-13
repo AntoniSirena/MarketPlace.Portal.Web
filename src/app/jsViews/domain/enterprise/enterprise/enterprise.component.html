@@ -26,9 +26,9 @@
           <th>Teléfono</th>
           <th>Tiempo de servicio</th>
           <th class="right">Puede recibir Cita ?</th>
-          <th class="right"></th>
-          <th class="right"><button type="button" class="btn btn-success" (click)="openCreateModal(createModal)"
-              *ngIf="canCreate"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
+          <th class="right" *ngIf="canDelete"></th>
+          <th class="right" *ngIf="canCreate"><button type="button" class="btn btn-success"
+              (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
         </tr>
       </thead>
       <tbody>
@@ -45,10 +45,10 @@
           <td class="right"> <button class="btn buttonCheckbox"
               [ngStyle]="{'background-color': item.AvailableOnlineAppointment == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.AvailableOnlineAppointment == true ? 'sí' : 'No'}}
             </button> </td>
-          <td class="right"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"
-            *ngIf="canDelete"><i class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
-          <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)"
-            *ngIf="canEdit"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
+          <td class="right" *ngIf="canDelete"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i
+                class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
+          <td class="right" *ngIf="canEdit"><button type="button" class="btn btn-primary"
+              (click)="openEditModal(editModal, item.Id)"><i class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
       </tbody>
     </table>
@@ -183,7 +183,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="number" formControlName="serviceTime" class="form-control" placeholder="Timpo de servicio en minutos">
+                  <input type="number" formControlName="serviceTime" class="form-control"
+                    placeholder="Timpo de servicio en minutos">
                   <div *ngIf="!createForm.value.serviceTime" class="required">*</div>
                 </div>
 
@@ -345,7 +346,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="number" formControlName="serviceTime" class="form-control" placeholder="Timpo de servicio en minutos">
+                  <input type="number" formControlName="serviceTime" class="form-control"
+                    placeholder="Timpo de servicio en minutos">
                   <div *ngIf="!editForm.value.serviceTime" class="required">*</div>
                 </div>
 

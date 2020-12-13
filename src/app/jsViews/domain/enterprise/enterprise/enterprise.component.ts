@@ -7,7 +7,7 @@ import { Enterprise } from './../../../../models/domain/enterprise/enterprise';
 import { Ienterprise } from '../../../../interfaces/domain/ienterprise/ienterprise';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 import { ValidationsService } from '../../../../utilities/validation/validations.service';
-import { Profile } from './../../../../models/profile/profile';
+import { User } from './../../../../models/profile/profile';
 import { BaseService } from './../../../../services/base/base.service';
 
 
@@ -41,7 +41,7 @@ export class EnterpriseComponent implements OnInit {
   enterprises = new Array<Enterprise>();
   enterprise = new Enterprise();
 
-  userProfile = new Profile();
+  userData = new User();
 
   //Permissions
   canCreate: boolean;
@@ -55,12 +55,11 @@ export class EnterpriseComponent implements OnInit {
     private validationsService: ValidationsService,
     private baseService: BaseService,
   ) {
-
     //Load permissions
-    this.userProfile = this.baseService.getProfile();
-    //this.canCreate = this.userProfile.User.CanCreateEnterprise;
-    //this.canEdit = this.userProfile.User.CanEditEnterprise;
-    //this.canDelete = this.userProfile.User.CanDeleteEnterprise;
+    this.userData = this.baseService.getUserData();
+    this.canCreate = this.userData.CanCreateEnterprise;
+    this.canEdit = this.userData.CanEditEnterprise;
+    this.canDelete = this.userData.CanDeleteEnterprise;
   }
 
   ngOnInit(): void {
@@ -142,9 +141,9 @@ export class EnterpriseComponent implements OnInit {
 
   //Enabled check
   availableOnlineAppointment(flag: number) {
-    if(flag === 1){
+    if (flag === 1) {
       this.enterprise.AvailableOnlineAppointment = true;
-    }else{
+    } else {
       this.enterprise.AvailableOnlineAppointment = false;
     }
   }
@@ -173,7 +172,7 @@ export class EnterpriseComponent implements OnInit {
       return
     }
 
-    if(!this.validateServiceTime(formValue.serviceTime)){
+    if (!this.validateServiceTime(formValue.serviceTime)) {
       Swal.fire({
         icon: 'warning',
         title: 'El tiempo de servicio debe ser mayor que 0',
@@ -245,8 +244,8 @@ export class EnterpriseComponent implements OnInit {
     if (!this.validateInput(formValue.email)) {
       return
     }
-   
-    if(!this.validateServiceTime(formValue.serviceTime)){
+
+    if (!this.validateServiceTime(formValue.serviceTime)) {
       Swal.fire({
         icon: 'warning',
         title: 'El tiempo de servicio debe ser mayor que 0',
@@ -395,8 +394,8 @@ export class EnterpriseComponent implements OnInit {
   }
 
 
-  validateServiceTime(time: number): boolean{
-    if(time < 1){
+  validateServiceTime(time: number): boolean {
+    if (time < 1) {
       return false;
     }
     return true;

@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseService } from '../../../services/base/base.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 
-import { Gender, Profile } from '../../../models/profile/profile';
+import { Gender, Profile, _Profile } from '../../../models/profile/profile';
 import { LocatorsTypes } from '../../../models/profile/profile';
 import { InfoCurrentUser } from '../../../models/profile/profile';
 import { InfoCurrentPerson } from '../../../models/profile/profile';

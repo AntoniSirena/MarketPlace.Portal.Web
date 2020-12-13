@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LoginService } from '../login/login.service';
-import { Profile } from '../../models/profile/profile';
+import { Profile, _Profile } from '../../models/profile/profile';
 import { locale } from 'moment';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
@@ -22,6 +22,7 @@ export class RedirectService {
   }
 
   profile = new Profile();
+  
   systemConfiguration = new SystemConfiguration();
 
   //Iniciar sesion
@@ -45,6 +46,8 @@ export class RedirectService {
             //profile
             this.profile = response.Data;
             localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
+            localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
+            localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
             localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
             localStorage.setItem("password", `${JSON.stringify(request.Password)}`);
             localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
@@ -73,6 +76,8 @@ export class RedirectService {
           //profile
           this.profile = response.Data;
           localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
+          localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
+          localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
           localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
           localStorage.setItem("password", `${JSON.stringify(request.Password)}`);
           localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);

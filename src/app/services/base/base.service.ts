@@ -1,40 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Person, Profile } from '../../models/profile/profile';
+import { Profile, _Profile } from '../../models/profile/profile';
 import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
-import { User } from './../../models/user/user';
+import { Person, User } from './../../models/profile/profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseService {
 
-  constructor() { }
+  constructor() { 
+    this.getProfile();
+  }
 
   profile = new Profile();
-  perosn = new Person();
-  user = new User();
+  userData = new User();
+  personalData = new Person();
 
   systemConfiguration = new SystemConfiguration();
 
-  value: string;
-
   getsystemConfiguration():SystemConfiguration{ 
-    this.value = localStorage.getItem("systemConfiguration");
-    this.systemConfiguration = JSON.parse(this.value);
+    this.systemConfiguration = JSON.parse(localStorage.getItem("systemConfiguration"));
     return this.systemConfiguration;
   }
 
-  getProfile():Profile{
-    this.value = localStorage.getItem("profile");
-    this.profile = JSON.parse(this.value);
+  getProfile(): Profile{
+    this.profile = JSON.parse(localStorage.getItem("profile"));
     return this.profile;
+  }
+
+  getUserData(): User{
+    this.userData = JSON.parse(localStorage.getItem("userData"));
+    return this.userData;
+  }
+
+  getPersonalData(): Person{
+    this.personalData = JSON.parse(localStorage.getItem("personalData"));
+    return this.personalData;
   }
 
   getUserToke():string{
     let result;
     if(localStorage.length > 0){
-      this.value = localStorage.getItem("token");
-      return result = this.value.replace(/['"]+/g, '');
+      let token = localStorage.getItem("token");
+      return result = token.replace(/['"]+/g, '');
     }
     return result = '';
   }

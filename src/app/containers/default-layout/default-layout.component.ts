@@ -3,7 +3,7 @@ import { navItems } from '../../_nav';
 import {RedirectService} from '../../services/redirect/redirect.service'
 import {BaseService} from '../../services/base/base.service'
 import { from } from 'rxjs';
-import { Profile } from '../../models/profile/profile';
+import { Profile, _Profile } from '../../models/profile/profile';
 import { ProfileComponent } from '../../jsViews/profile/profile/profile.component';
 import { Router } from '@angular/router';
 
