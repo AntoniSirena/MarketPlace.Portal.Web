@@ -7,6 +7,7 @@ import { locale } from 'moment';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
+import { Role } from './../../global/constant';
 
 
 @Injectable({
@@ -192,14 +193,17 @@ export class RedirectService {
   }
 
   error404() {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Estimado usuario los registros no fuerón encontrados',
-      showConfirmButton: false,
-      timer: 4000
-    }).then(() => {
 
-    });
+    if(this.profile.Profile.User.RoleShortName !== Role.Suscriptor || this.profile.Profile.User.RoleShortName !== Role.Visitor){
+      Swal.fire({
+        icon: 'warning',
+        title: 'Estimado usuario los registros no fuerón encontrados',
+        showConfirmButton: false,
+        timer: 4000
+      }).then(() => {
+  
+      });
+    }
   }
 
   NoAuthorizedRequest() {
