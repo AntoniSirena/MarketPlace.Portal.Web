@@ -144,8 +144,8 @@ export class ProfileComponent implements OnInit {
       fullName: [`${this.infoCurrentPerson.FullName}`],
       birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
       genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required],
-      documentTypeId: [`${this.infoCurrentPerson.DocumentTypeId}`, Validators.required],
-      documentNumber: [`${this.infoCurrentPerson.DocumentNumber}`, Validators.required]
+      documentTypeId: [`${this.infoCurrentPerson.DocumentTypeId}`],
+      documentNumber: [`${this.infoCurrentPerson.DocumentNumber}`]
     });
   }
 
@@ -331,8 +331,8 @@ export class ProfileComponent implements OnInit {
       fullName: [''],
       birthDate: ['', Validators.required],
       genderId: ['', Validators.required],
-      documentTypeId: ['', Validators.required],
-      documentNumber: ['', Validators.required]
+      documentTypeId: [''],
+      documentNumber: ['']
     });
   }
 
