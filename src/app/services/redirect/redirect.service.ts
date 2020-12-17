@@ -6,7 +6,6 @@ import { Profile, _Profile } from '../../models/profile/profile';
 import { locale } from 'moment';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
-import { SystemConfiguration } from '../../Templates/systemConfiguration/system-configuration';
 import { Role } from './../../global/constant';
 
 
@@ -24,7 +23,6 @@ export class RedirectService {
 
   profile = new Profile();
   
-  systemConfiguration = new SystemConfiguration();
 
   //Iniciar sesion
   SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
@@ -57,19 +55,9 @@ export class RedirectService {
             localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
             localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
 
-            localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
-
-            localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
-            localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
-            localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
-            //template
-
             //welcome to system
             this.welcomeToSystem();
 
-            //systemConfiguration
-            this.systemConfiguration = response.Data;
-            localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
           });
 
           //Se ejecuta cuando se manda a refrescar el token (se genera uno nuevo, para que el usuario siga navegando).
@@ -86,17 +74,6 @@ export class RedirectService {
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
           localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
           localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
-
-          localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
-
-          localStorage.setItem('roleShortName', `${JSON.stringify(this.profile.Profile.User.RoleShortName)}`);
-          localStorage.setItem('roleParent', `${JSON.stringify(this.profile.Profile.User.RoleParent)}`);
-          localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
-          //template
-
-          //systemConfiguration
-          this.systemConfiguration = response.Data;
-          localStorage.setItem("systemConfiguration", `${JSON.stringify(this.systemConfiguration.Configuration)}`);
 
           //Check if the user is a visitor
           if (isUserPortada) {
@@ -139,7 +116,6 @@ export class RedirectService {
 
       if (isAutGuard) {
         this.router.navigate(['login']).then(() => {
-          //window.location.reload();
         });
       } else {
         this.router.navigate(['login']).then(() => {
@@ -236,7 +212,6 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      window.location.reload();
     });
   }
 

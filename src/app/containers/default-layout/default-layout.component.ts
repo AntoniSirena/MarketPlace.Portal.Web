@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { navItems } from '../../_nav';
-import {RedirectService} from '../../services/redirect/redirect.service'
-import {BaseService} from '../../services/base/base.service'
+import { RedirectService } from '../../services/redirect/redirect.service'
+import { BaseService } from '../../services/base/base.service'
 import { from } from 'rxjs';
 import { Profile, _Profile } from '../../models/profile/profile';
 import { ProfileComponent } from '../../jsViews/profile/profile/profile.component';
 import { Router } from '@angular/router';
+import { User } from './../../models/profile/profile';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,51 +17,59 @@ export class DefaultLayoutComponent implements OnInit {
   public navItems = navItems;
 
   public profile = new Profile();
+  public userData = new User();
 
 
   @ViewChild(ProfileComponent) profileComponent: ProfileComponent;
 
-  roleShortName = JSON.parse(localStorage.getItem("roleShortName"));
-  isVisitorUser = JSON.parse(localStorage.getItem("isVisitorUser"));
+  roleShortName: string;
+  isVisitorUser: boolean;
 
-  
-  constructor(private redirectService: RedirectService, private router: Router, 
-    private baseService: BaseService){
-  
+
+  constructor(
+    private redirectService: RedirectService,
+    private router: Router,
+    private baseService: BaseService
+  ) {
+
   }
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getProfile();
+    this.userData = this.baseService.getUserData();
+    this.roleShortName = this.userData.RoleShortName;
+    this.isVisitorUser = this.userData.IsVisitorUser;
+    this.navItems = this.userData.MenuTemplate;
   }
 
-  logout(){
+  logout() {
     this.redirectService.logout();
   }
 
   //Get profile
-  getProfile(){ 
+  getProfile() {
     this.profile = this.baseService.getProfile();
   }
 
   //open Profile Modal
-  openProfileModal(){
+  openProfileModal() {
     this.profileComponent.openProfileModal();
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigate(['login']);
   }
 
 
-  goToRegister(){
+  goToRegister() {
     this.router.navigate(['register']);
   }
 
-  goToLogOut(){
+  goToLogOut() {
     this.redirectService.logout();
   }
 
