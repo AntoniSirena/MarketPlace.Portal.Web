@@ -8,6 +8,9 @@ import { CommonService } from '../../../../services/common/common.service';
 import { CompanyCategory } from '../../../../models/common/CompanyCategory/company-category';
 import { IcompanyRegister } from '../../../../interfaces/domain/IcompanyRegister/icompany-register';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
+import { BaseService } from './../../../../services/base/base.service';
+import { User } from './../../../../models/profile/profile';
+import { Role } from './../../../../global/constant';
 
 
 @Component({
@@ -45,20 +48,25 @@ export class CompanyRegisterComponent implements OnInit {
   canEdit = JSON.parse(localStorage.getItem("canEdit"));
   canDelete = JSON.parse(localStorage.getItem("canDelete"));
 
-  userRole = JSON.parse(localStorage.getItem("roleShortName"));
+  userRole: string;
   validateRole: boolean = false;
+
+  userData = new User();
 
   //constructor
   constructor(
     private companyRegisterservice: CompanyRegisterService,
     private commonService: CommonService,
     private modalService: NgbModal,
-    private form: FormBuilder) {
+    private form: FormBuilder,
+    private baseService: BaseService) {
+      this.userData = this.baseService.getUserData();
   }
 
   ngOnInit(): void {
     this.get();
     this._validateRole();
+    this.userRole = this.userData.RoleShortName;
   }
 
 
@@ -300,8 +308,8 @@ export class CompanyRegisterComponent implements OnInit {
     });
   }
 
-  _validateRole(){
-    if(this.userRole !== 'Visitador' && this.userRole !== 'Suscriptor'){
+  _validateRole() {
+    if (this.userRole !== Role.Visitor && this.userRole !== Role.Suscriptor) {
       this.validateRole = true;
       return
     }
