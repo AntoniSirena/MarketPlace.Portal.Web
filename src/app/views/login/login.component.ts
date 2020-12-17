@@ -102,6 +102,7 @@ export class LoginComponent implements OnInit {
       EmailAddress: null,
       SecurityCode: '',
       Token2AF: '',
+      RefreshToken: false,
     };
 
     this.redirectService.SubmitLogin(login);
@@ -148,6 +149,7 @@ export class LoginComponent implements OnInit {
       EmailAddress: resetPasswordForm.emailAddress,
       SecurityCode: '',
       Token2AF: '',
+      RefreshToken: false,
     };
 
     this.loginService.resetPassword(login).subscribe((response: Iresponse) => {

@@ -252,6 +252,7 @@ export class RedirectService {
       EmailAddress: null,
       SecurityCode: '',
       Token2AF: '',
+      RefreshToken: false,
     };
 
     this.SubmitLogin(login, true, true);

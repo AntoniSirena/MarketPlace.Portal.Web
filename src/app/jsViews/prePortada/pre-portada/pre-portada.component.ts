@@ -36,6 +36,7 @@ export class PrePortadaComponent implements OnInit {
       EmailAddress: null,      
       SecurityCode: '',
       Token2AF: '',
+      RefreshToken: false,
     };
 
     this.redirectService.SubmitLogin(login, true, true);

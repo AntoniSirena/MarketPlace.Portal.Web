@@ -30,7 +30,7 @@ export class RequestInterceptorService implements HttpInterceptor  {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-     
+
     let headers = new HttpHeaders();
      
     if(req.url.match("file/UploadFile")){
@@ -75,6 +75,7 @@ export class RequestInterceptorService implements HttpInterceptor  {
               EmailAddress: null,
               SecurityCode: '',
               Token2AF: '',
+              RefreshToken: true,
             };
 
             localStorage.clear();

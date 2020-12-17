@@ -4,4 +4,5 @@ export interface Ilogin {
     EmailAddress: string;
     SecurityCode: string;
     Token2AF: string;
+    RefreshToken: boolean;
 }

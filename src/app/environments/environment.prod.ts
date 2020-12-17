@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   coreURL: 'http://guerrainfo.jssoluctech.com/core/',
 };

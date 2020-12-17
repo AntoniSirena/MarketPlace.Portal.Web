@@ -45,6 +45,7 @@ export class ConfirmPasswordComponent implements OnInit {
         EmailAddress: null,
         SecurityCode: '',
         Token2AF: '',
+        RefreshToken: false,
       };
 
       this.loginService.confirmPassword(request).subscribe((response: Iresponse) => {

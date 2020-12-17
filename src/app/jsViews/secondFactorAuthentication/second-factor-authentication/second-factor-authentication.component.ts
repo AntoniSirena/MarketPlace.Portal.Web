@@ -36,6 +36,7 @@ export class SecondFactorAuthenticationComponent implements OnInit {
       EmailAddress: '',
       SecurityCode: form.securityCode,
       Token2AF: this.token,
+      RefreshToken: false,
     };
 
     this.redirectService.SubmitLogin(request);
