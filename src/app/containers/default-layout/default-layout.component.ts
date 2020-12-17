@@ -43,7 +43,6 @@ export class DefaultLayoutComponent implements OnInit {
     this.userData = this.baseService.getUserData();
     this.roleShortName = this.userData.RoleShortName;
     this.isVisitorUser = this.userData.IsVisitorUser;
-    this.navItems = this.userData.MenuTemplate;
   }
 
   logout() {

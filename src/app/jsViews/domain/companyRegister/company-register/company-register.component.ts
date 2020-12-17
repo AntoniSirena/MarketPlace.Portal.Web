@@ -65,8 +65,8 @@ export class CompanyRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.get();
-    this._validateRole();
     this.userRole = this.userData.RoleShortName;
+    this._validateRole();
   }
 
 

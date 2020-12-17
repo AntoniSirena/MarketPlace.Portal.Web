@@ -1,4 +1,7 @@
 import { INavData } from '@coreui/angular';
 
-//El menú se esta cargando en el componente default-layout 
-export const navItems: any = [];
+var currentMenuTemplate = localStorage.getItem('currentMenuTemplate');
+
+var menu = JSON.parse(currentMenuTemplate);
+
+export const navItems: any = menu;

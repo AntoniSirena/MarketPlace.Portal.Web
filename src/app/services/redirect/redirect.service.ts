@@ -55,6 +55,9 @@ export class RedirectService {
             localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
             localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
 
+            localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
+            localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
+
             //welcome to system
             this.welcomeToSystem();
 
@@ -74,6 +77,9 @@ export class RedirectService {
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
           localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
           localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
+
+          localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
+          localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
 
           //Check if the user is a visitor
           if (isUserPortada) {
@@ -212,6 +218,7 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
+      window.location.reload();
     });
   }
 
