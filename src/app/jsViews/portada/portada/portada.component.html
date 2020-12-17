@@ -117,6 +117,7 @@ type="timer"
                   <a class="dropdown-item" (click)="openHotelCottageModal('HotelCottage_Directory')">Hoteles y Casas de campo</a>
                   <a class="dropdown-item" (click)="openCivilEngineerModal('CivilEngineer_Directory')">Ingeniería Civil: (Agrimensura, Construcción, Electricidad y Plomería)</a>
                   <a class="dropdown-item" (click)="openBeautyStyleModal('BeautyStyle_Directory')">Salones, Uñas y Barberías</a>
+                  <a class="dropdown-item" (click)="openHealthModal('Health_Directory')">Salud: (Clinicas y Hospitales)</a>
                   <a class="dropdown-item" (click)="openWorkshopsModal('Workshops_Directory')">Talleres</a>
                   <a class="dropdown-item" (click)="openDriveModal('Driver_Directory')">Taxis y Deliverys</a>
                   <a class="dropdown-item" (click)="openMobileComputerStoresModal('MobileComputerStores_Directory')">Tecnología: (Computadoras, Sistemas, Seguridad y Celulares)</a>
@@ -1060,6 +1061,28 @@ type="timer"
   <div class="modal-body templateBodyColor">
 
     <strong class="center templateHeader">Viveros del Municipio San Antonio de Guerra y zonas aledañas</strong>
+    <div>
+      <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger buttonSize_Standar_Close" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+
+<!--health modal -->
+<ng-template #healthModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">Salud</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body templateBodyColor">
+
+    <strong class="center templateHeader">Clinicas y Hospitales del Municipio San Antonio de Guerra y zonas aledañas</strong>
     <div>
       <span [innerHTML]="portada.Body" class="_templateStyle"> </span>
     </div>

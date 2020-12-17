@@ -67,6 +67,8 @@ export class PortadaComponent implements OnInit {
   @ViewChild('graphicDesignModal') graphicDesignModal: ElementRef;
   @ViewChild('accountingModal') accountingModal: ElementRef;
   @ViewChild('nurseryModal') nurseryModal: ElementRef;
+  @ViewChild('healthModal') healthModal: ElementRef;
+
 
   @ViewChild('automaticPublicityModal') automaticPublicityModal: ElementRef;
 
@@ -175,11 +177,11 @@ export class PortadaComponent implements OnInit {
   getAutomaticPublicity() {
     setInterval(() => {
 
-      if(location.hash.match('portada')){
+      if (location.hash.match('portada')) {
         this.currentOperation = this.automaticPublicityTemplates[this.currentOperationPosition];
 
         this.openAutomaticPublicityModal(this.currentOperation);
-  
+
         if (this.currentOperationPosition === this.automaticPublicityTemplates.length - 1) {
           this.currentOperationPosition = 0;
         } else {
@@ -598,6 +600,13 @@ export class PortadaComponent implements OnInit {
   openNurseryModal(operation: string) {
     this.getTemplate(operation);
     this.modalService.open(this.nurseryModal, { size: 'xl', scrollable: true });
+  }
+
+
+  //open health modal
+  openHealthModal(operation: string) {
+    this.getTemplate(operation);
+    this.modalService.open(this.healthModal, { size: 'xl', scrollable: true });
   }
 
 }
