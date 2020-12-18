@@ -4,4 +4,4 @@ var currentMenuTemplate = localStorage.getItem('currentMenuTemplate');
 
 var menu = JSON.parse(currentMenuTemplate);
 
-export const navItems: any = menu;
+export const navItems: INavData = menu;
