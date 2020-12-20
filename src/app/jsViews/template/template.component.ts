@@ -74,7 +74,7 @@ export class TemplateComponent implements OnInit {
         enabled: [this.template.Enabled],
       });
 
-      this.modalService.open(editModal, { size: 'xl' });
+      this.modalService.open(editModal, { size: 'xl', backdrop: 'static' });
 
     },
       error => {

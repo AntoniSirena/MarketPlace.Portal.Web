@@ -15,6 +15,7 @@ import { RedirectService } from '../../services/redirect/redirect.service';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -85,7 +86,7 @@ export class RequestInterceptorService implements HttpInterceptor  {
           }
         }
       })
-
     );
+
   }
 }

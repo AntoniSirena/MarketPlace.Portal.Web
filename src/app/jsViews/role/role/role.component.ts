@@ -109,14 +109,14 @@ export class RoleComponent implements OnInit {
     this.getRoleById(id);
     this.getRoles();
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', backdrop: 'static' });
   }
 
 
   //open create modal
   openCreateModal(createModal) {
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static' });
   }
 
 

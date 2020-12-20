@@ -112,7 +112,7 @@ export class CompanyRegisterComponent implements OnInit {
   openCreateModal(createModal) {
     this.getCompanyCategories();
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal
@@ -120,7 +120,7 @@ export class CompanyRegisterComponent implements OnInit {
     this.getById(id);
     this.getCompanyCategories();
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
 

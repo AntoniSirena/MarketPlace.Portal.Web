@@ -127,7 +127,7 @@ export class LoginComponent implements OnInit {
   //open reset password modal
   openResetPasswordModal() {
     this.setValueResetPasswordForm();
-    this.modalService.open(this.resetPasswordModal, { size: 'sm-lg' });
+    this.modalService.open(this.resetPasswordModal, { size: 'sm-lg', backdrop: 'static', scrollable: true });
   }
 
 

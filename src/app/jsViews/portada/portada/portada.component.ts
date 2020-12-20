@@ -463,150 +463,150 @@ export class PortadaComponent implements OnInit {
 
     this.modalService.dismissAll();
 
-    this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true });
+    this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true, backdrop: 'static' });
   }
 
   //open misión modal
   openMisionModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.misionModal, { size: 'lg', scrollable: true });
+    this.modalService.open(this.misionModal, { size: 'lg', scrollable: true, backdrop: 'static' });
   }
 
   //open visión modal
   openVisionModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.visionModal, { size: 'lg', scrollable: true });
+    this.modalService.open(this.visionModal, { size: 'lg', scrollable: true, backdrop: 'static' });
   }
 
 
   //open valores modal
   openValoresModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.valoresModal, { size: 'lg', scrollable: true });
+    this.modalService.open(this.valoresModal, { size: 'lg', scrollable: true, backdrop: 'static' });
   }
 
 
   //open farmace modal
   openFarmaceModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.farmaceModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.farmaceModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open beauty style modal
   openBeautyStyleModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.beautyStyleModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.beautyStyleModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open mobile computer stores modal
   openMobileComputerStoresModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.mobileComputerStores, { size: 'xl', scrollable: true });
+    this.modalService.open(this.mobileComputerStores, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open food modal
   openFoodModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.foodModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.foodModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open super market provisions modal
   openSupermarketProvisionsModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.supermarketProvisionsModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.supermarketProvisionsModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open hardware store replacement modal
   openHardwareStoreReplacementModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.hardwareStoreReplacementModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.hardwareStoreReplacementModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open history guerra modal
   openHistoryGuerraModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.historyGuerraModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.historyGuerraModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open workshops modal
   openWorkshopsModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.workshopsModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.workshopsModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open driver modal
   openDriveModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.driverModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.driverModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open auto modal
   openAutoModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.autoModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.autoModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open civil engineer modal
   openCivilEngineerModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.civilEngineerModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.civilEngineerModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open hotel cottage modal
   openHotelCottageModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.hotelCottageModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.hotelCottageModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open entertainment modal
   openEntertainmentModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.entertainmentModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.entertainmentModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open lawyer modal
   openLawyerModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.lawyerModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.lawyerModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open store modal
   openStoreModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.storeModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.storeModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open accounting modal
   openAccountingModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.accountingModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.accountingModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open graphic desig modal
   openGraphicDesignModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.graphicDesignModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.graphicDesignModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
   //open nursery modal
   openNurseryModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.nurseryModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.nurseryModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 
   //open health modal
   openHealthModal(operation: string) {
     this.getTemplate(operation);
-    this.modalService.open(this.healthModal, { size: 'xl', scrollable: true });
+    this.modalService.open(this.healthModal, { size: 'xl', scrollable: true, backdrop: 'static' });
   }
 
 }

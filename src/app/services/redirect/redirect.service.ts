@@ -22,7 +22,7 @@ export class RedirectService {
   }
 
   profile = new Profile();
-  
+
 
   //Iniciar sesion
   SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
@@ -131,7 +131,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            //window.location.reload();
+            
           });
         });
       }
@@ -176,14 +176,14 @@ export class RedirectService {
 
   error404() {
 
-    if(this.profile.Profile.User.RoleShortName !== Role.Suscriptor || this.profile.Profile.User.RoleShortName !== Role.Visitor){
+    if (this.profile.Profile.User.RoleShortName !== Role.Suscriptor || this.profile.Profile.User.RoleShortName !== Role.Visitor) {
       Swal.fire({
         icon: 'warning',
         title: 'Estimado usuario los registros no fuerón encontrados',
         showConfirmButton: false,
         timer: 4000
       }).then(() => {
-  
+
       });
     }
   }
@@ -201,23 +201,24 @@ export class RedirectService {
           console.log(JSON.stringify(error));
         });
 
-        if(!isVisitorUser){
-          Swal.fire({
-            icon: 'warning',
-            title: 'Estimado usuario la solicitud no fué autorizada',
-            showConfirmButton: false,
-            timer: 4000
-          }).then(() => {
-            this.router.navigate(['login']);          
-          });
-        }else{
+      if (!isVisitorUser) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Estimado usuario la solicitud no fué autorizada',
+          showConfirmButton: false,
+          timer: 4000
+        }).then(() => {
           this.router.navigate(['login']);
-        }
+        });
+      } else {
+        this.router.navigate(['login']);
+      }
     }
   }
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
+      window.location.reload();
     });
   }
 
@@ -226,11 +227,11 @@ export class RedirectService {
   }
 
 
-  loginUserVisitador(){
+  loginUserVisitador() {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
-      EmailAddress: null,
+      EmailAddress: '',
       SecurityCode: '',
       Token2AF: '',
       RefreshToken: false,

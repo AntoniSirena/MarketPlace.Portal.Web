@@ -86,7 +86,7 @@ export class PersonTypeComponent implements OnInit {
   //open create modal
   openCreateModal(createModal) {
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal
@@ -94,7 +94,7 @@ export class PersonTypeComponent implements OnInit {
     this.getPersonTypeById(id);
     this.getPersonTypes();
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //create

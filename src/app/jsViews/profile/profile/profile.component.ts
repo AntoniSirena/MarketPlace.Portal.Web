@@ -377,7 +377,7 @@ export class ProfileComponent implements OnInit {
   //open create locator modal
   openCreateLocatorModal(createLocatorModal) {
     this.setValueCreateLocatorFrom();
-    this.modalService.open(createLocatorModal, { size: 'lg' });
+    this.modalService.open(createLocatorModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal
@@ -385,7 +385,7 @@ export class ProfileComponent implements OnInit {
     this.getLocatorById(id);
     this.getLocatorsTypes();
     this.setValueEditLocatorFrom();
-    this.modalService.open(editLocatorModal, { size: 'lg' });
+    this.modalService.open(editLocatorModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //Get Locator by Id

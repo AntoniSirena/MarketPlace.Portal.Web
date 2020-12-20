@@ -89,7 +89,7 @@ export class NoveltyComponent implements OnInit {
         endDate: [`${this.novelty.EndDate}`],
       });
 
-      this.modalService.open(editModal, { size: 'lg' });
+      this.modalService.open(editModal, { size: 'lg', backdrop: 'static' });
 
     },
       error => {
@@ -124,7 +124,7 @@ export class NoveltyComponent implements OnInit {
   openCreateModal(createModal) {
     this.setValueCreateFrom();
     this.getNoveltyTypes();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static' });
   }
 
   //open edit modal

@@ -39,12 +39,15 @@ export class BaseService {
   }
 
   getUserToke():string{
-    let result;
+    let result = '';
     if(localStorage.length > 0){
       let token = localStorage.getItem("token");
-      return result = token.replace(/['"]+/g, '');
+      if(token !== null){
+        result = token.replace(/['"]+/g, '');
+      }
+      return result;
     }
-    return result = '';
+    return result;
   }
 
 }

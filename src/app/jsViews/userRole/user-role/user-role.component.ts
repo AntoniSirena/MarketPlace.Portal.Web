@@ -104,7 +104,7 @@ export class UserRoleComponent implements OnInit {
     this.getUserRoleById(id);
     this.getRoles();
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', backdrop: 'static' });
   }
 
   //open create modal
@@ -112,7 +112,7 @@ export class UserRoleComponent implements OnInit {
     this.getRoles();
     this.getUsers();
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static' });
   }
 
 

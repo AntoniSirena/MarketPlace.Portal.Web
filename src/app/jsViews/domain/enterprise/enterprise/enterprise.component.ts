@@ -62,7 +62,7 @@ export class EnterpriseComponent implements OnInit {
     this.canDelete = this.userData.CanDeleteEnterprise;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getAll();
   }
 
@@ -103,7 +103,7 @@ export class EnterpriseComponent implements OnInit {
         serviceTime: [this.enterprise.ServiceTime, Validators.required],
       });
 
-      this.modalService.open(editModal, { size: 'lg' });
+      this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
 
     },
       error => {
@@ -129,7 +129,7 @@ export class EnterpriseComponent implements OnInit {
   //open create modal
   openCreateModal(createModal) {
     this.initCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal

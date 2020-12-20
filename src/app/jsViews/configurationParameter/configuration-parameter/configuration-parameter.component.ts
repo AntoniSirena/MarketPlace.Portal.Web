@@ -83,13 +83,13 @@ export class ConfigurationParameterComponent implements OnInit {
     this.getConfigurationParameterById(id);
     this.getConfigurationParameters();
     this.setValueEditFrom();
-    this.modalService.open(editModal, { size: 'lg' });
+    this.modalService.open(editModal, { size: 'lg', backdrop: 'static' });
   }
 
   //open create modal
   openCreateModal(createModal) {
     this.setValueCreateFrom();
-    this.modalService.open(createModal, { size: 'lg' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static' });
   }
 
   enabledTrue() {
