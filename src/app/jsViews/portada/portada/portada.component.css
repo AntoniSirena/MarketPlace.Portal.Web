@@ -162,3 +162,7 @@
     border-radius: 15px;
     margin: 8px;
 }
+
+a[aria-expanded="true"]{
+    background-color: #42DCA3;
+  }

@@ -2,9 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { NgbCarouselConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import $ from 'jquery'; 
 
-import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
-import { RedirectService } from '../../../services/redirect/redirect.service';
 import { Router } from '@angular/router';
 import { PortadaService } from '../../../services/portada/portada.service';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
@@ -71,6 +70,7 @@ export class PortadaComponent implements OnInit {
 
 
   @ViewChild('automaticPublicityModal') automaticPublicityModal: ElementRef;
+  
 
 
   automaticPublicityValue: any;
@@ -114,12 +114,18 @@ export class PortadaComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingPortada();
+    this.openDefaultMenu();
 
     //AutomaticPublicity
     this.isEnabledAutomaticPublicity('IsEnabled_AutomaticPublicity');
 
   }
 
+
+  //open default menu
+  openDefaultMenu(){
+    $('#btnMenu').trigger('click');
+  }
 
   ///loading
   loadingPortada() {
