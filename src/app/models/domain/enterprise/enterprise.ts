@@ -20,3 +20,9 @@ export class Enterprise extends Audit {
     ImageContenTypeLong: string;
     ServiceTime: number;
 }
+
+export class _Enterprise {
+    Id: number;
+    UserId: number;
+    Name: string;
+}

@@ -24,6 +24,7 @@ import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-pass
 import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthentication/second-factor-authentication/second-factor-authentication.component';
 import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/company-register/company-register.component';
 import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/enterprise.component';
+import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
 
 
 
@@ -235,6 +236,15 @@ export const routes: Routes = [
           title: 'Empresas'
         }
       },
+      {
+        path: 'appointment',
+        canActivate: [AuthGuard],
+        component: AppointmentComponent,
+        data: {
+          title: 'Turnos'
+        }
+      },
+
 
     ]
   },

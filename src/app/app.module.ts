@@ -70,6 +70,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { from } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+//ng-select
+import { NgSelectModule } from '@ng-select/ng-select';
+
+
+
 
 //Componets
 import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
@@ -89,6 +94,7 @@ import { ConfirmPasswordComponent } from './jsViews/confirmPassword/confirm-pass
 import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthentication/second-factor-authentication/second-factor-authentication.component';
 import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/company-register/company-register.component';
 import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/enterprise.component';
+import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
 
 
 
@@ -117,8 +123,9 @@ import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/ente
     FctrlxAngularFileReader,
     NgMarqueeModule,
     NgxSpinnerModule,
-    
-    ],
+    NgSelectModule,
+
+  ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
@@ -141,7 +148,8 @@ import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/ente
     ConfirmPasswordComponent,
     SecondFactorAuthenticationComponent,
     CompanyRegisterComponent,
-    EnterpriseComponent
+    EnterpriseComponent,
+    AppointmentComponent,
 
   ],
   providers: [

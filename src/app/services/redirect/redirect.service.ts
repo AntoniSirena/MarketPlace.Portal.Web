@@ -131,7 +131,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            
+            window.location.reload();
           });
         });
       }

@@ -41,7 +41,7 @@
           <td>{{item.RNC}}</td>
           <td>{{item.CommercialRegister}}</td>
           <td>{{item.PhoneNumber}}</td>
-          <td>{{item.ServiceTime}}&nbsp;minuto</td>
+          <td>{{item.ServiceTime}}&nbsp;minutos</td>
           <td class="right"> <button class="btn buttonCheckbox"
               [ngStyle]="{'background-color': item.AvailableOnlineAppointment == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.AvailableOnlineAppointment == true ? 'sí' : 'No'}}
             </button> </td>
@@ -130,7 +130,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="No.Teléfono">
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="000 000 0000">
                   <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
                 </div>
 
@@ -293,7 +293,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="No.Teléfono">
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="000 000 0000">
                   <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
                 </div>
 
