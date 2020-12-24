@@ -25,6 +25,7 @@ import { SecondFactorAuthenticationComponent } from './jsViews/secondFactorAuthe
 import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/company-register/company-register.component';
 import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/enterprise.component';
 import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
+import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointment/schedule-appointment/schedule-appointment.component';
 
 
 
@@ -241,7 +242,16 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         component: AppointmentComponent,
         data: {
-          title: 'Turnos'
+          title: 'Inicia tu fila desde ya'
+        }
+      },
+
+      {
+        path: 'scheduleAppointment',
+        canActivate: [AuthGuard],
+        component: ScheduleAppointmentComponent,
+        data: {
+          title: 'Elige el día que deseas ser atendido'
         }
       },
 

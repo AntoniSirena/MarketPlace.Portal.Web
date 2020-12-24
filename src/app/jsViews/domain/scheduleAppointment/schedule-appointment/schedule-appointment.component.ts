@@ -10,9 +10,9 @@ import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 
 
 @Component({
-  selector: 'app-appointment',
-  templateUrl: './appointment.component.html',
-  styleUrls: ['./appointment.component.css'],
+  selector: 'app-schedule-appointment',
+  templateUrl: './schedule-appointment.component.html',
+  styleUrls: ['./schedule-appointment.component.css'],
   encapsulation: ViewEncapsulation.None,
   styles: [`
     .dark-modal .modal-content {
@@ -27,8 +27,9 @@ import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
     }
   `]
 })
-export class AppointmentComponent implements OnInit {
+export class ScheduleAppointmentComponent implements OnInit {
 
+  
   createForm: FormGroup;
 
   enterprises = new Array<_Enterprise>();
@@ -52,7 +53,6 @@ export class AppointmentComponent implements OnInit {
     this.getEnterprises();
     this.step1 = true;
   }
-
 
 
   //Get gnterprises
@@ -90,7 +90,6 @@ export class AppointmentComponent implements OnInit {
 
     this.appointmentService.getAppointmentDetails(data).subscribe((response: AppointmentDetail) => {
       this.appointmentDetail = response;
-      console.log(this.appointmentDetail)
     },
       error => {
         console.log(JSON.stringify(error));
@@ -117,12 +116,13 @@ export class AppointmentComponent implements OnInit {
       documentNomber: [form.documentNomber],
       phoneNomber: [form.phoneNomber, Validators.required],
       comment: [form.comment],
-      StartDate: [form.StartDate],
+      startDate: [form.startDate, Validators.required],
       scheduledAppointment: [false],
     });
   }
 
 
+  //create
   create(form: any) {
     const data: Iappointment = {
       Id: 0,
@@ -133,7 +133,7 @@ export class AppointmentComponent implements OnInit {
       PhoneNomber: form.phoneNomber,
       Comment: form.comment,
       StartDate: form.startDate,
-      ScheduledAppointment: false,
+      ScheduledAppointment: true,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -181,7 +181,7 @@ export class AppointmentComponent implements OnInit {
       documentNomber: [''],
       phoneNomber: ['', Validators.required],
       comment: [''],
-      StartDate: [''],
+      startDate: ['', Validators.required],
       scheduledAppointment: [false],
     });
   }
