@@ -238,7 +238,6 @@ export class RedirectService {
     };
 
     this.SubmitLogin(login, true, true);
-    //localStorage.setItem("canViewLoginForm", JSON.stringify(true));
   }
 
 }

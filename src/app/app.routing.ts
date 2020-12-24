@@ -29,9 +29,6 @@ import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointme
 
 
 
-//var canViewLoginForm = localStorage.getItem('canViewLoginForm') || false;
-//var startPage = canViewLoginForm == false ? 'login' : 'portada';
-
 export const routes: Routes = [
   {
     path: '',
