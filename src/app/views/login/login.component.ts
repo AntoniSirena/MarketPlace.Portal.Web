@@ -67,9 +67,9 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    if (!this.canViewLoginForm) {
+    /*if (!this.canViewLoginForm) {
       this.redirectPortada();
-    }
+    }*/
 
     this.getValueRegisterButton();
     this.getTemplateBannerA('BannerLogin_A');
