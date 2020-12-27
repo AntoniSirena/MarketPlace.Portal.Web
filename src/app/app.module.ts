@@ -96,6 +96,7 @@ import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/compa
 import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/enterprise.component';
 import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
 import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointment/schedule-appointment/schedule-appointment.component';
+import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/check-appointment/check-appointment.component';
 
 
 
@@ -152,6 +153,7 @@ import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointme
     EnterpriseComponent,
     AppointmentComponent,
     ScheduleAppointmentComponent,
+    CheckAppointmentComponent,
 
   ],
   providers: [

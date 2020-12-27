@@ -52,8 +52,8 @@
                     <h4 class="label">Teléfono:</h4>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control bold" formControlName="phoneNomber" placeholder="000 000 0000">
-                    <div *ngIf="!createForm.value.phoneNomber" class="required">Campo obligatorio</div>
+                    <input type="number" class="form-control bold" formControlName="phoneNumber" placeholder="000-000-0000">
+                    <div *ngIf="!createForm.value.phoneNumber" class="required">Campo obligatorio</div>
                 </div>
             </div>
 
@@ -165,7 +165,7 @@
                     <h4 class="label">Teléfono:</h4>
                 </div>
                 <div class="col-md-8">
-                    <span class="form-control bold">{{appointmentDetail.PhoneNomber}}</span>
+                    <span class="form-control bold">{{appointmentDetail.PhoneNumber}}</span>
                 </div>
             </div>
 

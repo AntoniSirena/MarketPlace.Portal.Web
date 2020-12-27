@@ -26,6 +26,7 @@ import { CompanyRegisterComponent } from './jsViews/domain/companyRegister/compa
 import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/enterprise.component';
 import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
 import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointment/schedule-appointment/schedule-appointment.component';
+import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/check-appointment/check-appointment.component';
 
 
 
@@ -249,6 +250,15 @@ export const routes: Routes = [
         component: ScheduleAppointmentComponent,
         data: {
           title: 'Elige el día que deseas ser atendido'
+        }
+      },
+
+      {
+        path: 'checkAppointment',
+        canActivate: [AuthGuard],
+        component: CheckAppointmentComponent,
+        data: {
+          title: 'Consulta tu turno ó cita'
         }
       },
 

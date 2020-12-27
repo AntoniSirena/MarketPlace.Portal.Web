@@ -27,6 +27,14 @@ export class AppointmentService {
     return this.httpClient.get(this.coreURL + 'api/appointment/GetEnterprises');
   }
 
+  checkAppointment(number: number, name: string, phoneNumber: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/appointment/CheckAppointment?number=${number}&name=${name}&phoneNumber=${phoneNumber}`);
+  }
+
+  getCheckAppointmentDetail(number: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/appointment/GetCheckAppointmentDetail?number=${number}`);
+  }
+
   getAppointmentDetails(request: Iappointment): Observable<object>  {
     let data = JSON.stringify(request);
     return this.httpClient.post(`${this.coreURL}api/appointment/GetAppointmentDetails`, data, { headers: this.headers });

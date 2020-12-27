@@ -6,7 +6,7 @@ export interface Iappointment extends Iaudit {
     StatusId: number;
     Name: string;
     DocumentNomber: string;
-    PhoneNomber: string;
+    PhoneNumber: number;
     Comment: string;
     StartDate: string;
     ScheduledAppointment: boolean;

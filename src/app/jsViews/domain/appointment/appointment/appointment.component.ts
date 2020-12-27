@@ -74,7 +74,7 @@ export class AppointmentComponent implements OnInit {
       StatusId: form.statusId,
       Name: form.name,
       DocumentNomber: form.documentNomber,
-      PhoneNomber: form.phoneNomber,
+      PhoneNumber: form.phoneNumber,
       Comment: form.comment,
       StartDate: form.startDate,
       ScheduledAppointment: false,
@@ -90,7 +90,6 @@ export class AppointmentComponent implements OnInit {
 
     this.appointmentService.getAppointmentDetails(data).subscribe((response: AppointmentDetail) => {
       this.appointmentDetail = response;
-      console.log(this.appointmentDetail)
     },
       error => {
         console.log(JSON.stringify(error));
@@ -115,7 +114,7 @@ export class AppointmentComponent implements OnInit {
       statusId: [form.statusId],
       name: [form.name, Validators.required],
       documentNomber: [form.documentNomber],
-      phoneNomber: [form.phoneNomber, Validators.required],
+      phoneNumber: [form.phoneNumber, Validators.required],
       comment: [form.comment],
       StartDate: [form.StartDate],
       scheduledAppointment: [false],
@@ -130,7 +129,7 @@ export class AppointmentComponent implements OnInit {
       StatusId: form.statusId,
       Name: form.name,
       DocumentNomber: '00000000000',
-      PhoneNomber: form.phoneNomber,
+      PhoneNumber: form.phoneNumber,
       Comment: form.comment,
       StartDate: form.startDate,
       ScheduledAppointment: false,
@@ -179,7 +178,7 @@ export class AppointmentComponent implements OnInit {
       statusId: [''],
       name: ['', Validators.required],
       documentNomber: [''],
-      phoneNomber: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       comment: [''],
       StartDate: [''],
       scheduledAppointment: [false],

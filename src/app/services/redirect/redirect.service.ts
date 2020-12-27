@@ -124,7 +124,7 @@ export class RedirectService {
         this.router.navigate(['login']).then(() => {
         });
       } else {
-        this.router.navigate(['login']).then(() => {
+        this.router.navigate(['portada']).then(() => {
           Swal.fire({
             icon: 'warning',
             title: 'Estimado usuario su sesión ha expirado',
