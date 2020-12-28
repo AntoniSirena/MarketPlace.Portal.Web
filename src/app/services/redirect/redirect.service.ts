@@ -131,6 +131,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
+            this.loginUserVisitador();
             window.location.reload();
           });
         });
