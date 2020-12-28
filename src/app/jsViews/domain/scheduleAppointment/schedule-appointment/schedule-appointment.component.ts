@@ -7,6 +7,7 @@ import { _Enterprise } from '../../../../models/domain/enterprise/enterprise';
 import { AppointmentDetail } from './../../../../models/domain/appointmentDetail/appointment-detail';
 import { Iappointment } from './../../../../interfaces/domain/iappointment/iappointment';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
+import { NgSelectConfig } from '@ng-select/ng-select';
 
 
 @Component({
@@ -43,8 +44,9 @@ export class ScheduleAppointmentComponent implements OnInit {
     private modalService: NgbModal,
     private form: FormBuilder,
     private appointmentService: AppointmentService,
+    private config: NgSelectConfig,
   ) {
-
+    this.config.notFoundText  = 'elementos no encontrados';
   }
 
   

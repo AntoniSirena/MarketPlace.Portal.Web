@@ -218,7 +218,6 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      window.location.reload();
     });
   }
 
