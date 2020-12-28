@@ -97,6 +97,7 @@ import { EnterpriseComponent } from './jsViews/domain/enterprise/enterprise/ente
 import { AppointmentComponent } from './jsViews/domain/appointment/appointment/appointment.component';
 import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointment/schedule-appointment/schedule-appointment.component';
 import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/check-appointment/check-appointment.component';
+import { QueueAppointmentComponent } from './jsViews/domain/queueAppointment/queue-appointment/queue-appointment.component';
 
 
 
@@ -154,6 +155,7 @@ import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/che
     AppointmentComponent,
     ScheduleAppointmentComponent,
     CheckAppointmentComponent,
+    QueueAppointmentComponent,
 
   ],
   providers: [

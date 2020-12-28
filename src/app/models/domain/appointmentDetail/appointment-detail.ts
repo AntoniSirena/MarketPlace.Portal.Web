@@ -34,3 +34,13 @@ export class CheckAppointmentDetail{
 export class AppointmentId{
     Id: number;
 }
+
+export class Appointment{
+    Id: number;
+    EnterpriseName: string;
+    UserName: string;
+    PhoneNumber: string;
+    StartDate: string;
+    Status: string;
+    StatusColour: string;
+}

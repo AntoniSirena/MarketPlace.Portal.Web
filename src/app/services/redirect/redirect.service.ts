@@ -25,7 +25,7 @@ export class RedirectService {
 
 
   //Iniciar sesion
-  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
+  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false, isRequest401: boolean = false) {
 
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
@@ -59,7 +59,7 @@ export class RedirectService {
             localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
 
             //welcome to system
-            this.welcomeToSystem();
+            this.welcomeToSystem(isRequest401);
 
           });
 
@@ -84,7 +84,7 @@ export class RedirectService {
           //Check if the user is a visitor
           if (isUserPortada) {
             //welcome to system
-            this.welcomeToSystem();
+            this.welcomeToSystem(isRequest401);
           }
         }
 
@@ -131,8 +131,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            this.loginUserVisitador();
-            window.location.reload();
+            this.loginUserVisitador(true);
           });
         });
       }
@@ -171,7 +170,7 @@ export class RedirectService {
       showConfirmButton: false,
       timer: 4000
     }).then(() => {
-      //window.location.reload();
+      window.location.reload();
     });
   }
 
@@ -217,8 +216,11 @@ export class RedirectService {
     }
   }
 
-  welcomeToSystem() {
+  welcomeToSystem(isRequest401: boolean = false) {
     this.router.navigate(['portada']).then(() => {
+      if(isRequest401){
+        window.location.reload();
+      }
     });
   }
 
@@ -227,7 +229,7 @@ export class RedirectService {
   }
 
 
-  loginUserVisitador() {
+  loginUserVisitador(isRequest401: boolean = false) {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
@@ -237,7 +239,7 @@ export class RedirectService {
       RefreshToken: false,
     };
 
-    this.SubmitLogin(login, true, true);
+    this.SubmitLogin(login, true, true, isRequest401);
   }
 
 }

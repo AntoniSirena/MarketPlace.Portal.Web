@@ -7,6 +7,7 @@ import { Profile, _Profile } from '../../models/profile/profile';
 import { ProfileComponent } from '../../jsViews/profile/profile/profile.component';
 import { Router } from '@angular/router';
 import { User } from './../../models/profile/profile';
+import $ from 'jquery'; 
 
 @Component({
   selector: 'app-dashboard',

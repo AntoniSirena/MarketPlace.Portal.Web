@@ -57,7 +57,7 @@ export class AppointmentComponent implements OnInit {
 
 
 
-  //Get gnterprises
+  //Get enterprises
   getEnterprises() {
     this.appointmentService.getEnterprises().subscribe((response: Array<_Enterprise>) => {
       this.enterprises = response;
