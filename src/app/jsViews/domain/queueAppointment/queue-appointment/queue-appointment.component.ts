@@ -54,12 +54,8 @@ export class QueueAppointmentComponent implements OnInit {
 
   //Get appointments
   getAppointments(form: any) {
-    this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Iresponse) => {
-      this.appointments = response.Data;
-      
-      if(response.Code !== "000"){
-        window.location.reload();
-      }
+    this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Array<Appointment>) => {
+      this.appointments = response;
     },
       error => {
         console.log(JSON.stringify(error));
