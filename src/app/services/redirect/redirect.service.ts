@@ -25,7 +25,7 @@ export class RedirectService {
 
 
   //Iniciar sesion
-  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false, isRequest401: boolean = false) {
+  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
 
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
@@ -59,7 +59,7 @@ export class RedirectService {
             localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
 
             //welcome to system
-            this.welcomeToSystem(isRequest401);
+            this.welcomeToSystem();
 
           });
 
@@ -84,7 +84,7 @@ export class RedirectService {
           //Check if the user is a visitor
           if (isUserPortada) {
             //welcome to system
-            this.welcomeToSystem(isRequest401);
+            this.welcomeToSystem();
           }
         }
 
@@ -131,7 +131,7 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            this.loginUserVisitador(true);
+            this.loginUserVisitador();
           });
         });
       }
@@ -216,11 +216,9 @@ export class RedirectService {
     }
   }
 
-  welcomeToSystem(isRequest401: boolean = false) {
+  welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      if(isRequest401){
-        window.location.reload();
-      }
+      setTimeout(function () { window.location.reload() }, 3000);
     });
   }
 
@@ -229,7 +227,7 @@ export class RedirectService {
   }
 
 
-  loginUserVisitador(isRequest401: boolean = false) {
+  loginUserVisitador() {
     const login: Ilogin = {
       UserName: 'visitador',
       Password: 'visitador123',
@@ -239,7 +237,7 @@ export class RedirectService {
       RefreshToken: false,
     };
 
-    this.SubmitLogin(login, true, true, isRequest401);
+    this.SubmitLogin(login, true, true);
   }
 
 }

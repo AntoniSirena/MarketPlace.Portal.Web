@@ -147,7 +147,7 @@ export class PortadaComponent implements OnInit {
 
       this.getNoveltiesByType("Science");
 
-    }, 2000);
+    }, 1000);
   }
 
 

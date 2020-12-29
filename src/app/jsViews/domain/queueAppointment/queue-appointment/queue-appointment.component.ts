@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentService } from '../../../../services/domain/appointment/appointment.service';
 import { Appointment, CheckAppointmentDetail } from '../../../../models/domain/appointmentDetail/appointment-detail';
+import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 
 
 @Component({
@@ -53,9 +54,12 @@ export class QueueAppointmentComponent implements OnInit {
 
   //Get appointments
   getAppointments(form: any) {
-    this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Array<Appointment>) => {
-      this.appointments = response;
-      console.log(this.appointments)
+    this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Iresponse) => {
+      this.appointments = response.Data;
+      
+      if(response.Code !== "000"){
+        window.location.reload();
+      }
     },
       error => {
         console.log(JSON.stringify(error));
