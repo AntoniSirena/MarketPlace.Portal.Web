@@ -23,7 +23,7 @@ export class DefaultLayoutComponent implements OnInit {
 
   @ViewChild(ProfileComponent) profileComponent: ProfileComponent;
 
-  roleShortName: string;
+  roleShortName: string = 'Visitador';
   isVisitorUser: boolean;
 
 

@@ -73,13 +73,130 @@ export class QueueAppointmentComponent implements OnInit {
       });
   }
 
-  updateStatus(statusShortName: string, id: number){
-    Swal.fire({
-      icon: 'warning',
-      title: 'Funcionalidad en desarrollo',
-      showConfirmButton: true,
-      timer: 5000
-    });
+  updateStatus(status: string, id: number){
+
+    this.initGetAppointmentForm();
+
+    if(status === 'InProcess'){
+      Swal.fire({
+        title: 'Esta seguro que desea empezar este turno?',
+        text: "Los cambios no podran ser revertidos!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, empezar!'
+      }).then((result) => {
+        if (result.value) {
+          //delete service
+          this.appointmentService.updateStatus(status, id).subscribe((response: Iresponse) => {
+            if (response.Code === '000') {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              }).then(() => {
+                this.getAppointments(this.getAppointmentForm);
+              });
+            } else {
+              Swal.fire({
+                icon: 'warning',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              });
+            }
+          },
+            error => {
+              console.log(JSON.stringify(error));
+            });
+  
+        }
+      })
+    }
+
+    if(status === 'Finished'){
+      Swal.fire({
+        title: 'Esta seguro que desea finalizar este turno?',
+        text: "Los cambios no podran ser revertidos!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, finalizar!'
+      }).then((result) => {
+        if (result.value) {
+          //delete service
+          this.appointmentService.updateStatus(status, id).subscribe((response: Iresponse) => {
+            if (response.Code === '000') {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              }).then(() => {
+                this.getAppointments(this.getAppointmentForm);
+              });
+            } else {
+              Swal.fire({
+                icon: 'warning',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              });
+            }
+          },
+            error => {
+              console.log(JSON.stringify(error));
+            });
+  
+        }
+      })
+    }
+
+    if(status === 'Cancelled'){
+      Swal.fire({
+        title: 'Esta seguro que desea cancelar este turno?',
+        text: "Los cambios no podran ser revertidos!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, empezar!'
+      }).then((result) => {
+        if (result.value) {
+          //delete service
+          this.appointmentService.updateStatus(status, id).subscribe((response: Iresponse) => {
+            if (response.Code === '000') {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              }).then(() => {
+                this.getAppointments(this.getAppointmentForm);
+              });
+            } else {
+              Swal.fire({
+                icon: 'warning',
+                title: response.Message,
+                showConfirmButton: true,
+                timer: 3000
+              });
+            }
+          },
+            error => {
+              console.log(JSON.stringify(error));
+            });
+  
+        }
+      })
+    }
+
   }
 
 

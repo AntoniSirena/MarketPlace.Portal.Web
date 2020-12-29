@@ -30,7 +30,6 @@ export class RedirectService {
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
       if (response.Code === '000') {
-
         //Se ejecuta cuando se manda a generar el token, al momento de iniciar sesion.
         if (!refressToken) {
           Swal.fire({
@@ -89,7 +88,7 @@ export class RedirectService {
         }
 
       } else {
-        if (window.location.hash.match('#/login') || window.location.hash.match('#/second-factor-authentication')) {
+        if (window.location.hash.match('login') || window.location.hash.match('second-factor-authentication')) {
           Swal.fire({
             icon: 'warning',
             title: response.Message,
@@ -97,7 +96,7 @@ export class RedirectService {
             timer: 7000
           });
         } else {
-          //window.location.reload();
+          
         }
       }
 
@@ -113,7 +112,6 @@ export class RedirectService {
 
     if (localStorage.length > 0) {
       let userId = JSON.parse(localStorage.getItem('userId'));
-      localStorage.clear();
       this.loginSevice.logOut(userId).subscribe((response: any) => {
       },
         error => {
@@ -143,23 +141,13 @@ export class RedirectService {
   logout() {
 
     this.router.navigate(['login']).then(() => {
-      /* Swal.fire({
-        icon: 'success',
-        title: 'Sesión cerrada con exito',
-        showConfirmButton: false,
-        timer: 1000
-      }).then(() => {
-        
-      }); */
+      let userId = JSON.parse(localStorage.getItem('userId'));
+      this.loginSevice.logOut(userId).subscribe((response: any) => {
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
     });
-
-    let userId = JSON.parse(localStorage.getItem('userId'));
-    localStorage.clear();
-    this.loginSevice.logOut(userId).subscribe((response: any) => {
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
 
   }
 
@@ -170,7 +158,7 @@ export class RedirectService {
       showConfirmButton: false,
       timer: 4000
     }).then(() => {
-      window.location.reload();
+
     });
   }
 

@@ -4,6 +4,7 @@ import { RedirectService } from '../../../services/redirect/redirect.service';
 import { Router } from '@angular/router';
 import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
 
+
 @Component({
   selector: 'app-pre-portada',
   templateUrl: './pre-portada.component.html',
@@ -20,26 +21,7 @@ export class PrePortadaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginForm = this.form.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-
-    this.redirectPortada();
-  }
-
-
-  redirectPortada(){
-    const login: Ilogin = {
-      UserName: 'visitador',
-      Password: 'visitador123',
-      EmailAddress: null,      
-      SecurityCode: '',
-      Token2AF: '',
-      RefreshToken: false,
-    };
-
-    this.redirectService.SubmitLogin(login, true, true);
+    this.redirectService.loginUserVisitador();
   }
 
 }

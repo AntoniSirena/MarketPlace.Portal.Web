@@ -8,7 +8,7 @@ import { Person, User } from './../../models/profile/profile';
 })
 export class BaseService {
 
-  constructor() { 
+  constructor() {
     this.getProfile();
   }
 
@@ -18,33 +18,31 @@ export class BaseService {
 
   systemConfiguration = new SystemConfiguration();
 
-  getsystemConfiguration():SystemConfiguration{ 
+  getsystemConfiguration(): SystemConfiguration {
     this.systemConfiguration = JSON.parse(localStorage.getItem("systemConfiguration"));
     return this.systemConfiguration;
   }
 
-  getProfile(): Profile{
+  getProfile(): Profile {
     this.profile = JSON.parse(localStorage.getItem("profile"));
     return this.profile;
   }
 
-  getUserData(): User{
+  getUserData(): User {
     this.userData = JSON.parse(localStorage.getItem("userData"));
     return this.userData;
   }
 
-  getPersonalData(): Person{
+  getPersonalData(): Person {
     this.personalData = JSON.parse(localStorage.getItem("personalData"));
     return this.personalData;
   }
 
-  getUserToke():string{
+  getUserToke(): string {
     let result = '';
-    if(localStorage.length > 0){
-      let token = localStorage.getItem("token");
-      if(token !== null){
-        result = token.replace(/['"]+/g, '');
-      }
+    let token = localStorage.getItem("token");
+    if (token !== null) {
+      result = token.replace(/['"]+/g, '');
       return result;
     }
     return result;

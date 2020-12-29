@@ -35,6 +35,10 @@ export class AppointmentService {
     return this.httpClient.get(this.coreURL + `api/appointment/GetAppointments?startDate=${startDate}&endDate=${endDate}&statusId=${statusId}`);
   }
 
+  updateStatus(status: string, id: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/appointment/UpdateStatus?status=${status}&id=${id}`);
+  }
+
   getCheckAppointmentDetail(number: number): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/appointment/GetCheckAppointmentDetail?number=${number}`);
   }

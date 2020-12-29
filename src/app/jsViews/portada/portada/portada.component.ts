@@ -10,6 +10,7 @@ import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { Portada } from '../../../models/portada/portada';
 import { NoveltiesByType } from '../../../models/novelty/novelty';
 import { CommonService } from './../../../services/common/common.service';
+import { RedirectService } from './../../../services/redirect/redirect.service';
 
 
 @Component({
@@ -103,7 +104,8 @@ export class PortadaComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private router: Router,
     private modalService: NgbModal,
-    private portadaService: PortadaService) {
+    private portadaService: PortadaService,
+    private redirectService: RedirectService) {
 
     // customize default values of carousels used by this component tree
     config.showNavigationArrows = true;
