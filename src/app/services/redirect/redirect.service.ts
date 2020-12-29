@@ -27,9 +27,11 @@ export class RedirectService {
   //Iniciar sesion
   SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
 
+    localStorage.clear();
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
       if (response.Code === '000') {
+
         //Se ejecuta cuando se manda a generar el token, al momento de iniciar sesion.
         if (!refressToken) {
           Swal.fire({
@@ -96,7 +98,7 @@ export class RedirectService {
             timer: 7000
           });
         } else {
-          
+
         }
       }
 
@@ -111,26 +113,23 @@ export class RedirectService {
   login(isAutGuard: boolean = false) {
 
     if (localStorage.length > 0) {
-      let userId = JSON.parse(localStorage.getItem('userId'));
-      this.loginSevice.logOut(userId).subscribe((response: any) => {
-      },
-        error => {
-          console.log(JSON.stringify(error));
-        });
+      /* let userId = JSON.parse(localStorage.getItem('userId'));
+       this.loginSevice.logOut(userId).subscribe((response: any) => {
+       },
+         error => {
+           console.log(JSON.stringify(error));
+         }); */
 
       if (isAutGuard) {
         this.router.navigate(['login']).then(() => {
         });
       } else {
-        this.router.navigate(['portada']).then(() => {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Estimado usuario su sesión ha expirado',
-            showConfirmButton: false,
-            timer: 4000
-          }).then(() => {
-            this.loginUserVisitador();
-          });
+        Swal.fire({
+          icon: 'warning',
+          title: 'Estimado usuario su sesión ha expirado',
+          showConfirmButton: false,
+          timer: 4000
+        }).then(() => {
         });
       }
 
@@ -182,7 +181,6 @@ export class RedirectService {
       let userName = JSON.parse(localStorage.getItem('userName'));
       let isVisitorUser = JSON.parse(localStorage.getItem('isVisitorUser'));
 
-      localStorage.clear();
       this.loginSevice.logOut(userName).subscribe((response: any) => {
       },
         error => {
@@ -226,6 +224,10 @@ export class RedirectService {
     };
 
     this.SubmitLogin(login, true, true);
+  }
+
+  goToPrePortada() {
+    this.router.navigate(['pre-portada']);
   }
 
 }

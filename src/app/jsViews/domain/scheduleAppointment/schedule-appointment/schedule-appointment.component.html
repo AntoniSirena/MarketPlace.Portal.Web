@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-8">
                     <ng-select class="bold" [items]="enterprises" bindLabel="Name" bindValue="Id" virtualScroll="true"
-                        placeholder="Puede filtrar por Nombre" formControlName="enterpriseId">
+                        placeholder="filtra por Nombre" formControlName="enterpriseId">
 
                     </ng-select>
                     <div *ngIf="!createForm.value.enterpriseId" class="required">Campo obligatorio</div>

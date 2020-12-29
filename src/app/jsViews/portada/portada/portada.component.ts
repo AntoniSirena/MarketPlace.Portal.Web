@@ -131,7 +131,6 @@ export class PortadaComponent implements OnInit {
 
   ///loading
   loadingPortada() {
-    this.spinnerService.show();
     this.getCarousel_Images_A('Carousel_Images_A_Portada');
     this.getCarousel_Images_B('Carousel_Images_B_Portada');
     this.getCarousel_Images_C('Carousel_Images_C_Portada');

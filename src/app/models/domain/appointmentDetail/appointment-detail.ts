@@ -44,3 +44,9 @@ export class Appointment{
     Status: string;
     StatusColour: string;
 }
+
+export class AppointmentStatus{
+    Id: number;
+    ShortName: string;
+    Description: string;
+}

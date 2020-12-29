@@ -3,6 +3,55 @@
 
     <br>
 
+    <form [formGroup]="appointmentForm" (submit)="getAppointments(appointmentForm.value, false)">
+
+        <h5>Busqueda avanzada</h5>
+        <br>
+
+        <div class="row">
+            <div class="col-md-2">
+                <h6>Estado:</h6>
+            </div>
+            <div class="col-md-2">
+                <ng-select class="bold" [items]="statuses" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                    placeholder="filtra por Descripción" formControlName="statusId">
+                </ng-select>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <h6>Desde:</h6>
+            </div>
+            <div class="col-md-2">
+                <input type="date" formControlName="startDate">
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+                <h6>Hasta:</h6>
+            </div>
+            <div class="col-md-2">
+                <input type="date" formControlName="endDate">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-searh">Buscar</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    <br>
+    <br>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-lg-12">
             <div class="form-group">
@@ -41,14 +90,17 @@
                     <td>
                         <div class="btn-group" dropdown>
                             <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                              Acciones <span class="caret"></span>
+                                Acciones <span class="caret"></span>
                             </button>
                             <ul *dropdownMenu class="dropdown-menu" role="menu">
-                              <li role="menuitem"><a class="dropdown-item" (click)="updateStatus('InProcess', item.Id)">Empezar</a></li>
-                              <li role="menuitem"><a class="dropdown-item" (click)="updateStatus('Finished', item.Id)">Finalizar</a></li>
-                              <li role="menuitem"><a class="dropdown-item" (click)="updateStatus('Cancelled', item.Id)">Cancelar</a></li>
+                                <li role="menuitem"><a class="dropdown-item"
+                                        (click)="updateStatus('InProcess', item.Id)">Empezar</a></li>
+                                <li role="menuitem"><a class="dropdown-item"
+                                        (click)="updateStatus('Finished', item.Id)">Finalizar</a></li>
+                                <li role="menuitem"><a class="dropdown-item"
+                                        (click)="updateStatus('Cancelled', item.Id)">Cancelar</a></li>
                             </ul>
-                          </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

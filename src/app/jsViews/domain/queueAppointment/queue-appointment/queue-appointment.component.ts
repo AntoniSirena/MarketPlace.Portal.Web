@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentService } from '../../../../services/domain/appointment/appointment.service';
 import { Appointment, CheckAppointmentDetail } from '../../../../models/domain/appointmentDetail/appointment-detail';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
+import { AppointmentStatus } from './../../../../models/domain/appointmentDetail/appointment-detail';
 
 
 @Component({
@@ -27,12 +28,13 @@ import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 })
 export class QueueAppointmentComponent implements OnInit {
 
-  getAppointmentForm: FormGroup;
+  appointmentForm: FormGroup;
 
   _currentPage: number = 1;
 
   appointments = new Array<Appointment>();
   appointmentDetail = new CheckAppointmentDetail();
+  statuses = new Array<AppointmentStatus>();
 
 
   @ViewChild('appointmentDetailModal') appointmentDetailModal: ElementRef;
@@ -48,14 +50,40 @@ export class QueueAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.initGetAppointmentForm();
-    this.getAppointments(this.getAppointmentForm);
+    this.getAppointments(this.appointmentForm, true);
+    this.getAppointmentStatuses();
   }
 
 
   //Get appointments
-  getAppointments(form: any) {
-    this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Array<Appointment>) => {
-      this.appointments = response;
+  getAppointments(form: any, isOnInit: boolean = true) {
+    
+    if(isOnInit){
+      this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Array<Appointment>) => {
+        this.appointments = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
+    if(!isOnInit){
+
+      if(form.statusId === null){
+        form.statusId = 0;
+      }
+      this.appointmentService.getAppointments(form.startDate, form.endDate, form.statusId).subscribe((response: Array<Appointment>) => {
+        this.appointments = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
+  }
+
+
+  getAppointmentStatuses() {
+    this.appointmentService.getAppointmentStatuses().subscribe((response: Array<AppointmentStatus>) => {
+      this.statuses = response;
     },
       error => {
         console.log(JSON.stringify(error));
@@ -98,7 +126,7 @@ export class QueueAppointmentComponent implements OnInit {
                 showConfirmButton: true,
                 timer: 3000
               }).then(() => {
-                this.getAppointments(this.getAppointmentForm);
+                this.getAppointments(this.appointmentForm);
               });
             } else {
               Swal.fire({
@@ -138,7 +166,7 @@ export class QueueAppointmentComponent implements OnInit {
                 showConfirmButton: true,
                 timer: 3000
               }).then(() => {
-                this.getAppointments(this.getAppointmentForm);
+                this.getAppointments(this.appointmentForm);
               });
             } else {
               Swal.fire({
@@ -178,7 +206,7 @@ export class QueueAppointmentComponent implements OnInit {
                 showConfirmButton: true,
                 timer: 3000
               }).then(() => {
-                this.getAppointments(this.getAppointmentForm);
+                this.getAppointments(this.appointmentForm);
               });
             } else {
               Swal.fire({
@@ -202,7 +230,7 @@ export class QueueAppointmentComponent implements OnInit {
 
   //Init appointment form
   initGetAppointmentForm() {
-    this.getAppointmentForm = this.form.group({
+    this.appointmentForm = this.form.group({
       startDate: [''],
       endDate: [''],
       statusId: [0],

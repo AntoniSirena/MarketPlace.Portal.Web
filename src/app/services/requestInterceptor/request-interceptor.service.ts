@@ -79,7 +79,6 @@ export class RequestInterceptorService implements HttpInterceptor  {
               RefreshToken: true,
             };
 
-            localStorage.clear();
             this.token = "";
             
             this.redirectService.SubmitLogin(login, true);
