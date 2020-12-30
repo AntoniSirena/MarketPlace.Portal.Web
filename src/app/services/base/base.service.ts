@@ -40,12 +40,16 @@ export class BaseService {
 
   getUserToke(): string {
     let result = '';
-    let token = localStorage.getItem("token");
-    if (token !== null) {
-      result = token.replace(/['"]+/g, '');
+
+    if (window.location.hash.match('login') || window.location.hash.match('logOut')) {
       return result;
+    } else {
+      let token = localStorage.getItem("token");
+      if (token !== null) {
+        result = token.replace(/['"]+/g, '');
+        return result;
+      }
     }
-    return result;
   }
 
 }

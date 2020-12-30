@@ -3,10 +3,9 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LoginService } from '../login/login.service';
 import { Profile, _Profile } from '../../models/profile/profile';
-import { locale } from 'moment';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
-import { Role } from './../../global/constant';
+import { Role, Users, PortadaUser } from './../../global/constant';
 
 
 @Injectable({
@@ -22,12 +21,12 @@ export class RedirectService {
   }
 
   profile = new Profile();
+  
 
 
   //Iniciar sesion
   SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
 
-    localStorage.clear();
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
       if (response.Code === '000') {
@@ -87,6 +86,13 @@ export class RedirectService {
             //welcome to system
             this.welcomeToSystem();
           }
+          if (!isUserPortada) {
+            //welcome to login page
+            this.router.navigate(['login']).then(() => {
+              window.location.reload();
+            });
+          }
+
         }
 
       } else {
@@ -109,33 +115,48 @@ export class RedirectService {
 
   }
 
+
   //Redirecciona a la pantalla de login
   login(isAutGuard: boolean = false) {
 
     if (localStorage.length > 0) {
-      /* let userId = JSON.parse(localStorage.getItem('userId'));
-       this.loginSevice.logOut(userId).subscribe((response: any) => {
-       },
-         error => {
-           console.log(JSON.stringify(error));
-         }); */
+      let userId = JSON.parse(localStorage.getItem('userId'));
+      let userName = JSON.parse(localStorage.getItem('userName'));
+
+      if (userName !== Users.Visitor) {
+        this.loginSevice.logOut(userId).subscribe((response: any) => {
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      }
 
       if (isAutGuard) {
         this.router.navigate(['login']).then(() => {
         });
       } else {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Estimado usuario su sesión ha expirado',
-          showConfirmButton: false,
-          timer: 4000
-        }).then(() => {
-        });
+
+        if (userName !== Users.Visitor) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Estimado usuario su sesión ha expirado',
+            showConfirmButton: false,
+            timer: 4000
+          }).then(() => {
+            this.loginUserVisitador(false); 
+          });
+        }
+
+        if (userName === Users.Visitor) {
+          this.loginUserVisitador(); 
+        }
+        
       }
 
     }
 
   }
+
 
   logout() {
 
@@ -149,6 +170,7 @@ export class RedirectService {
     });
 
   }
+
 
   error500() {
     Swal.fire({
@@ -204,7 +226,7 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      setTimeout(function () { window.location.reload() }, 3000);
+      setTimeout(function () { window.location.reload() }, 5000);
     });
   }
 
@@ -213,21 +235,17 @@ export class RedirectService {
   }
 
 
-  loginUserVisitador() {
+  loginUserVisitador(isUserPortada: boolean = true) {
     const login: Ilogin = {
-      UserName: 'visitador',
-      Password: 'visitador123',
+      UserName: PortadaUser.UserName,
+      Password: PortadaUser.Pass,
       EmailAddress: '',
       SecurityCode: '',
       Token2AF: '',
       RefreshToken: false,
     };
 
-    this.SubmitLogin(login, true, true);
-  }
-
-  goToPrePortada() {
-    this.router.navigate(['pre-portada']);
+    this.SubmitLogin(login, true, isUserPortada);
   }
 
 }

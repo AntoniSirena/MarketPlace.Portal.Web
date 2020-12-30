@@ -45,8 +45,10 @@ export class AuthGuard implements CanActivate {
         if (currentHash == '#/login' ||
             currentHash == '#/register' ||
             currentHash == '#/portada' ||
+            currentHash == '#/company-register' ||
             currentHash == '#/appointment' ||
             currentHash == '#/scheduleAppointment' ||
+            currentHash == '#/checkAppointment' ||
             currentHash == '#/checkAppointment' ||
             currentHash == '#/my-files') {
             result = true;
