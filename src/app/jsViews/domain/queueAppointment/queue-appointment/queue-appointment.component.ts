@@ -36,6 +36,7 @@ export class QueueAppointmentComponent implements OnInit {
   appointmentDetail = new CheckAppointmentDetail();
   statuses = new Array<AppointmentStatus>();
 
+  recordQuantity: string;
 
   @ViewChild('appointmentDetailModal') appointmentDetailModal: ElementRef;
 
@@ -59,8 +60,20 @@ export class QueueAppointmentComponent implements OnInit {
   getAppointments(form: any, isOnInit: boolean = true) {
     
     if(isOnInit){
-      this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Array<Appointment>) => {
-        this.appointments = response;
+      this.appointmentService.getAppointments(form.value.startDate, form.value.endDate, form.value.statusId).subscribe((response: Iresponse) => {
+
+        if(response.Code === '000'){
+          this.appointments = response.Data;
+          this.recordQuantity = response.Message;
+        }else{
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 10000
+          });
+        }
+
       },
         error => {
           console.log(JSON.stringify(error));
@@ -71,8 +84,20 @@ export class QueueAppointmentComponent implements OnInit {
       if(form.statusId === null){
         form.statusId = 0;
       }
-      this.appointmentService.getAppointments(form.startDate, form.endDate, form.statusId).subscribe((response: Array<Appointment>) => {
-        this.appointments = response;
+      this.appointmentService.getAppointments(form.startDate, form.endDate, form.statusId).subscribe((response: Iresponse) => {
+
+        if(response.Code === '000'){
+          this.appointments = response.Data;
+          this.recordQuantity = response.Message;
+        }else{
+          Swal.fire({
+            icon: 'warning',
+            title: response.Message,
+            showConfirmButton: true,
+            timer: 10000
+          });
+        }
+
       },
         error => {
           console.log(JSON.stringify(error));
