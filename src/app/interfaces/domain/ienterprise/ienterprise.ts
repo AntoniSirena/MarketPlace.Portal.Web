@@ -19,4 +19,6 @@ export interface Ienterprise extends Iaudit{
     ImageContenTypeShort: string;
     ImageContenTypeLong: string;
     ServiceTime: number;
+    NumberAppointmentsAttendedByDay: number;
+    EnterpriseDescription: string;
 }

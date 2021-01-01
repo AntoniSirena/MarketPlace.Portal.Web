@@ -23,17 +23,13 @@ type="timer"
               <ng-marquee speed="drowsy">
                 <span class="bold" style="color: rgb(16, 111, 189); font-size: 30px;">GUERRA</span>
                 <span class="bold" style="color: rgb(209, 24, 24); font-size: 30px;">INFO</span>
-                <span class="bold" style="color: rgb(18, 131, 18); font-size: 30px;">&nbsp;LES DESEA FELIZ NAVIDAD</span>
+                <span class="bold" style="color: rgb(18, 131, 18); font-size: 30px;">&nbsp;LES DESEA UN FELIZ AÑO NUEVO</span>
               </ng-marquee>
 
               <div class="card-body">
                 <!--Form-->
                 <form [formGroup]="loginForm" (submit)="loadingOnSubmitLogin(loginForm.value)">
-                  <div class="row">
-                    <div class="col-md-12 center">
-                      <h2>Municipio San Antonio de Guerra</h2>
-                    </div>
-                  </div>
+
                   <div class="row">
                     <div class="col-md-12 center">
                      <i> <h2 style="font-weight: bold;">Guerra Info</h2> </i>
@@ -61,6 +57,14 @@ type="timer"
                   </div>
 
                   <br>
+                  
+                  <div>
+                    <div class="center">
+                      <button type="button" class="btn btn-primary portadaButton"(click)="redirectPortada()"> Ver portada</button>
+                    </div>
+                  </div>
+
+                  <br>
 
                   <div class="row">
                     <div class="col-12">
@@ -70,14 +74,6 @@ type="timer"
                   <div class="row">
                     <div class="col-12">
                       <button type="button" class="btn btn-success loginButton" (click)="openResetPasswordModal()"><span style="color: white;">Cambiar ó recuperar mi contraseña ?</span></button>
-                    </div>
-                  </div>
-
-                  <br>
-                  
-                  <div class="card-footer p-4">
-                    <div class="center">
-                      <button type="button" class="btn btn-primary portadaButton"(click)="redirectPortada()"> Ver portada</button>
                     </div>
                   </div>
 

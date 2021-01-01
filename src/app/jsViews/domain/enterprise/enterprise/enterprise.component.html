@@ -79,6 +79,7 @@
               </div>
               <div class="card-body">
 
+                <h5 style="color: red;" class="center">Favor cargue la foto de la empresa</h5>
                 <a>
                   <img src="{{enterprise.Image}}" class="center" style="width: 200; height: 140px;">
                 </a>
@@ -106,6 +107,15 @@
                   </div>
                   <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
                   <div *ngIf="!createForm.value.name" class="required">*</div>
+                </div>
+
+                <label for="enterpriseDescription">¿A qué se dedica la empresa?</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="enterpriseDescription" class="form-control" placeholder="¿A qué se dedica la empresa?">
+                  <div *ngIf="!createForm.value.enterpriseDescription" class="required">*</div>
                 </div>
 
                 <label for="rnc">RNC</label>
@@ -186,6 +196,16 @@
                   <input type="number" formControlName="serviceTime" class="form-control"
                     placeholder="Timpo de servicio en minutos">
                   <div *ngIf="!createForm.value.serviceTime" class="required">*</div>
+                </div>
+
+                <label for="numberAppointmentsAttendedByDay">Cantidad de clientes para ser atendido por día</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="number" formControlName="numberAppointmentsAttendedByDay" class="form-control"
+                    placeholder="Cantidad de clientes para ser atendido por día">
+                  <div *ngIf="!createForm.value.numberAppointmentsAttendedByDay" class="required">*</div>
                 </div>
 
                 <label for="availableOnlineAppointment">Puede recibir Cita ?</label>
@@ -271,6 +291,15 @@
                   <div *ngIf="!editForm.value.name" class="required">*</div>
                 </div>
 
+                <label for="enterpriseDescription">¿A qué se dedica la empresa?</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="text" formControlName="enterpriseDescription" class="form-control" placeholder="¿A qué se dedica la empresa?">
+                  <div *ngIf="!editForm.value.enterpriseDescription" class="required">*</div>
+                </div>
+
                 <label for="rnc">RNC</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -349,6 +378,16 @@
                   <input type="number" formControlName="serviceTime" class="form-control"
                     placeholder="Timpo de servicio en minutos">
                   <div *ngIf="!editForm.value.serviceTime" class="required">*</div>
+                </div>
+
+                <label for="numberAppointmentsAttendedByDay">Cantidad de clientes para ser atendido por día</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-info"></i></span>
+                  </div>
+                  <input type="number" formControlName="numberAppointmentsAttendedByDay" class="form-control"
+                    placeholder="Cantidad de clientes para ser atendido por día">
+                  <div *ngIf="!editForm.value.numberAppointmentsAttendedByDay" class="required">*</div>
                 </div>
 
                 <label for="availableOnlineAppointment">Puede recibir Cita ?</label>

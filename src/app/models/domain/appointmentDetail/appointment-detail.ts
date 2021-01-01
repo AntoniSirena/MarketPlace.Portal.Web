@@ -5,6 +5,8 @@ export class AppointmentDetail {
     EnterprisePhoneNumber: string;
     EnterpriseAddress: string;
     EnterpriseServiceTime: number;
+    NumberAppointmentsAttendedByDay: number;
+    EnterpriseDescription: string;
     UserName: string;
     DocumentNomber: string;
     PhoneNumber: number;
@@ -23,6 +25,8 @@ export class CheckAppointmentDetail{
     EnterprisePhoneNumber: string;
     EnterpriseAddress: string;
     EnterpriseServiceTime: number;
+    NumberAppointmentsAttendedByDay: number;
+    EnterpriseDescription: string;
     InFrontMe: number;
     UserName: string;
     DocumentNomber: string;

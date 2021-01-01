@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login/login.service';
 import { RedirectService } from '../../services/redirect/redirect.service'
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import $ from 'jquery'; 
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   valueRegisterButton: string;
 
-  canViewLoginForm = localStorage.getItem('canViewLoginForm') || false;
+  canViewLoginPageDefault = localStorage.getItem('canViewLoginPageDefault') || false;
 
   bannerA = new Portada();
 
@@ -69,8 +70,17 @@ export class LoginComponent implements OnInit {
 
     this.getValueRegisterButton();
     this.getTemplateBannerA('BannerLogin_A');
+    this.goPortadaPage();
   };
 
+
+  
+  goPortadaPage(){
+    if(!this.canViewLoginPageDefault){
+      this.redirectPortada();
+      localStorage.setItem('canViewLoginPageDefault', 'true');
+    }
+  }
 
   redirectPortada() {
     this.redirectService.loginUserVisitador();

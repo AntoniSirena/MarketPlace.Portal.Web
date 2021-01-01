@@ -19,6 +19,8 @@ export class Enterprise extends Audit {
     ImageContenTypeShort: string;
     ImageContenTypeLong: string;
     ServiceTime: number;
+    NumberAppointmentsAttendedByDay: number;
+    EnterpriseDescription: string;
 }
 
 export class _Enterprise {

@@ -162,7 +162,7 @@ export class AppointmentComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 10000
+          timer: 20000
         });
       }
     },

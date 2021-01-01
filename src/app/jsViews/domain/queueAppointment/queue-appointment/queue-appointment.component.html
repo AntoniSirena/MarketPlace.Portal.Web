@@ -165,10 +165,30 @@
         <br>
         <div class="row">
             <div class="col-md-4">
+                <h5 class="label">Breve descripción de la empresa</h5>
+            </div>
+            <div class="col-md-8">
+                <textarea class="form-control bold">{{appointmentDetail.EnterpriseDescription}}</textarea>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
                 <h5 class="label">Tiempo estimado por servicio:</h5>
             </div>
             <div class="col-md-8">
                 <span class="form-control bold">{{appointmentDetail.EnterpriseServiceTime}}&nbsp;minutos</span>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="label">Cantidad de clientes para ser atendido por día:</h5>
+            </div>
+            <div class="col-md-8">
+                <span class="form-control bold">{{appointmentDetail.NumberAppointmentsAttendedByDay}}</span>
             </div>
         </div>
 

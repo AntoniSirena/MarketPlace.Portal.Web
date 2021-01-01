@@ -101,6 +101,8 @@ export class EnterpriseComponent implements OnInit {
         workSchedule: [this.enterprise.WorkSchedule, Validators.required],
         availableOnlineAppointment: [this.enterprise.AvailableOnlineAppointment],
         serviceTime: [this.enterprise.ServiceTime, Validators.required],
+        numberAppointmentsAttendedByDay: [this.enterprise.NumberAppointmentsAttendedByDay, Validators.required],
+        enterpriseDescription: [this.enterprise.EnterpriseDescription, Validators.required],
       });
 
       this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
@@ -201,6 +203,8 @@ export class EnterpriseComponent implements OnInit {
       ImageContenTypeShort: null,
       ImageContenTypeLong: null,
       ServiceTime: formValue.serviceTime,
+      NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
+      EnterpriseDescription: formValue.enterpriseDescription,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -228,7 +232,7 @@ export class EnterpriseComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 6000
         });
       }
     },
@@ -274,6 +278,8 @@ export class EnterpriseComponent implements OnInit {
       ImageContenTypeShort: this.enterprise.ImageContenTypeShort,
       ImageContenTypeLong: this.enterprise.ImageContenTypeLong,
       ServiceTime: formValue.serviceTime,
+      NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
+      EnterpriseDescription: formValue.enterpriseDescription,
       CreatorUserId: this.enterprise.CreatorUserId,
       CreationTime: this.enterprise.CreationTime,
       LastModifierUserId: this.enterprise.LastModifierUserId,
@@ -302,7 +308,7 @@ export class EnterpriseComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 6000
         });
       }
     },
@@ -372,6 +378,8 @@ export class EnterpriseComponent implements OnInit {
       workSchedule: ['', Validators.required],
       availableOnlineAppointment: [false],
       serviceTime: [0, Validators.required],
+      numberAppointmentsAttendedByDay: [0, Validators.required],
+      enterpriseDescription: ['', Validators.required],
     });
   }
 
@@ -390,6 +398,8 @@ export class EnterpriseComponent implements OnInit {
       workSchedule: ['', Validators.required],
       availableOnlineAppointment: [false],
       serviceTime: [0, Validators.required],
+      numberAppointmentsAttendedByDay: [0, Validators.required],
+      enterpriseDescription: ['', Validators.required],
     });
   }
 
