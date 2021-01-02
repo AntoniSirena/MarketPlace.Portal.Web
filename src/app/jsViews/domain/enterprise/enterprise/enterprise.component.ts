@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EnterpriseService } from '../../../../services/domain/enterprise/enterprise.service';
-import { Enterprise } from './../../../../models/domain/enterprise/enterprise';
+import { Enterprise, ScheduleHour } from './../../../../models/domain/enterprise/enterprise';
 import { Ienterprise } from '../../../../interfaces/domain/ienterprise/ienterprise';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 import { ValidationsService } from '../../../../utilities/validation/validations.service';
@@ -41,6 +41,8 @@ export class EnterpriseComponent implements OnInit {
   enterprises = new Array<Enterprise>();
   enterprise = new Enterprise();
 
+  scheduleHours = new Array<ScheduleHour>();
+
   userData = new User();
 
   //Permissions
@@ -64,6 +66,7 @@ export class EnterpriseComponent implements OnInit {
 
   ngOnInit() {
     this.getAll();
+    this.getScheduleHours();
   }
 
 
@@ -76,6 +79,15 @@ export class EnterpriseComponent implements OnInit {
   getAll() {
     this.enterpriseService.getAll().subscribe((response: Array<Enterprise>) => {
       this.enterprises = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getScheduleHours() {
+    this.enterpriseService.getScheduleHours().subscribe((response: Array<ScheduleHour>) => {
+      this.scheduleHours = response;
     },
       error => {
         console.log(JSON.stringify(error));
@@ -103,6 +115,7 @@ export class EnterpriseComponent implements OnInit {
         serviceTime: [this.enterprise.ServiceTime, Validators.required],
         numberAppointmentsAttendedByDay: [this.enterprise.NumberAppointmentsAttendedByDay, Validators.required],
         enterpriseDescription: [this.enterprise.EnterpriseDescription, Validators.required],
+        scheduleHourId: [this.enterprise.ScheduleHourId, Validators.required],
       });
 
       this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
@@ -205,6 +218,7 @@ export class EnterpriseComponent implements OnInit {
       ServiceTime: formValue.serviceTime,
       NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
       EnterpriseDescription: formValue.enterpriseDescription,
+      ScheduleHourId: formValue.scheduleHourId,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -232,7 +246,7 @@ export class EnterpriseComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 6000
+          timer: 10000
         });
       }
     },
@@ -280,6 +294,7 @@ export class EnterpriseComponent implements OnInit {
       ServiceTime: formValue.serviceTime,
       NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
       EnterpriseDescription: formValue.enterpriseDescription,
+      ScheduleHourId: formValue.scheduleHourId,
       CreatorUserId: this.enterprise.CreatorUserId,
       CreationTime: this.enterprise.CreationTime,
       LastModifierUserId: this.enterprise.LastModifierUserId,
@@ -308,7 +323,7 @@ export class EnterpriseComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 6000
+          timer: 10000
         });
       }
     },
@@ -380,6 +395,8 @@ export class EnterpriseComponent implements OnInit {
       serviceTime: [0, Validators.required],
       numberAppointmentsAttendedByDay: [0, Validators.required],
       enterpriseDescription: ['', Validators.required],
+      scheduleHourId: [0, Validators.required],
+
     });
   }
 
@@ -400,6 +417,7 @@ export class EnterpriseComponent implements OnInit {
       serviceTime: [0, Validators.required],
       numberAppointmentsAttendedByDay: [0, Validators.required],
       enterpriseDescription: ['', Validators.required],
+      scheduleHourId: [0, Validators.required],
     });
   }
 

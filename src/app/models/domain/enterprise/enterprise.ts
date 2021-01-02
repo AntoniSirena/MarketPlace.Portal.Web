@@ -21,6 +21,14 @@ export class Enterprise extends Audit {
     ServiceTime: number;
     NumberAppointmentsAttendedByDay: number;
     EnterpriseDescription: string;
+    ScheduleHourId: number;
+    ScheduleHourValue: number;
+}
+
+export class ScheduleHour {
+    Id: number;
+    Description: string;
+    Value: number;
 }
 
 export class _Enterprise {

@@ -20,6 +20,10 @@ export class EnterpriseService {
     return this.httpClient.get(this.coreURL + 'api/enterprise/GetAll');
   }
 
+  getScheduleHours(): Observable<object> {
+    return this.httpClient.get(this.coreURL + 'api/enterprise/GetScheduleHours');
+  }
+
   getById(id: number): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/enterprise/GetById?Id=${id}`);
   }

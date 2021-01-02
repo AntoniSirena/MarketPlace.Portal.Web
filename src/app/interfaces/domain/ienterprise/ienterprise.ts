@@ -21,4 +21,5 @@ export interface Ienterprise extends Iaudit{
     ServiceTime: number;
     NumberAppointmentsAttendedByDay: number;
     EnterpriseDescription: string;
+    ScheduleHourId: number;
 }

@@ -43,7 +43,8 @@
           <td>{{item.PhoneNumber}}</td>
           <td>{{item.ServiceTime}}&nbsp;minutos</td>
           <td class="right"> <button class="btn buttonCheckbox"
-              [ngStyle]="{'background-color': item.AvailableOnlineAppointment == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.AvailableOnlineAppointment == true ? 'sí' : 'No'}}
+              [ngStyle]="{'background-color': item.AvailableOnlineAppointment == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">{{item.AvailableOnlineAppointment
+              == true ? 'sí' : 'No'}}
             </button> </td>
           <td class="right" *ngIf="canDelete"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i
                 class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
@@ -114,7 +115,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="text" formControlName="enterpriseDescription" class="form-control" placeholder="¿A qué se dedica la empresa?">
+                  <input type="text" formControlName="enterpriseDescription" class="form-control"
+                    placeholder="¿A qué se dedica la empresa?">
                   <div *ngIf="!createForm.value.enterpriseDescription" class="required">*</div>
                 </div>
 
@@ -186,6 +188,17 @@
                   <input type="text" formControlName="workSchedule" class="form-control"
                     placeholder="Horaio de trabajo">
                   <div *ngIf="!createForm.value.workSchedule" class="required">*</div>
+                </div>
+
+                <label for="scheduleHourId">Hora de apertura</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                  <select formControlName="scheduleHourId" class="form-control">
+                    <option *ngFor="let item of scheduleHours" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!createForm.value.scheduleHourId" class="required">*</div>
                 </div>
 
                 <label for="serviceTime">Timpo de servicio en minutos</label>
@@ -296,7 +309,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-info"></i></span>
                   </div>
-                  <input type="text" formControlName="enterpriseDescription" class="form-control" placeholder="¿A qué se dedica la empresa?">
+                  <input type="text" formControlName="enterpriseDescription" class="form-control"
+                    placeholder="¿A qué se dedica la empresa?">
                   <div *ngIf="!editForm.value.enterpriseDescription" class="required">*</div>
                 </div>
 
@@ -369,6 +383,17 @@
                     placeholder="Horaio de trabajo">
                   <div *ngIf="!editForm.value.workSchedule" class="required">*</div>
                 </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                  <select formControlName="scheduleHourId" class="form-control">
+                    <option *ngFor="let item of scheduleHours" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!editForm.value.scheduleHourId" class="required">*</div>
+                </div>
+
 
                 <label for="serviceTime">Timpo de servicio en minutos</label>
                 <div class="input-group mb-3">
