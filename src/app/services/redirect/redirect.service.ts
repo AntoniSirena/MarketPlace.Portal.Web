@@ -136,7 +136,7 @@ export class RedirectService {
         });
       } else {
 
-        if (userName !== Users.Visitor) {
+        if (userName !== Users.Visitor && !window.location.hash.match('#/portada') && !window.location.hash.match('#/login')) {
           Swal.fire({
             icon: 'warning',
             title: 'Estimado usuario su sesión ha expirado',
@@ -162,6 +162,9 @@ export class RedirectService {
 
     this.router.navigate(['login']).then(() => {
       let userId = JSON.parse(localStorage.getItem('userId'));
+      localStorage.clear();
+      localStorage.setItem('canViewLoginPageDefault', 'true');
+
       this.loginSevice.logOut(userId).subscribe((response: any) => {
       },
         error => {

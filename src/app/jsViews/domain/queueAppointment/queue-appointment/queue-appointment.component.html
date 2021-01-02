@@ -67,11 +67,12 @@
         <table class="table table-hover table-bordered table-condensed">
             <thead>
                 <tr class="tabl_eHeader_Color">
-                    <th>Número</th>
+                    <th># Cita</th>
+                    <th># Posición en la fila</th>
+                    <th>Fecha</th>
                     <th>Enpresa</th>
                     <th>Cliente</th>
                     <th>Teléfono</th>
-                    <th>Fecha</th>
                     <th><span class="center">Estado</span></th>
                     <th><span class="center">Detalles</span></th>
                     <th></th>
@@ -81,10 +82,11 @@
                 <tr
                     *ngFor="let item of appointments | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
                     <td>{{item.Id}}</td>
+                    <td>{{item.AppointmentPositionNumber}}</td>
+                    <td>{{item.StartDate}}</td>
                     <td>{{item.EnterpriseName}}</td>
                     <td>{{item.UserName}}</td>
                     <td>{{item.PhoneNumber}}</td>
-                    <td>{{item.StartDate}}</td>
                     <td class="td_min"> <span class="{{item.StatusColour}} center bold"
                             style="color: rgb(61, 47, 47);">{{item.Status}}</span> </td>
                     <td class="center"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button>
@@ -233,6 +235,16 @@
             </div>
             <div class="col-md-8">
                 <span class="form-control bold" style="color: red;">{{appointmentDetail.StartDate}}</span>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="label"># Posición en la fila:</h5>
+            </div>
+            <div class="col-md-8">
+                <span class="form-control bold" style="color: red;">{{appointmentDetail.AppointmentPositionNumber}}</span>
             </div>
         </div>
 

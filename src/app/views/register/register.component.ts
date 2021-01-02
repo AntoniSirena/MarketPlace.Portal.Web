@@ -102,7 +102,7 @@ export class RegisterComponent {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 30000
         });
       }
 

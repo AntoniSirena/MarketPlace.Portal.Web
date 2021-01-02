@@ -11,5 +11,5 @@ export const Users = {
 
 export const PortadaUser = {
     UserName: 'visitador',
-    Pass: 'visitador123'
+    Pass: 'visitador123',
 }

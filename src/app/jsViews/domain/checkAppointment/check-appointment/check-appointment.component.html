@@ -26,7 +26,7 @@
         <br>
         <br>
         <div>
-            <h5>{{appointments.Message}}</h5>
+            <h5 class="bold" style="color: red;">{{appointments.Message}}</h5>
             <div class="card">
                 <div class="card-body appointment">
                     <div *ngFor="let item of appointments.AppointmentId">
@@ -164,6 +164,16 @@
             </div>
             <div class="col-md-8">
                 <span class="form-control bold" style="color: red;">{{appointmentDetail.StartDate}}</span>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="label"># Posición en la fila:</h5>
+            </div>
+            <div class="col-md-8">
+                <span class="form-control bold" style="color: red;">{{appointmentDetail.AppointmentPositionNumber}}</span>
             </div>
         </div>
 

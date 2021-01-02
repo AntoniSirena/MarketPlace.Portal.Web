@@ -1,5 +1,6 @@
 export class AppointmentDetail {
     Id: number;
+    AppointmentPositionNumber: number;
     EnterpriseImage: string;
     EnterpriseName: string;
     EnterprisePhoneNumber: string;
@@ -20,6 +21,7 @@ export class CheckAppointmentDetail{
     AppointmentId: Array<AppointmentId>;
     Message: string;
     Id: number;
+    AppointmentPositionNumber: number;
     EnterpriseImage: string;
     EnterpriseName: string;
     EnterprisePhoneNumber: string;
@@ -41,6 +43,7 @@ export class AppointmentId{
 
 export class Appointment{
     Id: number;
+    AppointmentPositionNumber: number;
     EnterpriseName: string;
     UserName: string;
     PhoneNumber: string;

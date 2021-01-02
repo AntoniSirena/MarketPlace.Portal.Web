@@ -158,7 +158,7 @@ export class QueueAppointmentComponent implements OnInit {
                 icon: 'warning',
                 title: response.Message,
                 showConfirmButton: true,
-                timer: 3000
+                timer: 10000
               });
             }
           },
@@ -198,7 +198,7 @@ export class QueueAppointmentComponent implements OnInit {
                 icon: 'warning',
                 title: response.Message,
                 showConfirmButton: true,
-                timer: 3000
+                timer: 10000
               });
             }
           },
@@ -238,7 +238,7 @@ export class QueueAppointmentComponent implements OnInit {
                 icon: 'warning',
                 title: response.Message,
                 showConfirmButton: true,
-                timer: 3000
+                timer: 10000
               });
             }
           },
