@@ -34,7 +34,7 @@ import { QueueAppointmentComponent } from './jsViews/domain/queueAppointment/que
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'portada',
     pathMatch: 'full',
   },
   {

@@ -23,6 +23,8 @@ export class Enterprise extends Audit {
     EnterpriseDescription: string;
     ScheduleHourId: number;
     ScheduleHourValue: number;
+    ScheduleHourCloseId: number;
+    ScheduleHourCloseValue: number;
 }
 
 export class ScheduleHour {

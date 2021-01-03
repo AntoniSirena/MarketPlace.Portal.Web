@@ -116,6 +116,7 @@ export class EnterpriseComponent implements OnInit {
         numberAppointmentsAttendedByDay: [this.enterprise.NumberAppointmentsAttendedByDay, Validators.required],
         enterpriseDescription: [this.enterprise.EnterpriseDescription, Validators.required],
         scheduleHourId: [this.enterprise.ScheduleHourId, Validators.required],
+        scheduleHourCloseId: [this.enterprise.ScheduleHourCloseId, Validators.required],
       });
 
       this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
@@ -219,6 +220,7 @@ export class EnterpriseComponent implements OnInit {
       NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
       EnterpriseDescription: formValue.enterpriseDescription,
       ScheduleHourId: formValue.scheduleHourId,
+      ScheduleHourCloseId: formValue.scheduleHourCloseId,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -295,6 +297,7 @@ export class EnterpriseComponent implements OnInit {
       NumberAppointmentsAttendedByDay: formValue.numberAppointmentsAttendedByDay,
       EnterpriseDescription: formValue.enterpriseDescription,
       ScheduleHourId: formValue.scheduleHourId,
+      ScheduleHourCloseId: formValue.scheduleHourCloseId,
       CreatorUserId: this.enterprise.CreatorUserId,
       CreationTime: this.enterprise.CreationTime,
       LastModifierUserId: this.enterprise.LastModifierUserId,
@@ -396,7 +399,7 @@ export class EnterpriseComponent implements OnInit {
       numberAppointmentsAttendedByDay: [0, Validators.required],
       enterpriseDescription: ['', Validators.required],
       scheduleHourId: [0, Validators.required],
-
+      scheduleHourCloseId: [0, Validators.required],
     });
   }
 
@@ -418,6 +421,7 @@ export class EnterpriseComponent implements OnInit {
       numberAppointmentsAttendedByDay: [0, Validators.required],
       enterpriseDescription: ['', Validators.required],
       scheduleHourId: [0, Validators.required],
+      scheduleHourCloseId: [0, Validators.required],
     });
   }
 

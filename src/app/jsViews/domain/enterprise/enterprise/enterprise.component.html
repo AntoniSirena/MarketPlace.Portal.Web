@@ -201,6 +201,17 @@
                   <div *ngIf="!createForm.value.scheduleHourId" class="required">*</div>
                 </div>
 
+                <label for="scheduleHourCloseId">Hora de cierre</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                  <select formControlName="scheduleHourCloseId" class="form-control">
+                    <option *ngFor="let item of scheduleHours" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!createForm.value.scheduleHourCloseId" class="required">*</div>
+                </div>
+
                 <label for="serviceTime">Timpo de servicio en minutos</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -384,6 +395,7 @@
                   <div *ngIf="!editForm.value.workSchedule" class="required">*</div>
                 </div>
 
+                <label for="scheduleHourCloseId">Hora de apertura</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
@@ -394,6 +406,16 @@
                   <div *ngIf="!editForm.value.scheduleHourId" class="required">*</div>
                 </div>
 
+                <label for="scheduleHourCloseId">Hora de cierre</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                  </div>
+                  <select formControlName="scheduleHourCloseId" class="form-control">
+                    <option *ngFor="let item of scheduleHours" [value]="item.Id">{{item.Description}}</option>
+                  </select>
+                  <div *ngIf="!editForm.value.scheduleHourCloseId" class="required">*</div>
+                </div>
 
                 <label for="serviceTime">Timpo de servicio en minutos</label>
                 <div class="input-group mb-3">

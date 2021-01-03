@@ -176,14 +176,16 @@ export class RedirectService {
 
 
   error500() {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Estimado usuario ha ocurrido un error interno',
-      showConfirmButton: false,
-      timer: 4000
-    }).then(() => {
-
-    });
+    if(!window.location.hash.match('#/portada') && !window.location.hash.match('#/login')){
+      Swal.fire({
+        icon: 'warning',
+        title: 'Estimado usuario ha ocurrido un error interno',
+        showConfirmButton: false,
+        timer: 4000
+      }).then(() => {
+  
+      });
+    }
   }
 
   error404() {
@@ -229,7 +231,7 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      setTimeout(function () { window.location.reload() }, 5000);
+      setTimeout(function () { window.location.reload() }, 1000);
     });
   }
 

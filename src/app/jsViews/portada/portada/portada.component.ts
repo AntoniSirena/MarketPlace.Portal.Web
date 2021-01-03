@@ -115,6 +115,11 @@ export class PortadaComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    if(localStorage.length <= 5 ){
+      this.redirectService.loginUserVisitador();
+    }
+
     this.loadingPortada();
     this.openDefaultMenu();
 
