@@ -133,7 +133,7 @@ export const routes: Routes = [
         //canActivate: [AuthGuard],
         component: PortadaComponent,
         data: {
-          title: 'Portada'
+          title: ''
         }
       },
       {

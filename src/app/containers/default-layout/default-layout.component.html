@@ -1,13 +1,9 @@
-<app-header
-  [navbarBrandRouterLink]="['/portada']"
-  [fixed]="true"
+
+<app-header [navbarBrandRouterLink]="['/portada']" [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/portada/SAGuerra_ParqueEcológico.jpg', width: 125, height: 52, alt: 'jssoluctech'}"
   [navbarBrandMinimized]="{src: 'assets/img/portada/SAGuerra_ParqueEcológico.jpg', width: 30, height: 30, alt: 'jssoluctech'}"
-  [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'"
-  [asideMenuToggler]="false"
-  [mobileAsideMenuToggler] = "false">
-  
+  [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'" [asideMenuToggler]="false" [mobileAsideMenuToggler]="false">
+
   <ul class="nav navbar-nav d-md-down-none">
     <!-- <li class="nav-item px-3">
       <a class="nav-link" href="#">Dashboard</a>
@@ -21,18 +17,21 @@
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
-      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i class="fa fa-user-circle style_NavButton"></i>Iniciar sesión</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-primary portadaLoginButton" (click)="goToLogin()"><i
+          class="fa fa-user-circle style_NavButton"></i>Iniciar sesión</button>
     </li>
 
     <li class="nav-item d-md-down-none"></li>
 
     <li class="nav-item d-md-down-none">
-      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i class="fa fa-user-circle style_NavButton"></i>Suscribirme</button>
+      <button *ngIf="isVisitorUser == true" class="btn btn-danger portadaRegisterButton" (click)="goToRegister()"><i
+          class="fa fa-user-circle style_NavButton"></i>Suscribirme</button>
     </li>
 
 
     <li class="nav-item d-md-down-none">
-      <button #btnLogOut *ngIf="isVisitorUser != true" class="btn btn-danger portadaLoginButton" (click)="goToLogOut()"><i class="fa fa-power-off style_NavButton"></i>Cerrar sesión</button>
+      <button #btnLogOut *ngIf="isVisitorUser != true" class="btn btn-danger portadaLoginButton"
+        (click)="goToLogOut()"><i class="fa fa-power-off style_NavButton"></i>Cerrar sesión</button>
     </li>
 
     <!-- 
@@ -42,12 +41,14 @@
     <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
     </li> -->
-    
+
     <li *ngIf="roleShortName != 'Visitador'" class="nav-item dropdown" dropdown placement="bottom right">
-      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <img src="data:image/png;base64,{{profile.User.Image}}" class="img-avatar" alt="{{profile.User.EmailAddress}}"/>
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+        dropdownToggle (click)="false">
+        <img src="data:image/png;base64,{{profile.User.Image}}" class="img-avatar"
+          alt="{{profile.User.EmailAddress}}" />
       </a>
-      
+
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
         <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
@@ -58,7 +59,7 @@
         <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a> -->
-        
+
         <!-- <div class="dropdown-header text-center"><strong>Settings</strong></div>
         <a class="dropdown-item" (click)="openProfileModal()"><i class="fa fa-user"></i> Perfil</a>
         <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
@@ -73,10 +74,11 @@
 
 
     <li *ngIf="roleShortName != 'Visitador'" class="nav-item dropdown" dropdown placement="bottom right">
-      <a class="nav-link" style="margin-right: 15px;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+      <a class="nav-link" style="margin-right: 15px;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+        aria-expanded="false" dropdownToggle (click)="false">
         <span class="btn btn-primary">Mi perfil</span>
       </a>
-      
+
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
         <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
@@ -87,7 +89,7 @@
         <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a> -->
-        
+
         <!-- <div class="dropdown-header text-center"><strong>Settings</strong></div>
         <a class="dropdown-item" (click)="openProfileModal()"><i class="fa fa-user"></i> Perfil</a>
         <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
@@ -99,13 +101,14 @@
 
       </div>
     </li>
-    
+
 
   </ul>
 </app-header>
 
 <div class="app-body">
-  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
+    (minimizedChange)="toggleMinimize($event)">
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
@@ -125,15 +128,15 @@
     </cui-breadcrumb>
     <!-- deprecation warning for 'app-breadcrumb' -->
     <!--<ol class="breadcrumb">-->
-      <!--<app-breadcrumb></app-breadcrumb>-->
-      <!--&lt;!&ndash; Breadcrumb Menu&ndash;&gt;-->
-      <!--<li class="breadcrumb-menu d-md-down-none">-->
-        <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
-          <!--<a class="btn" href="#"><i class="icon-speech"></i></a>-->
-          <!--<a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>-->
-          <!--<a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a> -->
-        <!--</div>-->
-      <!--</li>-->
+    <!--<app-breadcrumb></app-breadcrumb>-->
+    <!--&lt;!&ndash; Breadcrumb Menu&ndash;&gt;-->
+    <!--<li class="breadcrumb-menu d-md-down-none">-->
+    <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
+    <!--<a class="btn" href="#"><i class="icon-speech"></i></a>-->
+    <!--<a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>-->
+    <!--<a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a> -->
+    <!--</div>-->
+    <!--</li>-->
     <!--</ol>-->
     <div class="container-fluid">
       <router-outlet></router-outlet>
