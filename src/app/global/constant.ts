@@ -13,3 +13,4 @@ export const PortadaUser = {
     UserName: 'visitador',
     Pass: 'visitador123',
 }
+

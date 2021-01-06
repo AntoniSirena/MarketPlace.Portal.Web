@@ -11,6 +11,8 @@ import { Portada } from '../../../models/portada/portada';
 import { NoveltiesByType } from '../../../models/novelty/novelty';
 import { CommonService } from './../../../services/common/common.service';
 import { RedirectService } from './../../../services/redirect/redirect.service';
+import { environment } from '../../../environments/environment';
+import { SizeImageNovelty } from './../../../configurations/jsConfig';
 
 
 @Component({
@@ -73,6 +75,9 @@ export class PortadaComponent implements OnInit {
   @ViewChild('automaticPublicityModal') automaticPublicityModal: ElementRef;
   
 
+  coreURL = environment.coreURL;
+  img_Width = SizeImageNovelty.width;
+  img_height = SizeImageNovelty.height;
 
   automaticPublicityValue: any;
   automaticPublicityTime: number;
@@ -434,7 +439,7 @@ export class PortadaComponent implements OnInit {
     setTimeout(() => {
       this.getNoveltiesByType(type);
       this.spinnerService.hide();
-    }, 3000);
+    }, 1000);
 
   }
 
