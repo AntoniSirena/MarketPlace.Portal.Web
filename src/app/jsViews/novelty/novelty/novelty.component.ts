@@ -85,11 +85,11 @@ export class NoveltyComponent implements OnInit {
         noveltyTypeId: [`${this.novelty.NoveltyTypeId}`],
         img: [`${this.novelty.Img}`],
         imgPath: [`${this.novelty.ImgPath}`],
-        startDate: [`${this.novelty.StartDate}`],
-        endDate: [`${this.novelty.EndDate}`],
+        startDate: [this.novelty.StartDate],
+        endDate: [this.novelty.EndDate],
       });
 
-      this.modalService.open(editModal, { size: 'lg', backdrop: 'static' });
+      this.modalService.open(editModal, { size: 'lg', backdrop: 'static', scrollable: true });
 
     },
       error => {
@@ -122,13 +122,15 @@ export class NoveltyComponent implements OnInit {
 
   //open create modal
   openCreateModal(createModal) {
+    this.novelty.Img = '';
     this.setValueCreateFrom();
     this.getNoveltyTypes();
-    this.modalService.open(createModal, { size: 'lg', backdrop: 'static' });
+    this.modalService.open(createModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal
   openEditModal(editModal, id: number) {
+    this.novelty.Img = '';
     this.setValueEditFrom();
     this.getById(editModal, id);
     this.getNoveltyTypes();
@@ -155,6 +157,7 @@ export class NoveltyComponent implements OnInit {
 
   //create
   create(formValue: any) {
+    
     const novelty: INovelty = {
       Id: 0,
       Title: formValue.title,
@@ -193,7 +196,7 @@ export class NoveltyComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 10000
         });
       }
     },
@@ -205,6 +208,7 @@ export class NoveltyComponent implements OnInit {
 
   //edit
   edit(formValue: any) {
+
     const novelty: INovelty = {
       Id: this.novelty.Id,
       Title: formValue.title,
@@ -243,7 +247,7 @@ export class NoveltyComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 10000
         });
       }
     },

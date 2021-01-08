@@ -101,9 +101,18 @@
 
 .centerDivScroll{
     overflow-y:scroll;
-    height: 500px;
+    height: 700px;
     background-color: rgb(216, 235, 236);
 }
+
+.img{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.hr{
+    border-top: 2px solid;
+  }
 
 .marqueeStyle{
     font-size: 17px;
