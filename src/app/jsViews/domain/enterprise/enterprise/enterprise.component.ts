@@ -37,6 +37,7 @@ export class EnterpriseComponent implements OnInit {
   _currentPage: number = 1;
 
   inputFiles: any = '';
+  validateImg: boolean;
 
   enterprises = new Array<Enterprise>();
   enterprise = new Enterprise();
@@ -137,6 +138,7 @@ export class EnterpriseComponent implements OnInit {
     if (this.inputFiles !== '') {
       if (this.inputFiles.length > 0) {
         this.enterprise.Image = this.inputFiles[0].base64;
+        this.validateImg = true;
       }
     }
   }
