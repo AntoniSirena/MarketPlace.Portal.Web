@@ -22,6 +22,7 @@
             <th>Precio</th>
             <th>Categoría</th>
             <th>Subcategoría</th>
+            <th>Tipo de mercado</th>
             <th class="right" *ngIf="canDelete"></th>
             <th class="right" *ngIf="canCreate"><button type="button" class="btn btn-success"
                 (click)="openCreateModal(createModal)"><i class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
@@ -35,6 +36,7 @@
             <td>{{item.Price | currency}} &nbsp; <span class="bold">{{item.Currency}}</span></td>
             <td>{{item.Category}}</td>
             <td>{{item.SubCategory}}</td>
+            <td>{{item.MarketType}}</td>
             <td class="right" *ngIf="canDelete"> <button type="button" class="btn btn-danger" (click)="delete(item.Id)"><i
                   class="fa fa-remove"></i>&nbsp;Eliminar</button> </td>
             <td class="right" *ngIf="canEdit"><button type="button" class="btn btn-primary"
@@ -154,6 +156,15 @@
                     </div>
                   </div>
   
+                  <label for="phoneNumber" class="bold">Teléfono</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
+                    <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
+                  </div> 
+
                   <br>
                   <label for="ubication" class="bold">Ubicación</label>
                   <div class="input-group mb-3">
@@ -286,6 +297,15 @@
                           <div *ngIf="!editForm.value.subCategoryId" class="required">*</div>
                       </div>
                     </div>
+
+                    <label for="phoneNumber" class="bold">Teléfono</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i></i></span>
+                      </div>
+                      <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
+                      <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
+                    </div> 
 
                     <br>
                     <label for="ubication" class="bold">Ubicación</label>

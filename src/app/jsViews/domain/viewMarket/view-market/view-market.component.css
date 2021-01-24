@@ -1,0 +1,30 @@
+
+.article-tab{
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+}
+
+.centerDivScroll{
+    overflow-y:scroll;
+    height: 816px;
+    background-color: rgb(244, 247, 248);
+}
+
+.img{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.title{
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.btn_public{
+    margin-top: 8px; 
+    margin-bottom: 15px;
+    font-size: 20px;
+    width: 250px;
+    border-radius: 15px;
+}

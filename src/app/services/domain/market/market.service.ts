@@ -59,4 +59,8 @@ export class MarketService {
     return this.httpClient.get(this.coreURL + `api/market/GetSubCategories?categoryId=${categoryId}`);
   }
 
+  getArticles(marketTypeShortName: string, subCategoryId: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&subCategoryId=${subCategoryId}`);
+  }
+
 }

@@ -11,6 +11,7 @@ export interface Imarket extends Iaudit {
     CategoryId: number;
     SubCategoryId: number;
     Ubication: string;
+    PhoneNumber: string;
     Img: string;
     ImgPath: string;
     ContenTypeShort: string;

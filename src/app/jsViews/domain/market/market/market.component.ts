@@ -163,6 +163,7 @@ export class MarketComponent implements OnInit {
         categoryId: [this.market.CategoryId, Validators.required],
         subCategoryId: [this.market.SubCategoryId, Validators.required],
         ubication: [this.market.Ubication, Validators.required],
+        phoneNumber: [this.market.PhoneNumber, Validators.required],
       });
 
       this.getSubCategories_ByCategoryId(this.market.CategoryId);
@@ -201,6 +202,7 @@ export class MarketComponent implements OnInit {
       CategoryId: formValue.categoryId,
       SubCategoryId: formValue.subCategoryId,
       Ubication: formValue.ubication,
+      PhoneNumber: formValue.phoneNumber,
       Img: this.market.Img,
       ImgPath: null,
       ContenTypeShort: null,
@@ -256,6 +258,7 @@ export class MarketComponent implements OnInit {
       CategoryId: formValue.categoryId,
       SubCategoryId: formValue.subCategoryId,
       Ubication: formValue.ubication,
+      PhoneNumber: formValue.phoneNumber,
       Img: this.market.Img,
       ImgPath: this.market.ImgPath,
       ContenTypeShort: this.market.ContenTypeShort,
@@ -355,6 +358,7 @@ export class MarketComponent implements OnInit {
       categoryId: ['', Validators.required],
       subCategoryId: ['', Validators.required],
       ubication: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
     });
   }
 
@@ -369,6 +373,7 @@ export class MarketComponent implements OnInit {
       categoryId: ['', Validators.required],
       subCategoryId: ['', Validators.required],
       ubication: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
     });
   }
 

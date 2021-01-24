@@ -29,6 +29,7 @@ import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointme
 import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/check-appointment/check-appointment.component';
 import { QueueAppointmentComponent } from './jsViews/domain/queueAppointment/queue-appointment/queue-appointment.component';
 import { MarketComponent } from './jsViews/domain/market/market/market.component';
+import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/view-market.component';
 
 
 
@@ -282,6 +283,14 @@ export const routes: Routes = [
         }
       },
 
+      {
+        path: 'viewMarket',
+        canActivate: [AuthGuard],
+        component: ViewMarketComponent,
+        data: {
+          title: 'Realizas tus operaciones de mercado gratis'
+        }
+      },
 
     ]
   },

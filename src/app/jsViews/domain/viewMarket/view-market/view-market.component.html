@@ -1,0 +1,116 @@
+<div class="container">
+
+    <div class="card-header" style="background-color: rgb(226, 212, 9); margin-bottom: 8px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="center" style="color: rgb(224, 41, 41);">MERCADO LIBRE</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row center">
+        <div class="cold-md-6">
+            <button class="btn btn-primary btn_public" (click)="toPost()">Publicar artículo</button>
+        </div>
+    </div>
+
+    <ngb-tabset [destroyOnHide]="false">
+                  
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <div (click)="getArticles('Sell', 0)" class="article-tab">Comprar</div>
+          </ng-template>
+
+          <ng-template ngbTabContent>
+
+            <div class="centerDivScroll">
+                <div *ngFor="let item of articles">
+
+                    <div class="row">
+                        <div class="cold-md-7 img">
+                            <img src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        </div>
+
+                        <div class="cold-md-8 title">
+                            <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
+                            <h5> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
+                            <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
+                            <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
+                            <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
+                            <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+              <div (click)="getArticles('Rent', 0)" class="article-tab">Rentar</div>
+            </ng-template>
+  
+            <ng-template ngbTabContent>
+
+                <div class="centerDivScroll">
+                    <div *ngFor="let item of articles">
+    
+                        <div class="row">
+                            <div class="cold-md-7 img">
+                                <img src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+
+                            <div class="cold-md-8 title">
+                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
+                                <h5> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
+                                <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
+                                <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
+                                <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
+                                <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
+                            </div>
+                        </div>
+                        <hr>
+    
+                    </div>
+                </div>
+    
+  
+            </ng-template>
+        </ngb-tab>
+
+    </ngb-tabset>
+
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<ng-template #toPostModal let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <h5 class="bold">!Hola estimado usuario! Para poder publicar debes ingresar a su cuenta</h5>
+        <br>
+
+        <div class="row center">
+            <div class="cold-md-6">
+                <button class="btn btn-primary btn_public" (click)="goToRegisterPage()">Soy nuevo</button>
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="cold-md-6">
+                <button class="btn btn-success btn_public" (click)="goToLoginPage()">Ya tengo cuenta</button>
+            </div>
+        </div>
+  
+    </div>
+</ng-template>
