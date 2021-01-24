@@ -15,13 +15,49 @@
     </div>
 
     <ngb-tabset [destroyOnHide]="false">
-                  
+
         <ngb-tab>
           <ng-template ngbTabTitle>
-            <div (click)="getArticles('Sell', 0)" class="article-tab">Comprar</div>
+            <div (click)="getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
           </ng-template>
 
           <ng-template ngbTabContent>
+
+            <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
+               
+                <h5 class="bold" style="color: green; margin-bottom: 20px;">Busqueda avanzada</h5>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-2">
+                        <span class="bold">Categoría :</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                            placeholder="Categorías" formControlName="categoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="bold">subcategoría :</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                            placeholder="subCategorías" formControlName="subCategoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="cold-md-6">
+                        <button type="submit" style="margin-top: 15px;" class="btn btn-primary btn_search">Buscar</button>
+                    </div>
+                </div>
+                <br>
+                <h6 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado {{itemQuantity}}</h6>
+
+            </form>
 
             <div class="centerDivScroll">
                 <div *ngFor="let item of articles">
@@ -50,10 +86,46 @@
 
         <ngb-tab>
             <ng-template ngbTabTitle>
-              <div (click)="getArticles('Rent', 0)" class="article-tab">Rentar</div>
+              <div (click)="getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
             </ng-template>
   
             <ng-template ngbTabContent>
+
+                <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
+               
+                    <h5 class="bold" style="color: green; margin-bottom: 20px;">Busqueda avanzada</h5>
+    
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-2">
+                            <span class="bold">Categoría :</span>
+                        </div>
+                        <div class="col-md-4">
+                            <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                                placeholder="Categorías" formControlName="categoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                            </ng-select>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="bold">subcategoría :</span>
+                        </div>
+                        <div class="col-md-4">
+                            <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                                placeholder="subCategorías" formControlName="subCategoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                            </ng-select>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="cold-md-6">
+                            <button type="submit" style="margin-top: 15px;" class="btn btn-primary btn_search">Buscar</button>
+                        </div>
+                    </div>
+                    <br>
+                    <h6 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado {{itemQuantity}}</h6>
+    
+                </form>
 
                 <div class="centerDivScroll">
                     <div *ngFor="let item of articles">
