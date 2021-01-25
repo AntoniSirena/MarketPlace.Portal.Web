@@ -61,9 +61,9 @@ export class MarketComponent implements OnInit {
     private baseService: BaseService,) {
     //Load permissions
     this.userData = this.baseService.getUserData();
-    this.canCreate = this.userData.CanCreateEnterprise;
-    this.canEdit = this.userData.CanEditEnterprise;
-    this.canDelete = this.userData.CanDeleteEnterprise;
+    this.canCreate = this.userData.CanCreate;
+    this.canEdit = this.userData.CanEdit;
+    this.canDelete = this.userData.CanDelete;
   }
 
   ngOnInit(): void {
