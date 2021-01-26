@@ -99,7 +99,7 @@
                       <span class="input-group-text"><i></i></span>
                     </div>
                     <input type="number" formControlName="price" class="form-control" placeholder="Precio">
-                    <div *ngIf="!createForm.value.price" class="required">*</div>
+                    <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
                   </div> 
 
                   <label for="currencyId" class="bold">Moneda</label>
@@ -241,7 +241,7 @@
                         <span class="input-group-text"><i></i></span>
                       </div>
                       <input type="number" formControlName="price" class="form-control" placeholder="Precio">
-                      <div *ngIf="!editForm.value.price" class="required">*</div>
+                      <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
                     </div> 
   
                     <label for="currencyId" class="bold">Moneda</label>

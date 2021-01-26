@@ -69,7 +69,7 @@
 
                         <div class="cold-md-8 title">
                             <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
-                            <h5> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
+                            <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
                             <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
                             <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
                             <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
@@ -137,7 +137,7 @@
 
                             <div class="cold-md-8 title">
                                 <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
-                                <h5> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
+                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
                                 <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
                                 <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
                                 <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>

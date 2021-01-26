@@ -156,7 +156,7 @@ export class MarketComponent implements OnInit {
       //llenando el modal
       this.editForm = this.form.group({
         title: [this.market.Title, Validators.required],
-        price: [this.market.Price, Validators.required],
+        price: [this.market.Price],
         currencyId: [this.market.CurrencyId, Validators.required],
         marketTypeId: [this.market.MarketTypeId, Validators.required],
         conditionId: [this.market.ConditionId, Validators.required],
@@ -351,7 +351,7 @@ export class MarketComponent implements OnInit {
   initCreateFrom() {
     this.createForm = this.form.group({
       title: ['', Validators.required],
-      price: ['', Validators.required],
+      price: [0],
       currencyId: ['', Validators.required],
       marketTypeId: ['', Validators.required],
       conditionId: ['', Validators.required],
@@ -366,7 +366,7 @@ export class MarketComponent implements OnInit {
   initEditFrom() {
     this.editForm = this.form.group({
       title: ['', Validators.required],
-      price: ['', Validators.required],
+      price: [0],
       currencyId: ['', Validators.required],
       marketTypeId: ['', Validators.required],
       conditionId: ['', Validators.required],
