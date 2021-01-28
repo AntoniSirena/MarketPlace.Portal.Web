@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import $ from 'jquery';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MarketService } from './../../../../services/domain/market/market.service';
@@ -47,6 +48,7 @@ export class MarketComponent implements OnInit {
   userData = new User();
 
   inputFiles: any = '';
+  inputFilesMultiple = [];
   validateImg: boolean;
 
   //Permissions
@@ -77,7 +79,7 @@ export class MarketComponent implements OnInit {
 
   //Se ejecuta después que el DOM finaliza un operación
   ngAfterViewChecked() {
-    this.setImg();
+    this.setImg();  
   }
 
   //upload file
@@ -92,6 +94,10 @@ export class MarketComponent implements OnInit {
         this.validateImg = true;
       }
     }
+  }
+
+  removeImg(index: number){
+    this.inputFilesMultiple.splice(index, 1);
   }
 
   getCurrencies() {
@@ -218,7 +224,7 @@ export class MarketComponent implements OnInit {
       IsDeleted: false
     };
 
-    this.marketService.create(data).subscribe((response: Iresponse) => {
+    this.marketService.create(data, this.inputFilesMultiple).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -229,6 +235,8 @@ export class MarketComponent implements OnInit {
         }).then(() => {
           this.getAll();
           this.modalService.dismissAll();
+          this.market.Img = '';
+          this.inputFilesMultiple = [];
         });
       } else {
         Swal.fire({
@@ -286,6 +294,8 @@ export class MarketComponent implements OnInit {
         }).then(() => {
           this.getAll();
           this.modalService.dismissAll();
+          this.market.Img = '';
+          this.inputFilesMultiple = [];
         });
       } else {
         Swal.fire({
@@ -376,6 +386,5 @@ export class MarketComponent implements OnInit {
       phoneNumber: ['', Validators.required],
     });
   }
-
 
 }

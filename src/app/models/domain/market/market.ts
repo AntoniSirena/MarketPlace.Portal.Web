@@ -64,3 +64,7 @@ export class Article {
     PhoneNumber: string;
     CreationDate: string;
 }
+
+export class ImgDetail {
+    Id: number;
+}

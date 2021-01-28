@@ -1,10 +1,15 @@
 
 export const SizeImageNovelty ={
-    width: 280,
-    height: 180,
+    width: 240,
+    height: 140,
 }
 
 export const SizeImageArticle ={
     width: 240,
-    height: 140,
+    height: 250,
+}
+
+export const SizeImageDetailArticle ={
+    width: 300,
+    height: 375,
 }

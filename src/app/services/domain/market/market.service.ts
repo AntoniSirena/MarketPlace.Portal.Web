@@ -24,8 +24,9 @@ export class MarketService {
     return this.httpClient.get(this.coreURL + `api/market/GetById?Id=${id}`);
   }
 
-  create(request: Imarket) {
-    let data = JSON.stringify(request);
+  create(request: Imarket, imgDetails: any) {
+    let input = {Market: request, ImgDetails: imgDetails}
+    let data = JSON.stringify(input);
     return this.httpClient.post(`${this.coreURL}api/market/create`, data, { headers: this.headers });
   }
 
@@ -61,6 +62,10 @@ export class MarketService {
 
   getArticles(marketTypeShortName: string, categoryId: number, subCategoryId: number): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&categoryId=${categoryId}&subCategoryId=${subCategoryId}`);
+  }
+
+  getImgDetailByArticleId(articleId: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/market/GetImgDetailByArticleId?articleId=${articleId}`);
   }
 
 }

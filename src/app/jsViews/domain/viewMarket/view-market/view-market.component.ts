@@ -4,12 +4,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
-import { Article } from '../../../../models/domain/market/market';
+import { Article, ImgDetail } from '../../../../models/domain/market/market';
 import { MarketService } from '../../../../services/domain/market/market.service';
 import { Router } from '@angular/router';
 import { User } from '../../../../models/profile/profile';
 import { BaseService } from '../../../../services/base/base.service';
 import { Category, SubCategory } from '../../../../models/domain/market/market';
+import { SizeImageDetailArticle } from './../../../../configurations/jsConfig';
 
 
 @Component({
@@ -33,16 +34,22 @@ import { Category, SubCategory } from '../../../../models/domain/market/market';
 export class ViewMarketComponent implements OnInit {
 
   @ViewChild('toPostModal') toPostModal: ElementRef;
+  @ViewChild('imgDetailModal') imgDetailModal: ElementRef;
+
 
   filterSellForm: FormGroup;
   filterRentForm: FormGroup;
 
   articles = new Array<Article>();
   itemQuantity: number;
+  imgDetails = new Array<ImgDetail>();
 
   coreURL = environment.coreURL;
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
+
+  imgDetail_Width = SizeImageDetailArticle.width;
+  imgDetail_height = SizeImageDetailArticle.height;
 
   userData = new User();
 
@@ -71,6 +78,29 @@ export class ViewMarketComponent implements OnInit {
     this.marketService.getArticles(marketType, categoryId, subCategoryId).subscribe((response: Array<Article>) => {
       this.articles = response;
       this.itemQuantity = this.articles.length;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getImgDetailByArticleId(articleId: number) {
+    this.marketService.getImgDetailByArticleId(articleId).subscribe((response: Array<ImgDetail>) => {
+      this.imgDetails = response;
+
+      if(this.imgDetails.length > 0){
+        this.modalService.open(this.imgDetailModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+      }
+
+      if(this.imgDetails.length === 0){
+        Swal.fire({
+          icon: 'warning',
+          title: "Este artículo no tiene detalles de imagen",
+          showConfirmButton: true,
+          timer: 10000
+        });
+      }
+
     },
       error => {
         console.log(JSON.stringify(error));
