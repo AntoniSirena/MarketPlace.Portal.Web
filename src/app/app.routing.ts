@@ -36,7 +36,7 @@ import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/vie
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'portada',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {

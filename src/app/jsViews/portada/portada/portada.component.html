@@ -121,15 +121,6 @@ type="timer"
                   <a class="dropdown-item" (click)="openNurseryModal('Nursery_Directory')">Viveros</a>
                 </div>
               </li>
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <span style="font-weight: bold; color: white;">TURISMO INTERNO</span>
-                </a>
-                <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
-                </div>
-              </li>
               
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
@@ -189,12 +180,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="right noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -214,12 +205,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="right noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -239,12 +230,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="center noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -264,12 +255,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="right noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -289,12 +280,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -314,12 +305,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="center noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -339,12 +330,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="center noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -364,12 +355,12 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
-                          <p class="center noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
@@ -389,13 +380,13 @@ type="timer"
                       <div class="centerDivScroll">
                         <div *ngFor="let item of novelties" class="novelty">
                           <h4 class="noveltyText">{{item.Title}}</h4>
-                          <div class="col-md-4 img">
+                          <div class="img">
                             <img src="{{coreURL}}api/portada/GetImageByNoveltyId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                           </div>
                           <p class="justify noveltyText" [innerHTML]="item.Description">
                           </p>
                           
-                          <p class="right noveltyText" style="font-weight: bold;">
+                          <p class="right noveltyText bold">
                             Publicada el : {{item.StartDate}}
                           </p>
                           <hr class="hr">
