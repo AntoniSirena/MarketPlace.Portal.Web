@@ -75,7 +75,7 @@
           <div class="form-group">
             <div class="form-group">
               <input fileToBase64 type="file" [(files)]="inputFilesMultiple" (filesChange)="uploadFile($event)"
-                multiple="true">
+                multiple="" accept='image/*'>
             </div>
           </div>
 
@@ -86,6 +86,7 @@
               <a>
                 <img src="{{item.base64}}" style="width: 200px; height: 230px;">
               </a>
+              <h4 class="bold" style="color: red;">{{i + 1}}</h4>
   
             </div>
           </div>
