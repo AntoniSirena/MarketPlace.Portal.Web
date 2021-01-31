@@ -79,7 +79,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 //Componets
 import { RequestInterceptorService } from '../app/services/requestInterceptor/request-interceptor.service';
 import { ProfileComponent } from './jsViews/profile/profile/profile.component';
-import { PortadaComponent } from './jsViews/portada/portada/portada.component';
 import { UserComponent } from './jsViews/user/user/user.component';
 import { UserRoleComponent } from './jsViews/userRole/user-role/user-role.component';
 import { RoleComponent } from './jsViews/role/role/role.component';
@@ -99,7 +98,7 @@ import { ScheduleAppointmentComponent } from './jsViews/domain/scheduleAppointme
 import { CheckAppointmentComponent } from './jsViews/domain/checkAppointment/check-appointment/check-appointment.component';
 import { QueueAppointmentComponent } from './jsViews/domain/queueAppointment/queue-appointment/queue-appointment.component';
 import { MarketComponent } from './jsViews/domain/market/market/market.component';
-import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/view-market.component';
+import { PortadaModule } from './jsViews/portada/portada/portada-module/portada.module';
 
 
 
@@ -129,6 +128,7 @@ import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/vie
     NgMarqueeModule,
     NgxSpinnerModule,
     NgSelectModule,
+    PortadaModule,
 
   ],
   declarations: [
@@ -139,7 +139,6 @@ import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/vie
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    PortadaComponent,
     UserComponent,
     UserRoleComponent,
     RoleComponent,
@@ -159,7 +158,6 @@ import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/vie
     CheckAppointmentComponent,
     QueueAppointmentComponent,
     MarketComponent,
-    ViewMarketComponent,
 
   ],
   providers: [

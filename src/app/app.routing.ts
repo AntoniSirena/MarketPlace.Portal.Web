@@ -36,7 +36,7 @@ import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/vie
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'portada',
     pathMatch: 'full',
   },
   {
@@ -132,11 +132,7 @@ export const routes: Routes = [
       },
       {
         path: 'portada',
-        //canActivate: [AuthGuard],
-        component: PortadaComponent,
-        data: {
-          title: ''
-        }
+        loadChildren: () => import('./jsViews/portada/portada/portada-module/portada.module').then(m => m.PortadaModule)
       },
       {
         path: 'pre-portada',

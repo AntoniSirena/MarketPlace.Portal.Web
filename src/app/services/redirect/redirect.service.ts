@@ -231,7 +231,7 @@ export class RedirectService {
 
   welcomeToSystem() {
     this.router.navigate(['portada']).then(() => {
-      setTimeout(function () { window.location.reload() }, 1000);
+      setTimeout(function () { window.location.reload() }, 100);
     });
   }
 
