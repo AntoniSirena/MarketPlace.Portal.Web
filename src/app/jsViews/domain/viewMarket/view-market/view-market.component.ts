@@ -73,7 +73,6 @@ export class ViewMarketComponent implements OnInit {
     this.getCategories();
   }
 
-
   getArticles(marketType, categoryId, subCategoryId) {
     this.marketService.getArticles(marketType, categoryId, subCategoryId).subscribe((response: Array<Article>) => {
       this.articles = response;
@@ -88,11 +87,11 @@ export class ViewMarketComponent implements OnInit {
     this.marketService.getImgDetailByArticleId(articleId).subscribe((response: Array<ImgDetail>) => {
       this.imgDetails = response;
 
-      if(this.imgDetails.length > 0){
+      if (this.imgDetails.length > 0) {
         this.modalService.open(this.imgDetailModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
       }
 
-      if(this.imgDetails.length === 0){
+      if (this.imgDetails.length === 0) {
         Swal.fire({
           icon: 'warning',
           title: "Este artículo no tiene detalles de imagen",

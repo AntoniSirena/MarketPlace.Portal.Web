@@ -17,127 +17,67 @@
     <ngb-tabset [destroyOnHide]="false">
 
         <ngb-tab>
-          <ng-template ngbTabTitle>
-            <div (click)="getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
-          </ng-template>
-
-          <ng-template ngbTabContent>
-
-            <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
-               
-                <h5 class="bold" style="color: green; margin-bottom: 20px;">Busqueda avanzada</h5>
-
-                <div class="row" style="margin-bottom: 10px;">
-                    <div class="col-md-2">
-                        <span class="bold">Categoría :</span>
-                    </div>
-                    <div class="col-md-4">
-                        <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Categorías" formControlName="categoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
-                        </ng-select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <span class="bold">subcategoría :</span>
-                    </div>
-                    <div class="col-md-4">
-                        <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="subCategorías" formControlName="subCategoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
-                        </ng-select>
-                    </div>
-                </div>
-
-                <div class="row center">
-                    <div class="cold-md-6">
-                        <button type="submit" style="margin-top: 15px;" class="btn btn-primary btn_search">Buscar</button>
-                    </div>
-                </div>
-                <br>
-                <h5 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado {{itemQuantity}}</h5>
-
-            </form>
-
-            <div class="centerDivScroll">
-                <div *ngFor="let item of articles">
-
-                    <div class="row" (click)="getImgDetailByArticleId(item.Id)">
-                        <div class="cold-md-7 img">
-                            <img src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                        </div>
-
-                        <div class="cold-md-8 title">
-                            <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
-                            <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
-                            <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
-                            <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
-                            <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
-                            <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
-                        </div>
-                    </div>
-                    <hr>
-
-                </div>
-            </div>
-
-          </ng-template>
-        </ngb-tab>
-
-        <ngb-tab>
             <ng-template ngbTabTitle>
-              <div (click)="getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
+                <div (click)="getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
             </ng-template>
-  
+
             <ng-template ngbTabContent>
 
-                <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
-               
+                <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
+
                     <h5 class="bold" style="color: green; margin-bottom: 20px;">Busqueda avanzada</h5>
-    
+
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-2">
                             <span class="bold">Categoría :</span>
                         </div>
                         <div class="col-md-4">
                             <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                                placeholder="Categorías" formControlName="categoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                                placeholder="Categorías" formControlName="categoryId"
+                                (change)="getSubCategories_ByCategoryId($event.Id)">
                             </ng-select>
                         </div>
                     </div>
-    
+
                     <div class="row">
                         <div class="col-md-2">
                             <span class="bold">subcategoría :</span>
                         </div>
                         <div class="col-md-4">
-                            <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                                placeholder="subCategorías" formControlName="subCategoryId" (change)="getSubCategories_ByCategoryId($event.Id)">
+                            <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                (change)="getSubCategories_ByCategoryId($event.Id)">
                             </ng-select>
                         </div>
                     </div>
-    
+
                     <div class="row center">
                         <div class="cold-md-6">
-                            <button type="submit" style="margin-top: 15px;" class="btn btn-primary btn_search">Buscar</button>
+                            <button type="submit" style="margin-top: 15px;"
+                                class="btn btn-primary btn_search">Buscar</button>
                         </div>
                     </div>
                     <br>
-                    <h5 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado {{itemQuantity}}</h5>
-    
+                    <h5 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado
+                        {{itemQuantity}}</h5>
+
                 </form>
 
                 <div class="centerDivScroll">
                     <div *ngFor="let item of articles">
-    
+
                         <div class="row" (click)="getImgDetailByArticleId(item.Id)">
                             <div class="cold-md-7 img">
-                                <img src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                                <img id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
 
                             <div class="cold-md-8 title">
-                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}</h4>
-                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span style="color: green;">{{item.Price | currency}}</span> &nbsp; <span style="color: red;">{{item.CurrencyCode}}</span></h5>
+                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}
+                                </h4>
+                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span
+                                        style="color: green;">{{item.Price | currency}}</span> &nbsp; <span
+                                        style="color: red;">{{item.CurrencyCode}}</span></h5>
                                 <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
                                 <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
                                 <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
@@ -145,11 +85,87 @@
                             </div>
                         </div>
                         <hr>
-    
+
                     </div>
                 </div>
-    
-  
+
+            </ng-template>
+        </ngb-tab>
+
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div (click)="getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
+            </ng-template>
+
+            <ng-template ngbTabContent>
+
+                <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
+
+                    <h5 class="bold" style="color: green; margin-bottom: 20px;">Busqueda avanzada</h5>
+
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-2">
+                            <span class="bold">Categoría :</span>
+                        </div>
+                        <div class="col-md-4">
+                            <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                                placeholder="Categorías" formControlName="categoryId"
+                                (change)="getSubCategories_ByCategoryId($event.Id)">
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="bold">subcategoría :</span>
+                        </div>
+                        <div class="col-md-4">
+                            <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                (change)="getSubCategories_ByCategoryId($event.Id)">
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="row center">
+                        <div class="cold-md-6">
+                            <button type="submit" style="margin-top: 15px;"
+                                class="btn btn-primary btn_search">Buscar</button>
+                        </div>
+                    </div>
+                    <br>
+                    <h5 style="color: red; margin-bottom: 5px;" class="bold center">Cantidad de artículos encontrado
+                        {{itemQuantity}}</h5>
+
+                </form>
+
+                <div class="centerDivScroll">
+                    <div *ngFor="let item of articles">
+
+                        <div class="row" (click)="getImgDetailByArticleId(item.Id)">
+                            <div class="cold-md-7 img">
+                                <img
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+
+                            <div class="cold-md-8 title">
+                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}
+                                </h4>
+                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span
+                                        style="color: green;">{{item.Price | currency}}</span> &nbsp; <span
+                                        style="color: red;">{{item.CurrencyCode}}</span></h5>
+                                <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
+                                <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
+                                <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
+                                <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
+                            </div>
+                        </div>
+                        <hr>
+
+                    </div>
+                </div>
+
+
             </ng-template>
         </ngb-tab>
 
@@ -163,9 +179,9 @@
 
 <ng-template #toPostModal let-modal>
     <div class="modal-header">
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-      </button>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
 
@@ -183,23 +199,24 @@
                 <button class="btn btn-success btn_public" (click)="goToLoginPage()">Ya tengo cuenta</button>
             </div>
         </div>
-  
+
     </div>
 </ng-template>
 
 
 <ng-template #imgDetailModal let-modal>
     <div class="modal-header">
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-      </button>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
 
         <div class="center" *ngFor="let item of imgDetails; let i = index" [attr.data-index]="i">
             <h2 class="bold" style="color: red;">{{i + 1}}</h2>
             <div style="margin-bottom: 27px;">
-                <img src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
+                <img
+                    src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
             </div>
         </div>
 
