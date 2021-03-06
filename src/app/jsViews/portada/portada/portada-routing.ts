@@ -9,7 +9,7 @@ const routes: Routes = [
         path: '',
         component: PortadaComponent,
         data: {
-            title: 'Portada'
+            title: 'Whatsapp: 829-909-3042, Correo: jssoluctech@gmail.com, Instagram: jssoluctech'
         }
     }
 ]

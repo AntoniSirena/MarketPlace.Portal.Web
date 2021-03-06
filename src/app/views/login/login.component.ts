@@ -164,7 +164,7 @@ export class LoginComponent implements OnInit {
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
-          timer: 4000
+          timer: 8000
         }).then(() => {
           this.modalService.dismissAll();
         });
@@ -173,7 +173,7 @@ export class LoginComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 4000
+          timer: 10000
         });
       }
     },
