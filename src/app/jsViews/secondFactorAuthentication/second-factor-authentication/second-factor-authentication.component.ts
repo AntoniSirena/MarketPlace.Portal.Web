@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
 import { RedirectService } from '../../../services/redirect/redirect.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-second-factor-authentication',
@@ -12,10 +13,14 @@ import { RedirectService } from '../../../services/redirect/redirect.service';
 export class SecondFactorAuthenticationComponent implements OnInit {
 
 
+  @ViewChild('confirminModal') confirminModal: ElementRef;
+
   constructor(
     private redirectService: RedirectService,
     private form: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private routerService: Router,
   ) { }
 
   validate2FAForm: FormGroup;
@@ -25,11 +30,20 @@ export class SecondFactorAuthenticationComponent implements OnInit {
   ngOnInit(): void {
     this.setValueValidate2FAForm();
     this.token = this.activatedRoute.snapshot.paramMap.get('token');
-    console.log(this.token)
+
+    setTimeout(() => {
+      this.modalService.open(this.confirminModal, { size: 'lg', scrollable: true, backdrop: 'static' });
+    }, 300);
+
   }
 
+  goToBack() {
+    this.modalService.dismissAll();
+    this.routerService.navigate(['login'])
+  }
 
   submit(form: any) {
+
     const request: Ilogin = {
       UserName: '',
       Password: '',

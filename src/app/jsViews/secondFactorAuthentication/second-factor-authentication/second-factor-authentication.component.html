@@ -1,54 +1,45 @@
+<ng-template #confirminModal let-modal class="modal-dialog">
+  <div class="modal-header">
+    <h3>Confirmando si eres tú</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); goToBack()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
 
-<div class="container">
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="modal-body">
-
-        <form [formGroup]="validate2FAForm" (submit)="submit(validate2FAForm.value)">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-8">
-                <div class="card">
-
-                    <div class="card-header">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <h4 class="center header">Favor ingrese el código de seguridad que ha recibido en su teléfono movil ó correo electrónico</h4>
-                          </div>
-                        </div>
-                    </div>
-
-                  <div class="card-body">
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="icon-lock"></i></span>
-                            </div>
-                            <input type="text" formControlName="securityCode" class="form-control" placeholder="Código de seguridad">
-                            <div *ngIf="!validate2FAForm.value.securityCode" class="required">*</div>
-                        </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <!--/.col-->
+    <form [formGroup]="validate2FAForm" (submit)="submit(validate2FAForm.value)">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="center">Favor ingrese el código de seguridad que ha recibido en su teléfono movil
+                o correo electrónico</h4>
             </div>
-            <!--/.row-->
-            <div class="row">
-              <div class="col-sm-8">
-                <button type="submit" class="btn btn-primary buttonConfirm" [disabled]="validate2FAForm.invalid">Confirmar</button>
-              </div>
-            </div>
-            <br>
-            
           </div>
-        </form>
-    
-    </div>
+        </div>
 
+        <div class="card-body">
 
-</div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="icon-lock"></i></span>
+            </div>
+            <input type="text" formControlName="securityCode" class="form-control" placeholder="Código de seguridad">
+            <div *ngIf="!validate2FAForm.value.securityCode" class="required">*</div>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary buttonConfirm"
+              [disabled]="validate2FAForm.invalid">Confirmar acceso</button>
+          </div>
+          <br>
+          <div>
+            <button type="button" class="btn btn-success buttonConfirm" (click)="goToBack()">Volver atrás</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</ng-template>
