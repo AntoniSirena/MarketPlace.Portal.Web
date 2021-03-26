@@ -6,6 +6,7 @@ import { Profile, _Profile } from '../../models/profile/profile';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
 import { Role, Users, PortadaUser } from './../../global/constant';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class RedirectService {
   constructor(private router: Router,
     private loginSevice: LoginService,
     private loginService: LoginService,
+    private modalService: NgbModal,
   ) {
 
   }
@@ -230,6 +232,7 @@ export class RedirectService {
   }
 
   welcomeToSystem() {
+    this.modalService.dismissAll();
     this.router.navigate(['portada']).then(() => {
       setTimeout(function () { window.location.reload() }, 100);
     });

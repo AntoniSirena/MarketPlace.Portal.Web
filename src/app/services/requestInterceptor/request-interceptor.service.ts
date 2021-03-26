@@ -39,11 +39,12 @@ export class RequestInterceptorService implements HttpInterceptor {
     if (req.url.match("login")) {
     }
     else if (req.url.match("file/UploadFile")) {
-      headers = headers.append('Authorization', `${this.token}`);
+      
     } else {
-      headers = headers.append('Authorization', `${this.token}`);
+      headers = headers.append('content-type', 'application/json');
     }
-    headers = headers.append('content-type', 'application/json');
+
+    headers = headers.append('Authorization', `${this.token}`);
     headers = headers.append('Access-Control-Allow-Origin', '*');
 
 
