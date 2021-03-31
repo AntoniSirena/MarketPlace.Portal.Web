@@ -112,6 +112,9 @@ export class RegisterComponent {
       });
   }
 
+  goToBack(){
+    this.router.navigate(['/login']);
+  }
 
   validateInput(email: string, password: string): boolean {
 

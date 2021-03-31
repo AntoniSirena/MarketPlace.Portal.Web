@@ -35,11 +35,8 @@ export class RequestInterceptorService implements HttpInterceptor {
 
     let headers = new HttpHeaders();
 
+    if (req.url.match("file/UploadFile")) {
 
-    if (req.url.match("login")) {
-    }
-    else if (req.url.match("file/UploadFile")) {
-      
     } else {
       headers = headers.append('content-type', 'application/json');
     }

@@ -53,6 +53,11 @@ export class ViewMarketComponent implements OnInit {
 
   userData = new User();
 
+  timerInputStr: any = 0;
+
+  inputStr: string;
+  recordResultMessage: string;
+  
   categories = new Array<Category>();
   subCategories = new Array<SubCategory>();
 
@@ -73,15 +78,52 @@ export class ViewMarketComponent implements OnInit {
     this.getCategories();
   }
 
-  getArticles(marketType, categoryId, subCategoryId) {
+  getArticles(marketType: string, categoryId: number, subCategoryId: number) {
+    this.inputStr = '';
     this.marketService.getArticles(marketType, categoryId, subCategoryId).subscribe((response: Array<Article>) => {
       this.articles = response;
       this.itemQuantity = this.articles.length;
+
+      if(this.articles.length === 1){
+        this.recordResultMessage ='registro encontrado'
+      }
+
+      if(this.articles.length > 1){
+        this.recordResultMessage ='registros encontrados'
+      }
+
     },
       error => {
         console.log(JSON.stringify(error));
       });
   }
+
+  getArticlesByInputStr(marketType: string, inputStr: string) {
+    this.marketService.getArticlesByInputStr(marketType, inputStr).subscribe((response: Array<Article>) => {
+      this.articles = response;
+      this.itemQuantity = this.articles.length;
+
+      if(this.articles.length === 1){
+        this.recordResultMessage ='registro encontrado'
+      }
+
+      if(this.articles.length > 1){
+        this.recordResultMessage ='registros encontrados'
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getArticlesByInputStrByTime(marketType: string, inputStr: string) {
+    clearTimeout(this.timerInputStr);
+    this.timerInputStr = setTimeout(() => {
+      this.getArticlesByInputStr(marketType, inputStr);
+    }, 1000);
+  }
+
 
   getImgDetailByArticleId(articleId: number) {
     this.marketService.getImgDetailByArticleId(articleId).subscribe((response: Array<ImgDetail>) => {
