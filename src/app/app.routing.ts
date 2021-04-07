@@ -32,7 +32,6 @@ import { MarketComponent } from './jsViews/domain/market/market/market.component
 import { ViewMarketComponent } from './jsViews/domain/viewMarket/view-market/view-market.component';
 
 
-
 export const routes: Routes = [
   {
     path: '',

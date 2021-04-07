@@ -42,13 +42,15 @@ export class DefaultLayoutComponent implements OnInit {
   ngOnInit() {
     this.getProfile();
     this.userData = this.baseService.getUserData();
+
+    if(!this.userData){
+      this.goToLogOut();
+      return;
+    }
+
     this.roleShortName = this.userData.RoleShortName;
     this.isVisitorUser = this.userData.IsVisitorUser;
     this.navItems = this.userData.MenuTemplate;
-  }
-
-  logout() {
-    this.redirectService.logout();
   }
 
   //Get profile

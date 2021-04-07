@@ -123,6 +123,7 @@ export class PortadaComponent implements OnInit {
 
     if(localStorage.length <= 5 ){
       this.redirectService.loginUserVisitador();
+      return;
     }
 
     this.loadingPortada();

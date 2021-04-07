@@ -84,7 +84,7 @@ export class ViewMarketComponent implements OnInit {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
-      if(this.articles.length === 1){
+      if(this.articles.length <= 1){
         this.recordResultMessage ='registro encontrado'
       }
 
@@ -103,7 +103,7 @@ export class ViewMarketComponent implements OnInit {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
-      if(this.articles.length === 1){
+      if(this.articles.length <= 1){
         this.recordResultMessage ='registro encontrado'
       }
 

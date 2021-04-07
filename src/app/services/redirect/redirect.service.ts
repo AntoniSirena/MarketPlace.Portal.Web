@@ -23,7 +23,7 @@ export class RedirectService {
   }
 
   profile = new Profile();
-  
+
 
 
   //Iniciar sesion
@@ -50,7 +50,6 @@ export class RedirectService {
             localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
             localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
             localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
-            localStorage.setItem("password", `${JSON.stringify(request.Password)}`);
             localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
             localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
             localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
@@ -73,7 +72,6 @@ export class RedirectService {
           localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
           localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
           localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
-          localStorage.setItem("password", `${JSON.stringify(request.Password)}`);
           localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
           localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
@@ -145,14 +143,14 @@ export class RedirectService {
             showConfirmButton: false,
             timer: 4000
           }).then(() => {
-            this.loginUserVisitador(false); 
+            this.loginUserVisitador(false);
           });
         }
 
         if (userName === Users.Visitor) {
-          this.loginUserVisitador(); 
+          this.loginUserVisitador();
         }
-        
+
       }
 
     }
@@ -165,27 +163,30 @@ export class RedirectService {
     this.router.navigate(['login']).then(() => {
       let userId = JSON.parse(localStorage.getItem('userId'));
       localStorage.clear();
-      localStorage.setItem('canViewLoginPageDefault', 'true');
 
-      this.loginSevice.logOut(userId).subscribe((response: any) => {
-      },
-        error => {
-          console.log(JSON.stringify(error));
-        });
+      if (userId) {
+        this.loginSevice.logOut(userId).subscribe((response: any) => {
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      }
+
+      window.location.reload();
     });
 
   }
 
 
   error500() {
-    if(!window.location.hash.match('#/portada') && !window.location.hash.match('#/login')){
+    if (!window.location.hash.match('#/portada') && !window.location.hash.match('#/login')) {
       Swal.fire({
         icon: 'warning',
         title: 'Estimado usuario ha ocurrido un error interno',
         showConfirmButton: false,
         timer: 4000
       }).then(() => {
-  
+
       });
     }
   }
@@ -234,7 +235,7 @@ export class RedirectService {
   welcomeToSystem() {
     this.modalService.dismissAll();
     this.router.navigate(['portada']).then(() => {
-      setTimeout(function () { window.location.reload() }, 100);
+      setTimeout(function () { window.location.reload() }, 1);
     });
   }
 
