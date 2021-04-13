@@ -143,8 +143,6 @@ export class PortadaComponent implements OnInit {
   ///loading
   loadingPortada() {
     this.getCarousel_Images_A('Carousel_Images_A_Portada');
-    this.getCarousel_Images_B('Carousel_Images_B_Portada');
-    this.getCarousel_Images_C('Carousel_Images_C_Portada');
 
     setTimeout(() => {
       this.spinnerService.hide();
@@ -159,7 +157,7 @@ export class PortadaComponent implements OnInit {
 
       this.getNoveltiesByType("Science");
 
-    }, 1000);
+    }, 5000);
   }
 
 

@@ -44,7 +44,6 @@ export class RequestInterceptorService implements HttpInterceptor {
     headers = headers.append('Authorization', `${this.token}`);
     headers = headers.append('Access-Control-Allow-Origin', '*');
 
-
     const reqclone = req.clone({
       headers
     });
