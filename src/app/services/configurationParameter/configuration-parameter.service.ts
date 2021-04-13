@@ -16,27 +16,27 @@ export class ConfigurationParameterService {
   }
 
   getConfigurationParameters(): Observable<object> {
-    return this.httpClient.get(this.coreURL + 'Api/ConfigurationParameter');
+    return this.httpClient.get(this.coreURL + 'api/ConfigurationParameter');
   }
 
   getConfigurationParameterById(id: number): Observable<object> {
-    return this.httpClient.get(this.coreURL + 'Api/ConfigurationParameter/' + id);
+    return this.httpClient.get(this.coreURL + 'api/ConfigurationParameter/' + id);
   }
 
   editConfigurationParameter(configurationParameter: IconfigurationParameter) {
     let Json = JSON.stringify(configurationParameter);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put(`${this.coreURL}Api/ConfigurationParameter`, Json, { headers: headers });
+    return this.httpClient.put(`${this.coreURL}api/ConfigurationParameter`, Json, { headers: headers });
   }
 
   createConfigurationParameter(configurationParameter: IconfigurationParameter) {
     let Json = JSON.stringify(configurationParameter);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post(`${this.coreURL}Api/ConfigurationParameter`, Json, { headers: headers });
+    return this.httpClient.post(`${this.coreURL}api/ConfigurationParameter`, Json, { headers: headers });
   }
 
   delete(id: number): Observable<object> {
-    return this.httpClient.delete(this.coreURL + 'Api/ConfigurationParameter/' + id);
+    return this.httpClient.delete(this.coreURL + 'api/ConfigurationParameter/' + id);
   }
 
 }

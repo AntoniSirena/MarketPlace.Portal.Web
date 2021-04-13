@@ -55,7 +55,7 @@ export class RequestInterceptorService implements HttpInterceptor {
         }
       }, (res: any) => {
         if (res instanceof HttpErrorResponse) {
-          if (res.status === 301 || res.status === 302 || res.status === 303) {
+          if (res.status === 301 || res.status === 302 || res.status === 303) {          
             location.href = res.error
           }
           if (res.status === 401) {
