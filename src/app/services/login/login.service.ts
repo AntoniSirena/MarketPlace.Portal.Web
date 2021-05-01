@@ -23,6 +23,11 @@ export class LoginService {
     return this.httpClient.post(this.coreURL + 'api/login/authenticate', Json, { headers: headers });
   }
 
+  refreshToken(refreshToken: string) {
+    let Json = JSON.stringify(refreshToken);
+    return this.httpClient.post(this.coreURL + 'api/login/refreshToken', Json);
+  }
+
   logOut(value: string) {
     let Json = JSON.stringify(value);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

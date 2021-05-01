@@ -14,3 +14,6 @@ export const PortadaUser = {
     Pass: 'visitador123',
 }
 
+export const Response = {
+    Code: '000',
+}

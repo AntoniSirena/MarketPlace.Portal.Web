@@ -27,11 +27,12 @@ export class RequestInterceptorService implements HttpInterceptor {
   coreURL;
 
   constructor(private baseService: BaseService, private redirectService: RedirectService, private router: Router) {
-    this.token = this.baseService.getUserToke();
     this.coreURL = environment.coreURL;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    this.token = JSON.parse(localStorage.getItem('token')) || '';
 
     let headers = new HttpHeaders();
 
@@ -41,7 +42,12 @@ export class RequestInterceptorService implements HttpInterceptor {
       headers = headers.append('content-type', 'application/json');
     }
 
-    headers = headers.append('Authorization', `${this.token}`);
+    if (req.url.match("login")) {
+
+    } else {
+      headers = headers.append('Authorization', `${this.token}`);
+    }
+
     headers = headers.append('Access-Control-Allow-Origin', '*');
 
     const reqclone = req.clone({
@@ -55,12 +61,15 @@ export class RequestInterceptorService implements HttpInterceptor {
         }
       }, (res: any) => {
         if (res instanceof HttpErrorResponse) {
-          if (res.status === 301 || res.status === 302 || res.status === 303) {          
+          if (res.status === 301 || res.status === 302 || res.status === 303) {
             location.href = res.error
           }
+          if (res.status === 400) {
+            this.redirectService.error400(res.error.Message);
+          }
           if (res.status === 401) {
-            this.token = "";
-            this.redirectService.login();
+            let refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+            this.redirectService.refreshToken(refreshToken);
           }
           if (res.status === 404) {
             this.redirectService.error404();

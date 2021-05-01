@@ -5,7 +5,7 @@ import { LoginService } from '../login/login.service';
 import { Profile, _Profile } from '../../models/profile/profile';
 import { Ilogin } from '../../interfaces/Ilogin/ilogin';
 import { Iresponse } from '../../interfaces/Iresponse/iresponse';
-import { Role, Users, PortadaUser } from './../../global/constant';
+import { Role, Users, PortadaUser, Response } from './../../global/constant';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -50,6 +50,7 @@ export class RedirectService {
             localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
             localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
             localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
+            localStorage.setItem("refreshToken", `${JSON.stringify(this.profile.Profile.User.RefreshToken)}`);
             localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
             localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
             localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
@@ -72,6 +73,7 @@ export class RedirectService {
           localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
           localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
           localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
+          localStorage.setItem("refreshToken", `${JSON.stringify(this.profile.Profile.User.RefreshToken)}`);
           localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
           localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
           localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
@@ -115,6 +117,30 @@ export class RedirectService {
 
   }
 
+
+  refreshToken(refreshToken: string) {
+    this.loginSevice.refreshToken(refreshToken).subscribe((response: Iresponse) => {
+      if (response.Code == Response.Code) {
+        localStorage.setItem("token", `${JSON.stringify(response.Data.token)}`);
+        localStorage.setItem("refreshToken", `${JSON.stringify(response.Data.refreshToken)}`);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 3000
+        }).then(() => {
+          this.modalService.dismissAll();
+          this.loginUserVisitador();
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
 
   //Redirecciona a la pantalla de login
   login(isAutGuard: boolean = false) {
@@ -191,6 +217,17 @@ export class RedirectService {
     }
   }
 
+  error400(message: string) {
+    Swal.fire({
+      icon: 'warning',
+      title: message,
+      showConfirmButton: true,
+      timer: 20000
+    }).then(() => {
+
+    });
+  }
+
   error404() {
 
     if (this.profile.Profile.User.RoleShortName !== Role.Suscriptor || this.profile.Profile.User.RoleShortName !== Role.Visitor) {
@@ -218,14 +255,16 @@ export class RedirectService {
         });
 
       if (!isVisitorUser) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Estimado usuario la solicitud no fué autorizada',
-          showConfirmButton: false,
-          timer: 4000
-        }).then(() => {
-          this.router.navigate(['login']);
-        });
+        if (!window.location.hash.match('login') && !window.location.hash.match('portada')) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Estimado usuario la solicitud no fué autorizada',
+            showConfirmButton: false,
+            timer: 4000
+          }).then(() => {
+            this.router.navigate(['login']);
+          });
+        }
       } else {
         this.router.navigate(['login']);
       }
