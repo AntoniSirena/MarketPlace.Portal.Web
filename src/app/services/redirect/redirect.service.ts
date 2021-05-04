@@ -197,8 +197,6 @@ export class RedirectService {
             console.log(JSON.stringify(error));
           });
       }
-
-      window.location.reload();
     });
 
   }

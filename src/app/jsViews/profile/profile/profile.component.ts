@@ -65,12 +65,16 @@ export class ProfileComponent implements OnInit {
     //Cagando la data desde el servidor
     if(!this.isVisitorUser && localStorage.length > 0){
       this.profile = this.baseService.getProfile();
-      this.getGenders();
-      this.getDocumentTypes();
-      this.getInfoCurrentUser();
-      this.getInfoCurrentPerson();
-      this.getLocatorsTypes();
-      this.getInfoCurrentLocators();
+
+      setTimeout(() => {
+        this.getGenders();
+        this.getDocumentTypes();
+        this.getInfoCurrentUser();
+        this.getInfoCurrentPerson();
+        this.getLocatorsTypes();
+        this.getInfoCurrentLocators();
+      }, 10000);
+
     }
 
     if(localStorage.length === 0){
@@ -112,7 +116,6 @@ export class ProfileComponent implements OnInit {
     this.setValueCreateFrom();
     this.setValueCreateLocatorFrom();
   }
-
 
   //Se ejecuta después que el DOM finaliza un operación
   ngAfterViewChecked() {
