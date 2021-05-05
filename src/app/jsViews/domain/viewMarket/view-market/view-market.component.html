@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid" style="width: 100%;">
 
     <div class="card-header" style="background-color: rgb(226, 212, 9); margin-bottom: 8px;">
         <div class="row">
@@ -10,7 +10,7 @@
 
     <div class="row center">
         <div class="cold-md-6">
-            <button class="btn btn-primary btn_public" (click)="toPost()">Publicar artículo</button>
+            <button class="btn btn-primary btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar</button>
         </div>
     </div>
 
@@ -76,11 +76,28 @@
                 <br>
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..." [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
+                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                        class="form-control"
+                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
                 </div>
 
                 <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h5 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h5>
+                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
+                <br>
+
+
+                <div class="row card-group">
+                    <div class="col-md-4" *ngFor="let item of articles">
+                        <div style="border-radius: 15px;" class="card">
+                            <div>
+                                <img class="imgPortada" id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <br>
 
                 <div class="centerDivScroll">
@@ -133,19 +150,19 @@
                     <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
 
                         <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
-        
+
                             <div class="row" style="margin-bottom: 10px;">
                                 <div class="col-md-2">
                                     <span class="bold">Categoría :</span>
                                 </div>
                                 <div class="col-md-4">
-                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                                        placeholder="Categorías" formControlName="categoryId"
+                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                                        virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
                                         (change)="getSubCategories_ByCategoryId($event.Id)">
                                     </ng-select>
                                 </div>
                             </div>
-        
+
                             <div class="row">
                                 <div class="col-md-2">
                                     <span class="bold">subcategoría :</span>
@@ -157,14 +174,14 @@
                                     </ng-select>
                                 </div>
                             </div>
-        
+
                             <div class="row">
                                 <div class="cold-md-6">
                                     <button type="submit" style="margin-top: 15px;"
                                         class="btn btn-primary btn_search">Buscar</button>
                                 </div>
                             </div>
-        
+
                         </form>
 
                     </div>
@@ -173,7 +190,9 @@
                 <br>
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..." [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
+                    <input type="text" class="form-control"
+                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
                 </div>
 
                 <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
