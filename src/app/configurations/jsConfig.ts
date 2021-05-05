@@ -5,7 +5,7 @@ export const SizeImageNovelty ={
 }
 
 export const SizeImageArticle ={
-    width: 240,
+    width: 250,
     height: 250,
 }
 

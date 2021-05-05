@@ -36,7 +36,8 @@ export class ViewMarketComponent implements OnInit {
   @ViewChild('toPostModal') toPostModal: ElementRef;
   @ViewChild('imgDetailModal') imgDetailModal: ElementRef;
 
-
+  _currentPage: number = 1;
+  
   filterSellForm: FormGroup;
   filterRentForm: FormGroup;
 
