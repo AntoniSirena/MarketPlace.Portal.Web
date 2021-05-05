@@ -37,7 +37,7 @@ export class ViewMarketComponent implements OnInit {
   @ViewChild('imgDetailModal') imgDetailModal: ElementRef;
 
   _currentPage: number = 1;
-  
+
   filterSellForm: FormGroup;
   filterRentForm: FormGroup;
 
@@ -62,6 +62,13 @@ export class ViewMarketComponent implements OnInit {
   categories = new Array<Category>();
   subCategories = new Array<SubCategory>();
 
+  categoryId: number = 0;
+  subCategoryId: number = 0;
+
+  currentPage: number;
+  currentPageAdvancedSearch: number;
+  currentPageSearchStr: number;
+
   constructor(
     private form: FormBuilder,
     private marketService: MarketService,
@@ -72,16 +79,20 @@ export class ViewMarketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentPage = 1;
+    this.currentPageAdvancedSearch = 1;
+    this.currentPageSearchStr = 1;
+
     this.initFilterSellFrom();
     this.initFilterRentFrom();
-    this.getArticles('Sell', 0, 0);
+    this.getArticles('Sell', 0, 0, this.currentPage);
     this.userData = this.baseService.getUserData();
     this.getCategories();
   }
 
-  getArticles(marketType: string, categoryId: number, subCategoryId: number) {
+  getArticles(marketType: string, categoryId: number, subCategoryId: number, page: number) {
     this.inputStr = '';
-    this.marketService.getArticles(marketType, categoryId, subCategoryId).subscribe((response: Array<Article>) => {
+    this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: Array<Article>) => {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
@@ -99,8 +110,8 @@ export class ViewMarketComponent implements OnInit {
       });
   }
 
-  getArticlesByInputStr(marketType: string, inputStr: string) {
-    this.marketService.getArticlesByInputStr(marketType, inputStr).subscribe((response: Array<Article>) => {
+  getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
+    this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: Array<Article>) => {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
@@ -121,8 +132,25 @@ export class ViewMarketComponent implements OnInit {
   getArticlesByInputStrByTime(marketType: string, inputStr: string) {
     clearTimeout(this.timerInputStr);
     this.timerInputStr = setTimeout(() => {
-      this.getArticlesByInputStr(marketType, inputStr);
+      this.currentPageSearchStr = 1;
+      this.getArticlesByInputStr(marketType, inputStr, this.currentPageSearchStr);
     }, 1000);
+  }
+
+  viewMoreArticles(marketType: string){
+
+    if(this.categoryId || this.subCategoryId){
+      this.currentPageAdvancedSearch = this.currentPageAdvancedSearch + 1;
+      this.getArticles(marketType, this.categoryId, this.subCategoryId, this.currentPageAdvancedSearch);
+    }else if(this.inputStr){
+      this.currentPageSearchStr = this.currentPageSearchStr + 1;
+      this.getArticlesByInputStr(marketType, this.inputStr, this.currentPageSearchStr);
+    }
+    else{
+      this.currentPage = this.currentPage + 1;
+      this.getArticles(marketType, 0, 0, this.currentPage);
+    }
+
   }
 
 
@@ -160,7 +188,12 @@ export class ViewMarketComponent implements OnInit {
       subCategoryId = form.subCategoryId
     }
 
-    this.getArticles(marketType, categoryId, subCategoryId);
+    this.categoryId = categoryId;
+    this.subCategoryId = subCategoryId;
+
+    this.currentPageAdvancedSearch = 1;
+
+    this.getArticles(marketType, categoryId, subCategoryId, this.currentPageAdvancedSearch);
   }
 
   getSubCategories_ByCategoryId(id: number) {

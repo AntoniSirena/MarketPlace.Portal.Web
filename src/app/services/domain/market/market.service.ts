@@ -60,12 +60,12 @@ export class MarketService {
     return this.httpClient.get(this.coreURL + `api/market/GetSubCategories?categoryId=${categoryId}`);
   }
 
-  getArticles(marketTypeShortName: string, categoryId: number, subCategoryId: number): Observable<object> {
-    return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&categoryId=${categoryId}&subCategoryId=${subCategoryId}`);
+  getArticles(marketTypeShortName: string, categoryId: number, subCategoryId: number, page: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&categoryId=${categoryId}&subCategoryId=${subCategoryId}&page=${page}`);
   }
 
-  getArticlesByInputStr(marketTypeShortName: string, inputStr: string): Observable<object> {
-    return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&inputStr=${inputStr}`);
+  getArticlesByInputStr(marketTypeShortName: string, inputStr: string, page: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&inputStr=${inputStr}&page=${page}`);
   }
 
   getImgDetailByArticleId(articleId: number): Observable<object> {

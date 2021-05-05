@@ -3,7 +3,7 @@
     <div class="card-header" style="background-color: rgb(226, 212, 9); margin-bottom: 8px;">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO</h3>
+                <h3 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO <span style="color: blue;">RD</span> </h3>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@
                     <div class="col-md-3"
                         *ngFor="let item of articles">
                         <div style="border-radius: 15px; height: 410px;" class="card">
-                            <div class="center">
+                            <div class="center" style="margin-top: 3px;">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -101,6 +101,12 @@
                             <span
                                 style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row center">
+                    <div class="cold-md-6">
+                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
                     </div>
                 </div>
 

@@ -36,6 +36,12 @@
     border-radius: 15px;
 }
 
+.btn_viewMore{
+    font-size: 25px;
+    width: 250px;
+    border-radius: 15px;
+}
+
 .btn_search{
     margin-top: 8px; 
     margin-bottom: 10px;
