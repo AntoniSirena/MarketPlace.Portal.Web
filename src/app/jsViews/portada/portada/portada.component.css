@@ -44,24 +44,6 @@
     margin-right: 37px;
 }
 
-.imgPortada{
-    background: transparent;
-    background-image: url(assets/img/portada/NavidadA.jpg);
-    height: 100%;
-    /* Para dejar la imagen de fondo centrada, vertical yhorizontalmente */
-    background-position: center center;
-
-    /* Para que la imagen de fondo no se repita */
-    background-repeat: no-repeat;
-
-    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
-    background-attachment: fixed;
-
-    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-    background-size: cover;
-
-}
-
 .menuRowStyle{
     background-color: rgb(253, 244, 244);
     height: 45px;
