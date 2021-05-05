@@ -34,7 +34,7 @@ import { SizeImageDetailArticle } from './../../../../configurations/jsConfig';
 export class ViewMarketComponent implements OnInit {
 
   @ViewChild('toPostModal') toPostModal: ElementRef;
-  @ViewChild('imgDetailModal') imgDetailModal: ElementRef;
+  @ViewChild('articleDetailModal') articleDetailModal: ElementRef;
 
   _currentPage: number = 1;
 
@@ -42,6 +42,7 @@ export class ViewMarketComponent implements OnInit {
   filterRentForm: FormGroup;
 
   articles = new Array<Article>();
+  currentArticle = new Article();
   itemQuantity: number;
   imgDetails = new Array<ImgDetail>();
 
@@ -154,22 +155,13 @@ export class ViewMarketComponent implements OnInit {
   }
 
 
-  getImgDetailByArticleId(articleId: number) {
-    this.marketService.getImgDetailByArticleId(articleId).subscribe((response: Array<ImgDetail>) => {
+  getarticleDetail(article: Article) {
+    this.currentArticle = article;
+
+    this.marketService.getarticleDetail(article.Id).subscribe((response: Array<ImgDetail>) => {
       this.imgDetails = response;
 
-      if (this.imgDetails.length > 0) {
-        this.modalService.open(this.imgDetailModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
-      }
-
-      if (this.imgDetails.length === 0) {
-        Swal.fire({
-          icon: 'warning',
-          title: "Este artículo no tiene detalles de imagen",
-          showConfirmButton: true,
-          timer: 10000
-        });
-      }
+      this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
 
     },
       error => {

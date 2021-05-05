@@ -10,6 +10,6 @@ export const SizeImageArticle ={
 }
 
 export const SizeImageDetailArticle ={
-    width: 300,
-    height: 375,
+    width: 250,
+    height: 250,
 }

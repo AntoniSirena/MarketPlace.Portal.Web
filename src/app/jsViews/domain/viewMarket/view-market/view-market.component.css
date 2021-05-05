@@ -11,6 +11,11 @@
     background-color: rgb(244, 247, 248);
 }
 
+.imgArticleDetailScroll{
+    overflow-y:auto;
+    height: 600px;
+}
+
 .img{
     margin-top: 10px;
     margin-left: 20px;
@@ -21,6 +26,7 @@
     margin-top: 3px;
     margin-bottom: 3px;
     margin-left: 3px;
+    margin-right: 3px;
 }
 
 .title{

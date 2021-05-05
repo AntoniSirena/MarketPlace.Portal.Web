@@ -68,7 +68,7 @@ export class MarketService {
     return this.httpClient.get(this.coreURL + `api/market/GetArticles?marketTypeShortName=${marketTypeShortName}&inputStr=${inputStr}&page=${page}`);
   }
 
-  getImgDetailByArticleId(articleId: number): Observable<object> {
+  getarticleDetail(articleId: number): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/market/GetImgDetailByArticleId?articleId=${articleId}`);
   }
 

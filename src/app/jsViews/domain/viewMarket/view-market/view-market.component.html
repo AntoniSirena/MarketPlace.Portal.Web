@@ -3,7 +3,8 @@
     <div class="card-header" style="background-color: rgb(226, 212, 9); margin-bottom: 8px;">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO <span style="color: blue;">RD</span> </h3>
+                <h3 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO <span style="color: blue;">RD</span>
+                </h3>
             </div>
         </div>
     </div>
@@ -88,9 +89,8 @@
 
 
                 <div class="row card-group">
-                    <div class="col-md-3"
-                        *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card">
+                    <div class="col-md-3" *ngFor="let item of articles">
+                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="getarticleDetail(item)">
                             <div class="center" style="margin-top: 3px;">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
@@ -111,34 +111,6 @@
                 </div>
 
                 <br>
-
-
-                <div class="centerDivScroll">
-                    <div *ngFor="let item of articles">
-
-                        <div class="row" (click)="getImgDetailByArticleId(item.Id)">
-                            <div class="cold-md-7 img">
-                                <img id="image"
-                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                            </div>
-
-                            <div class="cold-md-8 title">
-                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">
-                                    {{item.Title}}
-                                </h4>
-                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span
-                                        style="color: green;">{{item.Price | currency}}</span> &nbsp; <span
-                                        style="color: red;">{{item.CurrencyCode}}</span></h5>
-                                <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
-                                <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
-                                <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
-                                <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
-                            </div>
-                        </div>
-                        <hr>
-
-                    </div>
-                </div>
 
             </ng-template>
         </ngb-tab>
@@ -215,7 +187,7 @@
                 <div class="centerDivScroll">
                     <div *ngFor="let item of articles">
 
-                        <div class="row" (click)="getImgDetailByArticleId(item.Id)">
+                        <div class="row" (click)="getarticleDetail(item)">
                             <div class="cold-md-7 img">
                                 <img
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
@@ -275,7 +247,7 @@
 </ng-template>
 
 
-<ng-template #imgDetailModal let-modal>
+<ng-template #articleDetailModal let-modal>
     <div class="modal-header">
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -283,11 +255,38 @@
     </div>
     <div class="modal-body">
 
-        <div class="center" *ngFor="let item of imgDetails; let i = index" [attr.data-index]="i">
-            <h2 class="bold" style="color: red;">{{i + 1}}</h2>
-            <div style="margin-bottom: 27px;">
-                <img
-                    src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row card-group">
+                    <div class="col-md-6" *ngFor="let item of imgDetails; let i = index" [attr.data-index]="i">
+                        <div style="border-radius: 15px;" class="card">
+                            <img class="imgPortada" id="image"
+                                src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h1 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{currentArticle.Price | currency}}
+                    <span class="bold" style="font-size: 17px; color: red;">{{currentArticle.CurrencyCode}}</span> </h1>
+                    
+                <h2 style="margin-left: 10px; margin-right: 10px;">{{currentArticle.Title}}</h2>
+
+                <br>
+                <h4 style="margin-left: 10px;"> <span style="color: green;">Codición :</span> &nbsp; {{currentArticle.Condition}}</h4>
+                <h4 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp; {{currentArticle.Ubication}}</h4>
+                <h4 style="margin-left: 10px;"> <span style="color: green;">Teléfono :</span> &nbsp; {{currentArticle.PhoneNumber}}</h4>
+                <h4 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp; {{currentArticle.CreationDate}}</h4>
+
+                <br>
+                <h3 style="margin-left: 10px; margin-right: 10px;">Descripción</h3>
+
+
             </div>
         </div>
 
