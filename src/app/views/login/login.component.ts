@@ -57,6 +57,8 @@ export class LoginComponent implements OnInit {
 
   bannerA = new Portada();
 
+  buttonResetPass: boolean;
+
   @ViewChild('resetPasswordModal') resetPasswordModal: ElementRef;
 
 
@@ -70,7 +72,8 @@ export class LoginComponent implements OnInit {
     });
 
     this.getValueRegisterButton();
-    this.getTemplateBannerA('BannerLogin_A');
+    //this.getTemplateBannerA('BannerLogin_A');
+    this.buttonResetPass = true;
   };
 
 
@@ -140,6 +143,7 @@ export class LoginComponent implements OnInit {
   //loading Reset Password
   loadingResetPassword(resetPasswordForm: any){
     this.spinnerService.show();
+    this.buttonResetPass = false;
  
     setTimeout(() => {
       this.resetPassword(resetPasswordForm);
@@ -175,10 +179,13 @@ export class LoginComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 10000
-        });
+        }).then(() => {
+          this.buttonResetPass = true;
+        });;
       }
     },
       error => {
+        this.buttonResetPass = true;
         console.log(JSON.stringify(error));
       });
 
