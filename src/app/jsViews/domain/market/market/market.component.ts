@@ -198,7 +198,6 @@ export class MarketComponent implements OnInit {
 
   //create
   create(formValue: any) {
-
     const data: Imarket = {
       Id: 0,
       Title: formValue.title,
