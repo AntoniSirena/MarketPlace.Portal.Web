@@ -169,6 +169,7 @@ export class MarketComponent implements OnInit {
         categoryId: [this.market.CategoryId, Validators.required],
         subCategoryId: [this.market.SubCategoryId, Validators.required],
         ubication: [this.market.Ubication, Validators.required],
+        description: [this.market.Description],
         phoneNumber: [this.market.PhoneNumber, Validators.required],
       });
 
@@ -208,6 +209,7 @@ export class MarketComponent implements OnInit {
       CategoryId: formValue.categoryId,
       SubCategoryId: formValue.subCategoryId,
       Ubication: formValue.ubication,
+      Description: formValue.description,
       PhoneNumber: formValue.phoneNumber,
       Img: this.market.Img,
       ImgPath: null,
@@ -266,6 +268,7 @@ export class MarketComponent implements OnInit {
       CategoryId: formValue.categoryId,
       SubCategoryId: formValue.subCategoryId,
       Ubication: formValue.ubication,
+      Description: formValue.description,
       PhoneNumber: formValue.phoneNumber,
       Img: this.market.Img,
       ImgPath: this.market.ImgPath,
@@ -368,6 +371,7 @@ export class MarketComponent implements OnInit {
       categoryId: ['', Validators.required],
       subCategoryId: ['', Validators.required],
       ubication: ['', Validators.required],
+      description: [''],
       phoneNumber: ['', Validators.required],
     });
   }
@@ -383,6 +387,7 @@ export class MarketComponent implements OnInit {
       categoryId: ['', Validators.required],
       subCategoryId: ['', Validators.required],
       ubication: ['', Validators.required],
+      description: [''],
       phoneNumber: ['', Validators.required],
     });
   }

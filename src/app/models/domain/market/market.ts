@@ -16,6 +16,7 @@ export class Market extends Audit {
     SubCategoryId: number;
     SubCategory: string;
     Ubication: string;
+    Description: string;
     PhoneNumber: string;
     Img: string;
     ImgPath: string;
@@ -61,10 +62,24 @@ export class Article {
     CurrencyCode: string;
     Condition: string;
     Ubication: string;
+    Description: string;
     PhoneNumber: string;
     CreationDate: string;
+    ImgDetail: Array<ImgDetail>;
 }
 
 export class ImgDetail {
     Id: number;
+}
+
+export class Seller {
+    Image: string;
+    Name: string;
+    PhoneNumber: string;
+    Mail: string;
+}
+
+export class ArticleFullData {
+    Article: Article;
+    Seller: Seller;
 }

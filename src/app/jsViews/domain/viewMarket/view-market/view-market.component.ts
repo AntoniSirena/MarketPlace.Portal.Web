@@ -4,10 +4,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
-import { Article, ImgDetail } from '../../../../models/domain/market/market';
+import { Article, ArticleFullData, ImgDetail } from '../../../../models/domain/market/market';
 import { MarketService } from '../../../../services/domain/market/market.service';
 import { Router } from '@angular/router';
-import { User } from '../../../../models/profile/profile';
+import { Profile, User } from '../../../../models/profile/profile';
 import { BaseService } from '../../../../services/base/base.service';
 import { Category, SubCategory } from '../../../../models/domain/market/market';
 import { SizeImageDetailArticle } from './../../../../configurations/jsConfig';
@@ -43,8 +43,8 @@ export class ViewMarketComponent implements OnInit {
 
   articles = new Array<Article>();
   currentArticle = new Article();
+  articleFullData = new ArticleFullData();
   itemQuantity: number;
-  imgDetails = new Array<ImgDetail>();
 
   coreURL = environment.coreURL;
   img_Width = SizeImageArticle.width;
@@ -59,7 +59,7 @@ export class ViewMarketComponent implements OnInit {
 
   inputStr: string;
   recordResultMessage: string;
-  
+
   categories = new Array<Category>();
   subCategories = new Array<SubCategory>();
 
@@ -69,6 +69,8 @@ export class ViewMarketComponent implements OnInit {
   currentPage: number;
   currentPageAdvancedSearch: number;
   currentPageSearchStr: number;
+
+  public profile = new Profile();
 
   constructor(
     private form: FormBuilder,
@@ -91,20 +93,33 @@ export class ViewMarketComponent implements OnInit {
     this.getCategories();
   }
 
+
   getArticles(marketType: string, categoryId: number, subCategoryId: number, page: number) {
     this.inputStr = '';
     this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: Array<Article>) => {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
-      if(this.articles.length <= 1){
-        this.recordResultMessage ='registro encontrado'
+      if (this.articles.length <= 1) {
+        this.recordResultMessage = 'registro encontrado'
       }
 
-      if(this.articles.length > 1){
-        this.recordResultMessage ='registros encontrados'
+      if (this.articles.length > 1) {
+        this.recordResultMessage = 'registros encontrados'
       }
 
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  getArticleFullData(articleId: number) {
+    this.marketService.getArticleFullData(articleId).subscribe((response: ArticleFullData) => {
+      this.articleFullData = response;
+
+      this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
     },
       error => {
         console.log(JSON.stringify(error));
@@ -116,12 +131,12 @@ export class ViewMarketComponent implements OnInit {
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
-      if(this.articles.length <= 1){
-        this.recordResultMessage ='registro encontrado'
+      if (this.articles.length <= 1) {
+        this.recordResultMessage = 'registro encontrado'
       }
 
-      if(this.articles.length > 1){
-        this.recordResultMessage ='registros encontrados'
+      if (this.articles.length > 1) {
+        this.recordResultMessage = 'registros encontrados'
       }
 
     },
@@ -138,16 +153,16 @@ export class ViewMarketComponent implements OnInit {
     }, 1000);
   }
 
-  viewMoreArticles(marketType: string){
+  viewMoreArticles(marketType: string) {
 
-    if(this.categoryId || this.subCategoryId){
+    if (this.categoryId || this.subCategoryId) {
       this.currentPageAdvancedSearch = this.currentPageAdvancedSearch + 1;
       this.getArticles(marketType, this.categoryId, this.subCategoryId, this.currentPageAdvancedSearch);
-    }else if(this.inputStr){
+    } else if (this.inputStr) {
       this.currentPageSearchStr = this.currentPageSearchStr + 1;
       this.getArticlesByInputStr(marketType, this.inputStr, this.currentPageSearchStr);
     }
-    else{
+    else {
       this.currentPage = this.currentPage + 1;
       this.getArticles(marketType, 0, 0, this.currentPage);
     }
@@ -157,16 +172,7 @@ export class ViewMarketComponent implements OnInit {
 
   getarticleDetail(article: Article) {
     this.currentArticle = article;
-
-    this.marketService.getarticleDetail(article.Id).subscribe((response: Array<ImgDetail>) => {
-      this.imgDetails = response;
-
-      this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
-
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.getArticleFullData(article.Id);
   }
 
   filterArticles(marketType, form) {

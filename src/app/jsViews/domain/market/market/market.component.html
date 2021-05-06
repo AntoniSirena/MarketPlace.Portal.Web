@@ -80,14 +80,16 @@
           </div>
 
           <div class="imgDetail">
-            <div *ngFor="let item of inputFilesMultiple; let i = index" [attr.data-index]="i" style="margin-bottom: 25px;">
+            <div *ngFor="let item of inputFilesMultiple; let i = index" [attr.data-index]="i"
+              style="margin-bottom: 25px;">
 
-              <h6 class="bold">{{item.name}} <span (click)="removeImg(i)" class="btn btn-danger"> <i class="fa fa-remove">&nbsp;Remover</i> </span> </h6>
+              <h6 class="bold">{{item.name}} <span (click)="removeImg(i)" class="btn btn-danger"> <i
+                    class="fa fa-remove">&nbsp;Remover</i> </span> </h6>
               <a>
                 <img src="{{item.base64}}" style="width: 200px; height: 230px;">
               </a>
               <h4 class="bold" style="color: red;">{{i + 1}}</h4>
-  
+
             </div>
           </div>
 
@@ -108,110 +110,119 @@
               <div class="row">
                 <div class="col-sm-12">
 
-                      <h5 *ngIf="!validateImg" style="color: red;" class="center">Favor cargue la foto principal del artículo</h5>
-                      <a>
-                        <img src="{{market.Img}}" class="center" style="width: 240px; height: 250px;">
-                      </a>
-                      <br>
-                      <div class="form-group">
-                        <div class="form-group">
-                          <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
-                            multiple="">
-                        </div>
-                      </div>
-                      <br>
+                  <h5 *ngIf="!validateImg" style="color: red;" class="center">Favor cargue la foto principal del
+                    artículo</h5>
+                  <a>
+                    <img src="{{market.Img}}" class="center" style="width: 240px; height: 250px;">
+                  </a>
+                  <br>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
+                        multiple="">
+                    </div>
+                  </div>
+                  <br>
 
-                      <label for="title" class="bold">Título</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i></i></span>
-                        </div>
-                        <input type="text" formControlName="title" class="form-control" placeholder="Título" maxlength="60">
-                        <div *ngIf="!createForm.value.title" class="required">*</div>
-                      </div>
+                  <label for="title" class="bold">Título</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="text" formControlName="title" class="form-control" placeholder="Título" maxlength="60">
+                    <div *ngIf="!createForm.value.title" class="required">*</div>
+                  </div>
 
-                      <label for="price" class="bold">Precio</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i></i></span>
-                        </div>
-                        <input type="number" formControlName="price" class="form-control" placeholder="Precio">
-                        <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
-                      </div>
+                  <label for="description" class="bold">Descripción</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <textarea class="espacios" formControlName="description" class="form-control" placeholder="Campo opcional">{{market.Description}}</textarea>
+                  </div>
 
-                      <label for="currencyId" class="bold">Moneda</label>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ng-select [items]="currencies" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Moneda" formControlName="currencyId">
-                          </ng-select>
-                          <div *ngIf="!createForm.value.currencyId" class="required">*</div>
-                        </div>
-                      </div>
+                  <label for="price" class="bold">Precio</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="price" class="form-control" placeholder="Precio">
+                    <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
+                  </div>
 
-                      <br>
-                      <label for="marketTypeId" class="bold">Tipo de mercado</label>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ng-select [items]="marketTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Tipo de mercado" formControlName="marketTypeId">
-                          </ng-select>
-                          <div *ngIf="!createForm.value.marketTypeId" class="required">*</div>
-                        </div>
-                      </div>
+                  <label for="currencyId" class="bold">Moneda</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="currencies" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Moneda" formControlName="currencyId">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.currencyId" class="required">*</div>
+                    </div>
+                  </div>
 
-                      <br>
-                      <label for="conditionId" class="bold">Condición</label>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ng-select [items]="conditions" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Condición" formControlName="conditionId">
-                          </ng-select>
-                          <div *ngIf="!createForm.value.conditionId" class="required">*</div>
-                        </div>
-                      </div>
+                  <br>
+                  <label for="marketTypeId" class="bold">Tipo de mercado</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="marketTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Tipo de mercado" formControlName="marketTypeId">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.marketTypeId" class="required">*</div>
+                    </div>
+                  </div>
 
-                      <br>
-                      <label for="categoryId" class="bold">Categoría</label>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Categoría" formControlName="categoryId"
-                            (change)="getSubCategories_ByCategoryId($event.Id)">
-                          </ng-select>
-                          <div *ngIf="!createForm.value.categoryId" class="required">*</div>
-                        </div>
-                      </div>
+                  <br>
+                  <label for="conditionId" class="bold">Condición</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="conditions" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Condición" formControlName="conditionId">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.conditionId" class="required">*</div>
+                    </div>
+                  </div>
 
-                      <br>
-                      <label for="subCategoryId" class="bold">Sub categoría</label>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                            placeholder="Sub categoría" formControlName="subCategoryId">
-                          </ng-select>
-                          <div *ngIf="!createForm.value.subCategoryId" class="required">*</div>
-                        </div>
-                      </div>
+                  <br>
+                  <label for="categoryId" class="bold">Categoría</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Categoría" formControlName="categoryId"
+                        (change)="getSubCategories_ByCategoryId($event.Id)">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.categoryId" class="required">*</div>
+                    </div>
+                  </div>
 
-                      <label for="phoneNumber" class="bold">Teléfono</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i></i></span>
-                        </div>
-                        <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
-                        <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
-                      </div>
+                  <br>
+                  <label for="subCategoryId" class="bold">Sub categoría</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Sub categoría" formControlName="subCategoryId">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.subCategoryId" class="required">*</div>
+                    </div>
+                  </div>
 
-                      <br>
-                      <label for="ubication" class="bold">Ubicación</label>
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i></i></span>
-                        </div>
-                        <input type="text" formControlName="ubication" class="form-control" placeholder="Ubicación">
-                        <div *ngIf="!createForm.value.ubication" class="required">*</div>
-                      </div>
+                  <label for="phoneNumber" class="bold">Teléfono</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
+                    <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
+                  </div>
+
+                  <br>
+                  <label for="ubication" class="bold">Ubicación</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="text" formControlName="ubication" class="form-control" placeholder="Ubicación">
+                    <div *ngIf="!createForm.value.ubication" class="required">*</div>
+                  </div>
 
                 </div>
                 <!--/.col-->
@@ -275,6 +286,14 @@
                   </div>
                   <input type="text" formControlName="title" class="form-control" placeholder="Título" maxlength="60">
                   <div *ngIf="!editForm.value.title" class="required">*</div>
+                </div>
+                
+                <label for="description" class="bold">Descripción</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <textarea rows="10" class="espacios" formControlName="description" class="form-control" placeholder="Campo opcional">{{market.Description}}</textarea>
                 </div>
 
                 <label for="price" class="bold">Precio</label>
