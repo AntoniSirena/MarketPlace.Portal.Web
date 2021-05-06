@@ -3,8 +3,8 @@
     <div class="card-header" style="background-color: rgb(226, 212, 9); margin-bottom: 8px;">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO <span style="color: blue;">RD</span>
-                </h3>
+                <h1 class="center" style="color: rgb(224, 41, 41);">COMPRO & VENDO <span style="color: blue;">RD</span>
+                </h1>
             </div>
         </div>
     </div>
@@ -24,12 +24,14 @@
 
             <ng-template ngbTabContent>
 
+                <h2 class="center bold">Pantalla de compra</h2>
+
                 <div id="accordion">
                     <h5 class="mb-0">
                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
                             aria-expanded="true" aria-controls="collapseOne">
                             <span class="bold">
-                                <h5>Busqueda avanzada</h5>
+                                <h4>Busqueda avanzada</h4>
                             </span>
                         </button>
                     </h5>
@@ -122,12 +124,14 @@
 
             <ng-template ngbTabContent>
 
+                <h2 class="center bold">Pantalla de renta</h2>
+
                 <div id="accordion">
                     <h5 class="mb-0">
                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
                             aria-expanded="true" aria-controls="collapseOne">
                             <span class="bold">
-                                <h5>Busqueda avanzada</h5>
+                                <h4>Busqueda avanzada</h4>
                             </span>
                         </button>
                     </h5>
@@ -181,7 +185,7 @@
                 </div>
 
                 <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h5 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h5>
+                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
                 <br>
 
 
@@ -219,12 +223,14 @@
 
             <ng-template ngbTabContent>
 
+                <h2 class="center bold">Pantalla de donación</h2>
+
                 <div id="accordion">
                     <h5 class="mb-0">
                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
                             aria-expanded="true" aria-controls="collapseOne">
                             <span class="bold">
-                                <h5>Busqueda avanzada</h5>
+                                <h4>Busqueda avanzada</h4>
                             </span>
                         </button>
                     </h5>
@@ -278,7 +284,7 @@
                 </div>
     
                 <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h5 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h5>
+                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
                 <br>
 
 
@@ -388,7 +394,7 @@
 
                 <br>
                 <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">Descripción</h3>
-                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 17px;" class="form-control"
+                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 20px;" class="form-control"
                     placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
