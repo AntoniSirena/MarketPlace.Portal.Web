@@ -141,14 +141,14 @@ export class ProfileComponent implements OnInit {
     //Llenando los input del tab persona
     this.personForm = this.form.group({
       firstName: [`${this.infoCurrentPerson.FirstName}`, Validators.required] || '',
-      secondName: [`${this.infoCurrentPerson.SecondName}`],
-      surName: [`${this.infoCurrentPerson.SurName}`, Validators.required],
+      secondName: [`${this.infoCurrentPerson.SecondName}`] || '',
+      surName: [`${this.infoCurrentPerson.SurName}`, Validators.required] || '',
       secondSurname: [`${this.infoCurrentPerson.SecondSurname}`] || '',
-      fullName: [`${this.infoCurrentPerson.FullName}`],
+      fullName: [`${this.infoCurrentPerson.FullName}`] || '',
       birthDate: [`${this.infoCurrentPerson.BirthDate}`, Validators.required],
       genderId: [`${this.infoCurrentPerson.GenderId}`, Validators.required],
       documentTypeId: [`${this.infoCurrentPerson.DocumentTypeId}`],
-      documentNumber: [`${this.infoCurrentPerson.DocumentNumber}`]
+      documentNumber: [`${this.infoCurrentPerson.DocumentNumber}`] || ''
     });
   }
 

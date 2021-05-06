@@ -19,7 +19,7 @@
 
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <div (click)="getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
+                <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
             </ng-template>
 
             <ng-template ngbTabContent>
@@ -91,7 +91,7 @@
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
                         <div style="border-radius: 15px; height: 410px;" class="card" (click)="getarticleDetail(item)">
-                            <div class="center" style="margin-top: 3px;">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -117,7 +117,7 @@
 
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <div (click)="getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
+                <div (click)="resetPage(); getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
             </ng-template>
 
             <ng-template ngbTabContent>
@@ -175,7 +175,7 @@
                 <br>
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control"
+                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;" class="form-control"
                         placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
                         [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
                 </div>
@@ -184,44 +184,130 @@
                 <h5 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h5>
                 <br>
 
-                <div class="centerDivScroll">
-                    <div *ngFor="let item of articles">
 
-                        <div class="row" (click)="getarticleDetail(item)">
-                            <div class="cold-md-7 img">
-                                <img
+                <div class="row card-group">
+                    <div class="col-md-3" *ngFor="let item of articles">
+                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="getarticleDetail(item)">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                                <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
-
-                            <div class="cold-md-8 title">
-                                <h4 class="bold" style="margin-inline-end: 20px; margin-bottom: 20px;">{{item.Title}}
-                                </h4>
-                                <h5 *ngIf="item.Price > 0"> <span class="bold">Precio :</span> &nbsp; <span
-                                        style="color: green;">{{item.Price | currency}}</span> &nbsp; <span
-                                        style="color: red;">{{item.CurrencyCode}}</span></h5>
-                                <h5> <span class="bold">Codición :</span> &nbsp; {{item.Condition}}</h5>
-                                <h5> <span class="bold">Ubicación :</span> &nbsp; {{item.Ubication}}</h5>
-                                <h5> <span class="bold">Teléfono :</span> &nbsp; {{item.PhoneNumber}}</h5>
-                                <h5> <span class="bold">Publicado el :</span> &nbsp; {{item.CreationDate}}</h5>
-                            </div>
+                            <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                                currency}} <span class="bold"
+                                    style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
+                            <span
+                                style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
                         </div>
-                        <hr>
-
                     </div>
                 </div>
 
+                <div class="row center">
+                    <div class="cold-md-6">
+                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
+                    </div>
+                </div>
+
+                <br>
 
             </ng-template>
         </ngb-tab>
 
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <div class="article-tab">Donar</div>
+                <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donar</div>
             </ng-template>
 
             <ng-template ngbTabContent>
 
+                <div id="accordion">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            <span class="bold">
+                                <h5>Busqueda avanzada</h5>
+                            </span>
+                        </button>
+                    </h5>
+
+                    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+
+                        <form [formGroup]="filterRentForm" (submit)="filterArticles('Donate', filterRentForm.value)">
+
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="col-md-2">
+                                    <span class="bold">Categoría :</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                                        virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                                        (change)="getSubCategories_ByCategoryId($event.Id)">
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span class="bold">subcategoría :</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                        virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                        (change)="getSubCategories_ByCategoryId($event.Id)">
+                                    </ng-select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="cold-md-6">
+                                    <button type="submit" style="margin-top: 15px;"
+                                        class="btn btn-primary btn_search">Buscar</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <br>
+                <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;" class="form-control"
+                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Donate', inputStr)">
+                </div>
+    
+                <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
+                <h5 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h5>
+                <br>
+
+
+                <div class="row card-group">
+                    <div class="col-md-3" *ngFor="let item of articles">
+                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="getarticleDetail(item)">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                                <img class="imgPortada" id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+                            <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                                currency}} <span class="bold"
+                                    style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
+                            <span
+                                style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row center">
+                    <div class="cold-md-6">
+                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver más</button>
+                    </div>
+                </div>
+
+                <br>
+
             </ng-template>
+
         </ngb-tab>
 
     </ngb-tabset>
@@ -284,26 +370,26 @@
             <div class="col-md-6">
 
                 <h1 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
-                    {{currentArticle.Price | currency}}
-                    <span class="bold" style="font-size: 17px; color: red;">{{currentArticle.CurrencyCode}}</span>
+                    {{articleFullData.Article.Price | currency}}
+                    <span class="bold" style="font-size: 17px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
                 </h1>
 
-                <h2 style="margin-left: 10px; margin-right: 10px;">{{currentArticle.Title}}</h2>
+                <h2 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h2>
 
                 <br>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Codición :</span> &nbsp;
-                    {{currentArticle.Condition}}</h4>
+                    {{articleFullData.Article.Condition}}</h4>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
-                    {{currentArticle.Ubication}}</h4>
+                    {{articleFullData.Article.Ubication}}</h4>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Teléfono :</span> &nbsp;
-                    {{currentArticle.PhoneNumber}}</h4>
+                    {{articleFullData.Article.PhoneNumber}}</h4>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp;
-                    {{currentArticle.CreationDate}}</h4>
+                    {{articleFullData.Article.CreationDate}}</h4>
 
                 <br>
-                <h3 *ngIf="currentArticle.Description" style="margin-left: 10px; margin-right: 10px;">Descripción</h3>
-                <textarea *ngIf="currentArticle.Description" rows="10" style="font-size: 17px;" class="form-control"
-                    placeholder="Campo opcional">{{currentArticle.Description}}</textarea>
+                <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">Descripción</h3>
+                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 17px;" class="form-control"
+                    placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
                 <br>
@@ -313,7 +399,7 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <a>
+                            <a *ngIf="articleFullData.Seller.Image">
                                 <img src="{{articleFullData.Seller.Image}}" class="user-image" alt="User Image"
                                     class="img-avatar" style="width: 260; height: 160px; margin-left: 10px;">
                             </a>

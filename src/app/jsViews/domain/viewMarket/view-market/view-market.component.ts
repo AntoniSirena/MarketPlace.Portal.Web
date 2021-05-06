@@ -114,6 +114,11 @@ export class ViewMarketComponent implements OnInit {
       });
   }
 
+  resetPage(){
+    this.currentPage = 1;
+    this.currentPageAdvancedSearch = 1;
+    this.currentPageSearchStr = 1;
+  }
 
   getArticleFullData(articleId: number) {
     this.marketService.getArticleFullData(articleId).subscribe((response: ArticleFullData) => {

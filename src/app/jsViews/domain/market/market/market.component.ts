@@ -364,7 +364,7 @@ export class MarketComponent implements OnInit {
     this.createForm = this.form.group({
       title: ['', Validators.required],
       price: [0],
-      currencyId: ['', Validators.required],
+      currencyId: [this.currencies.filter(x => x.ShortName === 'DOP')[0].Id, Validators.required],
       marketTypeId: ['', Validators.required],
       conditionId: ['', Validators.required],
       categoryId: ['', Validators.required],
