@@ -226,17 +226,17 @@
                     <div *ngIf="!createForm.value.ubication" class="required">*</div>
                   </div>
 
+                  <div *ngIf="buttonSave" class="row center">
+                    <div class="col-sm-12">
+                      <button type="submit" class="btn btn-primary" style="font-size: 25px; width: 200px; border-radius: 22px;" [disabled]="createForm.invalid">Publicar</button>
+                    </div>                 
+                  </div>
+                  <h2 class="center" *ngIf="!buttonSave" style="color: rgb(11, 141, 216);">Espere mientras se procesan los datos... <i class="fa fa-circle-o-notch fa-spin" style="font-size:40px"></i></h2>
+
                 </div>
-                <!--/.col-->
+                
               </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-                    [disabled]="createForm.invalid">Publicar</button>
-                </div>
-                <!--/.row-->
-              </div>
+              
             </div>
           </form>
 
@@ -383,19 +383,19 @@
                   <div *ngIf="!editForm.value.ubication" class="required">*</div>
                 </div>
 
+                <div *ngIf="buttonSave" class="row center">
+                  <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary" style="font-size: 25px; width: 200px; border-radius: 22px;" [disabled]="editForm.invalid">Guardar</button>
+                  </div>                 
+                </div>
+                <h2 class="center" *ngIf="!buttonSave" style="color: rgb(11, 141, 216);">Espere mientras se procesan los datos... <i class="fa fa-circle-o-notch fa-spin" style="font-size:40px"></i> </h2>
+
               </div>
             </div>
           </div>
-          <!--/.col-->
+         
         </div>
-        <!--/.row-->
-        <div class="row">
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-              [disabled]="editForm.invalid">Guardar</button>
-          </div>
-          <!--/.row-->
-        </div>
+
       </div>
     </form>
 

@@ -51,6 +51,8 @@ export class MarketComponent implements OnInit {
   inputFilesMultiple = [];
   validateImg: boolean;
 
+  buttonSave: boolean;
+
   //Permissions
   canCreate: boolean;
   canEdit: boolean;
@@ -66,6 +68,7 @@ export class MarketComponent implements OnInit {
     this.canCreate = this.userData.CanCreate;
     this.canEdit = this.userData.CanEdit;
     this.canDelete = this.userData.CanDelete;
+    this.buttonSave = true;
   }
 
   ngOnInit(): void {
@@ -186,12 +189,14 @@ export class MarketComponent implements OnInit {
   //open create modal
   openCreateModal(createModal) {
     this.initCreateFrom();
+    this.buttonSave = true;
     this.modalService.open(createModal, { size: 'lg', backdrop: 'static', scrollable: true });
   }
 
   //open edit modal
   openEditModal(editModal, id: number) {
     this.initEditFrom();
+    this.buttonSave = true;
     this.getById(editModal, id);
   }
 
@@ -225,6 +230,7 @@ export class MarketComponent implements OnInit {
       IsDeleted: false
     };
 
+    this.buttonSave = false;
     this.marketService.create(data, this.inputFilesMultiple).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
@@ -245,10 +251,13 @@ export class MarketComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 10000
+        }).then(() => {
+          this.buttonSave = true;
         });
       }
     },
       error => {
+        this.buttonSave = true;
         console.log(JSON.stringify(error));
       });
   }
@@ -284,7 +293,7 @@ export class MarketComponent implements OnInit {
       IsDeleted: this.market.IsDeleted
     };
 
-
+    this.buttonSave = false;
     this.marketService.update(data).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
@@ -305,10 +314,13 @@ export class MarketComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 10000
+        }).then(() => {
+          this.buttonSave = true;
         });
       }
     },
       error => {
+        this.buttonSave = true;
         console.log(JSON.stringify(error));
       });
 
