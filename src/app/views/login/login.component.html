@@ -15,7 +15,7 @@
 
               <div class="card-body">
                 <!--Form-->
-                <form [formGroup]="loginForm" (submit)="loadingOnSubmitLogin(loginForm.value)">
+                <form [formGroup]="loginForm" (submit)="SubmitLogin(loginForm.value)">
 
                   <div class="row">
                     <div class="col-md-12 center">
@@ -44,30 +44,45 @@
                       autocomplete="current-password" formControlName="password">
                     <div *ngIf="!loginForm.value.password" class="required">*</div>
                   </div>
-                  <div class="row">
-                    <div class="col-12">
-                      <button type="submit" class="btn loginButton bold"
-                        [disabled]="loginForm.invalid" style="background-color: rgb(19, 179, 190);"> <span style="color: white;">Iniciar sesión</span> </button>
+
+                  <div *ngIf="buttonLogIn" >
+                    <div class="row">
+                      <div class="col-12">
+                        <button type="submit" class="btn loginButton bold" [disabled]="loginForm.invalid"
+                          style="background-color: rgb(19, 179, 190);"> <span style="color: white;">Iniciar
+                            sesión</span> </button>
+                      </div>
                     </div>
+
+                    <h4 class="center" (click)="openResetPasswordModal()">¿Has olvidado la contraseña?</h4>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <button type="button" *ngIf="valueRegisterButton == '1' " class="btn loginButton bold"
+                          style="background-color: rgb(71, 196, 22);" (click)="register()"><span
+                            style="color: white;">Suscribirme</span></button>
+                      </div>
+                    </div>
+
+                    <br>
+                    <br>
+                    <div>
+                      <div class="center">
+                        <button id="btnPortada" type="button" class="bold btn btn-primary portadaButton"
+                          style="background-color: rgb(41, 92, 116);" (click)="redirectPortada()">Compro & Vendo
+                          RD</button>
+                      </div>
+                    </div>
+
                   </div>
 
-                  <h4 class="center" (click)="openResetPasswordModal()">¿Has olvidado la contraseña?</h4>
 
-                  <div class="row">
+                  <div *ngIf="!buttonLogIn" class="row">
                     <div class="col-12">
-                      <button type="button" *ngIf="valueRegisterButton == '1' " class="btn loginButton bold"
-                        style="background-color: rgb(71, 196, 22);" (click)="register()"><span
-                          style="color: white;">Suscribirme</span></button>
-                    </div>
-                  </div>
-
-                  <br>
-                  <br>
-                  <div>
-                    <div class="center">
-                      <button id="btnPortada" type="button" class="bold btn btn-primary portadaButton"
-                        style="background-color: rgb(41, 92, 116);" (click)="redirectPortada()">Compro & Vendo
-                        RD</button>
+                      <button type="button" class="btn loginButton bold" [disabled]="true"
+                        style="background-color: rgb(19, 179, 190);"> <span style="color: white;">Validando
+                          credenciales...</span> <i class="fa fa-circle-o-notch fa-spin"
+                          style="font-size:35px; color: rgb(60, 170, 16);"></i></button>
                     </div>
                   </div>
 
@@ -103,7 +118,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <div class="card"  style="border-radius: 15px;">
+            <div class="card" style="border-radius: 15px;">
 
               <div class="card-body">
 
@@ -127,18 +142,20 @@
 
                 <div *ngIf="buttonResetPass" class="row center">
                   <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary" style="font-size: 25px; width: 200px; border-radius: 22px;"
+                    <button type="submit" class="btn btn-primary"
+                      style="font-size: 25px; width: 200px; border-radius: 22px;"
                       [disabled]="resetPasswordForm.invalid">Enviar</button>
-                  </div>                 
+                  </div>
                 </div>
-                <h2 class="center" *ngIf="!buttonResetPass" style="color: rgb(11, 141, 216);">Procesando solicitud...</h2>
+                <h2 class="center" *ngIf="!buttonResetPass" style="color: rgb(11, 141, 216);">Procesando solicitud...
+                </h2>
 
               </div>
             </div>
           </div>
 
         </div>
-        
+
       </div>
     </form>
 
