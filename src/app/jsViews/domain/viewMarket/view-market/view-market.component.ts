@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
 import { Article, ArticleFullData, ImgDetail } from '../../../../models/domain/market/market';
@@ -77,7 +78,9 @@ export class ViewMarketComponent implements OnInit {
     private marketService: MarketService,
     private modalService: NgbModal,
     private routerService: Router,
-    private baseService: BaseService) {
+    private baseService: BaseService,
+    private spinnerService: NgxSpinnerService,
+    ) {
 
   }
 
@@ -120,8 +123,20 @@ export class ViewMarketComponent implements OnInit {
     this.currentPageSearchStr = 1;
   }
 
-  getArticleFullData(articleId: number) {
-    this.marketService.getArticleFullData(articleId).subscribe((response: ArticleFullData) => {
+  loadingGetArticleFullData(article: Article) {
+    this.spinnerService.show();
+    this.getArticleFullData(article);
+
+    setTimeout(() => {
+      this.spinnerService.hide();
+    }, 4000);
+  }
+
+
+  getArticleFullData(article: Article) {
+    this.currentArticle = article;
+
+    this.marketService.getArticleFullData(article.Id).subscribe((response: ArticleFullData) => {
       this.articleFullData = response;
 
       this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
@@ -130,6 +145,7 @@ export class ViewMarketComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
   }
+  
 
   getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
     this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: Array<Article>) => {
@@ -172,12 +188,6 @@ export class ViewMarketComponent implements OnInit {
       this.getArticles(marketType, 0, 0, this.currentPage);
     }
 
-  }
-
-
-  getarticleDetail(article: Article) {
-    this.currentArticle = article;
-    this.getArticleFullData(article.Id);
   }
 
   filterArticles(marketType, form) {

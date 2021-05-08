@@ -103,6 +103,8 @@ export class ProfileComponent implements OnInit {
   createLocatorForm: FormGroup;
   editLocatorForm: FormGroup;
 
+  buttonUpdateUserImg: boolean;
+
   inputFiles: any = '';
 
   imgProfile: string = '';
@@ -110,6 +112,8 @@ export class ProfileComponent implements OnInit {
 
   //Init
   ngOnInit(): void {
+    this.buttonUpdateUserImg = true;
+
     this.setValueEditPersonFrom();
     this.setValueCreatePersonFrom();
     this.setValueEditFrom();
@@ -300,7 +304,11 @@ export class ProfileComponent implements OnInit {
 
   //update Img Profile
   updateProfileImg() {
+    this.buttonUpdateUserImg = false;
+
     this.profileService.updateProfileImagen(this.imgProfile).subscribe((response: Iresponse) => {
+      this.buttonUpdateUserImg = true;
+      
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -316,10 +324,12 @@ export class ProfileComponent implements OnInit {
           title: response.Message,
           showConfirmButton: true,
           timer: 4000
+        }).then(() => {
         });
       }
     },
       error => {
+        this.buttonUpdateUserImg = true;
         console.log(JSON.stringify(error));
       });
   }
