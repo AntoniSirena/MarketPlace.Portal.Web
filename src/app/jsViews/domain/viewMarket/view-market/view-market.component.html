@@ -105,8 +105,8 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="loadingGetArticleFullData(item)">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                        <div style="border-radius: 15px; height: 410px;" class="card">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -205,8 +205,8 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="loadingGetArticleFullData(item)">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                        <div style="border-radius: 15px; height: 410px;" class="card">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -233,7 +233,7 @@ type="timer"
         <!--Donate-->
         <ngb-tab>
             <ng-template ngbTabTitle>
-                <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donar</div>
+                <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donaciones</div>
             </ng-template>
 
             <ng-template ngbTabContent>
@@ -305,8 +305,8 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card" (click)="loadingGetArticleFullData(item)">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                        <div style="border-radius: 15px; height: 410px;" class="card">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -381,7 +381,7 @@ type="timer"
                         [attr.data-index]="i">
                         <div style="border-radius: 15px;" class="card">
                             <img class="imgPortada" id="image"
-                                src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                                src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
                         </div>
                     </div>
                 </div>

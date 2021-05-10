@@ -210,11 +210,12 @@ export class PortadaComponent implements OnInit {
 
   //open automatic publicity modal
   openAutomaticPublicityModal(operation: string) {
-    this.getAutomaticPublicityTemplate(operation);
 
-    this.modalService.dismissAll();
-
-    this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true, backdrop: 'static' });
+    if(window.location.hash.match('portada')){
+      this.getAutomaticPublicityTemplate(operation);
+      this.modalService.dismissAll();
+      this.modalService.open(this.automaticPublicityModal, { size: 'lg', scrollable: true, backdrop: 'static' });
+    }
   }
 
 }

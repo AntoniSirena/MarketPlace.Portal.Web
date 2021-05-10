@@ -58,8 +58,6 @@ export class ProfileComponent implements OnInit {
     private locatorService: LocatorService,
     private commonService: CommonService,
     private form: FormBuilder,
-    private obsLikeService: FileReaderObservableLikeService,
-    private promiseService: FileReaderPromiseLikeService
   ) {
 
     //Cagando la data desde el servidor
