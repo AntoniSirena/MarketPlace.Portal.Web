@@ -98,8 +98,11 @@ export class ViewMarketComponent implements OnInit {
 
 
   getArticles(marketType: string, categoryId: number, subCategoryId: number, page: number) {
+    this.spinnerService.show();
     this.inputStr = '';
     this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: Array<Article>) => {
+      this.spinnerService.hide();
+
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
@@ -113,6 +116,7 @@ export class ViewMarketComponent implements OnInit {
 
     },
       error => {
+        this.spinnerService.hide();
         console.log(JSON.stringify(error));
       });
   }
@@ -123,32 +127,30 @@ export class ViewMarketComponent implements OnInit {
     this.currentPageSearchStr = 1;
   }
 
-  loadingGetArticleFullData(article: Article) {
-    this.spinnerService.show();
-    this.getArticleFullData(article);
-
-    setTimeout(() => {
-      this.spinnerService.hide();
-    }, 4000);
-  }
-
 
   getArticleFullData(article: Article) {
+    this.spinnerService.show();
     this.currentArticle = article;
 
     this.marketService.getArticleFullData(article.Id).subscribe((response: ArticleFullData) => {
       this.articleFullData = response;
+      this.spinnerService.hide();
 
       this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
     },
       error => {
+        this.spinnerService.hide();
         console.log(JSON.stringify(error));
       });
   }
   
 
   getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
+    this.spinnerService.show();
+
     this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: Array<Article>) => {
+      this.spinnerService.hide();
+
       this.articles = response;
       this.itemQuantity = this.articles.length;
 
@@ -162,6 +164,7 @@ export class ViewMarketComponent implements OnInit {
 
     },
       error => {
+        this.spinnerService.hide();
         console.log(JSON.stringify(error));
       });
   }

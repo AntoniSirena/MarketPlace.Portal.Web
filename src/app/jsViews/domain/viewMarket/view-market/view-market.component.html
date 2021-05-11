@@ -102,7 +102,7 @@
                     <div class="col-md-3" *ngFor="let item of articles">
                         <div style="border-radius: 15px; height: 450px;" class="card shadow bg-white">
                             <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="loadingGetArticleFullData(item)">
+                                (click)="getArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -214,7 +214,7 @@
                     <div class="col-md-3" *ngFor="let item of articles">
                         <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
                             <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="loadingGetArticleFullData(item)">
+                                (click)="getArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -326,7 +326,7 @@
                     <div class="col-md-3" *ngFor="let item of articles">
                         <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
                             <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="loadingGetArticleFullData(item)">
+                                (click)="getArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
@@ -443,7 +443,7 @@
                 <br>
                 <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
                     Descripción</h3>
-                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 20px;"
+                <textarea *ngIf="articleFullData.Article.Description" rows="6" style="font-size: 20px;"
                     class="form-control" placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
@@ -457,13 +457,13 @@
                         <div class="col-md-3">
                             <a *ngIf="articleFullData.Seller.Image">
                                 <img src="{{articleFullData.Seller.Image}}" class="user-image" alt="User Image"
-                                    class="img-avatar" style="width: 260; height: 160px; margin-left: 10px;">
+                                    class="img-avatar" style="width: 220; height: 130px; margin-left: 10px;">
                             </a>
                         </div>
                         <div class="col-md-9">
-                            <h4 style="margin-left: 10px;">{{articleFullData.Seller.Name}}</h4>
-                            <h4 style="margin-left: 10px;">{{articleFullData.Seller.PhoneNumber}}</h4>
-                            <h4 style="margin-left: 10px;">{{articleFullData.Seller.Mail}}</h4>
+                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h4>
+                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.PhoneNumber}}</h4>
+                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.Mail}}</h4>
                         </div>
 
                     </div>
