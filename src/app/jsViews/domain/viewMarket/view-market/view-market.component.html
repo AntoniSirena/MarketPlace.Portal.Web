@@ -1,12 +1,6 @@
-
 <!--Call spinner-->
-<ngx-spinner
-bdColor="rgba(51,51,51,0.8)"
-size="medium"
-color="rgb(152, 214, 218)"
-type="timer"
->
-<p style="font-size: 20px; color: white">Cangando...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="rgb(152, 214, 218)" type="timer">
+    <p style="font-size: 20px; color: white">Cangando...</p>
 </ngx-spinner>
 
 
@@ -15,7 +9,8 @@ type="timer"
     <div class="card-header" style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span style="color: red;">R</span><span style="color: blue;">D</span>
+                <h1 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span
+                        style="color: red;">R</span><span style="color: blue;">D</span>
                 </h1>
             </div>
         </div>
@@ -105,16 +100,27 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
+                        <div style="border-radius: 15px; height: 450px;" class="card shadow bg-white">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                                (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
+                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h5>
+
                             <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                                 currency}} <span class="bold"
                                     style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
                             <span
                                 style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                            <div class="row center">
+                                <div class="cold-md-6">
+                                    <button (click)="reportArticle()" class="btn btn-primary"
+                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -193,7 +199,8 @@ type="timer"
                 <br>
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;" class="form-control"
+                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                        class="form-control"
                         placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
                         [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
                 </div>
@@ -205,16 +212,27 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
+                        <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                                (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
+                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h5>
+
                             <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                                 currency}} <span class="bold"
                                     style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
                             <span
                                 style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                            <div class="row center">
+                                <div class="cold-md-6">
+                                    <button (click)="reportArticle()" class="btn btn-primary"
+                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -293,11 +311,12 @@ type="timer"
                 <br>
                 <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;" class="form-control"
+                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                        class="form-control"
                         placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
                         [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Donate', inputStr)">
                 </div>
-    
+
                 <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
                 <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
                 <br>
@@ -305,23 +324,36 @@ type="timer"
 
                 <div class="row card-group">
                     <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;" (click)="loadingGetArticleFullData(item)">
+                        <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                                (click)="loadingGetArticleFullData(item)">
                                 <img class="imgPortada" id="image"
                                     src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                             </div>
+                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h5>
+
                             <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                                 currency}} <span class="bold"
                                     style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
                             <span
                                 style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                            <div class="row center">
+                                <div class="cold-md-6">
+                                    <button (click)="reportArticle()" class="btn btn-primary"
+                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="row center">
                     <div class="cold-md-6">
-                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver más</button>
+                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
+                            más</button>
                     </div>
                 </div>
 
@@ -392,7 +424,8 @@ type="timer"
 
                 <h1 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
                     {{articleFullData.Article.Price | currency}}
-                    <span class="bold" style="font-size: 17px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
+                    <span class="bold"
+                        style="font-size: 17px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
                 </h1>
 
                 <h2 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h2>
@@ -408,14 +441,16 @@ type="timer"
                     {{articleFullData.Article.CreationDate}}</h4>
 
                 <br>
-                <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">Descripción</h3>
-                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 20px;" class="form-control"
-                    placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
+                <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
+                    Descripción</h3>
+                <textarea *ngIf="articleFullData.Article.Description" rows="10" style="font-size: 20px;"
+                    class="form-control" placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
                 <br>
                 <div class="card" style="border-radius: 15px;">
-                    <h2 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: blue;">Vendedor</h2>
+                    <h2 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: blue;">
+                        Vendedor</h2>
                     <br>
                     <div class="row">
 

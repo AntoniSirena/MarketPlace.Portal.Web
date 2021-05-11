@@ -246,6 +246,10 @@ export class ViewMarketComponent implements OnInit {
     this.routerService.navigate(['register']);
   }
 
+  reportArticle(){
+    alert('Funcionalidad en desarrollo. Muy pronto');
+  }
+
 
   //init filter sell from
   initFilterSellFrom() {
