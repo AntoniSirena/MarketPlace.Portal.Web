@@ -13,3 +13,8 @@ export const SizeImageDetailArticle ={
     width: 200,
     height: 200,
 }
+
+export const SizeImageProfile ={
+    width: 175,
+    height: 140,
+}

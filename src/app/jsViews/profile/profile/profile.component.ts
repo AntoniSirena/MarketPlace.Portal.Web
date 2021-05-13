@@ -21,6 +21,8 @@ import { CommonService } from '../../../services/common/common.service';
 import { FileReaderPromiseLikeService, FileReaderObservableLikeService } from 'fctrlx-angular-file-reader';
 import { RedirectService } from '../../../services/redirect/redirect.service';
 import { Ilogin } from '../../../interfaces/Ilogin/ilogin';
+import { environment } from '../../../environments/environment';
+import { SizeImageProfile } from './../../../configurations/jsConfig';
 
 
 @Component({
@@ -105,13 +107,18 @@ export class ProfileComponent implements OnInit {
 
   inputFiles: any = '';
 
-  imgProfile: string = '';
+  imgProfile: any = '';
   imgProfileOriginServer: boolean = true;
+
+  coreURL = environment.coreURL;
+  img_Width = SizeImageProfile.width;
+  img_height = SizeImageProfile.height;
+  
+  userId: number = JSON.parse(localStorage.getItem('userId'));
 
   //Init
   ngOnInit(): void {
     this.buttonUpdateUserImg = true;
-
     this.setValueEditPersonFrom();
     this.setValueCreatePersonFrom();
     this.setValueEditFrom();
@@ -295,7 +302,7 @@ export class ProfileComponent implements OnInit {
   setProfileImg() {
     if (this.inputFiles !== '') {
       if(this.inputFiles.length > 0){
-        this.imgProfile = this.inputFiles[0].base64;
+        this.imgProfile = this.inputFiles[0];
       }
     }
   }

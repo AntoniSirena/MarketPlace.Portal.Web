@@ -8,6 +8,9 @@ import { ProfileComponent } from '../../jsViews/profile/profile/profile.componen
 import { Router } from '@angular/router';
 import { User } from './../../models/profile/profile';
 import $ from 'jquery'; 
+import { environment } from '../../environments/environment';
+import { SizeImageProfile } from '../../configurations/jsConfig';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +28,12 @@ export class DefaultLayoutComponent implements OnInit {
 
   roleShortName: string = 'Visitador';
   isVisitorUser: boolean;
+
+  coreURL = environment.coreURL;
+  img_Width = 140
+  img_height = 130;
+  
+  userId: number = JSON.parse(localStorage.getItem('userId'));
 
 
   constructor(

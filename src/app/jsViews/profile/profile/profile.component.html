@@ -29,12 +29,12 @@
                     <div class="card-body">
                       <div class="form-group">
                         <a *ngIf="imgProfileOriginServer">
-                          <img src="data:image/png;base64,{{profile.User.Image}}" class="user-image" alt="User Image"
-                            class="center img-avatar" style="width: 200; height: 140px;">
+                          <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{userId}}&width={{img_Width}}&height={{img_height}}" class="user-image" alt="User Image"
+                            class="center img-avatar">
                         </a>
 
                         <a *ngIf="imgProfileOriginServer == false">
-                          <img src="{{imgProfile}}" class="user-image" alt="User Image" class="center img-avatar"
+                          <img src="{{imgProfile.base64}}" class="user-image" alt="User Image" class="center img-avatar"
                             style="width: 200; height: 140px;">
                         </a>
 

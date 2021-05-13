@@ -44,7 +44,7 @@
     <li *ngIf="roleShortName != 'Visitador'" class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
         dropdownToggle (click)="false">
-        <img src="data:image/png;base64,{{profile.User.Image}}" class="img-avatar"
+        <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{userId}}&width={{img_Width}}&height={{img_height}}" class="img-avatar"
           alt="{{profile.User.EmailAddress}}" />
       </a>
 
