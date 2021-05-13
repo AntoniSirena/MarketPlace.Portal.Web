@@ -38,9 +38,15 @@ export class RegisterComponent {
       this.userTypes = response;
 
       this.myForm = this.form.group({
+        userName: ['', Validators.required],
+        emailAddress: ['', Validators.required],
+        password: ['', Validators.required],
+        name: ['', Validators.required],
+        surName: ['', Validators.required],
+        code: [''],
+        phoneNumber: ['', Validators.required],
         userTypeId: [this.userTypes.filter(x => x.ShortName === 'Person')[0].Id, Validators.required]
       });
-
     },
       error => {
         console.log(JSON.stringify(error));
