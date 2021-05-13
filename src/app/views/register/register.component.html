@@ -10,12 +10,17 @@
 
                 <div class="row">
                   <div class="col-md-12 center">
-                   <i> <h3 style="font-weight: bold;"><span>Unete y forma parte de Compro & Vendo</span> <span style="color: rgb(14, 34, 126);">R</span> <span style="color: rgb(211, 12, 12);">D</span> </h3> </i>
+                    <i>
+                      <h3 style="font-weight: bold;"><span>Unete y forma parte de Compro & Vendo</span> <span
+                          style="color: rgb(14, 34, 126);">R</span> <span style="color: rgb(211, 12, 12);">D</span>
+                      </h3>
+                    </i>
                   </div>
                 </div>
                 <br>
 
-                <label for="userTypeId" style="font-weight: bold;">Tipo de usuario</label>
+                <label for="userTypeId" style="font-weight: bold;">Seleccione el tipo de usuario <span
+                    *ngIf="!myForm.value.userTypeId" class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -23,80 +28,81 @@
                   <select formControlName="userTypeId" class="form-control">
                     <option *ngFor="let item of userTypes" [value]="item.Id">{{item.Description}}</option>
                   </select>
-                  <div *ngIf="!myForm.value.userTypeId" class="required">*</div>
                 </div>
-                
-                <label for="userName" style="font-weight: bold;">Nombre de usuario</label>
+
+                <label for="userName" style="font-weight: bold;">Nombre de usuario <span *ngIf="!myForm.value.userName"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="userName" class="form-control" placeholder="Nombre de usuario" style="font-weight: bold;" autocomplete="username" required>
-                  <div *ngIf="!myForm.value.userName" class="required">*</div>
+                  <input type="text" formControlName="userName" class="form-control" placeholder="Nombre de usuario"
+                    style="font-weight: bold;" autocomplete="username" required>
                 </div>
 
-                <label for="email" style="font-weight: bold;">Correo</label>
+                <label for="email" style="font-weight: bold;">Correo <span *ngIf="!myForm.value.emailAddress"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo" style="font-weight: bold;" autocomplete="email" required>
-                  <div *ngIf="!myForm.value.emailAddress" class="required">*</div>
+                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo"
+                    style="font-weight: bold;" autocomplete="email" required>
                 </div>
 
-                <label for="password" style="font-weight: bold;">Contraseña</label>
+                <label for="password" style="font-weight: bold;">Contraseña <span *ngIf="!myForm.value.password"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" style="font-weight: bold;" autocomplete="new-password" required>
-                  <div *ngIf="!myForm.value.password" class="required">*</div>
+                  <input type="password" formControlName="password" class="form-control" placeholder="Contraseña"
+                    style="font-weight: bold;" autocomplete="new-password" required>
                 </div>
 
-                <!-- <div class="input-group mb-4">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-lock"></i></span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Repita su contraseña" autocomplete="new-password" required>
-                </div> -->
-                
-                <label for="name" style="font-weight: bold;">Nombres</label>
+                <label for="name" style="font-weight: bold;">Nombres <span *ngIf="!myForm.value.name"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="name" class="form-control" placeholder="Nombres" style="font-weight: bold;" autocomplete="username" required>
-                  <div *ngIf="!myForm.value.name" class="required">*</div>
+                  <input type="text" formControlName="name" class="form-control" placeholder="Nombres"
+                    style="font-weight: bold;" autocomplete="username" required>
                 </div>
 
-                
-                <label for="surName" style="font-weight: bold;">Apellidos</label>
+
+                <label for="surName" style="font-weight: bold;">Apellidos <span *ngIf="!myForm.value.surName"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos" style="font-weight: bold;" autocomplete="username" required>
-                  <div *ngIf="!myForm.value.surName" class="required">*</div>
+                  <input type="text" formControlName="surName" class="form-control" placeholder="Apellidos"
+                    style="font-weight: bold;" autocomplete="username" required>
                 </div>
 
-                <label for="phoneNumber" style="font-weight: bold;">Celular</label>
+                <label for="phoneNumber" style="font-weight: bold;">Celular <span *ngIf="!myForm.value.phoneNumber"
+                    class="required">*</span></label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-mobile"></i></span>
                   </div>
-                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Celular" style="font-weight: bold;" autocomplete="phoneNumber">
-                  <div *ngIf="!myForm.value.phoneNumber" class="required">*</div>
+                  <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Celular"
+                    style="font-weight: bold;" autocomplete="phoneNumber">
                 </div>
 
-               <!-- <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
                   <input type="text" formControlName="code" class="form-control" placeholder="Código de seguridad si posee" autocomplete="code">
-                </div> --> 
+                </div> -->
 
-                <button type="submit" style="margin-bottom: 20px;" class="btn btn-block btn-primary loginButton" [disabled]="myForm.invalid" >Crear cuenta</button>
-                <button type="button" class="btn btn-block btn-success loginButton" (click)="goToBack()">Volver atrás</button>
+                <button type="submit" style="margin-bottom: 15px; height: 35px;"
+                  class="btn btn-block btn-primary" [disabled]="myForm.invalid"><span class="bold" style="font-size: 20px;">Crear cuenta</span></button>
+
+                <button style="margin-top: 10px; height: 35px;" type="button" class="btn btn-block btn-success"
+                  (click)="goToBack()"> <span class="bold" style="font-size: 20px;">Volver atrás</span> </button>
 
               </form>
               <!--End-->

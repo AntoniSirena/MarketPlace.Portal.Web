@@ -27,18 +27,8 @@ export class RegisterComponent {
   }
 
   ngOnInit() {
-    this.myForm = this.form.group({
-      userName: ['', Validators.required],
-      emailAddress: ['', Validators.required],
-      password: ['', Validators.required],
-      name: ['', Validators.required],
-      surName: ['', Validators.required],
-      code: [''],
-      phoneNumber: ['', Validators.required],
-      userTypeId: ['', Validators.required]
-    });
-
-    this.getUserTyes();
+    this.initMyForm();
+    this.getUserTyes()
   }
 
 
@@ -46,6 +36,11 @@ export class RegisterComponent {
   getUserTyes() {
     this.externalService.getUserTypes().subscribe((response: Array<UserType>) => {
       this.userTypes = response;
+
+      this.myForm = this.form.group({
+        userTypeId: [this.userTypes.filter(x => x.ShortName === 'Person')[0].Id, Validators.required]
+      });
+
     },
       error => {
         console.log(JSON.stringify(error));
@@ -147,6 +142,20 @@ export class RegisterComponent {
 
   goToPortada() {
     this.router.navigate(['portada']);
+  }
+
+
+  initMyForm(){
+    this.myForm = this.form.group({
+      userName: ['', Validators.required],
+      emailAddress: ['', Validators.required],
+      password: ['', Validators.required],
+      name: ['', Validators.required],
+      surName: ['', Validators.required],
+      code: [''],
+      phoneNumber: ['', Validators.required],
+      userTypeId: ['', Validators.required]
+    });
   }
 
 }
