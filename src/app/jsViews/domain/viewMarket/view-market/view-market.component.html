@@ -455,10 +455,8 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <a *ngIf="articleFullData.Seller.Image">
-                                <img src="{{articleFullData.Seller.Image}}" class="user-image" alt="User Image"
-                                    class="img-avatar" style="width: 220; height: 130px; margin-left: 10px;">
-                            </a>
+                            <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller.Id}}&width={{imageSeller_Width}}&height={{imageSeller_height}}" class="user-image" alt="User Image"
+                                class="img-avatar" style="width: 220; height: 130px; margin-left: 10px;">
                         </div>
                         <div class="col-md-9">
                             <h4 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h4>

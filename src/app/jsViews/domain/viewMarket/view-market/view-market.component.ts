@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Profile, User } from '../../../../models/profile/profile';
 import { BaseService } from '../../../../services/base/base.service';
 import { Category, SubCategory } from '../../../../models/domain/market/market';
-import { SizeImageDetailArticle } from './../../../../configurations/jsConfig';
+import { SizeImageDetailArticle, SizeImageSeller } from './../../../../configurations/jsConfig';
 
 
 @Component({
@@ -48,11 +48,15 @@ export class ViewMarketComponent implements OnInit {
   itemQuantity: number;
 
   coreURL = environment.coreURL;
+  
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
 
   imgDetail_Width = SizeImageDetailArticle.width;
   imgDetail_height = SizeImageDetailArticle.height;
+
+  imageSeller_Width = SizeImageSeller.width;
+  imageSeller_height = SizeImageSeller.height;
 
   userData = new User();
 

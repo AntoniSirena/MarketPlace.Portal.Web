@@ -73,7 +73,7 @@ export class ImgDetail {
 }
 
 export class Seller {
-    Image: string;
+    Id: number;
     Name: string;
     PhoneNumber: string;
     Mail: string;
