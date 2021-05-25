@@ -9,6 +9,7 @@ import { BaseService } from '../../../../services/base/base.service';
 import { User } from '../../../../models/profile/profile';
 import { Imarket } from '../../../../interfaces/domain/imarket/imarket';
 import { Iresponse } from './../../../../interfaces/Iresponse/iresponse';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -35,6 +36,8 @@ export class MarketComponent implements OnInit {
   editForm: FormGroup;
 
   _currentPage: number = 1;
+
+  coreURL = environment.coreURL;
 
   currencies = new Array<Currency>();
   marketTypes = new Array<MarketType>();
@@ -93,7 +96,7 @@ export class MarketComponent implements OnInit {
   setImg() {
     if (this.inputFiles !== '') {
       if (this.inputFiles.length > 0) {
-        this.market.Img = this.inputFiles[0].base64;
+        this.market.Img = this.inputFiles[0].base64;     
         this.validateImg = true;
       }
     }
@@ -305,8 +308,8 @@ export class MarketComponent implements OnInit {
         }).then(() => {
           this.getAll();
           this.modalService.dismissAll();
-          this.market.Img = '';
           this.inputFilesMultiple = [];
+          this.inputFiles = '';
         });
       } else {
         Swal.fire({
