@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
       if (response.Code === '000') {
 
         Swal.fire({
-          position: 'top-end',
+          position: 'top',
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
