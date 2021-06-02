@@ -10,6 +10,7 @@ import { User } from '../../../../models/profile/profile';
 import { Imarket } from '../../../../interfaces/domain/imarket/imarket';
 import { Iresponse } from './../../../../interfaces/Iresponse/iresponse';
 import { environment } from '../../../../environments/environment';
+import { CommonService } from './../../../../services/common/common.service';
 
 
 @Component({
@@ -39,6 +40,8 @@ export class MarketComponent implements OnInit {
 
   coreURL = environment.coreURL;
 
+  imageQuantityMarketDetail: number = 0;
+
   currencies = new Array<Currency>();
   marketTypes = new Array<MarketType>();
   conditions = new Array<Condition>();
@@ -65,7 +68,8 @@ export class MarketComponent implements OnInit {
   constructor(private modalService: NgbModal,
     private form: FormBuilder,
     private marketService: MarketService,
-    private baseService: BaseService,) {
+    private baseService: BaseService,
+    private commonService: CommonService) {
     //Load permissions
     this.userData = this.baseService.getUserData();
     this.canCreate = this.userData.CanCreate;
@@ -80,6 +84,7 @@ export class MarketComponent implements OnInit {
     this.getConditions();
     this.getCategories();
     this.getAll();
+    this.getImageQuantityMarketDetail();
   }
 
 
@@ -145,6 +150,16 @@ export class MarketComponent implements OnInit {
   getSubCategories_ByCategoryId(id: number) {
     this.marketService.getSubCategories(id).subscribe((response: Array<SubCategory>) => {
       this.subCategories = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  getImageQuantityMarketDetail() {
+    this.commonService.getConfigurationParameter('MaximumImgQuantityMarketDetail').subscribe((response: any) => {
+      this.imageQuantityMarketDetail = response;
     },
       error => {
         console.log(JSON.stringify(error));
@@ -340,6 +355,7 @@ export class MarketComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
       confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
       if (result.value) {

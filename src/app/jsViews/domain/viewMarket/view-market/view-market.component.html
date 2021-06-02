@@ -431,7 +431,7 @@
                 <h2 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h2>
 
                 <br>
-                <h4 style="margin-left: 10px;"> <span style="color: green;">Codición :</span> &nbsp;
+                <h4 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span style="color: green;">Codición :</span> &nbsp;
                     {{articleFullData.Article.Condition}}</h4>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
                     {{articleFullData.Article.Ubication}}</h4>
@@ -461,7 +461,6 @@
                         <div class="col-md-9">
                             <h4 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h4>
                             <h4 style="margin-left: 8px;">{{articleFullData.Seller.PhoneNumber}}</h4>
-                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.Mail}}</h4>
                         </div>
 
                     </div>

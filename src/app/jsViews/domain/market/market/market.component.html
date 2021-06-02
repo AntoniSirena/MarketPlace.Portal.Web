@@ -68,10 +68,13 @@
       <!--Agregar fotos-->
       <ngb-tab>
         <ng-template ngbTabTitle>
-          <div class="bold">Agregar fotos</div>
+          <div class="bold">Cargar fotos</div>
         </ng-template>
 
         <ng-template ngbTabContent>
+
+          <h6 class="bold" style="color: rgb(13, 141, 13);">Puedes cargar un máximo de {{imageQuantityMarketDetail}} fotos</h6>
+          <br>
 
           <div class="form-group">
             <div class="form-group">
@@ -87,7 +90,7 @@
               <h6 class="bold">{{item.name}} <span (click)="removeImg(i)" class="btn btn-danger"> <i
                     class="fa fa-remove">&nbsp;Remover</i> </span> </h6>
               <a>
-                <img src="{{item.base64}}" style="width: 200px; height: 230px;">
+                <img src="{{item.base64}}" style="width: 200px; height: 200px;">
               </a>
               <h4 class="bold" style="color: red;">{{i + 1}}</h4>
 
@@ -114,13 +117,13 @@
                   <h5 *ngIf="!validateImg" style="color: red;" class="center">Favor cargue la foto principal del
                     artículo</h5>
                   <a>
-                    <img src="{{market.Img}}" class="center" style="width: 240px; height: 250px;">
+                    <img src="{{market.Img}}" class="center" style="width: 200px; height: 200px;">
                   </a>
                   <br>
                   <div class="form-group">
                     <div class="form-group">
                       <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
-                        multiple="">
+                        multiple="" accept='image/*'>
                     </div>
                   </div>
                   <br>
@@ -282,7 +285,7 @@
                 <div class="form-group">
                   <div class="form-group">
                     <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
-                      multiple="">
+                      multiple="" accept='image/*'>
                   </div>
                 </div>
                 <br>

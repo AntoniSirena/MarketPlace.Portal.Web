@@ -61,6 +61,7 @@ export class Article {
     Price: number;
     CurrencyCode: string;
     Condition: string;
+    ConditionShortName: string;
     Ubication: string;
     Description: string;
     PhoneNumber: string;

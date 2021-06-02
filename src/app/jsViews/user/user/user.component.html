@@ -37,8 +37,8 @@
           <td class="td_min"> <span class="{{item.StatusColor}} center">{{item.Status}}</span> </td>
           <td>{{item.Role == null ? '' : item.Role.Description}}</td>
           <td class="td_min">{{item.Type}}</td>
-          <td class="right"> <button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
-          <td class="right"> <button (click)="openDetailModal(item.Id)"> <i class="fa fa-eye"></i> </button> </td>
+          <td class="right"> <button type="button" class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsOnline == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsOnline == true ? 'sí' : 'No'}} </button> </td>
+          <td class="right"> <button type="button" (click)="openDetailModal(details, item.Id)"> <i class="fa fa-eye"></i> </button> </td>
           <td class="right"><button type="button" class="btn btn-primary" (click)="openEditModal(editModal, item.Id)" [disabled]="!canEdit"><i
                 class="fa fa-pencil"></i>&nbsp;Editar</button></td>
         </tr>
@@ -374,17 +374,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of locators | filter : _searchText | paginate: { itemsPerPage: 4, currentPage: currentPageLocators}">
+                          <tr *ngFor="let item of locators | filter : _searchText">
                             <td>{{item.Description}}</td>
                             <td>{{item.Type}}</td>
                             <td class="center"><button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
                           </tr>
                         </tbody>
-                      </table>
-
-                      <pagination-controls (pageChange)="currentPageLocators = $event" autoHide="true" responsive="true" previousLabel="Anterior"
-                        nextLabel="Siguiente">
-                      </pagination-controls>
+                      </table>                      
 
                     </div>
 
@@ -463,7 +459,5 @@
     </ngb-tabset>
 
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cerrar</button>
-  </div>
+
 </ng-template>

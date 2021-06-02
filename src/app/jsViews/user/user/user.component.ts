@@ -85,8 +85,6 @@ export class UserComponent implements OnInit {
 
   ipAddress: object;
 
-  @ViewChild('details') detailsModal: ElementRef;
-
 
   //Permissions
   canCreate = JSON.parse(localStorage.getItem("canCreate"));
@@ -180,9 +178,9 @@ export class UserComponent implements OnInit {
 
 
   //open details modal
-  openDetailModal(userId: number) {
+  openDetailModal(details, userId: number) {
     this.getUserDetails(userId);
-    this.modalService.open(this.detailsModal, { size: 'lg', scrollable: true, backdrop: 'static' });
+    this.modalService.open(details, { size: 'lg', scrollable: true, backdrop: 'static' });
   }
 
   //open edit modal
