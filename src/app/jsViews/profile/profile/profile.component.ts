@@ -134,6 +134,10 @@ export class ProfileComponent implements OnInit {
 
   openProfileModal() {
 
+    if(!this.infoCurrentUser.UserName){
+      return;
+    }
+
     //abriendo el modal
     this.modalService.open(this._content, { size: 'lg', scrollable: true })
 

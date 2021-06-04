@@ -53,7 +53,7 @@ export class PortadaComponent implements OnInit {
   automaticPublicityTemplates: any;
   isEnabled_AutomaticPublicity: boolean;
   currentOperation: any;
-  currentOperationPosition: number = 0;
+  currentOperationPosition: number;
 
   portada = new Portada();
   automaticPublicityPortada = new Portada();
@@ -79,6 +79,11 @@ export class PortadaComponent implements OnInit {
     if (localStorage.length <= 5) {
       this.redirectService.loginUserVisitador();
       return;
+    }
+
+    this.currentOperationPosition = JSON.parse(localStorage.getItem('currentOperationPosition'));
+    if(this.currentOperationPosition === null){
+      localStorage.setItem('currentOperationPosition', `${JSON.stringify(0)}`)
     }
 
     this.loadingPortada();
@@ -138,6 +143,9 @@ export class PortadaComponent implements OnInit {
     setInterval(() => {
 
       if (location.hash.match('portada')) {
+
+        this.currentOperationPosition = JSON.parse(localStorage.getItem('currentOperationPosition'));
+
         this.currentOperation = this.automaticPublicityTemplates[this.currentOperationPosition];
 
         this.openAutomaticPublicityModal(this.currentOperation);
@@ -147,6 +155,8 @@ export class PortadaComponent implements OnInit {
         } else {
           this.currentOperationPosition += 1;
         }
+
+        localStorage.setItem('currentOperationPosition', `${JSON.stringify(this.currentOperationPosition)}`);
       }
 
     }, this.automaticPublicityTime);
