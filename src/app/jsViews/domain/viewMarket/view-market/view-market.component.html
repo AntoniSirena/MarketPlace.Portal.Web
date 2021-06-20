@@ -4,371 +4,365 @@
 </ngx-spinner>
 
 
-<div class="container-fluid" style="width: 100%;">
-
-    <div class="card-header" style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span
-                        style="color: red;">R</span><span style="color: blue;">D</span>
-                </h1>
-            </div>
+<div class="card-header" style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span
+                    style="color: red;">R</span><span style="color: blue;">D</span>
+            </h4>
         </div>
     </div>
-
-    <div class="row center">
-        <div class="cold-md-6">
-            <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar</button>
-        </div>
-    </div>
-
-    <ngb-tabset [destroyOnHide]="false">
-
-        <!--Sell-->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
-            </ng-template>
-
-            <ng-template ngbTabContent>
-
-                <h2 class="center bold">Pantalla de compra</h2>
-
-                <div id="accordion">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            <span class="bold">
-                                <h4>Busqueda avanzada</h4>
-                            </span>
-                        </button>
-                    </h5>
-
-                    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
-
-                        <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
-
-                            <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-md-2">
-                                    <span class="bold">Categoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <span class="bold">subcategoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="cold-md-6">
-                                    <button type="submit" style="margin-top: 15px;"
-                                        class="btn btn-primary btn_search">Buscar</button>
-                                </div>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-
-                <br>
-                <div class="form-group has-search">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
-                        class="form-control"
-                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
-                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
-                </div>
-
-                <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
-                <br>
-
-
-                <div class="row card-group">
-                    <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 450px;" class="card shadow bg-white">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="getArticleFullData(item)">
-                                <img class="imgPortada" id="image"
-                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                            </div>
-                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                                No.&nbsp;{{item.Id}}</h5>
-
-                            <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                                currency}} <span class="bold"
-                                    style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                            <span
-                                style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                            <div class="row center">
-                                <div class="cold-md-6">
-                                    <button (click)="reportArticle()" class="btn btn-primary"
-                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row center">
-                    <div class="cold-md-6">
-                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
-                    </div>
-                </div>
-
-                <br>
-
-            </ng-template>
-        </ngb-tab>
-
-        <!--Rent-->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <div (click)="resetPage(); getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
-            </ng-template>
-
-            <ng-template ngbTabContent>
-
-                <h2 class="center bold">Pantalla de renta</h2>
-
-                <div id="accordion">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            <span class="bold">
-                                <h4>Busqueda avanzada</h4>
-                            </span>
-                        </button>
-                    </h5>
-
-                    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
-
-                        <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
-
-                            <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-md-2">
-                                    <span class="bold">Categoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <span class="bold">subcategoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="cold-md-6">
-                                    <button type="submit" style="margin-top: 15px;"
-                                        class="btn btn-primary btn_search">Buscar</button>
-                                </div>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-
-                <br>
-                <div class="form-group has-search">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
-                        class="form-control"
-                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
-                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
-                </div>
-
-                <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
-                <br>
-
-
-                <div class="row card-group">
-                    <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="getArticleFullData(item)">
-                                <img class="imgPortada" id="image"
-                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                            </div>
-                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                                No.&nbsp;{{item.Id}}</h5>
-
-                            <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                                currency}} <span class="bold"
-                                    style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                            <span
-                                style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                            <div class="row center">
-                                <div class="cold-md-6">
-                                    <button (click)="reportArticle()" class="btn btn-primary"
-                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row center">
-                    <div class="cold-md-6">
-                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
-                    </div>
-                </div>
-
-                <br>
-
-            </ng-template>
-        </ngb-tab>
-
-        <!--Donate-->
-        <ngb-tab>
-            <ng-template ngbTabTitle>
-                <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donaciones</div>
-            </ng-template>
-
-            <ng-template ngbTabContent>
-
-                <h2 class="center bold">Pantalla de donación</h2>
-
-                <div id="accordion">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            <span class="bold">
-                                <h4>Busqueda avanzada</h4>
-                            </span>
-                        </button>
-                    </h5>
-
-                    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
-
-                        <form [formGroup]="filterRentForm" (submit)="filterArticles('Donate', filterRentForm.value)">
-
-                            <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-md-2">
-                                    <span class="bold">Categoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <span class="bold">subcategoría :</span>
-                                </div>
-                                <div class="col-md-4">
-                                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
-                                        virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
-                                        (change)="getSubCategories_ByCategoryId($event.Id)">
-                                    </ng-select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="cold-md-6">
-                                    <button type="submit" style="margin-top: 15px;"
-                                        class="btn btn-primary btn_search">Buscar</button>
-                                </div>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-
-                <br>
-                <div class="form-group has-search">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
-                        class="form-control"
-                        placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
-                        [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Donate', inputStr)">
-                </div>
-
-                <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
-                <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
-                <br>
-
-
-                <div class="row card-group">
-                    <div class="col-md-3" *ngFor="let item of articles">
-                        <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
-                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                                (click)="getArticleFullData(item)">
-                                <img class="imgPortada" id="image"
-                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                            </div>
-                            <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                                No.&nbsp;{{item.Id}}</h5>
-
-                            <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                                currency}} <span class="bold"
-                                    style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                            <span
-                                style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                            <div class="row center">
-                                <div class="cold-md-6">
-                                    <button (click)="reportArticle()" class="btn btn-primary"
-                                        style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row center">
-                    <div class="cold-md-6">
-                        <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
-                            más</button>
-                    </div>
-                </div>
-
-                <br>
-
-            </ng-template>
-
-        </ngb-tab>
-
-    </ngb-tabset>
-
-    <br>
-    <br>
-    <br>
 </div>
+
+<div class="row center">
+    <div class="cold-md-6">
+        <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar</button>
+    </div>
+</div>
+
+<ngb-tabset [destroyOnHide]="false">
+
+    <!--Sell-->
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+
+            <h4 class="center bold">Pantalla de compra</h4>
+
+            <div id="accordion">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        <span class="bold">
+                            <h4>Busqueda avanzada</h4>
+                        </span>
+                    </button>
+                </h5>
+
+                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+
+                    <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-2">
+                                <span class="bold">Categoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="bold">subcategoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="cold-md-6">
+                                <button type="submit" style="margin-top: 15px;"
+                                    class="btn btn-primary btn_search">Buscar</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                    class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                    [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
+            </div>
+
+            <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
+            <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
+            <br>
+
+
+            <div class="row card-group">
+                <div class="col-md-3" *ngFor="let item of articles">
+                    <div style="border-radius: 15px; height: 450px;" class="card shadow bg-white">
+                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                            (click)="getArticleFullData(item)">
+                            <img class="imgPortada" id="image"
+                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        </div>
+                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h5>
+
+                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                            currency}} <span class="bold"
+                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
+                        <span
+                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                        <div class="row center">
+                            <div class="cold-md-6">
+                                <button (click)="reportArticle()" class="btn btn-primary"
+                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row center">
+                <div class="cold-md-6">
+                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
+                </div>
+            </div>
+
+            <br>
+
+        </ng-template>
+    </ngb-tab>
+
+    <!--Rent-->
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <div (click)="resetPage(); getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+
+            <h4 class="center bold">Pantalla de renta</h4>
+
+            <div id="accordion">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        <span class="bold">
+                            <h4>Busqueda avanzada</h4>
+                        </span>
+                    </button>
+                </h5>
+
+                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+
+                    <form [formGroup]="filterRentForm" (submit)="filterArticles('Rent', filterRentForm.value)">
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-2">
+                                <span class="bold">Categoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="bold">subcategoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="cold-md-6">
+                                <button type="submit" style="margin-top: 15px;"
+                                    class="btn btn-primary btn_search">Buscar</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                    class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                    [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Rent', inputStr)">
+            </div>
+
+            <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
+            <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
+            <br>
+
+
+            <div class="row card-group">
+                <div class="col-md-3" *ngFor="let item of articles">
+                    <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                            (click)="getArticleFullData(item)">
+                            <img class="imgPortada" id="image"
+                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        </div>
+                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h5>
+
+                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                            currency}} <span class="bold"
+                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
+                        <span
+                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                        <div class="row center">
+                            <div class="cold-md-6">
+                                <button (click)="reportArticle()" class="btn btn-primary"
+                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row center">
+                <div class="cold-md-6">
+                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
+                </div>
+            </div>
+
+            <br>
+
+        </ng-template>
+    </ngb-tab>
+
+    <!--Donate-->
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donaciones</div>
+        </ng-template>
+
+        <ng-template ngbTabContent>
+
+            <h4 class="center bold">Pantalla de donación</h4>
+
+            <div id="accordion">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        <span class="bold">
+                            <h4>Busqueda avanzada</h4>
+                        </span>
+                    </button>
+                </h5>
+
+                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+
+                    <form [formGroup]="filterRentForm" (submit)="filterArticles('Donate', filterRentForm.value)">
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-2">
+                                <span class="bold">Categoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="bold">subcategoría :</span>
+                            </div>
+                            <div class="col-md-4">
+                                <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                                    virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId"
+                                    (change)="getSubCategories_ByCategoryId($event.Id)">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="cold-md-6">
+                                <button type="submit" style="margin-top: 15px;"
+                                    class="btn btn-primary btn_search">Buscar</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+                    class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+                    [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Donate', inputStr)">
+            </div>
+
+            <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
+            <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
+            <br>
+
+
+            <div class="row card-group">
+                <div class="col-md-3" *ngFor="let item of articles">
+                    <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                            (click)="getArticleFullData(item)">
+                            <img class="imgPortada" id="image"
+                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        </div>
+                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h5>
+
+                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                            currency}} <span class="bold"
+                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
+                        <span
+                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+
+                        <div class="row center">
+                            <div class="cold-md-6">
+                                <button (click)="reportArticle()" class="btn btn-primary"
+                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row center">
+                <div class="cold-md-6">
+                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
+                        más</button>
+                </div>
+            </div>
+
+            <br>
+
+        </ng-template>
+
+    </ngb-tab>
+
+</ngb-tabset>
+
+<br>
+<br>
+<br>
 
 
 <ng-template #toPostModal let-modal>
@@ -431,7 +425,8 @@
                 <h2 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h2>
 
                 <br>
-                <h4 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span style="color: green;">Codición :</span> &nbsp;
+                <h4 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span
+                        style="color: green;">Codición :</span> &nbsp;
                     {{articleFullData.Article.Condition}}</h4>
                 <h4 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
                     {{articleFullData.Article.Ubication}}</h4>
@@ -455,8 +450,9 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller.Id}}&width={{imageSeller_Width}}&height={{imageSeller_height}}" class="user-image" alt="User Image"
-                                class="img-avatar" style="width: 220; height: 130px; margin-left: 10px;">
+                            <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller.Id}}&width={{imageSeller_Width}}&height={{imageSeller_height}}"
+                                class="user-image" alt="User Image" class="img-avatar"
+                                style="width: 220; height: 130px; margin-left: 10px;">
                         </div>
                         <div class="col-md-9">
                             <h4 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h4>
