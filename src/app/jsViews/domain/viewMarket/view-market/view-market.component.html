@@ -97,25 +97,26 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 450px;" class="card shadow bg-white">
+                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
                         <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
                             (click)="getArticleFullData(item)">
                             <img class="imgPortada" id="image"
                                 src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                         </div>
-                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h5>
+                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                             currency}} <span class="bold"
-                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                        <span
-                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                        <span (click)="getArticleFullData(item)"
+                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
 
                         <div class="row center">
                             <div class="cold-md-6">
                                 <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
                             </div>
                         </div>
                     </div>
@@ -208,25 +209,26 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
                         <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
                             (click)="getArticleFullData(item)">
                             <img class="imgPortada" id="image"
                                 src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                         </div>
-                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h5>
+                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                             currency}} <span class="bold"
-                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                        <span
-                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                        <span (click)="getArticleFullData(item)"
+                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
 
                         <div class="row center">
                             <div class="cold-md-6">
                                 <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
                             </div>
                         </div>
                     </div>
@@ -319,25 +321,26 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 410px;" class="card shadow bg-white">
+                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
                         <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
                             (click)="getArticleFullData(item)">
                             <img class="imgPortada" id="image"
                                 src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
                         </div>
-                        <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h5>
+                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h2 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
                             currency}} <span class="bold"
-                                style="font-size: 17px; color: red;">{{item.CurrencyCode}}</span> </h2>
-                        <span
-                            style="font-size: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
+                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                        <span (click)="getArticleFullData(item)"
+                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
 
                         <div class="row center">
                             <div class="cold-md-6">
                                 <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 15px; width: 80px; border-radius: 15px;">Reportar</button>
+                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
                             </div>
                         </div>
 
@@ -416,47 +419,45 @@
 
             <div class="col-md-6">
 
-                <h1 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
+                <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
                     {{articleFullData.Article.Price | currency}}
                     <span class="bold"
-                        style="font-size: 17px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
-                </h1>
+                        style="font-size: 13px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
+                </h3>
 
-                <h2 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h2>
+                <h4 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h4>
 
                 <br>
-                <h4 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span
+                <h5 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span
                         style="color: green;">Codición :</span> &nbsp;
-                    {{articleFullData.Article.Condition}}</h4>
-                <h4 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
-                    {{articleFullData.Article.Ubication}}</h4>
-                <h4 style="margin-left: 10px;"> <span style="color: green;">Teléfono :</span> &nbsp;
-                    {{articleFullData.Article.PhoneNumber}}</h4>
-                <h4 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp;
-                    {{articleFullData.Article.CreationDate}}</h4>
+                    {{articleFullData.Article.Condition}}</h5>
+                <h5 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
+                    {{articleFullData.Article.Ubication}}</h5>
+                <h5 style="margin-left: 10px;"> <span style="color: green;">Teléfono :</span> &nbsp;
+                    {{articleFullData.Article.PhoneNumber}}</h5>
+                <h5 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp;
+                    {{articleFullData.Article.CreationDate}}</h5>
 
                 <br>
-                <h3 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
-                    Descripción</h3>
-                <textarea *ngIf="articleFullData.Article.Description" rows="6" style="font-size: 20px;"
+                <h5 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
+                    Descripción</h5>
+                <textarea *ngIf="articleFullData.Article.Description" rows="3" style="font-size: 15px;"
                     class="form-control" placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
-                <br>
                 <div class="card" style="border-radius: 15px;">
-                    <h2 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: blue;">
-                        Vendedor</h2>
-                    <br>
+                    <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: blue;">
+                        Vendedor</h5>
+
                     <div class="row">
 
                         <div class="col-md-3">
                             <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller.Id}}&width={{imageSeller_Width}}&height={{imageSeller_height}}"
-                                class="user-image" alt="User Image" class="img-avatar"
-                                style="width: 220; height: 130px; margin-left: 10px;">
+                                class="user-image" alt="User Image" class="img-avatar" style="margin-left: 10px;">
                         </div>
                         <div class="col-md-9">
-                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h4>
-                            <h4 style="margin-left: 8px;">{{articleFullData.Seller.PhoneNumber}}</h4>
+                            <h5 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h5>
+                            <h5 style="margin-left: 8px;">{{articleFullData.Seller.PhoneNumber}}</h5>
                         </div>
 
                     </div>

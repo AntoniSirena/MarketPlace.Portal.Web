@@ -20,6 +20,6 @@ export const SizeImageProfile ={
 }
 
 export const SizeImageSeller ={
-    width: 175,
-    height: 120,
+    width: 140,
+    height: 100,
 }

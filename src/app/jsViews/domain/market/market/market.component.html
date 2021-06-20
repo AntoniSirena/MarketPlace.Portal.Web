@@ -124,25 +124,19 @@
                   </div>
                   <br>
 
-                  <label for="title" class="bold">Título</label>
+                  <label for="title" class="bold">Ingrese el título</label>
                   <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i></i></span>
-                    </div>
                     <input type="text" formControlName="title" class="form-control" placeholder="Título" maxlength="60">
                     <div *ngIf="!createForm.value.title" class="required">*</div>
                   </div>
 
-                  <label for="description" class="bold">Descripción</label>
+                  <label for="description" class="bold">Ingrese la descripción</label>
                   <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <textarea rows="10" class="espacios" formControlName="description" class="form-control"
+                    <textarea rows="5" class="espacios" formControlName="description" class="form-control"
                       placeholder="Campo opcional">{{market.Description}}</textarea>
                   </div>
 
-                  <label for="marketTypeId" class="bold">Tipo de mercado</label>
+                  <label for="marketTypeId" class="bold">Seleccione el tipo de mercado</label>
                   <div class="row">
                     <div class="col-md-12">
                       <ng-select [items]="marketTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -153,7 +147,7 @@
                   </div>
 
                   <br>
-                  <label for="price" class="bold">Precio</label>
+                  <label for="price" class="bold">Ingrese el precio</label>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i></i></span>
@@ -163,7 +157,7 @@
                     <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
                   </div>
 
-                  <label for="currencyId" class="bold">Moneda</label>
+                  <label for="currencyId" class="bold">Seleccione la moneda</label>
                   <div class="row">
                     <div class="col-md-12">
                       <ng-select [items]="currencies" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -175,7 +169,7 @@
                   </div>
 
                   <br>
-                  <label for="conditionId" class="bold">Condición</label>
+                  <label for="conditionId" class="bold">Seleccione la condición</label>
                   <div class="row">
                     <div class="col-md-12">
                       <ng-select [items]="conditions" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -186,7 +180,7 @@
                   </div>
 
                   <br>
-                  <label for="categoryId" class="bold">Categoría</label>
+                  <label for="categoryId" class="bold">Seleccione la categoría</label>
                   <div class="row">
                     <div class="col-md-12">
                       <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -198,7 +192,7 @@
                   </div>
 
                   <br>
-                  <label for="subCategoryId" class="bold">Sub categoría</label>
+                  <label for="subCategoryId" class="bold">Seleccione la subcategoría</label>
                   <div class="row">
                     <div class="col-md-12">
                       <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -209,21 +203,15 @@
                   </div>
 
                   <br>
-                  <label for="phoneNumber" class="bold">Teléfono</label>
+                  <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
                   <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i></i></span>
-                    </div>
-                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
+                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Formato 0000000000">
                     <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
                   </div>
 
                   <br>
-                  <label for="ubication" class="bold">Ubicación</label>
+                  <label for="ubication" class="bold">Ingrese la ubicación</label>
                   <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i></i></span>
-                    </div>
                     <input type="text" formControlName="ubication" class="form-control" placeholder="Ubicación">
                     <div *ngIf="!createForm.value.ubication" class="required">*</div>
                   </div>
@@ -231,7 +219,7 @@
                   <div *ngIf="buttonSave" class="row center">
                     <div class="col-sm-12">
                       <button type="submit" class="btn btn-primary"
-                        style="font-size: 25px; width: 200px; border-radius: 22px;"
+                        style="font-size: 20px; width: 180px; border-radius: 22px;"
                         [disabled]="createForm.invalid">Publicar</button>
                     </div>
                   </div>
@@ -292,25 +280,19 @@
                 </div>
                 <br>
 
-                <label for="title" class="bold">Título</label>
+                <label for="title" class="bold">Ingrese el título</label>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i></i></span>
-                  </div>
                   <input type="text" formControlName="title" class="form-control" placeholder="Título" maxlength="60">
                   <div *ngIf="!editForm.value.title" class="required">*</div>
                 </div>
 
-                <label for="description" class="bold">Descripción</label>
+                <label for="description" class="bold">Ingrese la descripción</label>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <textarea rows="10" class="espacios" formControlName="description" class="form-control"
+                  <textarea rows="5" class="espacios" formControlName="description" class="form-control"
                     placeholder="Campo opcional">{{market.Description}}</textarea>
                 </div>
 
-                <label for="marketTypeId" class="bold">Tipo de mercado</label>
+                <label for="marketTypeId" class="bold">Seleccione el tipo de mercado</label>
                 <div class="row">
                   <div class="col-md-12">
                     <ng-select [items]="marketTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -321,17 +303,15 @@
                 </div>
 
                 <br>
-                <label for="price" class="bold">Precio</label>
+
+                <label for="price" class="bold">Ingrese el precio</label>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i></i></span>
-                  </div>
                   <input type="number" formControlName="price" class="form-control" placeholder="Precio"
                     [readonly]="editForm.value.marketTypeId === 3">
                   <span style="color: red;">Si el precio es igual a 0 no se muestra al cliente</span>
                 </div>
 
-                <label for="currencyId" class="bold">Moneda</label>
+                <label for="currencyId" class="bold">Seleccione la moneda</label>
                 <div class="row">
                   <div class="col-md-12">
                     <ng-select [items]="currencies" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -340,9 +320,10 @@
                     <div *ngIf="!editForm.value.currencyId" class="required">*</div>
                   </div>
                 </div>
+
                 <br>
 
-                <label for="conditionId" class="bold">Condición</label>
+                <label for="conditionId" class="bold">Seleccione la condición</label>
                 <div class="row">
                   <div class="col-md-12">
                     <ng-select [items]="conditions" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -353,7 +334,8 @@
                 </div>
 
                 <br>
-                <label for="categoryId" class="bold">Categoría</label>
+
+                <label for="categoryId" class="bold">Seleccione la categoría</label>
                 <div class="row">
                   <div class="col-md-12">
                     <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -365,7 +347,8 @@
                 </div>
 
                 <br>
-                <label for="subCategoryId" class="bold">Sub categoría</label>
+
+                <label for="subCategoryId" class="bold">Seleccione la subcategoría</label>
                 <div class="row">
                   <div class="col-md-12">
                     <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
@@ -376,21 +359,15 @@
                 </div>
 
                 <br>
-                <label for="phoneNumber" class="bold">Teléfono</label>
+
+                <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i></i></span>
-                  </div>
-                  <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Teléfono">
+                  <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Formato 0000000000">
                   <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
                 </div>
 
-                <br>
-                <label for="ubication" class="bold">Ubicación</label>
+                <label for="ubication" class="bold">Ingrese la ubicación</label>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i></i></span>
-                  </div>
                   <input type="text" formControlName="ubication" class="form-control" placeholder="Ubicación">
                   <div *ngIf="!editForm.value.ubication" class="required">*</div>
                 </div>
@@ -398,7 +375,7 @@
                 <div *ngIf="buttonSave" class="row center">
                   <div class="col-sm-12">
                     <button type="submit" class="btn btn-primary"
-                      style="font-size: 25px; width: 200px; border-radius: 22px;"
+                      style="font-size: 20px; width: 180px; border-radius: 22px;"
                       [disabled]="editForm.invalid">Guardar</button>
                   </div>
                 </div>
