@@ -3,6 +3,9 @@
     <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
 
+<!--Button go up-->
+<span class="ir-arriba fa fa-angle-double-up"></span>
+
 
 <div class="card-header" style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
     <div class="row">
@@ -441,7 +444,7 @@
                 <br>
                 <h5 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
                     Descripción</h5>
-                <textarea *ngIf="articleFullData.Article.Description" rows="3" style="font-size: 15px;"
+                <textarea *ngIf="articleFullData.Article.Description" rows="6" style="font-size: 15px;"
                     class="form-control" placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>

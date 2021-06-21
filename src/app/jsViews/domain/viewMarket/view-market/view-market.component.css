@@ -5,6 +5,19 @@
     font-size: 20px;
 }
 
+.ir-arriba {
+	display:none;
+	padding:14px;
+	background:#2aa9c5;
+	font-size:18px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:10px;
+	right:4px;
+    border-radius: 20px;
+}
+
 .centerDivScroll{
     overflow-y:scroll;
     height: 816px;

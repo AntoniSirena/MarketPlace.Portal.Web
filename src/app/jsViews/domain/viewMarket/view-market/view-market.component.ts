@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
+import $ from 'jquery';
 import { NgxSpinnerService } from "ngx-spinner";
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
@@ -48,7 +48,7 @@ export class ViewMarketComponent implements OnInit {
   itemQuantity: number;
 
   coreURL = environment.coreURL;
-  
+
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
 
@@ -84,7 +84,7 @@ export class ViewMarketComponent implements OnInit {
     private routerService: Router,
     private baseService: BaseService,
     private spinnerService: NgxSpinnerService,
-    ) {
+  ) {
 
   }
 
@@ -98,8 +98,30 @@ export class ViewMarketComponent implements OnInit {
     this.getArticles('Sell', 0, 0, this.currentPage);
     this.userData = this.baseService.getUserData();
     this.getCategories();
+    this.goUp();
   }
 
+  
+  
+  goUp() {
+    $(document).ready(function () {
+
+      $('.ir-arriba').click(function () {
+        $('body, html').animate({
+          scrollTop: '0px'
+        }, 300);
+      });
+
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 0) {
+          $('.ir-arriba').slideDown(300);
+        } else {
+          $('.ir-arriba').slideUp(300);
+        }
+      });
+
+    });
+  }
 
   getArticles(marketType: string, categoryId: number, subCategoryId: number, page: number) {
     this.spinnerService.show();
@@ -125,7 +147,7 @@ export class ViewMarketComponent implements OnInit {
       });
   }
 
-  resetPage(){
+  resetPage() {
     this.currentPage = 1;
     this.currentPageAdvancedSearch = 1;
     this.currentPageSearchStr = 1;
@@ -147,7 +169,7 @@ export class ViewMarketComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
   }
-  
+
 
   getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
     this.spinnerService.show();
@@ -253,7 +275,7 @@ export class ViewMarketComponent implements OnInit {
     this.routerService.navigate(['register']);
   }
 
-  reportArticle(){
+  reportArticle() {
     alert('Funcionalidad en desarrollo. Muy pronto');
   }
 
