@@ -69,6 +69,14 @@ export class Article {
     ImgDetail: Array<ImgDetail>;
 }
 
+
+export class ArticleData {
+    Article: Array<Article>;
+    TotalRecord: number;
+    TotalRecordByPage: number;
+    PageNumber: number;
+}
+
 export class ImgDetail {
     Id: number;
 }

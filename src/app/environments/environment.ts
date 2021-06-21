@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  coreURL: '/'
+  coreURL: 'https://comproyvendord.jssoluctech.com/core/'
 };

@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { NgxSpinnerService } from "ngx-spinner";
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
-import { Article, ArticleFullData, ImgDetail } from '../../../../models/domain/market/market';
+import { Article, ArticleData, ArticleFullData, ImgDetail } from '../../../../models/domain/market/market';
 import { MarketService } from '../../../../services/domain/market/market.service';
 import { Router } from '@angular/router';
 import { Profile, User } from '../../../../models/profile/profile';
@@ -48,6 +48,8 @@ export class ViewMarketComponent implements OnInit {
   itemQuantity: number;
 
   coreURL = environment.coreURL;
+
+  show_btn_vieMore: boolean = true;
 
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
@@ -105,7 +107,6 @@ export class ViewMarketComponent implements OnInit {
   
   goUp() {
     $(document).ready(function () {
-
       $('.ir-arriba').click(function () {
         $('body, html').animate({
           scrollTop: '0px'
@@ -125,12 +126,13 @@ export class ViewMarketComponent implements OnInit {
 
   getArticles(marketType: string, categoryId: number, subCategoryId: number, page: number) {
     this.spinnerService.show();
+    this.show_btn_vieMore = true;
     this.inputStr = '';
-    this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: Array<Article>) => {
+    this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: ArticleData) => {
       this.spinnerService.hide();
 
-      this.articles = response;
-      this.itemQuantity = this.articles.length;
+      this.articles = response.Article;
+      this.itemQuantity = response.TotalRecord;
 
       if (this.articles.length <= 1) {
         this.recordResultMessage = 'registro encontrado'
@@ -138,6 +140,10 @@ export class ViewMarketComponent implements OnInit {
 
       if (this.articles.length > 1) {
         this.recordResultMessage = 'registros encontrados'
+      }
+
+      if(response.TotalRecord === response.TotalRecordByPage){
+        this.show_btn_vieMore = false;
       }
 
     },
@@ -173,12 +179,13 @@ export class ViewMarketComponent implements OnInit {
 
   getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
     this.spinnerService.show();
+    this.show_btn_vieMore = true;
 
-    this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: Array<Article>) => {
+    this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: ArticleData) => {
       this.spinnerService.hide();
 
-      this.articles = response;
-      this.itemQuantity = this.articles.length;
+      this.articles = response.Article;
+      this.itemQuantity = response.TotalRecord;
 
       if (this.articles.length <= 1) {
         this.recordResultMessage = 'registro encontrado'
@@ -186,6 +193,10 @@ export class ViewMarketComponent implements OnInit {
 
       if (this.articles.length > 1) {
         this.recordResultMessage = 'registros encontrados'
+      }
+
+      if(response.TotalRecord === response.TotalRecordByPage){
+        this.show_btn_vieMore = false;
       }
 
     },

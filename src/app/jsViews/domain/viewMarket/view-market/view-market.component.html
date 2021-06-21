@@ -128,7 +128,7 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
                 </div>
             </div>
 
@@ -240,7 +240,7 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
                 </div>
             </div>
 
@@ -353,7 +353,7 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
                         más</button>
                 </div>
             </div>
@@ -408,20 +408,6 @@
 
             <div class="col-md-6">
 
-                <div class="row card-group">
-                    <div class="col-md-6" *ngFor="let item of currentArticle.ImgDetail; let i = index"
-                        [attr.data-index]="i">
-                        <div style="border-radius: 15px;" class="card">
-                            <img class="imgPortada" id="image"
-                                src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-
                 <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
                     {{articleFullData.Article.Price | currency}}
                     <span class="bold"
@@ -449,7 +435,7 @@
 
                 <br>
                 <div class="card" style="border-radius: 15px;">
-                    <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: blue;">
+                    <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom: 10px; color: blue;">
                         Vendedor</h5>
 
                     <div class="row">
@@ -458,6 +444,7 @@
                             <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller.Id}}&width={{imageSeller_Width}}&height={{imageSeller_height}}"
                                 class="user-image" alt="User Image" class="img-avatar" style="margin-left: 10px;">
                         </div>
+
                         <div class="col-md-9">
                             <h5 style="margin-left: 8px;">{{articleFullData.Seller.Name}}</h5>
                             <h5 style="margin-left: 8px;">{{articleFullData.Seller.PhoneNumber}}</h5>
@@ -469,6 +456,21 @@
                 </div>
 
             </div>
+            
+            <div class="col-md-6">
+
+                <div class="row card-group">
+                    <div class="col-md-6" *ngFor="let item of currentArticle.ImgDetail; let i = index"
+                        [attr.data-index]="i">
+                        <div style="border-radius: 15px;" class="card">
+                            <img class="imgPortada" id="image"
+                                src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
