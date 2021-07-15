@@ -17,6 +17,10 @@ export class RegisterComponent {
   myForm: FormGroup;
   userTypes = new Array<UserType>();
 
+  imgProfile: string = 'assets/img/avatars/UserEmpty.png';
+
+  inputFiles: any;
+
   constructor(
     private externalService: ExternalService,
     private form: FormBuilder,
@@ -30,7 +34,6 @@ export class RegisterComponent {
     this.initMyForm();
     this.getUserTyes()
   }
-
 
   //Get user types
   getUserTyes() {
@@ -87,7 +90,7 @@ export class RegisterComponent {
       DeletionTime: null
     };
 
-    this.externalService.createUser(user).subscribe((response: Iresponse) => {
+    this.externalService.createUser(user, this.imgProfile).subscribe((response: Iresponse) => {
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -148,6 +151,12 @@ export class RegisterComponent {
 
   goToPortada() {
     this.router.navigate(['portada']);
+  }
+
+  uploadFile(event: any){
+    setTimeout(() => {
+      this.imgProfile = event.base64;
+    }, 100);
   }
 
 

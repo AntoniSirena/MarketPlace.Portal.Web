@@ -15,12 +15,13 @@ export class ExternalService {
     this.coreURL = environment.coreURL;
   }
 
-  createUser(user: Iuser){
+  createUser(user: Iuser, imagenBase64: string){
 
-    let Json = JSON.stringify(user);
+    let data = {'user': user, 'imagenBase64': imagenBase64};
+    let Json = JSON.stringify(data);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.httpClient.post(this.coreURL + 'api/external/CreateUser', Json, {headers: headers});
+    return this.httpClient.post(this.coreURL + `api/external/CreateUser`, Json, {headers: headers});
   }
 
   getEnterpriseInfo():Observable<object>{    

@@ -8,14 +8,16 @@
               <!--Form-->
               <form [formGroup]="myForm" (submit)="onSubmit(myForm.value)">
 
-                <div class="row">
-                  <div class="col-md-12 center">
-                    <i>
-                      <h3 style="font-weight: bold;"><span>Unete y forma parte de Compro & Vendo</span> <span
-                          style="color: rgb(14, 34, 126);">R</span> <span style="color: rgb(211, 12, 12);">D</span>
-                      </h3>
-                    </i>
-                  </div>
+                <div class="form-group center">
+                  <a>
+                    <img src="{{imgProfile}}" class="user-image" alt="User Image" class="center img-avatar"
+                      style="width: 230; height: 180px;">
+                  </a>
+                </div>
+                <span style="font-weight: bold;">Cargue una foto si deseas</span>
+                <div class="form-group center">
+                  <input fileToBase64 type="file" id="upload-photo" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
+                  accept='image/*'>
                 </div>
                 <br>
 

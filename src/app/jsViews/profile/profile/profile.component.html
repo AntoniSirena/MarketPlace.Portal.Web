@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                           <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
-                            multiple="">
+                            multiple="" accept='image/*'>
                         </div>
 
                         <div *ngIf="inputFiles !== '' && buttonUpdateUserImg" class="row">

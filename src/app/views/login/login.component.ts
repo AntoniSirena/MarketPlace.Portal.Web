@@ -182,17 +182,6 @@ export class LoginComponent implements OnInit {
 
 
   //loading Reset Password
-  loadingResetPassword(resetPasswordForm: any) {
-    this.spinnerService.show();
-    this.buttonResetPass = false;
-
-    setTimeout(() => {
-      this.resetPassword(resetPasswordForm);
-      this.spinnerService.hide();
-    }, 8000);
-  }
-
-
   resetPassword(resetPasswordForm: any) {
     const login: Ilogin = {
       UserName: resetPasswordForm.userName,
@@ -203,7 +192,14 @@ export class LoginComponent implements OnInit {
       RefreshToken: false,
     };
 
+    this.spinnerService.show();
+    this.buttonResetPass = false;
+
     this.loginService.resetPassword(login).subscribe((response: Iresponse) => {
+
+      this.spinnerService.hide();
+      this.buttonResetPass = true;
+
       if (response.Code === '000') {
         Swal.fire({
           position: 'top-end',
@@ -226,6 +222,7 @@ export class LoginComponent implements OnInit {
       }
     },
       error => {
+        this.spinnerService.hide();
         this.buttonResetPass = true;
         console.log(JSON.stringify(error));
       });
