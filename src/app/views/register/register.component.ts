@@ -156,7 +156,7 @@ export class RegisterComponent {
   uploadFile(event: any){
     setTimeout(() => {
       this.imgProfile = event.base64;
-    }, 100);
+    }, 500);
   }
 
 
