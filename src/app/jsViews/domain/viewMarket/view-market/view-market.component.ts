@@ -249,13 +249,15 @@ export class ViewMarketComponent implements OnInit {
     this.getArticles(marketType, categoryId, subCategoryId, this.currentPageAdvancedSearch);
   }
 
-  getSubCategories_ByCategoryId(id: number) {
-    this.marketService.getSubCategories(id).subscribe((response: Array<SubCategory>) => {
-      this.subCategories = response;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+  getSubCategories_ByCategoryId(event) {
+    if(event){
+      this.marketService.getSubCategories(event.Id).subscribe((response: Array<SubCategory>) => {
+        this.subCategories = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
 
 
