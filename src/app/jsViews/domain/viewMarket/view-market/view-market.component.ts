@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import $ from 'jquery';
+import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
 import { SizeImageArticle } from '../../../../configurations/jsConfig';
 import { environment } from '../../../../environments/environment';
@@ -36,6 +37,8 @@ export class ViewMarketComponent implements OnInit {
 
   @ViewChild('toPostModal') toPostModal: ElementRef;
   @ViewChild('articleDetailModal') articleDetailModal: ElementRef;
+  @ViewChild('buyArticle') buyArticleModal: ElementRef;
+
 
   _currentPage: number = 1;
 
@@ -51,6 +54,8 @@ export class ViewMarketComponent implements OnInit {
 
   show_btn_vieMore: boolean = true;
 
+  enableShoppingCart: boolean = JSON.parse(localStorage.getItem('EnableShoppingCart'));
+
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
 
@@ -59,6 +64,8 @@ export class ViewMarketComponent implements OnInit {
 
   imageSeller_Width = SizeImageSeller.width;
   imageSeller_height = SizeImageSeller.height;
+
+  articleQuantity: number = 0;
 
   userData = new User();
 
@@ -290,6 +297,39 @@ export class ViewMarketComponent implements OnInit {
 
   reportArticle() {
     alert('Funcionalidad en desarrollo. Muy pronto');
+  }
+
+
+  openModalAddArticle(article: Article){
+    this.modalService.dismissAll();
+    this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+    this.currentArticle = article;
+  }
+
+
+  addArticle(){
+    if(this.articleQuantity < 1){
+      Swal.fire({
+        icon: 'warning',
+        title: `La cantidad a comprar debe ser igual ó mayor a 1`,
+        showConfirmButton: true,
+        timer: 6000
+      }).then(() => {
+        return;
+      });
+    }
+
+    if(this.articleQuantity > 100){
+      Swal.fire({
+        icon: 'warning',
+        title: `La cantidad a comprar debe ser menor ó igual a 100`,
+        showConfirmButton: true,
+        timer: 6000
+      }).then(() => {
+        return;
+      });
+    }
+
   }
 
 

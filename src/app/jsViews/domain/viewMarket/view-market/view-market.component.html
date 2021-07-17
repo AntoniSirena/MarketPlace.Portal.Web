@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="row center">
+<div class="row center" *ngIf="!enableShoppingCart">
     <div class="cold-md-6">
         <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar</button>
     </div>
@@ -26,14 +26,14 @@
 <ngb-tabset [destroyOnHide]="false">
 
     <!--Sell-->
-    <ngb-tab>
+    <ngb-tab *ngIf="enableShoppingCart || !enableShoppingCart">
         <ng-template ngbTabTitle>
             <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Comprar</div>
         </ng-template>
 
         <ng-template ngbTabContent>
 
-            <h4 class="center bold">Pantalla de compra</h4>
+            <h4 *ngIf="!enableShoppingCart" class="center bold">Pantalla de compra</h4>
 
             <div id="accordion">
                 <h5 class="mb-0">
@@ -99,26 +99,41 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
-                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                            (click)="getArticleFullData(item)">
-                            <img class="imgPortada" id="image"
-                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                    <div style="border-radius: 15px; height: 400px;" class="card shadow bg-white">
+
+                        <div (click)="getArticleFullData(item)">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                                <img class="imgPortada" id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+                            <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h6>
+
+                            <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                                currency}} <span class="bold"
+                                    style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                            <div style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                                {{item.Title}}</div>
                         </div>
-                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                            currency}} <span class="bold"
-                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
-
-                        <span (click)="getArticleFullData(item)"
-                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                        <div class="row center">
+                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
                             <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
+                                <button (click)="reportArticle()" class="btn bold"
+                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
+                            *ngIf="enableShoppingCart">
+                            <div class="cold-md-6">
+                                <button (click)="openModalAddArticle(item)" class="btn btn-primary bold"
+                                    style="font-size: 13px; width: 120px; border-radius: 15px; color: white;">Agregar al
+                                    carrito</button>
+                            </div>
+
+                            <div class="cold-md-6">
+                                <span class="bold" style="margin-left: 5px;">Existencia: 2000</span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +142,8 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver más</button>
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore"
+                        (click)="viewMoreArticles('Sell')">Ver más</button>
                 </div>
             </div>
 
@@ -137,7 +153,7 @@
     </ngb-tab>
 
     <!--Rent-->
-    <ngb-tab>
+    <ngb-tab *ngIf="!enableShoppingCart">
         <ng-template ngbTabTitle>
             <div (click)="resetPage(); getArticles('Rent', 0, 0)" class="article-tab">Rentar</div>
         </ng-template>
@@ -210,26 +226,33 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
-                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                            (click)="getArticleFullData(item)">
-                            <img class="imgPortada" id="image"
-                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+
+                        <div style="border-radius: 15px; height: 370px;" class="card shadow bg-white">
+                            
+                            <div (click)="getArticleFullData(item)">
+
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                                (click)="getArticleFullData(item)">
+                                <img class="imgPortada" id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+                            <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h6>
+
+                            <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                                currency}} <span class="bold"
+                                    style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                            <div (click)="getArticleFullData(item)"
+                                style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                                {{item.Title}}</div>
+
                         </div>
-                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                            currency}} <span class="bold"
-                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
-
-                        <span (click)="getArticleFullData(item)"
-                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                        <div class="row center">
+                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
                             <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
+                                <button (click)="reportArticle()" class="btn bold"
+                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
                             </div>
                         </div>
                     </div>
@@ -238,7 +261,8 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Rent')">Ver más</button>
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore"
+                        (click)="viewMoreArticles('Rent')">Ver más</button>
                 </div>
             </div>
 
@@ -248,7 +272,7 @@
     </ngb-tab>
 
     <!--Donate-->
-    <ngb-tab>
+    <ngb-tab *ngIf="!enableShoppingCart">
         <ng-template ngbTabTitle>
             <div (click)="resetPage(); getArticles('Donate', 0, 0)" class="article-tab">Donaciones</div>
         </ng-template>
@@ -321,26 +345,32 @@
 
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
-                    <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
-                        <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
-                            (click)="getArticleFullData(item)">
-                            <img class="imgPortada" id="image"
-                                src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+
+                        <div style="border-radius: 15px; height: 370px;" class="card shadow bg-white">
+
+                            <div (click)="getArticleFullData(item)">
+                            <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
+                                (click)="getArticleFullData(item)">
+                                <img class="imgPortada" id="image"
+                                    src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                            </div>
+                            <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                                No.&nbsp;{{item.Id}}</h6>
+
+                            <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                                currency}} <span class="bold"
+                                    style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                            <div (click)="getArticleFullData(item)"
+                                style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                                {{item.Title}}</div>
+
                         </div>
-                        <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
-                            No.&nbsp;{{item.Id}}</h6>
 
-                        <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                            currency}} <span class="bold"
-                                style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
-
-                        <span (click)="getArticleFullData(item)"
-                            style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">{{item.Title}}</span>
-
-                        <div class="row center">
+                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
                             <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn btn-primary"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px;">Reportar</button>
+                                <button (click)="reportArticle()" class="btn bold"
+                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
                             </div>
                         </div>
 
@@ -350,7 +380,8 @@
 
             <div class="row center">
                 <div class="cold-md-6">
-                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Donate')">Ver
+                    <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore"
+                        (click)="viewMoreArticles('Donate')">Ver
                         más</button>
                 </div>
             </div>
@@ -405,6 +436,9 @@
 
             <div class="col-md-6">
 
+                <button *ngIf="enableShoppingCart" (click)="openModalAddArticle(articleFullData.Article)" class="btn btn-primary bold center"
+                    style="font-size: 20px; width: 200px; border-radius: 15px; margin-bottom: 15px;">Agregar al carrito</button>
+
                 <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
                     {{articleFullData.Article.Price | currency}}
                     <span class="bold"
@@ -432,7 +466,8 @@
 
                 <br>
                 <div class="card" style="border-radius: 15px;">
-                    <h5 class="center" style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom: 10px; color: blue;">
+                    <h5 class="center"
+                        style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom: 10px; color: blue;">
                         Vendedor</h5>
 
                     <div class="row">
@@ -453,7 +488,7 @@
                 </div>
 
             </div>
-            
+
             <div class="col-md-6">
 
                 <div class="row card-group">
@@ -468,6 +503,46 @@
 
             </div>
 
+        </div>
+
+    </div>
+</ng-template>
+
+
+
+<ng-template #buyArticle let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Llenando mi carrito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="row">
+            <div class="cold-md-12">
+                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">{{currentArticle.Title}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cold-md-4">
+                <img style="border-radius: 15px; margin-left: 5px;" src="{{coreURL}}api/market/GetImageByArticleId?id={{currentArticle.Id}}&width=125&height=125">
+            </div>
+
+            <div class="cold-md-8">
+                <h5 style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
+                    currency}} <span class="bold"
+                        style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
+                
+                <h6 style="margin-left: 15px; margin-right: 5px;">Existencia: 100</h6>
+                <h6 style="margin-left: 15px; margin-right: 5px;">Venta mínima: 1</h6>
+                <h6 style="margin-left: 15px; margin-right: 5px;">Venta maxima: 100</h6>
+                <h6 style="margin-left: 15px; margin-right: 5px;"><input type="number" [(ngModel)]="articleQuantity"></h6>
+                <h6 style="margin-left: 15px; margin-right: 5px;"><button type="button" (click)="addArticle()" class="btn btn-success" style="width: 167px; border-radius: 15px;">Guardar</button></h6>
+
+            </div>
         </div>
 
     </div>

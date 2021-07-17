@@ -64,6 +64,8 @@ export class MarketComponent implements OnInit {
   canEdit: boolean;
   canDelete: boolean;
 
+  enableShoppingCart: boolean = JSON.parse(localStorage.getItem('EnableShoppingCart'));
+
 
   constructor(private modalService: NgbModal,
     private form: FormBuilder,

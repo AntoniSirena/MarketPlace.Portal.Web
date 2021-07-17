@@ -22,6 +22,8 @@ export class User {
   RoleShortName: string;
   RoleParent: string;
 
+  EnableShoppingCart: boolean;
+
   //Crud
   CanCreate: boolean;
   CanEdit: boolean;
