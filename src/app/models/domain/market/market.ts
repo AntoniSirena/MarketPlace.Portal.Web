@@ -23,6 +23,12 @@ export class Market extends Audit {
     ContenTypeShort: string;
     ContenTypeLong: string;
     CreationDate: string;
+    ProductTypeId: number;
+    ProductType: string;
+    UseStock: boolean;
+    Stock: number;
+    MinQuantity: number;
+    MaxQuantity: number;
 }
 
 export class Currency {
@@ -49,6 +55,12 @@ export class Category {
     Description: string;
 }
 
+export class ProductType {
+    Id: number;
+    ShortName: string;
+    Description: string;
+}
+
 export class SubCategory {
     Id: number;
     ShortName: string;
@@ -66,6 +78,11 @@ export class Article {
     Description: string;
     PhoneNumber: string;
     CreationDate: string;
+    ProductType: string;
+    UseStock: boolean;
+    Stock: number;
+    MinQuantity: number;
+    MaxQuantity: number;
     ImgDetail: Array<ImgDetail>;
 }
 

@@ -44,6 +44,10 @@ export class MarketService {
     return this.httpClient.get(this.coreURL + 'api/market/GetCurrencies');
   }
 
+  getProductTypes(): Observable<object> {
+    return this.httpClient.get(this.coreURL + 'api/market/GetProductTypes');
+  }
+
   getMarketTypes(): Observable<object> {
     return this.httpClient.get(this.coreURL + 'api/market/GetMarketTypes');
   }

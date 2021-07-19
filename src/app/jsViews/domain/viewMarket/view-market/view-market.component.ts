@@ -54,7 +54,7 @@ export class ViewMarketComponent implements OnInit {
 
   show_btn_vieMore: boolean = true;
 
-  enableShoppingCart: boolean = JSON.parse(localStorage.getItem('EnableShoppingCart'));
+  enableShoppingCart: boolean;
 
   img_Width = SizeImageArticle.width;
   img_height = SizeImageArticle.height;
@@ -102,10 +102,12 @@ export class ViewMarketComponent implements OnInit {
     this.currentPageAdvancedSearch = 1;
     this.currentPageSearchStr = 1;
 
+    this.userData = this.baseService.getUserData();
+    this.enableShoppingCart = this.userData.EnableShoppingCart;
+
     this.initFilterSellFrom();
     this.initFilterRentFrom();
     this.getArticles('Sell', 0, 0, this.currentPage);
-    this.userData = this.baseService.getUserData();
     this.getCategories();
     this.goUp();
   }
@@ -301,35 +303,68 @@ export class ViewMarketComponent implements OnInit {
 
 
   openModalAddArticle(article: Article){
-    this.modalService.dismissAll();
-    this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
-    this.currentArticle = article;
+
+    if (this.userData.IsVisitorUser) {
+      this.modalService.open(this.toPostModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+    } else {
+      this.modalService.dismissAll();
+      this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+      this.currentArticle = article;
+    }
+
   }
 
 
   addArticle(){
-    if(this.articleQuantity < 1){
+
+    if(!this.articleQuantity){
       Swal.fire({
         icon: 'warning',
-        title: `La cantidad a comprar debe ser igual ó mayor a 1`,
+        title: `Favor ingrese la cantidad que desea comprar`,
         showConfirmButton: true,
         timer: 6000
       }).then(() => {
-        return;
       });
+
+      return;
     }
 
-    if(this.articleQuantity > 100){
+    if(this.articleQuantity < this.currentArticle.MinQuantity && this.currentArticle.UseStock){
       Swal.fire({
         icon: 'warning',
-        title: `La cantidad a comprar debe ser menor ó igual a 100`,
+        title: `La cantidad a comprar debe ser igual ó mayor a ${this.currentArticle.MinQuantity}`,
         showConfirmButton: true,
         timer: 6000
       }).then(() => {
-        return;
       });
+
+      return;
     }
 
+    if(this.articleQuantity > this.currentArticle.MaxQuantity && this.currentArticle.UseStock){
+      Swal.fire({
+        icon: 'warning',
+        title: `La cantidad a comprar debe ser menor ó igual a ${this.currentArticle.MaxQuantity}`,
+        showConfirmButton: true,
+        timer: 6000
+      }).then(() => {
+      });
+
+      return;
+    }
+
+    if(this.articleQuantity > this.currentArticle.Stock && this.currentArticle.UseStock){
+      Swal.fire({
+        icon: 'warning',
+        title: `Este producto no tiene la cantidad suficiente para venderle ${this.articleQuantity}. Existencia actual ${this.currentArticle.Stock}`,
+        showConfirmButton: true,
+        timer: 8000
+      }).then(() => {
+      });
+
+      return;
+    }
+    
   }
 
 

@@ -1,4 +1,3 @@
-
 <br>
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -185,7 +184,7 @@
                     <div class="col-md-12">
                       <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
                         placeholder="Categoría" formControlName="categoryId"
-                        (change)="getSubCategories_ByCategoryId($event.Id)">
+                        (change)="getSubCategories_ByCategoryId($event)">
                       </ng-select>
                       <div *ngIf="!createForm.value.categoryId" class="required">*</div>
                     </div>
@@ -203,9 +202,62 @@
                   </div>
 
                   <br>
+                  <label for="subCategoryId" class="bold">Seleccione el tipo de producto</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ng-select [items]="productTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                        placeholder="Tipo de producto" formControlName="productTypeId">
+                      </ng-select>
+                      <div *ngIf="!createForm.value.productTypeId" class="required">*</div>
+                    </div>
+                  </div>
+
+                  <br>
+                  <div *ngIf="enableShoppingCart">
+                    <label for="useStock" class="bold">Maneja existencia ?</label>
+                    <div class="input-group mb-3">
+                      <label class="switch switch-label switch-pill switch-primary">
+                        <input type="checkbox" class="switch-input" checked
+                          (change)="$event.target.checked ? useStock(1) : useStock(0)" formControlName="useStock">
+                        <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div *ngIf="market.UseStock">
+
+                    <label for="stock" class="bold">Existencia</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i></i></span>
+                      </div>
+                      <input type="number" formControlName="stock" class="form-control" placeholder="Existencia">
+                    </div>
+
+                    <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i></i></span>
+                      </div>
+                      <input type="number" formControlName="minQuantity" class="form-control"
+                        placeholder="Cantidad mínima a vender">
+                    </div>
+
+                    <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i></i></span>
+                      </div>
+                      <input type="number" formControlName="maxQuantity" class="form-control"
+                        placeholder="Cantidad máxima a vender">
+                    </div>
+
+                  </div>
+
                   <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
                   <div class="input-group mb-3">
-                    <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Formato 0000000000">
+                    <input type="number" formControlName="phoneNumber" class="form-control"
+                      placeholder="Formato 0000000000">
                     <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
                   </div>
 
@@ -340,7 +392,7 @@
                   <div class="col-md-12">
                     <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
                       placeholder="Categoría" formControlName="categoryId"
-                      (change)="getSubCategories_ByCategoryId($event.Id)">
+                      (change)="getSubCategories_ByCategoryId($event)">
                     </ng-select>
                     <div *ngIf="!editForm.value.categoryId" class="required">*</div>
                   </div>
@@ -358,11 +410,75 @@
                   </div>
                 </div>
 
+
                 <br>
+                <label for="subCategoryId" class="bold">Seleccione la subcategoría</label>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                      placeholder="Sub categoría" formControlName="subCategoryId">
+                    </ng-select>
+                    <div *ngIf="!editForm.value.subCategoryId" class="required">*</div>
+                  </div>
+                </div>
+
+                <br>
+                <label for="subCategoryId" class="bold">Seleccione el tipo de producto</label>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ng-select [items]="productTypes" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                      placeholder="Tipo de producto" formControlName="productTypeId">
+                    </ng-select>
+                    <div *ngIf="!editForm.value.productTypeId" class="required">*</div>
+                  </div>
+                </div>
+
+                <br>
+                <div *ngIf="enableShoppingCart">
+                  <label for="useStock" class="bold">Maneja existencia ?</label>
+                  <div class="input-group mb-3">
+                    <label class="switch switch-label switch-pill switch-primary">
+                      <input type="checkbox" class="switch-input" checked
+                        (change)="$event.target.checked ? useStock(1) : useStock(0)" formControlName="useStock">
+                      <span class="switch-slider" data-checked="SI" data-unchecked="NO"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div *ngIf="market.UseStock">
+
+                  <label for="stock" class="bold">Existencia</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="stock" class="form-control" placeholder="Existencia">
+                  </div>
+
+                  <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="minQuantity" class="form-control"
+                      placeholder="Cantidad mínima a vender">
+                  </div>
+
+                  <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="maxQuantity" class="form-control"
+                      placeholder="Cantidad máxima a vender">
+                  </div>
+
+                </div>
 
                 <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
                 <div class="input-group mb-3">
-                  <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Formato 0000000000">
+                  <input type="number" formControlName="phoneNumber" class="form-control"
+                    placeholder="Formato 0000000000">
                   <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
                 </div>
 

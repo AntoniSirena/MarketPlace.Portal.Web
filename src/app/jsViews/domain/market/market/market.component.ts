@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MarketService } from './../../../../services/domain/market/market.service';
-import { Category, Condition, Currency, Market, MarketType, SubCategory } from '../../../../models/domain/market/market';
+import { Category, Condition, Currency, Market, MarketType, ProductType, SubCategory } from '../../../../models/domain/market/market';
 import { BaseService } from '../../../../services/base/base.service';
 import { User } from '../../../../models/profile/profile';
 import { Imarket } from '../../../../interfaces/domain/imarket/imarket';
@@ -47,6 +47,7 @@ export class MarketComponent implements OnInit {
   conditions = new Array<Condition>();
   categories = new Array<Category>();
   subCategories = new Array<SubCategory>();
+  productTypes = new Array<ProductType>();
 
   markets = new Array<Market>();
   market = new Market();
@@ -64,7 +65,7 @@ export class MarketComponent implements OnInit {
   canEdit: boolean;
   canDelete: boolean;
 
-  enableShoppingCart: boolean = JSON.parse(localStorage.getItem('EnableShoppingCart'));
+  enableShoppingCart: boolean;
 
 
   constructor(private modalService: NgbModal,
@@ -81,10 +82,12 @@ export class MarketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.enableShoppingCart = this.userData.EnableShoppingCart;
     this.getCurrencies();
     this.getMarketTypes();
     this.getConditions();
     this.getCategories();
+    this.getProductTypes();
     this.getAll();
     this.getImageQuantityMarketDetail();
   }
@@ -122,6 +125,15 @@ export class MarketComponent implements OnInit {
       });
   }
 
+  getProductTypes() {
+    this.marketService.getProductTypes().subscribe((response: Array<ProductType>) => {
+      this.productTypes = response;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
   getMarketTypes() {
     this.marketService.getMarketTypes().subscribe((response: Array<MarketType>) => {
       this.marketTypes = response;
@@ -149,13 +161,23 @@ export class MarketComponent implements OnInit {
       });
   }
 
-  getSubCategories_ByCategoryId(id: number) {
-    this.marketService.getSubCategories(id).subscribe((response: Array<SubCategory>) => {
-      this.subCategories = response;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+  getSubCategories_ByCategoryId(event: any) {
+    let id;
+    if(event?.Id){
+      id = event.Id;
+    }else{
+      id = event;
+    }
+
+    if(event){
+      this.marketService.getSubCategories(id).subscribe((response: Array<SubCategory>) => {
+        this.subCategories = response;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
+
   }
 
 
@@ -194,6 +216,12 @@ export class MarketComponent implements OnInit {
         ubication: [this.market.Ubication, Validators.required],
         description: [this.market.Description],
         phoneNumber: [this.market.PhoneNumber, Validators.required],
+        productTypeId: [this.market.ProductTypeId, Validators.required ],
+        useStock: [this.market.UseStock],
+        stock: [this.market.Stock],
+        minQuantity: [this.market.MinQuantity],
+        maxQuantity: [this.market.MaxQuantity],
+
       });
 
       this.getSubCategories_ByCategoryId(this.market.CategoryId);
@@ -220,6 +248,13 @@ export class MarketComponent implements OnInit {
     this.getById(editModal, id);
   }
 
+  useStock(flag: number) {
+    if(flag === 1){
+      this.market.UseStock = true;
+    }else{
+      this.market.UseStock = false;
+    }
+  }
 
   //create
   create(formValue: any) {
@@ -240,6 +275,11 @@ export class MarketComponent implements OnInit {
       ContenTypeShort: null,
       ContenTypeLong: null,
       CreationDate: null,
+      ProductTypeId: formValue.productTypeId,
+      UseStock: this.market.UseStock,
+      Stock: formValue.stock,
+      MinQuantity: formValue.minQuantity,
+      MaxQuantity: formValue.maxQuantity,
       CreatorUserId: null,
       CreationTime: null,
       LastModifierUserId: null,
@@ -303,6 +343,11 @@ export class MarketComponent implements OnInit {
       ContenTypeShort: this.market.ContenTypeShort,
       ContenTypeLong: this.market.ContenTypeLong,
       CreationDate: this.market.CreationDate,
+      ProductTypeId: formValue.productTypeId,
+      UseStock: this.market.UseStock,
+      Stock: formValue.stock,
+      MinQuantity: formValue.minQuantity,
+      MaxQuantity: formValue.maxQuantity,
       CreatorUserId: this.market.CreatorUserId,
       CreationTime: this.market.CreationTime,
       LastModifierUserId: this.market.LastModifierUserId,
@@ -405,6 +450,11 @@ export class MarketComponent implements OnInit {
       ubication: ['', Validators.required],
       description: [''],
       phoneNumber: ['', Validators.required],
+      productTypeId: [this.productTypes.filter(x => x.ShortName === 'Product')[0].Id, Validators.required ],
+      useStock: [false],
+      stock: [0],
+      minQuantity: [0],
+      maxQuantity: [0],
     });
   }
 
@@ -421,6 +471,11 @@ export class MarketComponent implements OnInit {
       ubication: ['', Validators.required],
       description: [''],
       phoneNumber: ['', Validators.required],
+      productTypeId: [0, Validators.required ],
+      useStock: [false],
+      stock: [0],
+      minQuantity: [0],
+      maxQuantity: [0],
     });
   }
 

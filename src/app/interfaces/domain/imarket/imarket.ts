@@ -18,4 +18,9 @@ export interface Imarket extends Iaudit {
     ContenTypeShort: string;
     ContenTypeLong: string;
     CreationDate: string;
+    ProductTypeId: number;
+    UseStock: boolean;
+    Stock: number;
+    MinQuantity: number;
+    MaxQuantity: number;
 }
