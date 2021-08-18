@@ -13,6 +13,9 @@ import { Profile, User } from '../../../../models/profile/profile';
 import { BaseService } from '../../../../services/base/base.service';
 import { Category, SubCategory } from '../../../../models/domain/market/market';
 import { SizeImageDetailArticle, SizeImageSeller } from './../../../../configurations/jsConfig';
+import { OrderService } from '../../../../services/domain/order.service';
+import { ICreateOrder } from './../../../../interfaces/domain/order';
+import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 
 
 @Component({
@@ -65,7 +68,8 @@ export class ViewMarketComponent implements OnInit {
   imageSeller_Width = SizeImageSeller.width;
   imageSeller_height = SizeImageSeller.height;
 
-  articleQuantity: number = 0;
+  currentArticleQuantity: number = 0;
+  showButtonDeleteItem: boolean;
 
   userData = new User();
 
@@ -93,6 +97,7 @@ export class ViewMarketComponent implements OnInit {
     private routerService: Router,
     private baseService: BaseService,
     private spinnerService: NgxSpinnerService,
+    private orderService: OrderService,
   ) {
 
   }
@@ -112,8 +117,8 @@ export class ViewMarketComponent implements OnInit {
     this.goUp();
   }
 
-  
-  
+
+
   goUp() {
     $(document).ready(function () {
       $('.ir-arriba').click(function () {
@@ -151,7 +156,7 @@ export class ViewMarketComponent implements OnInit {
         this.recordResultMessage = 'registros encontrados'
       }
 
-      if(response.TotalRecord === response.TotalRecordByPage){
+      if (response.TotalRecord === response.TotalRecordByPage) {
         this.show_btn_vieMore = false;
       }
 
@@ -204,7 +209,7 @@ export class ViewMarketComponent implements OnInit {
         this.recordResultMessage = 'registros encontrados'
       }
 
-      if(response.TotalRecord === response.TotalRecordByPage){
+      if (response.TotalRecord === response.TotalRecordByPage) {
         this.show_btn_vieMore = false;
       }
 
@@ -259,7 +264,7 @@ export class ViewMarketComponent implements OnInit {
   }
 
   getSubCategories_ByCategoryId(event) {
-    if(event){
+    if (event) {
       this.marketService.getSubCategories(event.Id).subscribe((response: Array<SubCategory>) => {
         this.subCategories = response;
       },
@@ -302,22 +307,31 @@ export class ViewMarketComponent implements OnInit {
   }
 
 
-  openModalAddArticle(article: Article){
+  openModalAddArticle(article: Article) {
 
     if (this.userData.IsVisitorUser) {
       this.modalService.open(this.toPostModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
     } else {
       this.modalService.dismissAll();
-      this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
-      this.currentArticle = article;
+
+      this.orderService.getCurrentArticleQuantity(article.Id).subscribe((response: any) => {
+        this.currentArticleQuantity = response.Quantity;
+        this.showButtonDeleteItem = response.ShowButtonDeleteItem;
+
+        this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+        this.currentArticle = article;
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
     }
 
   }
 
 
-  addArticle(){
+  addArticle(article: Article, quantity: number) {
 
-    if(!this.articleQuantity){
+    if (!this.currentArticleQuantity) {
       Swal.fire({
         icon: 'warning',
         title: `Favor ingrese la cantidad que desea comprar`,
@@ -329,7 +343,7 @@ export class ViewMarketComponent implements OnInit {
       return;
     }
 
-    if(this.articleQuantity < this.currentArticle.MinQuantity && this.currentArticle.UseStock){
+    if (this.currentArticleQuantity < this.currentArticle.MinQuantity) {
       Swal.fire({
         icon: 'warning',
         title: `La cantidad a comprar debe ser igual ó mayor a ${this.currentArticle.MinQuantity}`,
@@ -341,7 +355,7 @@ export class ViewMarketComponent implements OnInit {
       return;
     }
 
-    if(this.articleQuantity > this.currentArticle.MaxQuantity && this.currentArticle.UseStock){
+    if (this.currentArticleQuantity > this.currentArticle.MaxQuantity) {
       Swal.fire({
         icon: 'warning',
         title: `La cantidad a comprar debe ser menor ó igual a ${this.currentArticle.MaxQuantity}`,
@@ -353,10 +367,10 @@ export class ViewMarketComponent implements OnInit {
       return;
     }
 
-    if(this.articleQuantity > this.currentArticle.Stock && this.currentArticle.UseStock){
+    if (this.currentArticleQuantity > this.currentArticle.Stock && this.currentArticle.UseStock) {
       Swal.fire({
         icon: 'warning',
-        title: `Este producto no tiene la cantidad suficiente para venderle ${this.articleQuantity}. Existencia actual ${this.currentArticle.Stock}`,
+        title: `Este producto no tiene la cantidad suficiente para venderle ${this.currentArticleQuantity}. Existencia actual ${this.currentArticle.Stock}`,
         showConfirmButton: true,
         timer: 8000
       }).then(() => {
@@ -364,7 +378,60 @@ export class ViewMarketComponent implements OnInit {
 
       return;
     }
+
+    const data: ICreateOrder = {
+      ArticleId: article.Id,
+      Quantity: quantity
+    }
     
+    this.orderService.create(data).subscribe((response: Iresponse) => {
+      
+      if (response.Code === '000') {
+
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 5000
+        }).then(() => {
+
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 10000
+        }).then(() => {
+        });
+      }
+
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+
+  }
+
+
+  deleteArticle(article: Article) {
+
+    Swal.fire({
+      title: 'Esta seguro que desea eliminar este artículo del carrito ?',
+      text: "El mismo podra ser agregado nuevamente",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.value) {
+
+      }
+    })
+
   }
 
 

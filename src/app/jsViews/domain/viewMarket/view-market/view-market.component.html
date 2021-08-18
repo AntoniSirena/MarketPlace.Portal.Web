@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
-                            *ngIf="enableShoppingCart">
+                            *ngIf="enableShoppingCart && item.Stock">
                             <div class="cold-md-6">
                                 <button (click)="openModalAddArticle(item)" class="btn btn-primary bold"
                                     style="font-size: 13px; width: 120px; border-radius: 15px; color: white;">Agregar al
@@ -139,6 +139,7 @@
                                 <span class="bold" style="margin-left: 5px;">Existencia: no maneja</span>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -419,7 +420,7 @@
 
         <div class="row center">
             <div class="cold-md-6">
-                <button class="btn btn-success btn_public" (click)="goToLoginPage()">Ya tengo cuenta</button>
+                <button class="btn btn-success btn_public" (click)="goToLoginPage()">Ya estoy registrado</button>
             </div>
         </div>
 
@@ -549,16 +550,23 @@
 
                 <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta maxima: {{currentArticle.MaxQuantity}}</h6>
 
-                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad: <input type="number"
-                        style="border-radius: 10px;" [(ngModel)]="articleQuantity"></h6>
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad actual: <input type="number"
+                      class="bold"  style="border-radius: 10px; color: red; width: 60px;" [(ngModel)]="currentArticleQuantity"></h6>
 
             </div>
         </div>
 
         <div class="row center">
             <div class="cold-md-12">
-                <button type="button" (click)="addArticle()" class="btn btn-success bold"
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity)" class="btn btn-success bold"
                     style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Guardar</button>
+            </div>
+        </div>
+
+        <div *ngIf="showButtonDeleteItem" class="row center">
+            <div class="cold-md-12">
+                <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar del carrito</button>
             </div>
         </div>
 
