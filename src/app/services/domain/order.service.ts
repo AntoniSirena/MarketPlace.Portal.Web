@@ -21,6 +21,10 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/GetCurrentArticleQuantity?articleId=${articleId}`);
   }
 
+  deleteArticle(articleId: number): Observable<object> {
+    return this.httpClient.delete(this.coreURL + `api/order/DeleteArticle?articleId=${articleId}`);
+  }
+
   create(request: CreateOrderDTO) {
     let data = JSON.stringify(request);
     return this.httpClient.post(`${this.coreURL}api/order/create`, data, { headers: this.headers });

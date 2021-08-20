@@ -343,7 +343,7 @@ export class ViewMarketComponent implements OnInit {
       return;
     }
 
-    if (this.currentArticleQuantity < this.currentArticle.MinQuantity) {
+    if (this.currentArticleQuantity < this.currentArticle.MinQuantity && this.currentArticle.MinQuantity) {
       Swal.fire({
         icon: 'warning',
         title: `La cantidad a comprar debe ser igual ó mayor a ${this.currentArticle.MinQuantity}`,
@@ -355,7 +355,7 @@ export class ViewMarketComponent implements OnInit {
       return;
     }
 
-    if (this.currentArticleQuantity > this.currentArticle.MaxQuantity) {
+    if (this.currentArticleQuantity > this.currentArticle.MaxQuantity && this.currentArticle.MaxQuantity) {
       Swal.fire({
         icon: 'warning',
         title: `La cantidad a comprar debe ser menor ó igual a ${this.currentArticle.MaxQuantity}`,
@@ -388,12 +388,14 @@ export class ViewMarketComponent implements OnInit {
       
       if (response.Code === '000') {
 
+        this.showButtonDeleteItem = response.Data.ShowButtonDeleteItem;
+
         Swal.fire({
           position: 'top-end',
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
-          timer: 5000
+          timer: 3000
         }).then(() => {
 
         });
@@ -402,7 +404,7 @@ export class ViewMarketComponent implements OnInit {
           icon: 'warning',
           title: response.Message,
           showConfirmButton: true,
-          timer: 10000
+          timer: 7000
         }).then(() => {
         });
       }
@@ -428,6 +430,37 @@ export class ViewMarketComponent implements OnInit {
       confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
       if (result.value) {
+
+        this.orderService.deleteArticle(article.Id).subscribe((response: Iresponse) => {
+      
+          if (response.Code === '000') {
+  
+            this.currentArticleQuantity = 0;
+            this.showButtonDeleteItem = response.Data.ShowButtonDeleteItem;
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 3000
+            }).then(() => {
+    
+            });
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 7000
+            }).then(() => {
+            });
+          }
+    
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
 
       }
     })
