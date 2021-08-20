@@ -395,7 +395,7 @@ export class ViewMarketComponent implements OnInit {
           icon: 'success',
           title: response.Message,
           showConfirmButton: true,
-          timer: 3000
+          timer: 2000
         }).then(() => {
 
         });
@@ -443,7 +443,7 @@ export class ViewMarketComponent implements OnInit {
               icon: 'success',
               title: response.Message,
               showConfirmButton: true,
-              timer: 3000
+              timer: 2000
             }).then(() => {
     
             });

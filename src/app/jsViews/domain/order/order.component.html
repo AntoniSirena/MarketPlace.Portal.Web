@@ -1,4 +1,5 @@
-<div *ngIf="true">
+
+<div *ngIf="orderDetail.Items?.length > 0">
 
     <div class="row">
 
@@ -6,9 +7,9 @@
             <br>
             <div class="card">
 
-                <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden: </span>#12</h6>
-                <h6 class="header-detail"> <span class="bold">Fecha: </span>20/08/2021</h6>
-                <h6 class="header-detail"> <span class="bold">Estado: </span>En proceso</h6>
+                <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden: </span>#{{orderDetail.Id}}</h6>
+                <h6 class="header-detail"> <span class="bold">Fecha: </span>{{orderDetail.Date}}</h6>
+                <h6 class="header-detail"> <span class="bold">Estado: </span>{{orderDetail.Status}}</h6>
 
             </div>
         </div>
@@ -40,67 +41,19 @@
 
                         <tbody>
 
-                            <tr>
-                                <td>40</td>
-                                <td>Vestidos en algodón para niña</td>
-                                <td>1</td>
-                                <td>400.00</td>
-                                <td>328.00</td>
-                                <td>72.00</td>
-                                <td>400.00</td>
+                            <tr *ngFor="let item of orderDetail.Items">
+                                <td>{{item.ArticleId}}</td>
+                                <td>{{item.Title}}</td>
+                                <td>{{item.Quantity}}</td>
+                                <td>{{item.Price | currency}}</td>
+                                <td>{{item.Subtotal | currency}}</td>
+                                <td>{{item.ITBIS | currency}}</td>
+                                <td>{{item.TotalAmount | currency}}</td>
                                 <td>
-                                    <button class="btn btn-primary bold" (click)="detailsEdit()"> Detalles/Editar</button>
+                                    <button class="btn btn-primary bold" (click)="openModalAddArticle(item)"> Detalles/Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger bold" (click)="detailsEdit()">Eliminar</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>39</td>
-                                <td>Pantalón engomado diferentes size</td>
-                                <td>2</td>
-                                <td>1400.00</td>
-                                <td>2296.00</td>
-                                <td>504.00</td>
-                                <td>2800.00</td>
-                                <td>
-                                    <button class="btn btn-primary bold" (click)="detailsEdit()">Detalles/Editar</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger bold" (click)="detailsEdit()">Eliminar</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>40</td>
-                                <td>Vestidos en algodón para niña</td>
-                                <td>1</td>
-                                <td>400.00</td>
-                                <td>328.00</td>
-                                <td>72.00</td>
-                                <td>400.00</td>
-                                <td>
-                                    <button class="btn btn-primary bold" (click)="detailsEdit()"> Detalles/Editar</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger bold" (click)="detailsEdit()">Eliminar</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>39</td>
-                                <td>Pantalón engomado diferentes size</td>
-                                <td>2</td>
-                                <td>1400.00</td>
-                                <td>2296.00</td>
-                                <td>504.00</td>
-                                <td>2800.00</td>
-                                <td>
-                                    <button class="btn btn-primary bold" (click)="detailsEdit()">Detalles/Editar</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger bold" (click)="detailsEdit()">Eliminar</button>
+                                    <button class="btn btn-danger bold" (click)="deleteArticle(item)">Eliminar</button>
                                 </td>
                             </tr>
 
@@ -128,22 +81,22 @@
                                 <tbody>
                                     <tr>
                                         <td class="bold">Subtotal</td>
-                                        <td>2624.00</td>
+                                        <td>{{orderDetail.Subtotal | currency}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="bold">Descuento</td>
-                                        <td>0.00</td>
+                                        <td>{{orderDetail.Discount | currency}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="bold">ITBIS</td>
-                                        <td>576.00</td>
+                                        <td>{{orderDetail.ITBIS | currency}}</td>
                                     </tr>
 
                                     <tr class="bold">
                                         <td>Total</td>
-                                        <td>3200.00</td>
+                                        <td>{{orderDetail.TotalAmount | currency}}</td>
                                     </tr>
                                 </tbody>
 
@@ -182,3 +135,78 @@
     <br>
 
 </div>
+
+
+<div *ngIf="orderDetail.Items?.length == 0">
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="bold center">{{orderDetailEmpty.Message}}</h3>
+        </div>
+    </div>
+
+</div>
+
+
+<ng-template #buyArticle let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Actualizando artículo</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="row">
+            <div class="cold-md-12">
+                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
+                    {{currentArticle.Title}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cold-md-4">
+                <img style="border-radius: 15px; margin-left: 5px;"
+                    src="{{coreURL}}api/market/GetImageByArticleId?id={{currentArticle.ArticleId}}&width=125&height=125">
+            </div>
+
+            <div class="cold-md-8">
+                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
+                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
+
+                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">Existencia:
+                    {{currentArticle.Stock}}</h6>
+
+                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta mínima: {{currentArticle.MinQuantity}}</h6>
+
+                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta maxima: {{currentArticle.MaxQuantity}}</h6>
+
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad actual: <input type="number"
+                    class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)" [(ngModel)]="currentArticleQuantity"></h6>
+
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="cold-md-12">
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity)" class="btn btn-success bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Guardar</button>
+            </div>
+        </div>
+
+        <div *ngIf="showButtonDeleteItem" class="row center">
+            <div class="cold-md-12">
+                <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar del carrito</button>
+            </div>
+        </div>
+
+    </div>
+</ng-template>

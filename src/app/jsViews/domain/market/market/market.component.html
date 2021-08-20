@@ -410,18 +410,6 @@
                   </div>
                 </div>
 
-
-                <br>
-                <label for="subCategoryId" class="bold">Seleccione la subcategoría</label>
-                <div class="row">
-                  <div class="col-md-12">
-                    <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
-                      placeholder="Sub categoría" formControlName="subCategoryId">
-                    </ng-select>
-                    <div *ngIf="!editForm.value.subCategoryId" class="required">*</div>
-                  </div>
-                </div>
-
                 <br>
                 <label for="subCategoryId" class="bold">Seleccione el tipo de producto</label>
                 <div class="row">

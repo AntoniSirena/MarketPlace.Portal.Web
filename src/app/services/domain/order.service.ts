@@ -21,6 +21,10 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/GetCurrentArticleQuantity?articleId=${articleId}`);
   }
 
+  getShoppingCart(): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/GetShoppingCart`);
+  }
+
   deleteArticle(articleId: number): Observable<object> {
     return this.httpClient.delete(this.coreURL + `api/order/DeleteArticle?articleId=${articleId}`);
   }
