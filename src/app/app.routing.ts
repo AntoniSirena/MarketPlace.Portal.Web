@@ -134,6 +134,11 @@ export const routes: Routes = [
         loadChildren: () => import('./jsViews/portada/portada/portada-module/portada.module').then(m => m.PortadaModule)
       },
       {
+        path: 'order',
+        loadChildren: () => import('./jsViews/domain/order/order.module').then(m => m.OrderModule)
+      },
+      
+      {
         path: 'pre-portada',
         component: PrePortadaComponent,
         data: {

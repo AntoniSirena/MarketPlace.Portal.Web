@@ -141,7 +141,7 @@
                         </div>
 
                         <span *ngIf="enableShoppingCart && !item.Stock" class="bold" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
-                            No esta disponible para comprarlo</span>
+                            No esta disponible para comprar</span>
                         
                     </div>
                 </div>
@@ -554,7 +554,7 @@
                 <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta maxima: {{currentArticle.MaxQuantity}}</h6>
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad actual: <input type="number"
-                      class="bold"  style="border-radius: 8px; color: rgb(53, 221, 38); width: 60px; background-color: black" [(ngModel)]="currentArticleQuantity"></h6>
+                    class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)" [(ngModel)]="currentArticleQuantity"></h6>
 
             </div>
         </div>
