@@ -117,12 +117,7 @@
                                 {{item.Title}}</div>
                         </div>
 
-                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
-                            <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn bold"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
-                            </div>
-                        </div>
+                        <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido: 10</span>
 
                         <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
                             *ngIf="enableShoppingCart && item.Stock">
@@ -234,7 +229,7 @@
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
 
-                    <div style="border-radius: 15px; height: 350px;" class="card shadow bg-white">
+                    <div style="border-radius: 15px; height: 330px;" class="card shadow bg-white">
 
                         <div (click)="getArticleFullData(item)">
 
@@ -256,12 +251,6 @@
 
                         </div>
 
-                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
-                            <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn bold"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -353,7 +342,7 @@
             <div class="row card-group">
                 <div class="col-md-3" *ngFor="let item of articles">
 
-                    <div style="border-radius: 15px; height: 350px;" class="card shadow bg-white">
+                    <div style="border-radius: 15px; height: 330px;" class="card shadow bg-white">
 
                         <div (click)="getArticleFullData(item)">
                             <div class="center" style="margin-top: 3px; margin-bottom: 3px;"
@@ -372,13 +361,6 @@
                                 style="font-size: 15px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
                                 {{item.Title}}</div>
 
-                        </div>
-
-                        <div class="row" style="margin-left: 10px; margin-right: 10px;">
-                            <div class="cold-md-6">
-                                <button (click)="reportArticle()" class="btn bold"
-                                    style="font-size: 13px; width: 80px; border-radius: 15px; color: white; background-color: rgb(250, 70, 94);">Reportar</button>
-                            </div>
                         </div>
 
                     </div>

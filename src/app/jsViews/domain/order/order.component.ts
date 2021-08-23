@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../../environments/environment';
 import { ICreateOrder } from './../../../interfaces/domain/order';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class OrderComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private modalService: NgbModal,
+    private routerService: Router,
   ) { }
 
 
@@ -43,14 +45,9 @@ export class OrderComponent implements OnInit {
   getShoppingCart() {
     
     this.orderService.getShoppingCart().subscribe((response: Iresponse) => {
-      
-      this.orderDetailEmpty = response;
 
-      if (response.Code === '000') {
-        this.orderDetail = response.Data;
-      } else {
-
-      }
+      this.orderDetail = response.Data;
+      this.orderDetailEmpty = response.Message;
 
     },
       error => {
@@ -212,6 +209,11 @@ export class OrderComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
 
+  }
+
+
+  goToPortada(){
+    this.routerService.navigate(['/portada']);
   }
 
 

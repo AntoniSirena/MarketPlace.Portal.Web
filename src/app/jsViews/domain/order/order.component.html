@@ -1,5 +1,13 @@
 
-<div *ngIf="orderDetail.Items?.length > 0">
+<div *ngIf="orderDetail?.Items?.length > 0">
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="bold center">Estado de mi carrito</h4>
+        </div>
+    </div>
+
 
     <div class="row">
 
@@ -137,7 +145,7 @@
 </div>
 
 
-<div *ngIf="orderDetail.Items?.length == 0">
+<div *ngIf="!orderDetail?.Items?.length > 0">
     
     <br>
     <br>
@@ -147,7 +155,14 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <h3 class="bold center">{{orderDetailEmpty.Message}}</h3>
+            <h3 class="bold center">{{orderDetailEmpty}}</h3>
+        </div>
+    </div>
+    
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <button (click)="goToPortada()" class="btn btn-primary center bold" style="width: 220px; font-size: 20px; border-radius: 15px;">Llenar carrito</button>
         </div>
     </div>
 
