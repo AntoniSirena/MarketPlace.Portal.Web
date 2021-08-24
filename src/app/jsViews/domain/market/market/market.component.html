@@ -225,7 +225,6 @@
                   </div>
 
                   <div *ngIf="market.UseStock">
-
                     <label for="stock" class="bold">Existencia</label>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
@@ -233,32 +232,24 @@
                       </div>
                       <input type="number" formControlName="stock" class="form-control" placeholder="Existencia">
                     </div>
-
-                    <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i></i></span>
-                      </div>
-                      <input type="number" formControlName="minQuantity" class="form-control"
-                        placeholder="Cantidad mínima a vender">
-                    </div>
-
-                    <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i></i></span>
-                      </div>
-                      <input type="number" formControlName="maxQuantity" class="form-control"
-                        placeholder="Cantidad máxima a vender">
-                    </div>
-
                   </div>
 
-                  <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
+                  <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
                   <div class="input-group mb-3">
-                    <input type="number" formControlName="phoneNumber" class="form-control"
-                      placeholder="Formato 0000000000">
-                    <div *ngIf="!createForm.value.phoneNumber" class="required">*</div>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="minQuantity" class="form-control"
+                      placeholder="Cantidad mínima a vender">
+                  </div>
+
+                  <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i></i></span>
+                    </div>
+                    <input type="number" formControlName="maxQuantity" class="form-control"
+                      placeholder="Cantidad máxima a vender">
                   </div>
 
                   <br>
@@ -443,31 +434,24 @@
                     <input type="number" formControlName="stock" class="form-control" placeholder="Existencia">
                   </div>
 
-                  <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i></i></span>
-                    </div>
-                    <input type="number" formControlName="minQuantity" class="form-control"
-                      placeholder="Cantidad mínima a vender">
-                  </div>
-
-                  <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i></i></span>
-                    </div>
-                    <input type="number" formControlName="maxQuantity" class="form-control"
-                      placeholder="Cantidad máxima a vender">
-                  </div>
-
                 </div>
 
-                <label for="phoneNumber" class="bold">Ingrese el teléfono</label>
+                <label for="minQuantity" class="bold">Cantidad mínima a vender</label>
                 <div class="input-group mb-3">
-                  <input type="number" formControlName="phoneNumber" class="form-control"
-                    placeholder="Formato 0000000000">
-                  <div *ngIf="!editForm.value.phoneNumber" class="required">*</div>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i></i></span>
+                  </div>
+                  <input type="number" formControlName="minQuantity" class="form-control"
+                    placeholder="Cantidad mínima a vender">
+                </div>
+
+                <label for="maxQuantity" class="bold">Cantidad máxima a vender</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i></i></span>
+                  </div>
+                  <input type="number" formControlName="maxQuantity" class="form-control"
+                    placeholder="Cantidad máxima a vender">
                 </div>
 
                 <label for="ubication" class="bold">Ingrese la ubicación</label>

@@ -69,6 +69,7 @@ export class ViewMarketComponent implements OnInit {
   imageSeller_height = SizeImageSeller.height;
 
   currentArticleQuantity: number = 0;
+  itemNote: string;
   showButtonDeleteItem: boolean;
 
   userData = new User();
@@ -312,6 +313,7 @@ export class ViewMarketComponent implements OnInit {
       this.orderService.getCurrentArticleQuantity(article.Id).subscribe((response: any) => {
         this.currentArticleQuantity = response.Quantity;
         this.showButtonDeleteItem = response.ShowButtonDeleteItem;
+        this.itemNote = response.ItemNote;
 
         this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
         this.currentArticle = article;
@@ -324,7 +326,7 @@ export class ViewMarketComponent implements OnInit {
   }
 
 
-  addArticle(article: Article, quantity: number) {
+  addArticle(article: Article, quantity: number, itemNote?: string) {
 
     if (!this.currentArticleQuantity) {
       Swal.fire({
@@ -376,7 +378,8 @@ export class ViewMarketComponent implements OnInit {
 
     const data: ICreateOrder = {
       ArticleId: article.Id,
-      Quantity: quantity
+      Quantity: quantity,
+      ItemNote: itemNote,
     }
     
     this.orderService.create(data).subscribe((response: Iresponse) => {

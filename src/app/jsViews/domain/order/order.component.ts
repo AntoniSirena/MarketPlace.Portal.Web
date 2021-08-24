@@ -26,6 +26,7 @@ export class OrderComponent implements OnInit {
   orderDetailEmpty: any;
 
   currentArticleQuantity: number;
+  itemNote: string;
   showButtonDeleteItem: boolean;
 
   coreURL = environment.coreURL;
@@ -56,7 +57,7 @@ export class OrderComponent implements OnInit {
   }
 
 
-  addArticle(article: OrderDetailItemDTO, quantity: number) {
+  addArticle(article: OrderDetailItemDTO, quantity: number, itemNote?: string) {
 
     if (!this.currentArticleQuantity) {
       Swal.fire({
@@ -108,7 +109,8 @@ export class OrderComponent implements OnInit {
 
     const data: ICreateOrder = {
       ArticleId: article.ArticleId,
-      Quantity: quantity
+      Quantity: quantity,
+      ItemNote: itemNote,
     }
     
     this.orderService.create(data).subscribe((response: Iresponse) => {
@@ -201,6 +203,7 @@ export class OrderComponent implements OnInit {
     this.orderService.getCurrentArticleQuantity(article.ArticleId).subscribe((response: any) => {
       this.currentArticleQuantity = response.Quantity;
       this.showButtonDeleteItem = response.ShowButtonDeleteItem;
+      this.itemNote = response.ItemNote;
 
       this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
       this.currentArticle = article;

@@ -444,8 +444,6 @@
                     {{articleFullData.Article.Condition}}</h5>
                 <h5 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
                     {{articleFullData.Article.Ubication}}</h5>
-                <h5 style="margin-left: 10px;"> <span style="color: green;">Teléfono :</span> &nbsp;
-                    {{articleFullData.Article.PhoneNumber}}</h5>
                 <h5 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp;
                     {{articleFullData.Article.CreationDate}}</h5>
 
@@ -541,10 +539,19 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <label for="note" class="bold">Ingrese su nota si deseas</label>
+                <textarea [(ngModel)]="itemNote" class="form-control" rows="2">
+
+                </textarea>
+            </div>
+        </div>
+
         <div class="row center">
             <div class="cold-md-12">
-                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity)" class="btn btn-success bold"
-                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Guardar</button>
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)" class="btn btn-success bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Guardar</button>
             </div>
         </div>
 
