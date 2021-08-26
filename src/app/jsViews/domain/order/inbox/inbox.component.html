@@ -1,0 +1,174 @@
+
+<br>
+
+<h4 class="bold center">Bandeja de entrada</h4>
+
+<br>
+
+<div class="row card-group">
+
+    <div class="col-md-3" *ngFor="let item of orders">
+
+        <div style="border-radius: 10px; height: 160px; background-color: rgb(105, 230, 219);" class="card" (click)="openOrderDetail(item.Id)">
+
+            <span class="inbox"> <span class="bold">Orden : #</span> {{item.Id}}</span>
+            <span class="inbox"> <span class="bold">Fecha : </span>{{item.Date}}</span>
+            <span class="inbox"> <span class="bold">Estado : </span>{{item.Status}}</span>
+            <span class="inbox"> <span class="bold">Monto total : </span>{{item.TotalAmount | currency}}</span>
+            <span class="inbox"> <span class="bold">Método de pago : </span>{{item.PaymentMethod}}</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<ng-template #orderDetailModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle de orden # {{orderDetail.Id}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="background-color: rgb(230, 244, 247);">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <br>
+                <div class="card">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden : </span># {{orderDetail.Id}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Fecha : </span>{{orderDetail.Date}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.Status}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Método de pago : </span>{{orderDetail.PaymentMethod}}</h6>
+                        </div>
+
+                        <div class="col-md-9">
+                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Cliente : </span>{{orderDetail.Client}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Contacto : </span>{{orderDetail.ClientPhoneNumber}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Dirección para recibir la orden : </span>{{orderDetail.Address}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Comentario : </span>{{orderDetail.Comment}}</h6>
+                        </div>
+
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Descripción</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                    <th>ITBIS</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody>
+    
+                                <tr *ngFor="let item of orderDetail.Items">
+                                    <td>{{item.ArticleId}}</td>
+                                    <td>{{item.Title}}</td>
+                                    <td>{{item.Quantity}}</td>
+                                    <td>{{item.Price | currency}}</td>
+                                    <td>{{item.Subtotal | currency}}</td>
+                                    <td>{{item.ITBIS | currency}}</td>
+                                    <td>{{item.TotalAmount | currency}}</td>
+                                </tr>
+    
+                            </tbody>
+    
+                        </table>
+                    </div>
+    
+    
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-9">
+    
+                    </div>
+    
+                    <div class="col-md-3">
+    
+                        <div class="card">
+    
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed detail-resumen">
+    
+                                    <tbody>
+                                        <tr>
+                                            <td class="bold">Subtotal</td>
+                                            <td>{{orderDetail.Subtotal | currency}}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td class="bold">Descuento</td>
+                                            <td>{{orderDetail.Discount | currency}}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td class="bold">ITBIS</td>
+                                            <td>{{orderDetail.ITBIS | currency}}</td>
+                                        </tr>
+    
+                                        <tr class="bold">
+                                            <td>Total</td>
+                                            <td>{{orderDetail.TotalAmount | currency}}</td>
+                                        </tr>
+                                    </tbody>
+    
+                                </table>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-9">
+    
+                    </div>
+    
+                    <div class="col-md-3">
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-success btn-confirm" (click)="confirmOrder()">Confirmar orden</button>
+                            </div>
+                        </div>
+                        <br>
+    
+                    </div>
+    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</ng-template>

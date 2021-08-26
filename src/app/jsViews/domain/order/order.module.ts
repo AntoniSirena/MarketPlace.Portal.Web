@@ -11,12 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrderComponent } from './order.component';
 import { OrderRoutingModule } from './order-routing';
+import { InboxComponent } from './inbox/inbox.component';
 
 
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    InboxComponent
   ],
   imports: [
     CommonModule,

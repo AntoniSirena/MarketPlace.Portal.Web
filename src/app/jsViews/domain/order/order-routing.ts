@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InboxComponent } from './inbox/inbox.component';
 import { OrderComponent } from './order.component';
 
 
@@ -10,7 +11,14 @@ const routes: Routes = [
         component: OrderComponent,
         data: {
             title: 'Detalles de mi carrito'
-        }
+        },
+    },
+    {
+        path: 'inbox',
+        component: InboxComponent,
+        data: {
+            title: 'Bandeja de entrada'
+        },
     }
 ]
 

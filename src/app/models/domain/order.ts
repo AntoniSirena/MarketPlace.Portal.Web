@@ -18,6 +18,9 @@ export class OrderDetailDTO {
     Items: Array<OrderDetailItemDTO>
     Client: string;
     ClientPhoneNumber: string;
+    Comment: string;
+    Address: string;
+    PaymentMethod: string;
 }
 
 export class OrderDetailItemDTO{
@@ -34,4 +37,14 @@ export class OrderDetailItemDTO{
     Stock: number;
     MinQuantity: number;
     MaxQuantity: number;
+}
+
+
+export class OrderInboxDTO{
+    Id: number;
+    TotalAmount: number;
+    Date: string;
+    Status: string;
+    Address: string;
+    PaymentMethod: string;
 }
