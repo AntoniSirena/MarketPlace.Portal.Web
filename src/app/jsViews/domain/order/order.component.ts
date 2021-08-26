@@ -6,8 +6,9 @@ import { OrderDetailItemDTO } from './../../../models/domain/order';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../../environments/environment';
-import { ICreateOrder } from './../../../interfaces/domain/order';
+import { ICheckoutOrder, ICreateOrder } from './../../../interfaces/domain/order';
 import { Router } from '@angular/router';
+import $ from 'jquery';
 
 
 @Component({
@@ -19,17 +20,21 @@ export class OrderComponent implements OnInit {
 
 
   @ViewChild('buyArticle') buyArticleModal: ElementRef;
+  @ViewChild('checkoutOrdenModal') checkoutOrdenModal: ElementRef;
 
 
   orderDetail = new OrderDetailDTO();
   currentArticle = new OrderDetailItemDTO();
   orderDetailEmpty: any;
 
+  coreURL = environment.coreURL;
+
   currentArticleQuantity: number;
   itemNote: string;
   showButtonDeleteItem: boolean;
 
-  coreURL = environment.coreURL;
+  address: string;
+
 
   constructor(
     private orderService: OrderService,
@@ -217,6 +222,84 @@ export class OrderComponent implements OnInit {
 
   goToPortada(){
     this.routerService.navigate(['/portada']);
+  }
+
+
+  checkoutOrden(){
+    
+    if(!this.address){
+      Swal.fire({
+        icon: 'warning',
+        title: "Favor ingrese la dirección donde desea recibir su orden",
+        showConfirmButton: true,
+        timer: 5000
+      }).then(() => {
+      });
+
+      $('#address').addClass('address');
+
+      return;
+    }
+
+    this.modalService.dismissAll();
+    this.modalService.open(this.checkoutOrdenModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+
+  }
+
+
+  getPaymentMethod(paymentMethod: string, value: string){
+    
+    Swal.fire({
+      title: `Esta seguro que desea pagar con ${value}?`,
+      text: "El mismo no podra ser revertido",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Volver atrás',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Confirmar!'
+    }).then((result) => {
+      if (result.value) {
+        
+        const data: ICheckoutOrder = {
+          OrderId: this.orderDetail.Id,
+          Address: this.address,
+          PaymentMethod: paymentMethod,
+        }
+
+        this.orderService.Checkout(data).subscribe((response: Iresponse) => {
+      
+          if (response.Code === '000') {
+      
+            this.modalService.dismissAll();
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 2000
+            }).then(() => {
+              this.getShoppingCart();
+            });
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: response.Message,
+              showConfirmButton: true,
+              timer: 5000
+            }).then(() => {
+            });
+          }
+    
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+        
+      }
+    })
+
   }
 
 

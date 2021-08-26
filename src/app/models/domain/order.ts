@@ -16,6 +16,8 @@ export class OrderDetailDTO {
     ITBIS: number;
     TotalAmount: number;
     Items: Array<OrderDetailItemDTO>
+    Client: string;
+    ClientPhoneNumber: string;
 }
 
 export class OrderDetailItemDTO{

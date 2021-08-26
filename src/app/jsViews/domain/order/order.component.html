@@ -1,4 +1,3 @@
-
 <div *ngIf="orderDetail?.Items?.length > 0">
 
     <br>
@@ -15,7 +14,8 @@
             <br>
             <div class="card">
 
-                <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden: </span>#{{orderDetail.Id}}</h6>
+                <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden: </span>#{{orderDetail.Id}}
+                </h6>
                 <h6 class="header-detail"> <span class="bold">Fecha: </span>{{orderDetail.Date}}</h6>
                 <h6 class="header-detail"> <span class="bold">Estado: </span>{{orderDetail.Status}}</h6>
 
@@ -58,7 +58,8 @@
                                 <td>{{item.ITBIS | currency}}</td>
                                 <td>{{item.TotalAmount | currency}}</td>
                                 <td>
-                                    <button class="btn btn-primary bold" (click)="openModalAddArticle(item)"> Detalles/Editar</button>
+                                    <button class="btn btn-primary bold" (click)="openModalAddArticle(item)">
+                                        Detalles/Editar</button>
                                 </td>
                                 <td>
                                     <button class="btn btn-danger bold" (click)="deleteArticle(item)">Eliminar</button>
@@ -76,6 +77,12 @@
             <div class="row">
 
                 <div class="col-md-9">
+
+                    <textarea id="address" [(ngModel)]="address" class="form-control bold"
+                        placeholder="Ingrese la dirección donde desea recibir su orden" rows="2">
+
+                    </textarea>
+                    <br>
 
                 </div>
 
@@ -127,7 +134,8 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-success btn-payment">Pagar</button>                          
+                            <button class="btn btn-success btn-payment" (click)="checkoutOrden()">Procesar
+                                orden</button>
                         </div>
                     </div>
 
@@ -146,7 +154,7 @@
 
 
 <div *ngIf="!orderDetail?.Items?.length > 0">
-    
+
     <br>
     <br>
     <br>
@@ -158,11 +166,12 @@
             <h3 class="bold center">{{orderDetailEmpty}}</h3>
         </div>
     </div>
-    
+
     <br>
     <div class="row">
         <div class="col-md-12">
-            <button (click)="goToPortada()" class="btn btn-primary center bold" style="width: 220px; font-size: 20px; border-radius: 15px;">Llenar carrito</button>
+            <button (click)="goToPortada()" class="btn btn-primary center bold"
+                style="width: 220px; font-size: 20px; border-radius: 15px;">Llenar carrito</button>
         </div>
     </div>
 
@@ -196,15 +205,19 @@
                 <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
                     currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
 
-                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">Existencia:
+                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">
+                    Existencia:
                     {{currentArticle.Stock}}</h6>
 
-                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta mínima: {{currentArticle.MinQuantity}}</h6>
+                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    mínima: {{currentArticle.MinQuantity}}</h6>
 
-                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta maxima: {{currentArticle.MaxQuantity}}</h6>
+                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    maxima: {{currentArticle.MaxQuantity}}</h6>
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad actual: <input type="number"
-                    class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)" [(ngModel)]="currentArticleQuantity"></h6>
+                        class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        [(ngModel)]="currentArticleQuantity"></h6>
 
             </div>
         </div>
@@ -220,7 +233,8 @@
 
         <div class="row center">
             <div class="cold-md-12">
-                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)" class="btn btn-success bold"
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)"
+                    class="btn btn-success bold"
                     style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Guardar</button>
             </div>
         </div>
@@ -228,8 +242,46 @@
         <div *ngIf="showButtonDeleteItem" class="row center">
             <div class="cold-md-12">
                 <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
-                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar del carrito</button>
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar
+                    del carrito</button>
             </div>
+        </div>
+
+    </div>
+</ng-template>
+
+
+<ng-template #checkoutOrdenModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Procesando orden</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div>
+
+            <h4 class="center bold">Seleccione el método de pago</h4>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button (click)="getPaymentMethod('Effective', 'Efectivo')" class="btn btn-primary center bold"
+                        style="width: 220px; font-size: 20px; border-radius: 15px;">Efectivo</button>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button (click)="getPaymentMethod('Transference', 'Transferencia')" class="btn btn-primary center bold"
+                        style="width: 220px; font-size: 20px; border-radius: 15px;">Transferencia</button>
+                </div>
+            </div>
+
         </div>
 
     </div>

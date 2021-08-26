@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CreateOrderDTO } from '../../models/domain/order';
+import { ICheckoutOrder } from '../../interfaces/domain/order';
 
 
 @Injectable({
@@ -32,6 +33,11 @@ export class OrderService {
   create(request: CreateOrderDTO) {
     let data = JSON.stringify(request);
     return this.httpClient.post(`${this.coreURL}api/order/create`, data, { headers: this.headers });
+  }
+
+  Checkout(request: ICheckoutOrder) {
+    let data = JSON.stringify(request);
+    return this.httpClient.post(`${this.coreURL}api/order/Checkout`, data, { headers: this.headers });
   }
 
 

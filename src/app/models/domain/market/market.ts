@@ -77,6 +77,7 @@ export class Article {
     Ubication: string;
     Description: string;
     PhoneNumber: string;
+    QuantitySold: number;
     CreationDate: string;
     ProductType: string;
     UseStock: boolean;
