@@ -37,6 +37,7 @@ export class OrderDetailItemDTO{
     Stock: number;
     MinQuantity: number;
     MaxQuantity: number;
+    Comment: string;
 }
 
 

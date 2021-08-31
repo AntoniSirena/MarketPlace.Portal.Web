@@ -272,7 +272,7 @@ export class RedirectService {
   welcomeToSystem() {
     this.modalService.dismissAll();
     this.router.navigate(['portada']).then(() => {
-      setTimeout(function () { window.location.reload() }, 1000);
+      //setTimeout(function () { window.location.reload() }, 30000);
     });
   }
 

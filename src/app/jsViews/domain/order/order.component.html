@@ -42,6 +42,7 @@
                                 <th>Subtotal</th>
                                 <th>ITBIS</th>
                                 <th>Total</th>
+                                <th>Comentario</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -57,6 +58,7 @@
                                 <td>{{item.Subtotal | currency}}</td>
                                 <td>{{item.ITBIS | currency}}</td>
                                 <td>{{item.TotalAmount | currency}}</td>
+                                <td>{{item.Comment}}</td>
                                 <td>
                                     <button class="btn btn-primary bold" (click)="openModalAddArticle(item)">
                                         Detalles/Editar</button>

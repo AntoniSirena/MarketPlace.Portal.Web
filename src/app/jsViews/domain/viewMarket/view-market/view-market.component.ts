@@ -378,6 +378,7 @@ export class ViewMarketComponent implements OnInit {
 
     const data: ICreateOrder = {
       ArticleId: article.Id,
+      OrderId: 0,
       Quantity: quantity,
       ItemNote: itemNote,
     }

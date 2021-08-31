@@ -18,8 +18,8 @@ export class OrderService {
     this.coreURL = environment.coreURL;
   }
 
-  getCurrentArticleQuantity(articleId: number): Observable<object> {
-    return this.httpClient.get(this.coreURL + `api/order/GetCurrentArticleQuantity?articleId=${articleId}`);
+  getCurrentArticleQuantity(articleId: number, orderId: number = 0): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/GetCurrentArticleQuantity?articleId=${articleId}&orderId=${orderId}`);
   }
 
   getShoppingCart(orderId: number = 0): Observable<object> {
@@ -30,8 +30,8 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}`);
   }
 
-  deleteArticle(articleId: number): Observable<object> {
-    return this.httpClient.delete(this.coreURL + `api/order/DeleteArticle?articleId=${articleId}`);
+  deleteArticle(articleId: number, orderId: number = 0): Observable<object> {
+    return this.httpClient.delete(this.coreURL + `api/order/DeleteArticle?articleId=${articleId}&orderId=${orderId}`);
   }
 
   create(request: CreateOrderDTO) {

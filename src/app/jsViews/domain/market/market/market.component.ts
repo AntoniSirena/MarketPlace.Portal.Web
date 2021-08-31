@@ -452,7 +452,7 @@ export class MarketComponent implements OnInit {
       phoneNumber: [0],
       productTypeId: [this.productTypes.filter(x => x.ShortName === 'Product')[0].Id, Validators.required ],
       useStock: [false],
-      stock: [0],
+      stock: [1],
       minQuantity: [0],
       maxQuantity: [0],
     });

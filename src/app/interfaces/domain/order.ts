@@ -2,6 +2,7 @@
 
 export interface ICreateOrder {
     ArticleId: number;
+    OrderId: number;
     Quantity: number;
     ItemNote: string;
 }

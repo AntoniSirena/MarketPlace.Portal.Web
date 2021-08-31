@@ -114,6 +114,7 @@ export class OrderComponent implements OnInit {
 
     const data: ICreateOrder = {
       ArticleId: article.ArticleId,
+      OrderId: 0,
       Quantity: quantity,
       ItemNote: itemNote,
     }
