@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { OrderDetailDTO, OrderDetailItemDTO, OrderInboxDTO } from '../../../../models/domain/order';
+import { OrderDetailDTO, OrderDetailItemDTO, OrderInboxDTO, OrderStatusDTO } from '../../../../models/domain/order';
 import { OrderService } from '../../../../services/domain/order.service';
 import Swal from 'sweetalert2';
 import { environment } from '../../../../environments/environment';
@@ -24,6 +24,11 @@ export class InboxComponent implements OnInit {
   orders = new Array<OrderInboxDTO>();
   orderDetail = new OrderDetailDTO();
 
+  orderStatuses = new Array<OrderStatusDTO>();
+  currentOrderStatus = new OrderStatusDTO();
+
+  clientId: number;
+
   currentArticle = new OrderDetailItemDTO();
   orderDetailEmpty: any;
 
@@ -39,13 +44,51 @@ export class InboxComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.inbox();
+    this.getOrderStatuses();
+    this.getInbox();
   }
 
 
-  inbox(statusId: number = 0) {
-    this.orderService.inbox().subscribe((response: Iresponse) => {
+  getInbox() {
+
+    this.orderService.getInbox(this.currentOrderStatus?.Id, this.clientId).subscribe((response: Iresponse) => {
       this.orders = response.Data;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  getOrderStatus(status: OrderStatusDTO){
+    this.currentOrderStatus = status;
+  }
+
+  updateOrderStatus(statusShortName: string) {
+    this.orderService.updateOrderStatus(statusShortName, this.orderDetail.Id).subscribe((response: Iresponse) => {
+      
+      if (response.Code === '000') {
+
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 2000
+        }).then(() => {
+          this.modalService.dismissAll();
+          this.getInbox();
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 5000
+        }).then(() => {
+          
+        });
+      }
+      
     },
       error => {
         console.log(JSON.stringify(error));
@@ -80,6 +123,16 @@ export class InboxComponent implements OnInit {
   }
 
 
+  getOrderStatuses(){
+    this.orderService.getOrderStatuses().subscribe((response: Iresponse) => {
+      this.orderStatuses = response.Data;
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
   confirmOrder() {
 
     Swal.fire({
@@ -93,9 +146,7 @@ export class InboxComponent implements OnInit {
       confirmButtonText: 'Sí, Confirmar!'
     }).then((result) => {
       if (result.value) {
-
-        alert(true)
-
+       this.updateOrderStatus('Reception');
       }
     })
 
@@ -260,7 +311,25 @@ export class InboxComponent implements OnInit {
 
   cancelOrder(){
     
+    Swal.fire({
+      title: 'Esta seguro que desea cancelar la orden ?',
+      text: "La misma no podrás ser revertida",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Cancelar!'
+    }).then((result) => {
+      if (result.value) {
+
+        this.updateOrderStatus('Cancelled');
+
+      }
+    })
+
   }
+
 
 
 }

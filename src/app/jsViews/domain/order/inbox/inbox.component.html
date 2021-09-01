@@ -1,30 +1,84 @@
 
 <br>
-
-<h4 class="bold center">Bandeja de entrada</h4>
-
 <br>
+<div class="card" style="background-color: rgb(141, 185, 199);">
 
-<h6 class="bold center">Cantidad de orden encontradas {{orders.length}}</h6>
+    <br>
 
-<br>
+    <h4 class="bold center general-Style">Bandeja de entrada</h4>
+
+    <br>
 
 
-<div class="row card-group">
+    <div class="card general-Style" style="background-color: rgb(143, 213, 223);">
 
-    <div class="col-md-3" *ngFor="let item of orders">
+        <br>
+        
+        <h4 class="label general-Style">Busqueda avanzada</h4>
 
-        <div style="border-radius: 10px; height: 160px; background-color: rgb(105, 230, 219);" class="card" (click)="openOrderDetail(item.Id)">
+        <br>
 
-            <span class="inbox"> <span class="bold">Orden : #</span> {{item.Id}}</span>
-            <span class="inbox"> <span class="bold">Fecha : </span>{{item.Date}}</span>
-            <span class="inbox"> <span class="bold">Estado : </span>{{item.Status}}</span>
-            <span class="inbox"> <span class="bold">Monto total : </span>{{item.TotalAmount | currency}}</span>
-            <span class="inbox"> <span class="bold">Método de pago : </span>{{item.PaymentMethod}}</span>
+        <div class="row">
+            <div class="col-md-6">
+    
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5 class="label general-Style">Número de cliente:</h5>
+                    </div>
+                    <div class="col-md-4 general-Style">
+                        <input type="number" [(ngModel)]="clientId">
+                    </div>
+                </div>
+    
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4">
+                        <h5 class="label general-Style">Seleccione un estado:</h5>
+                    </div>
+                    <div class="col-md-4 general-Style">
+                        <ng-select class="bold" [items]="orderStatuses" bindLabel="Description" bindValue="Id"
+                            virtualScroll="true" (change)="getOrderStatus($event)">
+                        </ng-select>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary buscar" (click)="getInbox()">Buscar</button>
+            </div>
+        </div>
+
+        <br>
+
+    </div>
+
+
+    <h5 class="bold center general-Style">Cantidad de ordenes encontradas {{orders.length}}</h5>
+
+    <br>
+
+    <div class="row card-group">
+
+        <div class="col-md-3" *ngFor="let item of orders">
+
+            <div style="border-radius: 10px; height: 190px; background-color: rgb(16, 187, 144);" class="card general-Style"
+                (click)="openOrderDetail(item.Id)">
+
+                <span class="inbox"> <span class="bold">Cliente : #</span> {{item.ClientId}}</span>
+                <span class="inbox"> <span class="bold">Orden : #</span> {{item.Id}}</span>
+                <span class="inbox"> <span class="bold">Fecha : </span>{{item.Date}}</span>
+                <span class="inbox"> <span class="bold">Estado : </span>{{item.Status}}</span>
+                <span class="inbox"> <span class="bold">Monto total : </span>{{item.TotalAmount | currency}}</span>
+                <span class="inbox"> <span class="bold">Método de pago : </span>{{item.PaymentMethod}}</span>
+
+            </div>
 
         </div>
 
     </div>
+
 
 </div>
 
@@ -47,24 +101,30 @@
 
                     <div class="row">
                         <div class="col-md-3">
-                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden : </span># {{orderDetail.Id}}</h6>
+                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden : </span>#
+                                {{orderDetail.Id}}</h6>
                             <h6 class="header-detail"> <span class="bold">Fecha : </span>{{orderDetail.Date}}</h6>
                             <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.Status}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Método de pago : </span>{{orderDetail.PaymentMethod}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Método de pago :
+                                </span>{{orderDetail.PaymentMethod}}</h6>
                         </div>
 
                         <div class="col-md-9">
-                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Cliente : </span>{{orderDetail.Client}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Contacto : </span>{{orderDetail.ClientPhoneNumber}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Dirección para recibir la orden : </span>{{orderDetail.Address}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Comentario : </span>{{orderDetail.Comment}}</h6>
+                            <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Cliente :
+                                </span>{{orderDetail.Client}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Contacto :
+                                </span>{{orderDetail.ClientPhoneNumber}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Dirección para recibir la orden :
+                                </span>{{orderDetail.Address}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Comentario : </span>{{orderDetail.Comment}}
+                            </h6>
                         </div>
 
                     </div>
-    
+
                 </div>
             </div>
-    
+
         </div>
 
 
@@ -86,13 +146,13 @@
                                     <th>ITBIS</th>
                                     <th>Total</th>
                                     <th>Comentario</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' "></th>
+                                    <th *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' "></th>
                                 </tr>
                             </thead>
-    
+
                             <tbody>
-    
+
                                 <tr *ngFor="let item of orderDetail.Items">
                                     <td>{{item.ArticleId}}</td>
                                     <td>{{item.Title}}</td>
@@ -102,103 +162,106 @@
                                     <td>{{item.ITBIS | currency}}</td>
                                     <td>{{item.TotalAmount | currency}}</td>
                                     <td>{{item.Comment}}</td>
-                                    <td>
+                                    <td *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' ">
                                         <button class="btn btn-primary bold" (click)="openModalAddArticle(item)">
                                             Detalles/Editar</button>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-danger bold" (click)="deleteArticle(item)">Eliminar</button>
+                                    <td *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' ">
+                                        <button class="btn btn-danger bold"
+                                            (click)="deleteArticle(item)">Eliminar</button>
                                     </td>
                                 </tr>
-    
+
                             </tbody>
-    
+
                         </table>
                     </div>
-    
-    
+
+
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-9">
-    
+
                     </div>
-    
+
                     <div class="col-md-3">
-    
+
                         <div class="card">
-    
+
                             <div class="table-responsive">
                                 <table class="table table-hover table-condensed detail-resumen">
-    
+
                                     <tbody>
                                         <tr>
                                             <td class="bold">Subtotal</td>
                                             <td>{{orderDetail.Subtotal | currency}}</td>
                                         </tr>
-    
+
                                         <tr>
                                             <td class="bold">Descuento</td>
                                             <td>{{orderDetail.Discount | currency}}</td>
                                         </tr>
-    
+
                                         <tr>
                                             <td class="bold">ITBIS</td>
                                             <td>{{orderDetail.ITBIS | currency}}</td>
                                         </tr>
-    
+
                                         <tr class="bold">
                                             <td>Total</td>
                                             <td>{{orderDetail.TotalAmount | currency}}</td>
                                         </tr>
                                     </tbody>
-    
+
                                 </table>
                             </div>
-    
+
                         </div>
-    
+
                     </div>
-    
+
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' ">
 
                     <div class="col-md-9">
-    
+
                     </div>
-    
+
                     <div class="col-md-3">
-    
+
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-success btn-confirm" (click)="confirmOrder()">Confirmar orden</button>
+                                <button class="btn btn-success btn-confirm" (click)="confirmOrder()">Confirmar
+                                    orden</button>
                             </div>
                         </div>
                         <br>
-    
+
                     </div>
-    
+
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="orderDetail.StatusShortName === 'PendingToConfirm' ">
 
                     <div class="col-md-9">
-    
+
                     </div>
-    
+
                     <div class="col-md-3">
-    
+
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-danger btn-confirm" (click)="cancelOrder()">Cancelar orden</button>
+                                <button class="btn btn-danger btn-confirm" (click)="cancelOrder()">Cancelar
+                                    orden</button>
                             </div>
                         </div>
                         <br>
-    
+
                     </div>
-    
+
                 </div>
 
             </div>

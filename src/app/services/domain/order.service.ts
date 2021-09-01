@@ -26,8 +26,16 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/GetShoppingCart?orderId=${orderId}`);
   }
 
-  inbox(statusId: number = 0): Observable<object> {
-    return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}`);
+  getOrderStatuses(): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/GetOrderStatuses`);
+  }
+
+  updateOrderStatus(statusShortName: string, orderId: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/UpdateOrderStatus?statusShortName=${statusShortName}&orderId=${orderId}`);
+  }
+
+  getInbox(statusId: number = 0, clientId: number = 0): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}&clientId=${clientId}`);
   }
 
   deleteArticle(articleId: number, orderId: number = 0): Observable<object> {

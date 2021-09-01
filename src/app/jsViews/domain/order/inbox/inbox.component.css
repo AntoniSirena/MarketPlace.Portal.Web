@@ -24,3 +24,17 @@
 .address{
     border-color: red;
 }
+
+.general-Style{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.buscar{
+    margin-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 15px;
+}

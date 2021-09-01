@@ -11,6 +11,7 @@ export class OrderDetailDTO {
     Id: number;
     Date: string;
     Status: string;
+    StatusShortName: string;
     Subtotal: number;
     Discount: number;
     ITBIS: number;
@@ -21,9 +22,10 @@ export class OrderDetailDTO {
     Comment: string;
     Address: string;
     PaymentMethod: string;
+    ClientId: number;
 }
 
-export class OrderDetailItemDTO{
+export class OrderDetailItemDTO {
     Id: number;
     ArticleId: number;
     Title: string;
@@ -38,14 +40,21 @@ export class OrderDetailItemDTO{
     MinQuantity: number;
     MaxQuantity: number;
     Comment: string;
+    ClientId: number;
 }
 
 
-export class OrderInboxDTO{
+export class OrderInboxDTO {
     Id: number;
     TotalAmount: number;
     Date: string;
     Status: string;
     Address: string;
     PaymentMethod: string;
+}
+
+export class OrderStatusDTO {
+    Id: number;
+    ShortName: string;
+    Description: string;
 }
