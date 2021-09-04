@@ -34,6 +34,10 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/UpdateOrderStatus?statusShortName=${statusShortName}&orderId=${orderId}`);
   }
 
+  updateOrderDetailStatus(statusShortName: string, itemId: number): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/UpdateOrderDetailStatus?statusShortName=${statusShortName}&itemId=${itemId}`);
+  }
+
   getInbox(statusId: number = 0, clientId: number = 0): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}&clientId=${clientId}`);
   }

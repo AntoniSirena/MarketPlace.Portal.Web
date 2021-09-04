@@ -96,7 +96,39 @@ export class InboxComponent implements OnInit {
   }
 
 
-  openOrderDetail(orderId: number) {
+  updateOrderDetailStatus(statusShortName: string, itemId: number) {
+    this.orderService.updateOrderDetailStatus(statusShortName, itemId).subscribe((response: Iresponse) => {
+      
+      if (response.Code === '000') {
+
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 4000
+        }).then(() => {
+          this.getCurrentOrder(this.orderDetail.Id);
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: response.Message,
+          showConfirmButton: true,
+          timer: 5000
+        }).then(() => {
+          
+        });
+      }
+      
+    },
+      error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+
+  openModalOrderDetail(orderId: number) {
 
     this.orderService.getShoppingCart(orderId).subscribe((response: Iresponse) => {
 
@@ -283,7 +315,7 @@ export class InboxComponent implements OnInit {
               icon: 'success',
               title: response.Message,
               showConfirmButton: true,
-              timer: 2000
+              timer: 4000
             }).then(() => {
               this.getCurrentOrder(this.orderDetail.Id);
             });
@@ -331,5 +363,44 @@ export class InboxComponent implements OnInit {
   }
 
 
+  receiveArticle(item: OrderDetailItemDTO){
+    Swal.fire({
+      title: 'Esta seguro que desea marcar como recibido este artículo ?',
+      text: "El mismo no podrás ser revertido",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Marcar como recibido'
+    }).then((result) => {
+      if (result.value) {
+        this.updateOrderDetailStatus('Received', item.Id);
+      }
+    })
+  }
+
+
+  deliverOrder(){
+    
+    Swal.fire({
+      title: 'Esta seguro que desea entregar la orden ?',
+      text: "La misma no podrás ser revertida",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Entregar!'
+    }).then((result) => {
+      if (result.value) {
+
+        this.updateOrderStatus('Delivered');
+
+      }
+    })
+
+  }
+  
 
 }

@@ -41,6 +41,8 @@ export class OrderDetailItemDTO {
     MaxQuantity: number;
     Comment: string;
     ClientId: number;
+    StatusShortName: string;
+    Status: string;
 }
 
 
