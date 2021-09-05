@@ -35,7 +35,8 @@ export class InboxComponent implements OnInit {
   currentArticleQuantity: number;
   itemNote: string;
   showButtonDeleteItem: boolean;
-
+  provider: string;
+  providerPhoneNumber: string;
 
   constructor(
     private orderService: OrderService,
@@ -191,6 +192,8 @@ export class InboxComponent implements OnInit {
       this.currentArticleQuantity = response.Quantity;
       this.showButtonDeleteItem = response.ShowButtonDeleteItem;
       this.itemNote = response.ItemNote;
+      this.provider = response.Provider;
+      this.providerPhoneNumber = response.PhoneNumber;
 
       this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
       this.currentArticle = article;

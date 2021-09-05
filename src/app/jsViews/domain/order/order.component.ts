@@ -32,6 +32,8 @@ export class OrderComponent implements OnInit {
   currentArticleQuantity: number;
   itemNote: string;
   showButtonDeleteItem: boolean;
+  provider: string;
+  providerPhoneNumber: string;
 
   address: string;
 
@@ -210,6 +212,8 @@ export class OrderComponent implements OnInit {
       this.currentArticleQuantity = response.Quantity;
       this.showButtonDeleteItem = response.ShowButtonDeleteItem;
       this.itemNote = response.ItemNote;
+      this.provider = response.Provider;
+      this.providerPhoneNumber = response.PhoneNumber;
 
       this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
       this.currentArticle = article;
@@ -279,7 +283,7 @@ export class OrderComponent implements OnInit {
               icon: 'success',
               title: response.Message,
               showConfirmButton: true,
-              timer: 2000
+              timer: 10000
             }).then(() => {
               this.getShoppingCart();
             });

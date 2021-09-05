@@ -334,8 +334,11 @@
 
                 <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
                     maxima: {{currentArticle.MaxQuantity}}</h6>
+                    
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Vendedor: {{provider}}</h6>
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
 
-                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Cantidad actual: <input type="number"
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12p;">Cantidad a comprar: <input type="number"
                         class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
                         [(ngModel)]="currentArticleQuantity"></h6>
 

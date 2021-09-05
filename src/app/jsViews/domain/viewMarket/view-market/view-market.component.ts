@@ -71,6 +71,8 @@ export class ViewMarketComponent implements OnInit {
   currentArticleQuantity: number = 0;
   itemNote: string;
   showButtonDeleteItem: boolean;
+  provider: string;
+  providerPhoneNumber: string;
 
   userData = new User();
 
@@ -314,6 +316,8 @@ export class ViewMarketComponent implements OnInit {
         this.currentArticleQuantity = response.Quantity;
         this.showButtonDeleteItem = response.ShowButtonDeleteItem;
         this.itemNote = response.ItemNote;
+        this.provider = response.Provider;
+        this.providerPhoneNumber = response.PhoneNumber;
 
         this.modalService.open(this.buyArticleModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
         this.currentArticle = article;
