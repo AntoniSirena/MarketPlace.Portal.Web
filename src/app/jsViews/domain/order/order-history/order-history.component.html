@@ -10,6 +10,13 @@
 <br>
 
 <div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary bold center refresh_btn" (click)="getOrderHistory()" ><i class="fa fa-refresh" aria-hidden="true"></i> Refrescar</button>
+    </div>
+</div>
+<br>
+
+<div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-12">
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchText">
@@ -44,7 +51,7 @@
                         <tr *ngFor="let item of orders | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
                             <td>{{item.Id}}</td>
                             <td>{{item.Date}}</td>
-                            <td class="bold"> <span class="{{item.StatusColour}}">{{item.Status}}</span> </td>
+                            <td class="bold"> <span class="{{item.StatusColour}}">{{item.ClientStatusDescription}}</span> </td>
                             <td>{{item.PaymentMethod}}</td>
                             <td>{{item.Subtotal | currency}}</td>
                             <td>{{item.Discount | currency}}</td>
@@ -93,7 +100,7 @@
                             <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden : </span>#
                                 {{orderDetail.Id}}</h6>
                             <h6 class="header-detail"> <span class="bold">Fecha : </span>{{orderDetail.Date}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.Status}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.ClientStatusDescription}}</h6>
                             <h6 class="header-detail"> <span class="bold">Método de pago :
                                 </span>{{orderDetail.PaymentMethod}}</h6>
                         </div>
@@ -150,7 +157,7 @@
                                     <td>{{item.ITBIS | currency}}</td>
                                     <td>{{item.TotalAmount | currency}}</td>
                                     <td>{{item.Comment}}</td>
-                                    <td class="bold">{{item.Status}}</td>
+                                    <td class="bold"> <span class="{{item.StatusColour}}">{{item.ClientStatusDescription}}</span> </td>
                                 </tr>
 
                             </tbody>

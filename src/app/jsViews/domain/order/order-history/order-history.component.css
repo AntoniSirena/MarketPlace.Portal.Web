@@ -1,0 +1,15 @@
+
+.header-detail {
+    margin-left: 12px;
+    margin-right: 5px;
+}
+
+.detail-resumen{
+    font-size: 16px;
+}
+
+.refresh_btn{
+    width: 100px;
+    font-size: 17px;
+    border-radius: 10px;
+}

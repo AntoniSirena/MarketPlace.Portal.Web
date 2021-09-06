@@ -13,6 +13,7 @@ export class OrderDetailDTO {
     Status: string;
     StatusShortName: string;
     StatusColour: string;
+    ClientStatusDescription: string;
     Subtotal: number;
     Discount: number;
     ITBIS: number;
@@ -45,6 +46,7 @@ export class OrderDetailItemDTO {
     StatusShortName: string;
     Status: string;
     StatusColour: string;
+    ClientStatusDescription: string;
 }
 
 
