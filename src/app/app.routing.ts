@@ -16,7 +16,6 @@ import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { TemplateComponent } from './jsViews/template/template.component';
-import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
@@ -138,13 +137,6 @@ export const routes: Routes = [
         loadChildren: () => import('./jsViews/domain/order/order.module').then(m => m.OrderModule)
       },
       
-      {
-        path: 'pre-portada',
-        component: PrePortadaComponent,
-        data: {
-          title: 'Pre-Portada'
-        }
-      },
       {
         path: 'user',
         canActivate: [AuthGuard],

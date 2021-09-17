@@ -67,7 +67,6 @@ import { NgMarqueeModule } from 'ng-marquee';
 import { NgxSpinnerModule } from "ngx-spinner"
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { from } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //ng-select
@@ -85,7 +84,6 @@ import { RoleComponent } from './jsViews/role/role/role.component';
 import { ConfigurationParameterComponent } from './jsViews/configurationParameter/configuration-parameter/configuration-parameter.component';
 import { PersonTypeComponent } from './jsViews/personType/person-type/person-type.component';
 import { TemplateComponent } from './jsViews/template/template.component';
-import { PrePortadaComponent } from './jsViews/prePortada/pre-portada/pre-portada.component';
 import { FileUploadComponent } from './jsViews/fileUpload/file-upload/file-upload.component';
 import { MyFilesComponent } from './jsViews/myFiles/my-files/my-files.component';
 import { NoveltyComponent } from './jsViews/novelty/novelty/novelty.component';
@@ -147,7 +145,6 @@ import { OrderModule } from './jsViews/domain/order/order.module';
     ConfigurationParameterComponent,
     PersonTypeComponent,
     TemplateComponent,
-    PrePortadaComponent,
     FileUploadComponent,
     MyFilesComponent,
     NoveltyComponent,
