@@ -111,33 +111,24 @@ export class LoginComponent implements OnInit {
 
       if (response.Code === '000') {
 
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: response.Message,
-          showConfirmButton: true,
-          timer: 3000
-        }).then(() => {
+        //profile
+        this.profile = response.Data;
+        localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
+        localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
+        localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
+        localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
+        localStorage.setItem("refreshToken", `${JSON.stringify(this.profile.Profile.User.RefreshToken)}`);
+        localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
+        localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
+        localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
+        localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
+        localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
 
-          //profile
-          this.profile = response.Data;
-          localStorage.setItem("profile", `${JSON.stringify(this.profile.Profile)}`);
-          localStorage.setItem("personalData", `${JSON.stringify(this.profile.Profile.Person)}`);
-          localStorage.setItem("userData", `${JSON.stringify(this.profile.Profile.User)}`);
-          localStorage.setItem("token", `${JSON.stringify(this.profile.Profile.User.Token)}`);
-          localStorage.setItem("refreshToken", `${JSON.stringify(this.profile.Profile.User.RefreshToken)}`);
-          localStorage.setItem("userName", `${JSON.stringify(this.profile.Profile.User.UserName)}`);
-          localStorage.setItem("userId", `${JSON.stringify(this.profile.Profile.User.Id)}`);
-          localStorage.setItem("canCreate", `${JSON.stringify(this.profile.Profile.User.CanCreate)}`);
-          localStorage.setItem("canEdit", `${JSON.stringify(this.profile.Profile.User.CanEdit)}`);
-          localStorage.setItem("canDelete", `${JSON.stringify(this.profile.Profile.User.CanDelete)}`);
-          
-          localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
-          localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
+        localStorage.setItem("isVisitorUser", `${JSON.stringify(this.profile.Profile.User.IsVisitorUser)}`);
+        localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
 
-          //welcome to system
-          this.redirectService.welcomeToSystem();
-        });
+        //welcome to system
+        this.redirectService.welcomeToSystem();
 
       } else {
         Swal.fire({
