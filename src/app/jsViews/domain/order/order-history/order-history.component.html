@@ -51,7 +51,7 @@
                         <tr *ngFor="let item of orders | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
                             <td>{{item.Id}}</td>
                             <td>{{item.Date}}</td>
-                            <td class="bold"> <span class="{{item.StatusColour}}">{{item.ClientStatusDescription}}</span> </td>
+                            <td> <span class="{{item.StatusColour}} bold">{{item.ClientStatusDescription}}</span> </td>
                             <td>{{item.PaymentMethod}}</td>
                             <td>{{item.Subtotal | currency}}</td>
                             <td>{{item.Discount | currency}}</td>
@@ -157,7 +157,7 @@
                                     <td>{{item.ITBIS | currency}}</td>
                                     <td>{{item.TotalAmount | currency}}</td>
                                     <td>{{item.Comment}}</td>
-                                    <td class="bold"> <span class="{{item.StatusColour}}">{{item.ClientStatusDescription}}</span> </td>
+                                    <td> <span class="{{item.StatusColour}} bold">{{item.ClientStatusDescription}}</span> </td>
                                 </tr>
 
                             </tbody>

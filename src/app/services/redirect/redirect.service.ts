@@ -24,6 +24,7 @@ export class RedirectService {
 
   profile = new Profile();
 
+  unauthorized: boolean;
 
 
   //Iniciar sesion
@@ -131,6 +132,7 @@ export class RedirectService {
           timer: 3000
         }).then(() => {
           this.modalService.dismissAll();
+          this.unauthorized = true;
           this.loginUserVisitador();
         });
       }
@@ -272,7 +274,10 @@ export class RedirectService {
   welcomeToSystem() {
     this.modalService.dismissAll();
     this.router.navigate(['portada']).then(() => {
-      //setTimeout(function () { window.location.reload() }, 30000);
+      if(this.unauthorized){
+        setTimeout(function () { window.location.reload() }, 2000);
+        this.unauthorized = false;
+      }
     });
   }
 
