@@ -32,7 +32,7 @@ export class OrderHistoryComponent implements OnInit {
 
 
   getOrderHistory(){  
-    this.orderService.GetOrderHistory().subscribe((response: Iresponse) => {
+    this.orderService.getOrderHistory().subscribe((response: Iresponse) => {
       this.orders = response.Data;
     },
       error => {

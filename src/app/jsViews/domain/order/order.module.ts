@@ -19,6 +19,7 @@ import { OrderComponent } from './order.component';
 import { OrderRoutingModule } from './order-routing';
 import { InboxComponent } from './inbox/inbox.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { ProviderOrderComponent } from './provider-order/provider-order.component';
 
 
 
@@ -26,7 +27,8 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
   declarations: [
     OrderComponent,
     InboxComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ProviderOrderComponent
   ],
   imports: [
     CommonModule,

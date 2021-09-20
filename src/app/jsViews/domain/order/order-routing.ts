@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InboxComponent } from './inbox/inbox.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { OrderComponent } from './order.component';
+import { ProviderOrderComponent } from './provider-order/provider-order.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,13 @@ const routes: Routes = [
         component: OrderHistoryComponent,
         data: {
             title: 'Historico de orden'
+        },
+    },
+    {
+        path: 'providerOrder',
+        component: ProviderOrderComponent,
+        data: {
+            title: 'Mis pedidos'
         },
     }
 ]

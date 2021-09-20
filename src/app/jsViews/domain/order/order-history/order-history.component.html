@@ -1,10 +1,9 @@
 
 <br>
-<br>
 
 <div class="row">
     <div class="col-md-12">
-        <h4 class="bold center">Historial de ordenes</h4>
+        <h4 class="bold center">Historico de orden</h4>
     </div>
 </div>
 <br>
@@ -34,7 +33,7 @@
                 <table class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th>Número</th>
+                            <th># Orden</th>
                             <th>Fecha</th>
                             <th>Estado</th>
                             <th>Método de pago</th>
@@ -82,7 +81,7 @@
 
 <ng-template #orderDetailModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Detalle de orden # {{orderDetail.Id}}</h4>
+        <h4 class="modal-title">Detalle de la orden # {{orderDetail.Id}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>

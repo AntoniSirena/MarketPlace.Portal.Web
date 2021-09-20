@@ -29,11 +29,13 @@ export class OrderDetailDTO {
 
 export class OrderDetailItemDTO {
     Id: number;
+    OrderId: number;
     ArticleId: number;
     Title: string;
     Quantity: number;
     Price: number;
     CurrencyCode: string;
+    CurrencyISONumber: number;
     Subtotal: number;
     ITBIS: number;
     TotalAmount: number;
@@ -43,10 +45,13 @@ export class OrderDetailItemDTO {
     MaxQuantity: number;
     Comment: string;
     ClientId: number;
+    ClientName: string;
+    ClientPhoneNumber: string;
     StatusShortName: string;
     Status: string;
     StatusColour: string;
     ClientStatusDescription: string;
+    ProviderStatusDescription: string;
 }
 
 

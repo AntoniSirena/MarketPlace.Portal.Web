@@ -42,16 +42,6 @@
                     style="font-weight: bold;" autocomplete="username" required>
                 </div>
 
-                <label for="email" style="font-weight: bold;">Correo <span *ngIf="!myForm.value.emailAddress"
-                    class="required">*</span></label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
-                  </div>
-                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo"
-                    style="font-weight: bold;" autocomplete="email" required>
-                </div>
-
                 <label for="password" style="font-weight: bold;">Contraseña <span *ngIf="!myForm.value.password"
                     class="required">*</span></label>
                 <div class="input-group mb-3">
@@ -83,6 +73,16 @@
                     style="font-weight: bold;" autocomplete="username" required>
                 </div>
 
+                <label for="email" style="font-weight: bold;">Correo <span *ngIf="!myForm.value.emailAddress"
+                  class="required">*</span></label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="email" formControlName="emailAddress" class="form-control" placeholder="Correo"
+                  style="font-weight: bold;" autocomplete="email" required>
+              </div>
+              
                 <label for="phoneNumber" style="font-weight: bold;">Celular <span *ngIf="!myForm.value.phoneNumber"
                     class="required">*</span></label>
                 <div class="input-group mb-3">

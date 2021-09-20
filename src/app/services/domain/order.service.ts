@@ -30,8 +30,12 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/GetOrderStatuses`);
   }
 
-  GetOrderHistory(): Observable<object> {
+  getOrderHistory(): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/order/GetOrderHistory`);
+  }
+
+  getProviderOrder(): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/GetProviderOrder`);
   }
 
   updateOrderStatus(statusShortName: string, orderId: number): Observable<object> {
