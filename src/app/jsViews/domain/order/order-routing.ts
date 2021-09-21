@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DeliverOrderComponent } from './deliver-order/deliver-order.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { OrderComponent } from './order.component';
@@ -43,12 +44,19 @@ const routes: Routes = [
         data: {
             title: 'Historico de pedidos'
         },
+    },
+    {
+        path: 'deliverOrder',
+        component: DeliverOrderComponent,
+        data: {
+            title: 'Entregar orden'
+        },
     }
 ]
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+exports: [RouterModule]
 })
 
 

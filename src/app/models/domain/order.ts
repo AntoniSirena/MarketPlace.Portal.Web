@@ -66,6 +66,7 @@ export class OrderInboxDTO {
     Key: string;
     ClientId: number;
     ClientName: string;
+    ClientPhoneNumber: string;
 }
 
 export class OrderStatusDTO {

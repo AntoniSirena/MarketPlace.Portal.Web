@@ -1,83 +1,23 @@
 
+
+<br>
+<br>
+
+<div class="row" style="margin-bottom: 5px;">
+    <div class="col-md-12">
+        <h4 class="bold center">Ordenes pendientes de entregar</h4>
+    </div>
+</div>
+
 <br>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="card" style="background-color: rgb(209, 201, 88);">
-
-            <div class="store-info">
-                <h4 class="bold">Información de la tienda</h4>
-                
-                <div class="row row-info">
-                    <div class="col-md-2">
-                        <h5 class="bold">Correo:</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>marketplace.comproyvendo.rd@gmail.com</h5>
-                    </div>
-                </div>
-
-                <div class="row row-info">
-                    <div class="col-md-2">
-                        <h5 class="bold">Teléfono:</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>829-909-3042</h5>
-                    </div>
-                </div>
-
-                <div class="row row-info">
-                    <div class="col-md-2">
-                        <h5 class="bold">Dirección:</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Mun: San Antonio De Guerra; San. Dom. Este; Rep. Dom</h5>
-                    </div>
-                </div>
-
-                <div class="row row-info">
-                    <div class="col-md-2">
-                        <h5 class="bold">Código postal:</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>11902</h5>
-                    </div>
-                </div>
-
-                <div class="row row-info">
-                    <div class="col-md-2">
-                        <h5 class="bold">Horarío:</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>8: 00 AM / 8:00 PM todos los días</h5>
-                    </div>
-                </div>
-            </div>
-
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar artículos por cualquier columna"
+                [(ngModel)]="searchText">
         </div>
     </div>
-</div>
-<br>
-
-<div class="row">
-    <div class="col-md-12">
-        <h4 class="bold center">Historico de ordenes</h4>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <button class="btn btn-primary bold center refresh_btn" (click)="getOrderHistory()" ><i class="fa fa-refresh" aria-hidden="true"></i> Refrescar</button>
-    </div>
-</div>
-<br>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-lg-12">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Buscar orden por cualquier columna" [(ngModel)]="searchText">
-    </div>
-  </div>
 </div>
 
 <div class="row">
@@ -91,13 +31,11 @@
                     <thead>
                         <tr>
                             <th># Orden</th>
-                            <th>Clave</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
-                            <th>Método de pago</th>
-                            <th>Subtotal</th>
-                            <th>Descuento</th>
-                            <th>ITBIS</th>
+                            <th>Fecha de creación</th>
+                            <th>Cliente</th>
+                            <th>Tel. cliente</th>
+                            <th>Dirección</th>
+                            <th>Metódo de pago</th>
                             <th>Total</th>
                             <th></th>
                         </tr>
@@ -105,18 +43,17 @@
 
                     <tbody>
 
-                        <tr *ngFor="let item of orders | filter : searchText | paginate: { itemsPerPage: 10, currentPage: _currentPage}">
+                        <tr
+                            *ngFor="let item of orders | filter : searchText | paginate: { itemsPerPage: 15, currentPage: _currentPage}">
                             <td>{{item.Id}}</td>
-                            <td>{{item.Key}}</td>
                             <td>{{item.Date}}</td>
-                            <td> <span class="{{item.StatusColour}} bold">{{item.ClientStatusDescription}}</span> </td>
+                            <td>{{item.ClientName}}</td>
+                            <td>{{item.ClientPhoneNumber}}</td>
+                            <td>{{item.Address}}</td>
                             <td>{{item.PaymentMethod}}</td>
-                            <td>{{item.Subtotal | currency}}</td>
-                            <td>{{item.Discount | currency}}</td>
-                            <td>{{item.ITBIS | currency}}</td>
                             <td>{{item.TotalAmount | currency}}</td>
                             <td>
-                                <button class="btn btn-primary bold" (click)="openModalOrderDetail(item.Id)">Ver detalles</button>
+                                <button class="btn btn-primary bold" (click)="openModalOrderDetail(item.Id)">Entregar</button>
                             </td>
                         </tr>
 
@@ -124,7 +61,8 @@
 
                 </table>
 
-                <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true" previousLabel="Anterior" nextLabel="Siguiente">
+                <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true"
+                    previousLabel="Anterior" nextLabel="Siguiente">
                 </pagination-controls>
 
             </div>
@@ -154,17 +92,17 @@
                 <div class="card">
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Orden : </span>#
                                 {{orderDetail.Id}}</h6>
-                                <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Clave : </span>{{orderDetail.Key}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Fecha : </span>{{orderDetail.Date}}</h6>
-                            <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.ClientStatusDescription}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Fecha de creación :
+                                </span>{{orderDetail.Date}}</h6>
+                            <h6 class="header-detail"> <span class="bold">Estado : </span>{{orderDetail.Status}}</h6>
                             <h6 class="header-detail"> <span class="bold">Método de pago :
                                 </span>{{orderDetail.PaymentMethod}}</h6>
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-7">
                             <h6 style="margin-top: 8px;" class="header-detail"> <span class="bold">Cliente :
                                 </span>{{orderDetail.Client}}</h6>
                             <h6 class="header-detail"> <span class="bold">Contacto :
@@ -182,6 +120,12 @@
 
         </div>
 
+
+        <div class="row" style="margin-bottom: 5px;">
+            <div class="col-md-12">
+                <h5 class="bold center">Detalles de artículo</h5>
+            </div>
+        </div>
 
         <div class="row">
 
@@ -201,7 +145,6 @@
                                     <th>ITBIS</th>
                                     <th>Total</th>
                                     <th>Comentario</th>
-                                    <th>Estado</th>
                                 </tr>
                             </thead>
 
@@ -216,7 +159,6 @@
                                     <td>{{item.ITBIS | currency}}</td>
                                     <td>{{item.TotalAmount | currency}}</td>
                                     <td>{{item.Comment}}</td>
-                                    <td> <span class="{{item.StatusColour}} bold">{{item.ClientStatusDescription}}</span> </td>
                                 </tr>
 
                             </tbody>
@@ -266,6 +208,54 @@
                             </div>
 
                         </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row" *ngIf="!validateOrder">
+
+                    <div class="col-md-9">
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h5 class="bold">Ingrese la clave de la orden</h5>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-md-12">
+                                <input class="form-control bold" type="text" [(ngModel)]="orderKey">
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button [disabled]="!orderKey" class="btn- btn-success _btn-confirm" (click)="_validateOrder()">validar clave</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row" *ngIf="validateOrder">
+
+                    <div class="col-md-9">
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn- btn-primary _btn-confirm" (click)="updateOrderStatus('Delivered')">Entregar</button>
+                            </div>
+                        </div>
+                        <br>
 
                     </div>
 

@@ -21,6 +21,7 @@ import { InboxComponent } from './inbox/inbox.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProviderOrderComponent } from './provider-order/provider-order.component';
 import { ProviderOrderHistoryComponent } from './provider-order-history/provider-order-history.component';
+import { DeliverOrderComponent } from './deliver-order/deliver-order.component';
 
 
 
@@ -30,7 +31,8 @@ import { ProviderOrderHistoryComponent } from './provider-order-history/provider
     InboxComponent,
     OrderHistoryComponent,
     ProviderOrderComponent,
-    ProviderOrderHistoryComponent
+    ProviderOrderHistoryComponent,
+    DeliverOrderComponent
   ],
   imports: [
     CommonModule,
