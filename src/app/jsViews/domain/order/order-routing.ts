@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InboxComponent } from './inbox/inbox.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { OrderComponent } from './order.component';
+import { ProviderOrderHistoryComponent } from './provider-order-history/provider-order-history.component';
 import { ProviderOrderComponent } from './provider-order/provider-order.component';
 
 
@@ -34,6 +35,13 @@ const routes: Routes = [
         component: ProviderOrderComponent,
         data: {
             title: 'Mis pedidos'
+        },
+    },
+    {
+        path: 'providerOrderHistory',
+        component: ProviderOrderHistoryComponent,
+        data: {
+            title: 'Historico de pedidos'
         },
     }
 ]

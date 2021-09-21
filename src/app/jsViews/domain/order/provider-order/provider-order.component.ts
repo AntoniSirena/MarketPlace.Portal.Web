@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
-import { OrderService } from '../../../../services/domain/order.service';
+import { OrderService } from '../../../../services/domain/order/order.service';
 import { OrderDetailItemDTO } from './../../../../models/domain/order';
 
 @Component({

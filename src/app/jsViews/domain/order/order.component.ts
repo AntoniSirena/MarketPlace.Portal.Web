@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Iresponse } from '../../../interfaces/Iresponse/iresponse';
 import { OrderDetailDTO } from '../../../models/domain/order';
-import { OrderService } from '../../../services/domain/order.service';
 import { OrderDetailItemDTO } from './../../../models/domain/order';
 import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -9,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { ICheckoutOrder, ICreateOrder } from './../../../interfaces/domain/order';
 import { Router } from '@angular/router';
 import $ from 'jquery';
+import { OrderService } from '../../../services/domain/order/order.service';
 
 
 @Component({

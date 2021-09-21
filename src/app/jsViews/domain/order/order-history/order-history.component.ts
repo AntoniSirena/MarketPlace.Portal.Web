@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 import { OrderDetailDTO } from '../../../../models/domain/order';
-import { OrderService } from '../../../../services/domain/order.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OrderService } from '../../../../services/domain/order/order.service';
 
 @Component({
   selector: 'app-order-history',

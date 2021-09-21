@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { CreateOrderDTO } from '../../models/domain/order';
-import { ICheckoutOrder } from '../../interfaces/domain/order';
+import { environment } from '../../../environments/environment';
+import { CreateOrderDTO } from '../../../models/domain/order';
+import { ICheckoutOrder } from '../../../interfaces/domain/order';
 
 
 @Injectable({
@@ -38,6 +38,10 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/GetProviderOrder`);
   }
 
+  getProviderOrderHistory(): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/GetProviderOrderHistory`);
+  }
+
   updateOrderStatus(statusShortName: string, orderId: number): Observable<object> {
     return this.httpClient.get(this.coreURL + `api/order/UpdateOrderStatus?statusShortName=${statusShortName}&orderId=${orderId}`);
   }
@@ -46,8 +50,8 @@ export class OrderService {
     return this.httpClient.get(this.coreURL + `api/order/UpdateOrderDetailStatus?statusShortName=${statusShortName}&itemId=${itemId}`);
   }
 
-  getInbox(statusId: number = 0, clientId: number = 0): Observable<object> {
-    return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}&clientId=${clientId}`);
+  getInbox(statusId: number = 0, clientId: number = 0, orderId: number = 0): Observable<object> {
+    return this.httpClient.get(this.coreURL + `api/order/Inbox?statusId=${statusId}&clientId=${clientId}&orderId=${orderId}`);
   }
 
   deleteArticle(articleId: number, orderId: number = 0): Observable<object> {

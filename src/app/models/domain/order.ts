@@ -25,6 +25,7 @@ export class OrderDetailDTO {
     Address: string;
     PaymentMethod: string;
     ClientId: number;
+    Key: string;
 }
 
 export class OrderDetailItemDTO {
@@ -62,6 +63,9 @@ export class OrderInboxDTO {
     Status: string;
     Address: string;
     PaymentMethod: string;
+    Key: string;
+    ClientId: number;
+    ClientName: string;
 }
 
 export class OrderStatusDTO {

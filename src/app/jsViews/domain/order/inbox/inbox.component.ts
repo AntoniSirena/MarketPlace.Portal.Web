@@ -2,10 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
 import { OrderDetailDTO, OrderDetailItemDTO, OrderInboxDTO, OrderStatusDTO } from '../../../../models/domain/order';
-import { OrderService } from '../../../../services/domain/order.service';
 import Swal from 'sweetalert2';
 import { environment } from '../../../../environments/environment';
 import { ICreateOrder } from '../../../../interfaces/domain/order';
+import { OrderService } from '../../../../services/domain/order/order.service';
 
 @Component({
   selector: 'app-inbox',
@@ -28,6 +28,7 @@ export class InboxComponent implements OnInit {
   currentOrderStatus = new OrderStatusDTO();
 
   clientId: number;
+  orderId: number;
 
   currentArticle = new OrderDetailItemDTO();
   orderDetailEmpty: any;
@@ -52,7 +53,7 @@ export class InboxComponent implements OnInit {
 
   getInbox() {
 
-    this.orderService.getInbox(this.currentOrderStatus?.Id, this.clientId).subscribe((response: Iresponse) => {
+    this.orderService.getInbox(this.currentOrderStatus?.Id, this.clientId, this.orderId).subscribe((response: Iresponse) => {
       this.orders = response.Data;
     },
       error => {

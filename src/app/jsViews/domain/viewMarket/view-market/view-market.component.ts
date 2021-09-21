@@ -13,9 +13,9 @@ import { Profile, User } from '../../../../models/profile/profile';
 import { BaseService } from '../../../../services/base/base.service';
 import { Category, SubCategory } from '../../../../models/domain/market/market';
 import { SizeImageDetailArticle, SizeImageSeller } from './../../../../configurations/jsConfig';
-import { OrderService } from '../../../../services/domain/order.service';
 import { ICreateOrder } from './../../../../interfaces/domain/order';
 import { Iresponse } from '../../../../interfaces/Iresponse/iresponse';
+import { OrderService } from '../../../../services/domain/order/order.service';
 
 
 @Component({
