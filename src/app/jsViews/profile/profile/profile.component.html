@@ -62,14 +62,14 @@
                       </div>
                       <div class="form-group">
                         <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" formControlName="userName">
+                        <input type="text" class="form-control" id="usuario" formControlName="userName" readonly>
                         <span *ngIf="!userForm.value.userName" class="required">*</span>
                       </div>
-                      <div class="form-group">
+                      <!--<div class="form-group">
                         <label for="password">Contraseña</label>
                         <input type="password" class="form-control" id="password" formControlName="password">
                         <span *ngIf="!userForm.value.password" class="required">*</span>
-                      </div>
+                      </div>-->
                       <div class="form-group">
                         <label for="emailAddress">Correo electronico</label>
                         <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
