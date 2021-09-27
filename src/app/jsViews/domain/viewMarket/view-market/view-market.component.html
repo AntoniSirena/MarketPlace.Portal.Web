@@ -23,7 +23,131 @@
     </div>
 </div>
 
-<ngb-tabset [destroyOnHide]="false">
+
+<!--Articles list-->
+<div *ngIf="enableShoppingCart">
+
+    <h4 class="center bold">Empieza tu compra desde ya...</h4>
+    <br>
+
+    <div id="accordion">
+        <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                <span class="bold">
+                    <h4>Busqueda avanzada</h4>
+                </span>
+            </button>
+        </h5>
+
+        <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+
+            <form [formGroup]="filterSellForm" (submit)="filterArticles('Sell', filterSellForm.value)">
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-2">
+                        <span class="bold">Categoría :</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
+                            virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                            (change)="getSubCategories_ByCategoryId($event)">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="bold">subcategoría :</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
+                            virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="cold-md-6">
+                        <button type="submit" style="margin-top: 15px;"
+                            class="btn btn-primary btn_search">Buscar</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <br>
+    <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
+            class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+            [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
+    </div>
+
+    <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
+    <h4 style="margin-bottom: 5px;" class="center">{{itemQuantity}} {{recordResultMessage}}</h4>
+    <br>
+
+
+    <div class="row card-group">
+        <div class="col-md-3" *ngFor="let item of articles">
+            <div style="border-radius: 15px; height: 400px;" class="card shadow bg-white">
+
+                <div (click)="getArticleFullData(item)">
+                    <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                        <img class="imgPortada" id="image"
+                            src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                    </div>
+                    <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
+                        No.&nbsp;{{item.Id}}</h6>
+
+                    <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                        currency}} <span class="bold"
+                            style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+
+                    <div style="font-size: 17px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                        {{item.Title}}</div>
+                </div>
+
+                <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido: {{item.QuantitySold}}</span>
+
+                <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
+                    *ngIf="enableShoppingCart && item.Stock">
+                    <div class="cold-md-6">
+                        <button (click)="openModalAddArticle(item)" class="btn btn-primary bold"
+                            style="font-size: 13px; width: 120px; border-radius: 15px; color: white;">Agregar al
+                            carrito</button>
+                    </div>
+
+                    <div *ngIf="item.UseStock" class="cold-md-6">
+                        <span class="bold" style="margin-left: 5px;">Existencia: {{item.Stock}}</span>
+                    </div>
+                    <div *ngIf="!item.UseStock" class="cold-md-6">
+                        <span class="bold" style="margin-left: 5px;">Existencia: no maneja</span>
+                    </div>
+                </div>
+
+                <span *ngIf="enableShoppingCart && !item.Stock" class="bold" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
+                    No esta disponible para comprar</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="row center">
+        <div class="cold-md-6">
+            <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore"
+                (click)="viewMoreArticles('Sell')">Ver más</button>
+        </div>
+    </div>
+
+</div>
+
+
+<ngb-tabset *ngIf="false" [destroyOnHide]="false">
 
     <!--Sell-->
     <ngb-tab *ngIf="enableShoppingCart || !enableShoppingCart">

@@ -147,6 +147,7 @@ export class ViewMarketComponent implements OnInit {
     this.spinnerService.show();
     this.show_btn_vieMore = true;
     this.inputStr = '';
+
     this.marketService.getArticles(marketType, categoryId, subCategoryId, page).subscribe((response: ArticleData) => {
       this.spinnerService.hide();
 
