@@ -53,6 +53,8 @@ export class ViewMarketComponent implements OnInit {
   articleFullData = new ArticleFullData();
   itemQuantity: number;
 
+  currentMarketType: string;
+
   coreURL = environment.coreURL;
 
   show_btn_vieMore: boolean = true;
@@ -185,6 +187,7 @@ export class ViewMarketComponent implements OnInit {
       this.articleFullData = response;
       this.spinnerService.hide();
 
+      this.modalService.dismissAll();
       this.modalService.open(this.articleDetailModal, { size: 'xl', scrollable: true, backdrop: 'static' });
     },
       error => {
@@ -197,6 +200,7 @@ export class ViewMarketComponent implements OnInit {
   getArticlesByInputStr(marketType: string, inputStr: string, page: number) {
     this.spinnerService.show();
     this.show_btn_vieMore = true;
+    this.currentMarketType = marketType;
 
     this.marketService.getArticlesByInputStr(marketType, inputStr, page).subscribe((response: ArticleData) => {
       this.spinnerService.hide();

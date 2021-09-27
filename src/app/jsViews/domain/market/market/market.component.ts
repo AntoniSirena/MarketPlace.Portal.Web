@@ -443,7 +443,7 @@ export class MarketComponent implements OnInit {
       title: ['', Validators.required],
       price: [0],
       currencyId: [this.currencies.filter(x => x.ShortName === 'DOP')[0].Id, Validators.required],
-      marketTypeId: ['', Validators.required],
+      marketTypeId: [this.marketTypes.filter(x => x.ShortName === 'Sell')[0].Id, Validators.required],
       conditionId: ['', Validators.required],
       categoryId: ['', Validators.required],
       subCategoryId: ['', Validators.required],
