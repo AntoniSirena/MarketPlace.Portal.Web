@@ -25,6 +25,12 @@
     background-color: rgb(244, 247, 248);
 }
 
+.input-search{
+    background-color: rgb(235, 229, 229); 
+    border: solid 1px; 
+    height: 40px;
+}
+
 .imgArticleDetailScroll{
     overflow-y:auto;
     height: 600px;

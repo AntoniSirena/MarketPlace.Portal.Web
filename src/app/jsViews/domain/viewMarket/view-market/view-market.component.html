@@ -19,7 +19,7 @@
 
 <div class="row center">
     <div class="cold-md-6">
-        <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar</button>
+        <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar artículo</button>
     </div>
 </div>
 
@@ -58,7 +58,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <span class="bold">subcategoría :</span>
+                        <span class="bold">Subcategoría :</span>
                     </div>
                     <div class="col-md-4">
                         <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
@@ -82,8 +82,7 @@
     <br>
     <div class="form-group has-search">
         <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" style="background-color: rgb(235, 229, 229); border: solid 1px; height: 40px;"
-            class="form-control" placeholder="Buscar por título, categoría, precio, fecha, ubicación y más..."
+        <input type="text" class="form-control input-search" placeholder="Buscar por título, categoría, fecha, ubicación y más..."
             [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
     </div>
 

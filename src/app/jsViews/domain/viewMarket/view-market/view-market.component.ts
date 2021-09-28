@@ -233,7 +233,7 @@ export class ViewMarketComponent implements OnInit {
     this.timerInputStr = setTimeout(() => {
       this.currentPageSearchStr = 1;
       this.getArticlesByInputStr(marketType, inputStr, this.currentPageSearchStr);
-    }, 1000);
+    }, 3000);
   }
 
   viewMoreArticles(marketType: string) {
