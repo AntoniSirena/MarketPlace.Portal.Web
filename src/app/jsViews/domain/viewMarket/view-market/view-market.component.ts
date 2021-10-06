@@ -179,6 +179,9 @@ export class ViewMarketComponent implements OnInit {
     this.currentPageSearchStr = 1;
   }
 
+  offert(){
+    alert('Funcionalidad en proceso');
+  }
 
   getArticleFullData(article: Article) {
     this.spinnerService.show();

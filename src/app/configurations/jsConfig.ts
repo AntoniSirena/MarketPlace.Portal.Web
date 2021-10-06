@@ -5,13 +5,13 @@ export const SizeImageNovelty ={
 }
 
 export const SizeImageArticle ={
-    width: 200,
-    height: 200,
+    width: 175,
+    height: 150,
 }
 
 export const SizeImageDetailArticle ={
-    width: 200,
-    height: 200,
+    width: 175,
+    height: 150,
 }
 
 export const SizeImageProfile ={

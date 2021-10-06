@@ -10,16 +10,17 @@
 <div class="card-header" style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span
+            <h5 class="center bold" style="color: rgb(5, 10, 78);">COMPRO & VENDO <span
                     style="color: red;">R</span><span style="color: blue;">D</span>
-            </h4>
+            </h5>
         </div>
     </div>
 </div>
 
 <div class="row center">
     <div class="cold-md-6">
-        <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar artículo</button>
+        <button class="btn btn-success btn_public" (click)="toPost()"> <i class="fa fa-plus"></i> Publicar
+            artículo</button>
     </div>
 </div>
 
@@ -49,8 +50,8 @@
                         <span class="bold">Categoría :</span>
                     </div>
                     <div class="col-md-4">
-                        <ng-select [items]="categories" bindLabel="Description" bindValue="Id"
-                            virtualScroll="true" placeholder="Categorías" formControlName="categoryId"
+                        <ng-select [items]="categories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                            placeholder="Categorías" formControlName="categoryId"
                             (change)="getSubCategories_ByCategoryId($event)">
                         </ng-select>
                     </div>
@@ -61,8 +62,8 @@
                         <span class="bold">Subcategoría :</span>
                     </div>
                     <div class="col-md-4">
-                        <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id"
-                            virtualScroll="true" placeholder="subCategorías" formControlName="subCategoryId">
+                        <ng-select [items]="subCategories" bindLabel="Description" bindValue="Id" virtualScroll="true"
+                            placeholder="subCategorías" formControlName="subCategoryId">
                         </ng-select>
                     </div>
                 </div>
@@ -82,8 +83,9 @@
     <br>
     <div class="form-group has-search">
         <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" class="form-control input-search" placeholder="Buscar por título, categoría, fecha, ubicación y más..."
-            [(ngModel)]="inputStr" (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
+        <input type="text" class="form-control input-search"
+            placeholder="Buscar por título, categoría, fecha, ubicación y más..." [(ngModel)]="inputStr"
+            (ngModelChange)="getArticlesByInputStrByTime('Sell', inputStr)">
     </div>
 
     <h4 style="margin-bottom: 5px;" class="center bold">{{inputStr}}</h4>
@@ -93,7 +95,7 @@
 
     <div class="row card-group">
         <div class="col-md-3" *ngFor="let item of articles">
-            <div style="border-radius: 15px; height: 400px;" class="card shadow bg-white">
+            <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
 
                 <div (click)="getArticleFullData(item)">
                     <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
@@ -104,14 +106,15 @@
                         No.&nbsp;{{item.Id}}</h6>
 
                     <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
-                        currency}} <span class="bold"
-                            style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span> </h4>
+                        currency}} <span class="bold" style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span>
+                    </h4>
 
                     <div style="font-size: 17px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
                         {{item.Title}}</div>
                 </div>
 
-                <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido: {{item.QuantitySold}}</span>
+                <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido:
+                    {{item.QuantitySold}}</span>
 
                 <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
                     *ngIf="enableShoppingCart && item.Stock">
@@ -129,17 +132,25 @@
                     </div>
                 </div>
 
-                <span *ngIf="enableShoppingCart && !item.Stock" class="bold" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
+                <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
+                    <div class="cold-md-12">
+                        <button (click)="offert()" class="btn bold"
+                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer oferta</button>
+                    </div>
+                </div>
+
+                <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
+                    style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
                     No esta disponible para comprar</span>
-                
+
             </div>
         </div>
     </div>
 
     <div class="row center">
         <div class="cold-md-6">
-            <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore"
-                (click)="viewMoreArticles('Sell')">Ver más</button>
+            <button *ngIf="show_btn_vieMore" class="btn btn-primary btn_viewMore" (click)="viewMoreArticles('Sell')">Ver
+                más</button>
         </div>
     </div>
 
@@ -151,7 +162,8 @@
     <!--Sell-->
     <ngb-tab *ngIf="enableShoppingCart || !enableShoppingCart">
         <ng-template ngbTabTitle>
-            <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Empieza tu compra desde ya...</div>
+            <div (click)="resetPage(); getArticles('Sell', 0, 0)" class="article-tab">Empieza tu compra desde ya...
+            </div>
         </ng-template>
 
         <ng-template ngbTabContent>
@@ -240,7 +252,8 @@
                                 {{item.Title}}</div>
                         </div>
 
-                        <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido: {{item.QuantitySold}}</span>
+                        <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido:
+                            {{item.QuantitySold}}</span>
 
                         <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
                             *ngIf="enableShoppingCart && item.Stock">
@@ -258,9 +271,10 @@
                             </div>
                         </div>
 
-                        <span *ngIf="enableShoppingCart && !item.Stock" class="bold" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
+                        <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
+                            style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
                             No esta disponible para comprar</span>
-                        
+
                     </div>
                 </div>
             </div>
@@ -544,8 +558,8 @@
 
             <div class="col-md-6">
 
-                <button *ngIf="enableShoppingCart && articleFullData.Article.Stock" (click)="openModalAddArticle(articleFullData.Article)"
-                    class="btn btn-primary bold center"
+                <button *ngIf="enableShoppingCart && articleFullData.Article.Stock"
+                    (click)="openModalAddArticle(articleFullData.Article)" class="btn btn-primary bold center"
                     style="font-size: 20px; width: 200px; border-radius: 15px; margin-bottom: 15px;">Agregar al
                     carrito</button>
 
@@ -645,18 +659,23 @@
                 <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
                     currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
 
-                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">Existencia:
+                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">
+                    Existencia:
                     {{currentArticle.Stock}}</h6>
 
-                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta mínima: {{currentArticle.MinQuantity}}</h6>
+                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    mínima: {{currentArticle.MinQuantity}}</h6>
 
-                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta maxima: {{currentArticle.MaxQuantity}}</h6>
+                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    maxima: {{currentArticle.MaxQuantity}}</h6>
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Vendedor: {{provider}}</h6>
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
 
-                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad a comprar: <input type="number"
-                    class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)" [(ngModel)]="currentArticleQuantity"></h6>
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad a comprar:
+                    <input type="number" class="bold"
+                        style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        [(ngModel)]="currentArticleQuantity"></h6>
 
             </div>
         </div>
@@ -672,7 +691,8 @@
 
         <div class="row center">
             <div class="cold-md-12">
-                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)" class="btn btn-success bold"
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)"
+                    class="btn btn-success bold"
                     style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Guardar</button>
             </div>
         </div>
@@ -680,7 +700,8 @@
         <div *ngIf="showButtonDeleteItem" class="row center">
             <div class="cold-md-12">
                 <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
-                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar del carrito</button>
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar
+                    del carrito</button>
             </div>
         </div>
 
