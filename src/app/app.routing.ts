@@ -136,7 +136,10 @@ export const routes: Routes = [
         path: 'order',
         loadChildren: () => import('./jsViews/domain/order/order.module').then(m => m.OrderModule)
       },
-      
+      {
+        path: 'legalInfo',
+        loadChildren: () => import('./jsViews/domain/legal-information/legal-information.module').then(m => m.LegalInformationModule)
+      },
       {
         path: 'user',
         canActivate: [AuthGuard],

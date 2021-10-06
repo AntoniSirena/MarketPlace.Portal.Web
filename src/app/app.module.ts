@@ -98,6 +98,7 @@ import { QueueAppointmentComponent } from './jsViews/domain/queueAppointment/que
 import { MarketComponent } from './jsViews/domain/market/market/market.component';
 import { PortadaModule } from './jsViews/portada/portada/portada-module/portada.module';
 import { OrderModule } from './jsViews/domain/order/order.module';
+import { LegalInformationModule } from './jsViews/domain/legal-information/legal-information.module';
 
 
 
@@ -129,6 +130,7 @@ import { OrderModule } from './jsViews/domain/order/order.module';
     NgSelectModule,
     PortadaModule,
     OrderModule,
+    LegalInformationModule,
 
   ],
   declarations: [
