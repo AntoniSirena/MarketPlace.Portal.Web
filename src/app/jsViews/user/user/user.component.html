@@ -233,168 +233,6 @@
 
     <ngb-tabset [destroyOnHide]="false">
 
-      <ngb-tab title="Persona">
-        <ng-template ngbTabContent>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header">
-                  </div>
-                  <div class="card-body">
-    
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Primer nombre</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.FirstName}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Segundo nombre</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.SecondName}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Primer apellido</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.Surname}}</span>
-                      </div>
-                    </div>
-                    
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Segundo apellido</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.secondSurname}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Nombre completo</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.FullName}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Fecha de nacim</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.BirthDate}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Género</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.Gender}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">Tipo de persona</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.PersonType}}</span>
-                      </div>
-                    </div>
-
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-5">
-                        <span class="form-control bold">{{person.DocumentDescription}}</span>
-                      </div>
-                      <div class="col-sm-7">
-                        <span class="form-control">{{person.DocumentNumber}}</span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <!--/.col-->
-            </div>
-
-          </div>
-
-        </ng-template>
-      </ngb-tab>
-
-      <ngb-tab title="Localizadores">
-        <ng-template ngbTabContent>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header">
-                  </div>
-                  <div class="card-body">
-
-                    <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-lg-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="_searchText"
-                            [ngModelOptions]="{standalone: true}">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
-                        <thead>
-                          <tr style="background-color:rgb(167, 184, 201)">
-                            <th>Description</th>
-                            <th>Tipo</th>
-                            <th class="center">Es principal</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let item of locators | filter : _searchText">
-                            <td>{{item.Description}}</td>
-                            <td>{{item.Type}}</td>
-                            <td class="center"><button class="btn buttonCheckbox" [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}"> {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
-                          </tr>
-                        </tbody>
-                      </table>                      
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <!--/.col-->
-            </div>
-            
-          </div>
-          
-        </ng-template>
-      </ngb-tab>
-
       <ngb-tab title="Generales">
         <ng-template ngbTabContent>
 
@@ -407,16 +245,17 @@
                   <div class="card-body">
     
                     <div class="row">
-                      <div class="col-sm-5">
+                      <div class="col-sm-5" style="margin-bottom: 5px;">
                         <span class="form-control bold">Rol padre</span>
                       </div>
                       <div class="col-sm-7">
                         <span class="form-control">{{role.Parent}}</span>
                       </div>
                     </div>
-
+                    
+                    <br>
                     <div class="row">
-                      <div class="col-sm-5">
+                      <div class="col-sm-5" style="margin-bottom: 5px;">
                         <span class="form-control bold">Tipo de usuario</span>
                       </div>
                       <div class="col-sm-7">
@@ -426,7 +265,7 @@
 
                     <br>
                     <div class="row">
-                      <div class="col-sm-5">
+                      <div class="col-sm-5" style="margin-bottom: 5px;">
                         <span class="form-control bold">Última hora que inicio sesión</span>
                       </div>
                       <div class="col-sm-7">
@@ -436,7 +275,7 @@
 
                     <br>
                     <div class="row">
-                      <div class="col-sm-5">
+                      <div class="col-sm-5" style="margin-bottom: 5px;">
                         <span class="form-control bold">Última hora que finalizó sesión</span>
                       </div>
                       <div class="col-sm-7">

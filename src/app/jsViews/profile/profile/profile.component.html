@@ -7,320 +7,73 @@
   </div>
   <div class="modal-body">
 
-    <ngb-tabset [destroyOnHide]="false">
-
-      <ngb-tab>
-
-        <ng-template ngbTabTitle>
-          <div class="bold">Usuario</div>
-        </ng-template>
-
-        <ng-template ngbTabContent>
-
-          <form [formGroup]="userForm" (submit)="currentUserOnSubmit(userForm.value)">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <!--<strong>Company</strong>
-                                  <small>Form</small> -->
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group">
-                        <a *ngIf="imgProfileOriginServer">
-                          <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{userId}}&width={{img_Width}}&height={{img_height}}" class="user-image" alt="User Image"
-                            class="center img-avatar">
-                        </a>
-
-                        <a *ngIf="imgProfileOriginServer == false">
-                          <img src="{{imgProfile.base64}}" class="user-image" alt="User Image" class="center img-avatar"
-                            style="width: 200; height: 140px;">
-                        </a>
-
-                        <div class="form-group">
-                          <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
-                            multiple="" accept='image/*'>
-                        </div>
-
-                        <div *ngIf="inputFiles !== '' && buttonUpdateUserImg" class="row">
-                          <div class="cold-md-12 center">
-                            <button type="button" class="btn btn-primary button_size"
-                              (click)="updateProfileImg()">Actualizar imagen</button>
-                          </div>
-                        </div>
-
-                        <div *ngIf="!buttonUpdateUserImg" class="row">
-                          <div class="cold-md-12 center">
-                            <button type="button" class="btn btn-primary button_size">
-                              <span style="color: white; font-size: 20px;">Espere mientras se actualiza su foto...</span> <i class="fa fa-circle-o-notch fa-spin"
-                                style="font-size:30px; color: rgb(60, 170, 16);"></i>
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div class="form-group">
-                        <label for="usuario">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" formControlName="userName" readonly>
-                        <span *ngIf="!userForm.value.userName" class="required">*</span>
-                      </div>
-                      <!--<div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" id="password" formControlName="password">
-                        <span *ngIf="!userForm.value.password" class="required">*</span>
-                      </div>-->
-                      <div class="form-group">
-                        <label for="emailAddress">Correo electronico</label>
-                        <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
-                        <span *ngIf="!userForm.value.emailAddress" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="name">Nombres</label>
-                        <input type="text" class="form-control" id="name" formControlName="name">
-                        <span *ngIf="!userForm.value.name" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="surName">Apellidos</label>
-                        <input type="text" class="form-control" id="surName" formControlName="surName">
-                        <span *ngIf="!userForm.value.surName" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="phoneNumber">Celular</label>
-                        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
-                        <span *ngIf="!userForm.value.phoneNumber" class="required">*</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--/.col-->
-              </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-                    [disabled]="userForm.invalid">Guardar</button>
-                </div>
-                <!--/.row-->
-              </div>
-            </div>
-          </form>
-
-        </ng-template>
-      </ngb-tab>
-
-      <ngb-tab>
-
-        <ng-template ngbTabTitle>
-          <div class="bold">Persona</div>
-        </ng-template>
-
-        <ng-template ngbTabContent>
-
-          <form [formGroup]="personForm" (submit)="currentPersonOnSubmit(personForm.value)">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <!--<strong>Company</strong>
-                                <small>Form</small> -->
-                    </div>
-                    <div class="card-body">
-                      <div class="form-group">
-                        <label for="firstName">Primer nombre</label>
-                        <input type="text" class="form-control" id="firstName" formControlName="firstName">
-                        <span *ngIf="!personForm.value.firstName" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="secondName">Segundo nombre</label>
-                        <input type="text" class="form-control" id="secondName" formControlName="secondName">
-                      </div>
-                      <div class="form-group">
-                        <label for="surName">Primer apellido</label>
-                        <input type="text" class="form-control" id="surName" formControlName="surName">
-                        <span *ngIf="!personForm.value.surName" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="secondSurname">Segundo apellido</label>
-                        <input type="text" class="form-control" id="secondSurname" formControlName="secondSurname">
-                      </div>
-                      <div class="form-group">
-                        <label for="fullName">Nombre completo</label>
-                        <input type="text" class="form-control" id="fullName" formControlName="fullName"
-                          [readonly]="true">
-                      </div>
-                      <div class="form-group">
-                        <label for="birthDate">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="birthDate" formControlName="birthDate">
-                        <span *ngIf="!personForm.value.birthDate" class="required">*</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="genderId">Genero</label>
-                        <select formControlName="genderId" class="form-control">
-                          <option *ngFor="let g of genders" [value]="g.Id">{{g.Description}}</option>
-                        </select>
-                        <span *ngIf="!personForm.value.genderId" class="required">*</span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="documentTypeId">Tipo de documento</label>
-                        <select formControlName="documentTypeId" class="form-control">
-                          <option *ngFor="let item of documentTypes" [value]="item.Id">{{item.Description}}</option>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="documentNumber">Número de documento</label>
-                        <input type="text" class="form-control" id="documentNumber" formControlName="documentNumber">
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <!--/.col-->
-              </div>
-              <!--/.row-->
-              <div class="row">
-                <div class="col-sm-12">
-                  <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-                    [disabled]="personForm.invalid">Guardar</button>
-                </div>
-                <!--/.row-->
-              </div>
-            </div>
-          </form>
-
-        </ng-template>
-      </ngb-tab>
-
-      <ngb-tab>
-
-        <ng-template ngbTabTitle>
-          <div class="bold">Localizadores</div>
-        </ng-template>
-
-        <ng-template ngbTabContent>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header">
-                  </div>
-                  <div class="card-body">
-
-                    <div class="row">
-                      <div class="col-xs-12 col-sm-12 col-lg-12">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="_searchText"
-                            [ngModelOptions]="{standalone: true}">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
-                        <thead>
-                          <tr class="tabl_eHeader_Color">
-                            <th>Tipo</th>
-                            <th>Description</th>
-                            <th class="center">Es principal ?</th>
-                            <th class="right"></th>
-                            <th class="right"><button type="button" class="btn btn-success"
-                                (click)="openCreateLocatorModal(createLocatorModal)"><i
-                                  class="fa fa-plus"></i>&nbsp;Nuevo</button></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            *ngFor="let item of infoCurrentLocators | filter : _searchText| paginate: { itemsPerPage: 3, currentPage: _currentPage}">
-                            <td>{{item.LocatorTypeDescription}}</td>
-                            <td>{{item.Description}}</td>
-                            <td class="right"><button class="btn buttonCheckbox"
-                                [ngStyle]="{'background-color': item.IsMain == true ? 'rgb(52, 212, 146)' : 'rgb(241, 81, 81)'}">
-                                {{item.IsMain == true ? 'sí' : 'No'}} </button></td>
-                            <td class="right"> <button type="button" class="btn btn-danger"
-                                (click)="deleteLocator(item.Id)"><i class="fa fa-remove"></i>&nbsp;Eliminar</button>
-                            </td>
-                            <td class="right"><button type="button" class="btn btn-primary"
-                                (click)="openEditLocatorModal(editLocatorModal, item.Id)"><i
-                                  class="fa fa-pencil"></i>&nbsp;Editar</button></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <pagination-controls (pageChange)="_currentPage = $event" autoHide="true" responsive="true"
-                        previousLabel="Anterior" nextLabel="Siguiente">
-                      </pagination-controls>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <!--/.col-->
-            </div>
-
-          </div>
-
-        </ng-template>
-      </ngb-tab>
-
-    </ngb-tabset>
-
-  </div>
-</ng-template>
-
-
-
-<!--Create locator modal-->
-<ng-template #createLocatorModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Nuevo registro</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-
-    <form [formGroup]="createLocatorForm" (submit)="createLocator(createLocatorForm.value)">
+    <form [formGroup]="userForm" (submit)="currentUserOnSubmit(userForm.value)">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
+
               </div>
               <div class="card-body">
+                <div class="form-group">
+                  <a *ngIf="imgProfileOriginServer">
+                    <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{userId}}&width={{img_Width}}&height={{img_height}}" class="user-image" alt="User Image"
+                      class="center img-avatar">
+                  </a>
 
-                <label for="locatorTypeId">Tipo de localizador</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                  <a *ngIf="imgProfileOriginServer == false">
+                    <img src="{{imgProfile.base64}}" class="user-image" alt="User Image" class="center img-avatar"
+                      style="width: 200; height: 140px;">
+                  </a>
+
+                  <div class="form-group">
+                    <input fileToBase64 type="file" [(files)]="inputFiles" (filesChange)="uploadFile($event)"
+                      multiple="" accept='image/*'>
                   </div>
-                  <select formControlName="locatorTypeId" class="form-control">
-                    <option value=""></option>
-                    <option *ngFor="let item of locatorsTypes" [value]="item.Id">{{item.Description}}</option>
-                  </select>
-                  <div *ngIf="!createLocatorForm.value.locatorTypeId" class="required">*</div>
-                </div>
 
-                <label for="description">Descripción</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-info"> </i>
-                    </span>
+                  <div *ngIf="inputFiles !== '' && buttonUpdateUserImg" class="row">
+                    <div class="cold-md-12 center">
+                      <button type="button" class="btn btn-primary button_size"
+                        (click)="updateProfileImg()">Actualizar imagen</button>
+                    </div>
                   </div>
-                  <input type="text" formControlName="description" class="form-control" placeholder="Descripción">
-                  <div *ngIf="!createLocatorForm.value.description" class="required">*</div>
-                </div>
 
-                <label for="menuTemplate">Es principal ?</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
+                  <div *ngIf="!buttonUpdateUserImg" class="row">
+                    <div class="cold-md-12 center">
+                      <button type="button" class="btn btn-primary button_size">
+                        <span style="color: white; font-size: 20px;">Espere mientras se actualiza su foto...</span> <i class="fa fa-circle-o-notch fa-spin"
+                          style="font-size:30px; color: rgb(60, 170, 16);"></i>
+                      </button>
+                    </div>
                   </div>
-                  <input type="checkbox" (change)="$event.target.checked ? isMainTrue() : isMainFalse()"
-                    formControlName="isMain">
-                </div>
 
+                </div>
+                <div class="form-group">
+                  <label for="usuario">Usuario</label>
+                  <input type="text" class="form-control" id="usuario" formControlName="userName" readonly>
+                  <span *ngIf="!userForm.value.userName" class="required">*</span>
+                </div>
+                <div class="form-group">
+                  <label for="emailAddress">Correo electronico</label>
+                  <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
+                  <span *ngIf="!userForm.value.emailAddress" class="required">*</span>
+                </div>
+                <div class="form-group">
+                  <label for="name">Nombres</label>
+                  <input type="text" class="form-control" id="name" formControlName="name">
+                  <span *ngIf="!userForm.value.name" class="required">*</span>
+                </div>
+                <div class="form-group">
+                  <label for="surName">Apellidos</label>
+                  <input type="text" class="form-control" id="surName" formControlName="surName">
+                  <span *ngIf="!userForm.value.surName" class="required">*</span>
+                </div>
+                <div class="form-group">
+                  <label for="phoneNumber">Celular</label>
+                  <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+                  <span *ngIf="!userForm.value.phoneNumber" class="required">*</span>
+                </div>
               </div>
             </div>
           </div>
@@ -330,81 +83,13 @@
         <div class="row">
           <div class="col-sm-12">
             <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-              [disabled]="createLocatorForm.invalid">Crear</button>
+              [disabled]="userForm.invalid">Guardar</button>
           </div>
           <!--/.row-->
         </div>
       </div>
     </form>
 
-  </div>
-</ng-template>
-
-
-<!--Edit locator modal-->
-<ng-template #editLocatorModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Nuevo registro</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-
-    <form [formGroup]="editLocatorForm" (submit)="editLocator(editLocatorForm.value)">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="card">
-              <div class="card-header">
-              </div>
-              <div class="card-body">
-
-                <label for="locatorTypeId">Tipo de localizador</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
-                  </div>
-                  <select formControlName="locatorTypeId" class="form-control">
-                    <option value=""></option>
-                    <option *ngFor="let item of locatorsTypes" [value]="item.Id">{{item.Description}}</option>
-                  </select>
-                  <div *ngIf="!editLocatorForm.value.locatorTypeId" class="required">*</div>
-                </div>
-
-                <label for="description">Descripción</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-info"> </i>
-                    </span>
-                  </div>
-                  <input type="text" formControlName="description" class="form-control" placeholder="Descripción">
-                  <div *ngIf="!editLocatorForm.value.description" class="required">*</div>
-                </div>
-
-                <label for="menuTemplate">Es principal ?</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  </div>
-                  <input type="checkbox" (change)="$event.target.checked ? isMainTrue() : isMainFalse()"
-                    formControlName="isMain">
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!--/.col-->
-        </div>
-        <!--/.row-->
-        <div class="row">
-          <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary buttonSize_Standar_Save"
-              [disabled]="editLocatorForm.invalid">Guardar</button>
-          </div>
-          <!--/.row-->
-        </div>
-      </div>
-    </form>
 
   </div>
 </ng-template>
