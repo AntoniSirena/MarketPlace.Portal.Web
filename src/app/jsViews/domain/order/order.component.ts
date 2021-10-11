@@ -9,6 +9,7 @@ import { ICheckoutOrder, ICreateOrder } from './../../../interfaces/domain/order
 import { Router } from '@angular/router';
 import $ from 'jquery';
 import { OrderService } from '../../../services/domain/order/order.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private modalService: NgbModal,
     private routerService: Router,
+    private spinnerService: NgxSpinnerService,
   ) { }
 
 
@@ -272,11 +274,14 @@ export class OrderComponent implements OnInit {
           PaymentMethod: paymentMethod,
         }
 
+        this.modalService.dismissAll();
+        this.spinnerService.show();
+
         this.orderService.Checkout(data).subscribe((response: Iresponse) => {
       
           if (response.Code === '000') {
       
-            this.modalService.dismissAll();
+            this.spinnerService.hide();
 
             Swal.fire({
               position: 'top-end',
@@ -294,11 +299,13 @@ export class OrderComponent implements OnInit {
               showConfirmButton: true,
               timer: 5000
             }).then(() => {
+              this.spinnerService.hide();
             });
           }
     
         },
           error => {
+            this.spinnerService.hide();
             console.log(JSON.stringify(error));
           });
         

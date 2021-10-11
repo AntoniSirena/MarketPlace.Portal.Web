@@ -223,7 +223,7 @@ export class LoginComponent implements OnInit {
 
   setValueResetPasswordForm() {
     this.resetPasswordForm = this.form.group({
-      userName: ['', Validators.required],
+      userName: [''],
       emailAddress: ['', [Validators.required, Validators.email]],
     });
   }
