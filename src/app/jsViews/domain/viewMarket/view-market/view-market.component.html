@@ -95,12 +95,14 @@
 
     <div class="row card-group">
         <div class="col-md-3" *ngFor="let item of articles">
-            <div style="border-radius: 15px; height: 385px;" class="card shadow bg-white">
+            <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
 
                 <div (click)="getArticleFullData(item)">
-                    <div class="center" style="margin-top: 3px; margin-bottom: 3px;">
+                    <div class="center" style="margin-top: 3px; margin-bottom: 3px; position: relative;">
                         <img class="imgPortada" id="image"
                             src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
+                        
+                        <i class="view_Icon fa fa-refresh" style="font-size: 50px; color: rgb(245, 237, 237);"></i>                  
                     </div>
                     <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
                         No.&nbsp;{{item.Id}}</h6>
@@ -113,22 +115,16 @@
                         {{item.Title}}</div>
                 </div>
 
-                <span class="bold italic" style="margin-left: 10px; margin-right: 10px;">Vendido:
-                    {{item.QuantitySold}}</span>
+                <span class="bold italic" style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Vendido: {{item.QuantitySold}}</span>
+                
+                <span *ngIf="item.UseStock" class="bold italic" style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Existencia: {{item.Stock}}</span>
 
                 <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
                     *ngIf="enableShoppingCart && item.Stock">
                     <div class="cold-md-6">
                         <button (click)="openModalAddArticle(item)" class="btn btn-primary bold"
-                            style="font-size: 13px; width: 120px; border-radius: 15px; color: white;">Agregar al
+                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white;">Agregar al
                             carrito</button>
-                    </div>
-
-                    <div *ngIf="item.UseStock" class="cold-md-6">
-                        <span class="bold" style="margin-left: 5px;">Existencia: {{item.Stock}}</span>
-                    </div>
-                    <div *ngIf="!item.UseStock" class="cold-md-6">
-                        <span class="bold" style="margin-left: 5px;">Existencia: no maneja</span>
                     </div>
                 </div>
 

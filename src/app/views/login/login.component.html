@@ -45,7 +45,7 @@
                     <div *ngIf="!loginForm.value.password" class="required">*</div>
                   </div>
 
-                  <div *ngIf="buttonLogIn" >
+                  <div *ngIf="buttonLogIn">
                     <div class="row">
                       <div class="col-12">
                         <button type="submit" class="btn loginButton bold" [disabled]="loginForm.invalid"
@@ -69,7 +69,8 @@
                     <div>
                       <div class="center">
                         <button id="btnPortada" type="button" class="bold btn btn-primary portadaButton"
-                          style="background-color: rgb(41, 92, 116);" (click)="redirectPortada()">Buscar artículos</button>
+                          style="background-color: rgb(41, 92, 116);" (click)="redirectPortada()">Buscar
+                          artículos</button>
                       </div>
                     </div>
 
@@ -79,7 +80,8 @@
                   <div *ngIf="!buttonLogIn" class="row">
                     <div class="col-12">
                       <button type="button" class="btn loginButton bold" [disabled]="true"
-                        style="background-color: rgb(19, 179, 190);"> <span style="color: white;">Cargando...</span> <i class="fa fa-circle-o-notch fa-spin"
+                        style="background-color: rgb(19, 179, 190);"> <span style="color: white;">Cargando...</span> <i
+                          class="fa fa-circle-o-notch fa-spin"
                           style="font-size:35px; color: rgb(60, 170, 16);"></i></button>
                     </div>
                   </div>
@@ -116,11 +118,8 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <div class="card" style="border-radius: 15px;">
 
-              <div class="card-body">
-
-                <!--<div class="input-group mb-3">
+            <!--<div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
@@ -129,27 +128,25 @@
                   <div *ngIf="!resetPasswordForm.value.userName" class="required">*</div>
                 </div>-->
 
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
-                  </div>
-                  <input type="email" formControlName="emailAddress" class="form-control" placeholder="Ingrese su correo"
-                    autocomplete="email" required>
-                  <div *ngIf="!resetPasswordForm.value.emailAddress" class="required">*</div>
-                </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <input type="email" formControlName="emailAddress" class="form-control" placeholder="Ingrese su correo"
+                autocomplete="email" required>
+              <div *ngIf="!resetPasswordForm.value.emailAddress" class="required">*</div>
+            </div>
 
-                <div *ngIf="buttonResetPass" class="row center">
-                  <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary"
-                      style="font-size: 25px; width: 150px; border-radius: 22px;"
-                      [disabled]="resetPasswordForm.invalid">Enviar</button>
-                  </div>
-                </div>
-                <h2 class="center" *ngIf="!buttonResetPass" style="color: rgb(11, 141, 216);">Procesando solicitud...
-                </h2>
-
+            <div *ngIf="buttonResetPass" class="row center">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary"
+                  style="font-size: 20px; width: 150px; border-radius: 22px;"
+                  [disabled]="resetPasswordForm.invalid">Enviar</button>
               </div>
             </div>
+            <h2 class="center" *ngIf="!buttonResetPass" style="color: rgb(11, 141, 216);">Procesando solicitud...
+            </h2>
+
           </div>
 
         </div>
