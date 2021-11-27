@@ -41,6 +41,7 @@ export class ViewMarketComponent implements OnInit {
   @ViewChild('toPostModal') toPostModal: ElementRef;
   @ViewChild('articleDetailModal') articleDetailModal: ElementRef;
   @ViewChild('buyArticle') buyArticleModal: ElementRef;
+  @ViewChild('offertModal') offertModal: ElementRef;
 
 
   _currentPage: number = 1;
@@ -75,6 +76,9 @@ export class ViewMarketComponent implements OnInit {
   showButtonDeleteItem: boolean;
   provider: string;
   providerPhoneNumber: string;
+
+  offertAmount: number = 0;
+  offertComment: string;
 
   userData = new User();
 
@@ -179,9 +183,36 @@ export class ViewMarketComponent implements OnInit {
     this.currentPageSearchStr = 1;
   }
 
-  offert(){
-    alert('Funcionalidad en proceso');
+  //Open Modal offert
+  openModalOffert(article: Article){
+
+    if (this.userData.IsVisitorUser) {
+      this.modalService.open(this.toPostModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+      return;
+    }
+
+    this.currentArticle = article;
+    this.offertAmount = 0;
+    this.offertComment = null;
+    this.modalService.open(this.offertModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+
   }
+
+  //Send Offert
+  sendOffert(){
+    if (this.offertAmount <= 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: `Favor ingrese el monto de la oferta`,
+        showConfirmButton: true,
+        timer: 4000
+      }).then(() => {
+      });
+
+      return;
+    }
+  }
+
 
   getArticleFullData(article: Article) {
     this.spinnerService.show();

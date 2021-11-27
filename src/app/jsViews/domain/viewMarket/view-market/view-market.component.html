@@ -95,14 +95,14 @@
 
     <div class="row card-group">
         <div class="col-md-3" *ngFor="let item of articles">
-            <div style="border-radius: 15px; height: 375px;" class="card shadow bg-white">
+            <div style="border-radius: 15px; height: 374px;" class="card shadow bg-white">
 
                 <div (click)="getArticleFullData(item)">
                     <div class="center" style="margin-top: 3px; margin-bottom: 3px; position: relative;">
                         <img class="imgPortada" id="image"
                             src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
-                        
-                        <i class="view_Icon fa fa-refresh" style="font-size: 50px; color: rgb(245, 237, 237);"></i>                  
+
+                        <i class="view_Icon fa fa-camera" style="font-size: 30px; color: rgb(238, 227, 230);"></i>
                     </div>
                     <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
                         No.&nbsp;{{item.Id}}</h6>
@@ -115,9 +115,11 @@
                         {{item.Title}}</div>
                 </div>
 
-                <span class="bold italic" style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Vendido: {{item.QuantitySold}}</span>
-                
-                <span *ngIf="item.UseStock" class="bold italic" style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Existencia: {{item.Stock}}</span>
+                <span class="bold italic" style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Vendido:
+                    {{item.QuantitySold}}</span>
+
+                <span *ngIf="item.UseStock" class="bold italic"
+                    style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Existencia: {{item.Stock}}</span>
 
                 <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
                     *ngIf="enableShoppingCart && item.Stock">
@@ -130,8 +132,9 @@
 
                 <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
                     <div class="cold-md-12">
-                        <button (click)="offert()" class="btn bold"
-                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer oferta</button>
+                        <button (click)="openModalOffert(item)" class="btn bold"
+                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer
+                            oferta</button>
                     </div>
                 </div>
 
@@ -651,7 +654,7 @@
                     src="{{coreURL}}api/market/GetImageByArticleId?id={{currentArticle.Id}}&width=125&height=125">
             </div>
 
-            <div class="cold-md-8">
+            <div class="cold-md-8" style="margin-top: 3px;">
                 <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
                     currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
 
@@ -668,17 +671,18 @@
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Vendedor: {{provider}}</h6>
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
 
-                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad a comprar:
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea comprar:
                     <input type="number" class="bold"
                         style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
-                        [(ngModel)]="currentArticleQuantity"></h6>
+                        [(ngModel)]="currentArticleQuantity">
+                </h6>
 
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <label for="note" class="bold">Ingrese su nota si deseas</label>
+                <label for="note" class="bold">Ingrese su comentario si deseas</label>
                 <textarea [(ngModel)]="itemNote" class="form-control" rows="2">
 
                 </textarea>
@@ -698,6 +702,64 @@
                 <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
                     style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar
                     del carrito</button>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+
+
+
+<ng-template #offertModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Creando mi oferta</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="cold-md-12">
+                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
+                    {{currentArticle.Title}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cold-md-4">
+                <img style="border-radius: 15px; margin-left: 5px;"
+                    src="{{coreURL}}api/market/GetImageByArticleId?id={{currentArticle.Id}}&width=125&height=125">
+            </div>
+
+            <div class="cold-md-8" style="margin-top: 3px;">
+                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
+                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
+
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Monto que desea ofertar
+                    <input type="number" class="bold"
+                        style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        [(ngModel)]="offertAmount">
+                </h6>
+
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 3px;">
+            <div class="col-md-12">
+                <label for="note" class="bold">Ingrese su comentario si deseas</label>
+                <textarea [(ngModel)]="offertComment" class="form-control" rows="2">
+
+                </textarea>
+            </div>
+        </div>
+
+
+        <div class="row center">
+            <div class="cold-md-12">
+                <button type="button"
+                    class="btn btn-success bold" (click)="sendOffert()"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Enviar oferta</button>
             </div>
         </div>
 
