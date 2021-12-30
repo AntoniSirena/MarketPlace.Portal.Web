@@ -95,14 +95,14 @@
 
     <div class="row card-group">
         <div class="col-md-3" *ngFor="let item of articles">
-            <div style="border-radius: 15px; height: 374px;" class="card shadow bg-white">
+            <div style="border-radius: 15px; height: 378px;" class="card shadow bg-white">
 
                 <div (click)="getArticleFullData(item)">
                     <div class="center" style="margin-top: 3px; margin-bottom: 3px; position: relative;">
                         <img class="imgPortada" id="image"
                             src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
 
-                        <i class="view_Icon fa fa-camera" style="font-size: 30px; color: rgb(238, 227, 230);"></i>
+                        <i class="view_Icon fa fa-refresh" style="font-size: 45px; color: rgb(238, 238, 248)"></i>
                     </div>
                     <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
                         No.&nbsp;{{item.Id}}</h6>
@@ -121,21 +121,16 @@
                 <span *ngIf="item.UseStock" class="bold italic"
                     style="margin-left: 10px; margin-right: 10px; font-size: 10px;">Existencia: {{item.Stock}}</span>
 
-                <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;"
+                <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;"
                     *ngIf="enableShoppingCart && item.Stock">
-                    <div class="cold-md-6">
-                        <button (click)="openModalAddArticle(item)" class="btn btn-primary bold"
-                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white;">Agregar al
+                    <button (click)="openModalAddArticle(item)" class="btn btn-primary btn-large btn-block bold" type="button"
+                            style="font-size: 13px; border-radius: 15px; color: white;">Agregar al
                             carrito</button>
-                    </div>
                 </div>
 
-                <div class="row" style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
-                    <div class="cold-md-12">
-                        <button (click)="openModalOffert(item)" class="btn bold"
-                            style="font-size: 13px; width: 240px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer
-                            oferta</button>
-                    </div>
+                <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
+                    <button (click)="openModalOffert(item)" class="btn btn-large btn-block bold"
+                    style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer oferta</button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
@@ -673,7 +668,7 @@
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea comprar:
                     <input type="number" class="bold"
-                        style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
                         [(ngModel)]="currentArticleQuantity">
                 </h6>
 
@@ -738,7 +733,7 @@
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Monto que desea ofertar
                     <input type="number" class="bold"
-                        style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
                         [(ngModel)]="offertAmount">
                 </h6>
 
