@@ -42,6 +42,8 @@ export class ViewMarketComponent implements OnInit {
   @ViewChild('articleDetailModal') articleDetailModal: ElementRef;
   @ViewChild('buyArticle') buyArticleModal: ElementRef;
   @ViewChild('offertModal') offertModal: ElementRef;
+  @ViewChild('shareModal') shareModal: ElementRef;
+
 
 
   _currentPage: number = 1;
@@ -98,6 +100,8 @@ export class ViewMarketComponent implements OnInit {
   currentPageSearchStr: number;
 
   public profile = new Profile();
+
+  shareText: string;
 
   constructor(
     private form: FormBuilder,
@@ -213,6 +217,14 @@ export class ViewMarketComponent implements OnInit {
     }
   }
 
+
+  //Open Modal Share
+  openModalShare(article: Article){
+    this.shareText = window.location.href + `/item-detail/${article.Id}`
+    this.currentArticle = article;
+    this.modalService.open(this.shareModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+  }
+  
 
   getArticleFullData(article: Article) {
     this.spinnerService.show();
