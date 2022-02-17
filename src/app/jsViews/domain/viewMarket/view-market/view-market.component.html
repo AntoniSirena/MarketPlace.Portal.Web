@@ -135,7 +135,7 @@
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 15px;">
                     <button (click)="openModalShare(item)" class="btn btn-large btn-block bold"
-                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(116, 214, 214);">Compartir &nbsp; <i class="fa fa-share"></i> </button>
+                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(95, 216, 216);">Compartir &nbsp; <i class="fa fa-share"></i> </button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
@@ -780,10 +780,12 @@
 
         <div class="col-md-12">
 
-            <div class="center">
+            <div class="center">     
+                <a href="https://api.whatsapp.com/send?text={{shareText}}" target="_blank" class="btn btn-success bold">Whatsapp</a>
+                
+                <a href="https://www.facebook.com/sharer.php?u={{shareText}}" target="_blank" class="btn btn-primary bold">Facebook</a>
 
-                <a href="https://api.whatsapp.com/send?text={{shareText}}" target="_blank" class="btn btn-success">Whatsapp</a>
-
+                <!-- <a href="https://www.instagram.com/sharer.php?u={{shareText}}" target="_blank" class="btn bold" style="color: white; background-color: rgb(160, 92, 224);">Instagram</a> -->
             </div>
 
         </div>

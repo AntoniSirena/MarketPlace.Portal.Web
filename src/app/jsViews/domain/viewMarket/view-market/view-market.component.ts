@@ -220,7 +220,8 @@ export class ViewMarketComponent implements OnInit {
 
   //Open Modal Share
   openModalShare(article: Article){
-    this.shareText = window.location.href + `/item-detail/${article.Id}`
+    this.shareText = this.coreURL + `api/market/ViewItemDetail/${article.Id}`;
+    
     this.currentArticle = article;
     this.modalService.open(this.shareModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
   }
