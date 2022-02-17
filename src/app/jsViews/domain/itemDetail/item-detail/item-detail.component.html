@@ -1,0 +1,176 @@
+<br>
+<div class="row">
+
+    <div class="col-md-6">
+
+        <button *ngIf="articleFullData.Article?.Stock" (click)="openModalAddArticle(articleFullData.Article)"
+            class="btn btn-primary bold center"
+            style="font-size: 20px; width: 200px; border-radius: 15px; margin-bottom: 15px;">Comprar</button>
+
+
+        <h4 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article?.Title}}</h4>
+
+        <h3 *ngIf="articleFullData.Article?.Price > 0" style="margin-left: 10px; margin-right: 10px;">
+            {{articleFullData.Article.Price | currency}}
+            <span class="bold" style="font-size: 13px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
+        </h3>
+
+        <br>
+        <h5 *ngIf="articleFullData.Article?.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span
+                style="color: green;">Codición :</span> &nbsp;
+            {{articleFullData.Article?.Condition}}</h5>
+        <h5 style="margin-left: 10px;"> <span style="color: green;">Ubicación :</span> &nbsp;
+            {{articleFullData.Article?.Ubication}}</h5>
+        <h5 style="margin-left: 10px;"> <span style="color: green;">Publicado el :</span> &nbsp;
+            {{articleFullData.Article?.CreationDate}}</h5>
+
+        <br>
+        <h5 *ngIf="articleFullData.Article?.Description" style="margin-left: 10px; margin-right: 10px;">
+            Descripción</h5>
+        <textarea *ngIf="articleFullData.Article?.Description" [readonly]="true" rows="6" style="font-size: 15px;"
+            class="form-control">{{articleFullData.Article?.Description}}</textarea>
+
+        <br>
+        <div class="card" style="border-radius: 15px;">
+            <h5 class="center"
+                style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom: 10px; color: blue;">
+                Vendedor</h5>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <img src="{{coreURL}}api/common/GetImageProfileByUserId?id={{articleFullData.Seller?.Id || 0}}&width={{imageSeller_Width}}&height={{imageSeller_height}}"
+                        class="user-image" alt="User Image" class="img-avatar" style="margin-left: 10px;">
+                </div>
+
+                <div class="col-md-9">
+                    <h5 style="margin-left: 8px;">{{articleFullData.Seller?.Name}}</h5>
+                    <h5 style="margin-left: 8px;">{{articleFullData.Seller?.PhoneNumber}}</h5>
+                </div>
+
+            </div>
+
+            <br>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="row card-group">
+            <div class="col-md-6" *ngFor="let item of articleFullData.Article?.ImgDetail; let i = index"
+                [attr.data-index]="i">
+                <div style="border-radius: 15px;" class="card">
+                    <img class="imgPortada" id="image"
+                        src="{{coreURL}}api/market/GetImageDetailByArticleId?id={{item.Id}}&width={{imgDetail_Width}}&height={{imgDetail_height}}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<ng-template #toPostModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">!Hola estimado usuario!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row center">
+            <div class="cold-md-6">
+                <button class="btn btn-primary btn_public" (click)="goToRegisterPage()">Soy nuevo</button>
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="cold-md-6">
+                <button class="btn btn-success btn_public" (click)="goToLoginPage()">Ya estoy registrado</button>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+
+
+<ng-template #buyArticle let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Llenando mi carrito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="row">
+            <div class="cold-md-12">
+                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
+                    {{currentArticle.Title}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cold-md-4">
+                <img style="border-radius: 15px; margin-left: 5px;"
+                    src="{{coreURL}}api/market/GetImageByArticleId?id={{currentArticle.Id}}&width=125&height=125">
+            </div>
+
+            <div class="cold-md-8" style="margin-top: 3px;">
+                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
+                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
+
+                <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">
+                    Existencia:
+                    {{currentArticle.Stock}}</h6>
+
+                <h6 *ngIf="currentArticle.MinQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    mínima: {{currentArticle.MinQuantity}}</h6>
+
+                <h6 *ngIf="currentArticle.MaxQuantity" class="bold" style="margin-left: 15px; margin-right: 5px;">Venta
+                    maxima: {{currentArticle.MaxQuantity}}</h6>
+
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Vendedor: {{provider}}</h6>
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
+
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea
+                    comprar:
+                    <input type="number" class="bold"
+                        style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
+                        [(ngModel)]="currentArticleQuantity">
+                </h6>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="note" class="bold">Ingrese su comentario si deseas</label>
+                <textarea [(ngModel)]="itemNote" class="form-control" rows="2">
+
+                </textarea>
+            </div>
+        </div>
+
+        <div class="row center">
+            <div class="cold-md-12">
+                <button type="button" (click)="addArticle(currentArticle, currentArticleQuantity, itemNote)"
+                    class="btn btn-success bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Guardar</button>
+            </div>
+        </div>
+
+        <div *ngIf="showButtonDeleteItem" class="row center">
+            <div class="cold-md-12">
+                <button type="button" (click)="deleteArticle(currentArticle)" class="btn btn-danger bold"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 10px; font-size: 16px;">Eliminar
+                    del carrito</button>
+            </div>
+        </div>
+
+    </div>
+</ng-template>

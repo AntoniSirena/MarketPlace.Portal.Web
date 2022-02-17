@@ -123,14 +123,14 @@
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;"
                     *ngIf="enableShoppingCart && item.Stock">
-                    <button (click)="openModalAddArticle(item)" class="btn btn-primary btn-large btn-block bold" type="button"
-                            style="font-size: 13px; border-radius: 15px; color: white;">Agregar al
-                            carrito</button>
+                    <button (click)="openModalAddArticle(item)" class="btn btn-primary btn-large btn-block bold"
+                        type="button" style="font-size: 13px; border-radius: 15px; color: white;">Comprar</button>
                 </div>
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                     <button (click)="openModalOffert(item)" class="btn btn-large btn-block bold"
-                    style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer oferta</button>
+                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer
+                        oferta</button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
@@ -554,16 +554,16 @@
 
                 <button *ngIf="enableShoppingCart && articleFullData.Article.Stock"
                     (click)="openModalAddArticle(articleFullData.Article)" class="btn btn-primary bold center"
-                    style="font-size: 20px; width: 200px; border-radius: 15px; margin-bottom: 15px;">Agregar al
-                    carrito</button>
+                    style="font-size: 20px; width: 200px; border-radius: 15px; margin-bottom: 15px;">Comprar</button>
+
+
+                <h4 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h4>
 
                 <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
                     {{articleFullData.Article.Price | currency}}
                     <span class="bold"
                         style="font-size: 13px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
                 </h3>
-
-                <h4 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h4>
 
                 <br>
                 <h5 *ngIf="articleFullData.Article.ConditionShortName !== 'NA'" style="margin-left: 10px;"> <span
@@ -577,8 +577,9 @@
                 <br>
                 <h5 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
                     Descripción</h5>
-                <textarea *ngIf="articleFullData.Article.Description" rows="6" style="font-size: 15px;"
-                    class="form-control" placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
+                <textarea *ngIf="articleFullData.Article.Description" [readonly]="true" rows="6"
+                    style="font-size: 15px;" class="form-control"
+                    placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
                 <div class="card" style="border-radius: 15px;">
@@ -666,7 +667,8 @@
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Vendedor: {{provider}}</h6>
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
 
-                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea comprar:
+                <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea
+                    comprar:
                     <input type="number" class="bold"
                         style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
                         [(ngModel)]="currentArticleQuantity">
@@ -752,9 +754,9 @@
 
         <div class="row center">
             <div class="cold-md-12">
-                <button type="button"
-                    class="btn btn-success bold" (click)="sendOffert()"
-                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Enviar oferta</button>
+                <button type="button" class="btn btn-success bold" (click)="sendOffert()"
+                    style="width: 250px; border-radius: 15px; margin-left: 15px; margin-right: 5px; margin-top: 18px; font-size: 16px;">Enviar
+                    oferta</button>
             </div>
         </div>
 

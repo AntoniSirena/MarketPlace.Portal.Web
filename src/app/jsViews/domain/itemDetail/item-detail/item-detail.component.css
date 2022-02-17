@@ -1,0 +1,16 @@
+
+.imgPortada{
+    border-radius: 15px;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.btn_public{
+    margin-top: 8px; 
+    margin-bottom: 15px;
+    font-size: 20px;
+    width: 200px;
+    border-radius: 15px;
+}

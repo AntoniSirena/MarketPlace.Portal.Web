@@ -28,7 +28,7 @@ export class RedirectService {
 
 
   //Iniciar sesion
-  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false) {
+  SubmitLogin(request: Ilogin, refressToken: boolean = false, isUserPortada: boolean = false, showPortada: boolean = true, currentURL: string = '') {
 
     this.loginService.authenticate(request).subscribe((response: Iresponse) => {
 
@@ -85,15 +85,24 @@ export class RedirectService {
           localStorage.setItem('currentMenuTemplate', `${JSON.stringify(this.profile.Profile.User.MenuTemplate)}`);
 
           //Check if the user is a visitor
-          if (isUserPortada) {
-            //welcome to system
-            this.welcomeToSystem();
-          }
-          if (!isUserPortada) {
-            //welcome to login page
-            this.router.navigate(['login']).then(() => {
-              window.location.reload();
-            });
+
+          if (showPortada) {
+
+            if (isUserPortada) {
+              //welcome to system
+              this.welcomeToSystem();
+            }
+            if (!isUserPortada) {
+              //welcome to login page
+              this.router.navigate(['login']).then(() => {
+                window.location.reload();
+              });
+            }
+
+          } else {
+
+            this.router.navigate([currentURL]);
+
           }
 
         }
@@ -274,7 +283,7 @@ export class RedirectService {
   welcomeToSystem() {
     this.modalService.dismissAll();
     this.router.navigate(['portada']).then(() => {
-      if(this.unauthorized){
+      if (this.unauthorized) {
         setTimeout(function () { window.location.reload() }, 2000);
         this.unauthorized = false;
       }
@@ -286,7 +295,7 @@ export class RedirectService {
   }
 
 
-  loginUserVisitador(isUserPortada: boolean = true) {
+  loginUserVisitador(isUserPortada: boolean = true, showPortada: boolean = true, currentURL: string = '') {
     const login: Ilogin = {
       UserName: PortadaUser.UserName,
       Password: PortadaUser.Pass,
@@ -296,7 +305,7 @@ export class RedirectService {
       RefreshToken: false,
     };
 
-    this.SubmitLogin(login, true, isUserPortada);
+    this.SubmitLogin(login, true, isUserPortada, showPortada, currentURL);
   }
 
 }
