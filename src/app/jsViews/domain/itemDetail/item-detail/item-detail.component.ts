@@ -250,6 +250,9 @@ export class ItemDetailComponent implements OnInit {
   }
 
   
+  goToPortada() {
+    this.routerService.navigate(['portada']);
+  }
 
   goToLoginPage() {
     this.modalService.dismissAll();

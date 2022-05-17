@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
 
   @ViewChild('buyArticle') buyArticleModal: ElementRef;
   @ViewChild('checkoutOrdenModal') checkoutOrdenModal: ElementRef;
-
+  @ViewChild('cardModal') cardModal: ElementRef;
 
   orderDetail = new OrderDetailDTO();
   currentArticle = new OrderDetailItemDTO();
@@ -253,6 +253,11 @@ export class OrderComponent implements OnInit {
 
   }
 
+  openCardModal(){
+    this.modalService.dismissAll();
+    this.modalService.open(this.cardModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
+  }
+
 
   getPaymentMethod(paymentMethod: string, value: string){
     
@@ -268,6 +273,11 @@ export class OrderComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         
+        if(paymentMethod === 'Card'){
+          this.openCardModal();
+          return;
+        }
+
         const data: ICheckoutOrder = {
           OrderId: this.orderDetail.Id,
           Address: this.address,
@@ -314,5 +324,13 @@ export class OrderComponent implements OnInit {
 
   }
 
+  checkoutCardPay(){
+    Swal.fire({
+      icon: 'warning',
+      title: `Funcionalidad en desarrollo. Muy pronto estaremos recibiendo pagos con Tarjetas. Gracias por la espera.`,
+      showConfirmButton: true,
+      timer: 6000
+    });
+  }
 
 }

@@ -106,22 +106,22 @@
                                 <tbody>
                                     <tr>
                                         <td class="bold">Subtotal</td>
-                                        <td>{{orderDetail.Subtotal | currency}}</td>
+                                        <td>{{orderDetail.Subtotal | currency: "RD$"}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="bold">Descuento</td>
-                                        <td>{{orderDetail.Discount | currency}}</td>
+                                        <td>{{orderDetail.Discount | currency: "RD$"}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="bold">ITBIS</td>
-                                        <td>{{orderDetail.ITBIS | currency}}</td>
+                                        <td>{{orderDetail.ITBIS | currency: "RD$"}}</td>
                                     </tr>
 
                                     <tr class="bold">
                                         <td>Total</td>
-                                        <td>{{orderDetail.TotalAmount | currency}}</td>
+                                        <td>{{orderDetail.TotalAmount | currency: "RD$"}}</td>
                                     </tr>
                                 </tbody>
 
@@ -276,17 +276,24 @@
 
             <h4 class="center bold">Seleccione el método de pago</h4>
 
-            <br>
-
+            <!--<br>
             <div class="row">
                 <div class="col-md-12">
                     <button (click)="getPaymentMethod('Effective', 'Efectivo')" class="btn btn-primary center bold"
                         style="width: 220px; font-size: 20px; border-radius: 15px;">Efectivo</button>
                 </div>
+            </div>-->
+
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <button (click)="getPaymentMethod('Card', 'Tarjeta')"
+                        class="btn btn-primary center bold"
+                        style="width: 220px; font-size: 20px; border-radius: 15px;">Tarjeta</button>
+                </div>
             </div>
 
             <br>
-
             <div class="row">
                 <div class="col-md-12">
                     <button (click)="getPaymentMethod('Transference', 'Transferencia')"
@@ -296,6 +303,44 @@
             </div>
 
         </div>
+
+    </div>
+</ng-template>
+
+
+<ng-template #cardModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Información de la tarjeta</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-4 bold">Número de tarjeta</div>
+            <div class="col-md-6"> <input type="number" placeholder="0000 0000 0000 0000"> </div>
+        </div>
+
+        <div class="row" style="margin-top: 8px;">
+            <div class="col-md-4 bold">Válida hasta</div>
+            <div class="col-md-6"> <input type="text" placeholder="MM AA"> </div>
+        </div>
+
+        <div class="row" style="margin-top: 8px;">
+            <div class="col-md-4 bold">Cédula de identidad</div>
+            <div class="col-md-6"> <input type="text" placeholder="000 0000000 0"> </div>
+        </div>
+
+        <br>
+        <h6 style="font-style: italic" class="bold"><span style="color: red;">Nota: </span>Estos datos no serán manipulados ni procesados en la plataforma. Los mismos serán procesados por la entidad encargada de procesar el pago.</h6>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <button (click)="checkoutCardPay()" class="btn btn-primary bold btn-large btn-block" style="font-size: 20px; border-radius: 15px;">Aceptar</button>
+            </div>
+        </div>
+        <br>
 
     </div>
 </ng-template>

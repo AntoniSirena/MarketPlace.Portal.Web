@@ -27,7 +27,8 @@
 
 .input-search{
     background-color: white; 
-    border: solid 1px; 
+    border: solid 1px;
+    border-radius: 10px;
     height: 40px;
 }
 

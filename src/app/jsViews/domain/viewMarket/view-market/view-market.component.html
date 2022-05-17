@@ -7,7 +7,7 @@
 <span class="ir-arriba fa fa-angle-double-up"></span>
 
 
-<div style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
+<!--<div style="background-color: rgb(41, 218, 224); margin-bottom: 8px;">
     <div class="row">
         <div class="col-md-12">
             <h5 class="center bold" style="color: rgb(5, 10, 78); margin-top: 5px;">COMPRO & VENDO <span
@@ -15,7 +15,20 @@
             </h5>
         </div>
     </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-md-12">
+            <h4 class="right bold" style="color: rgb(5, 10, 78); margin-top: 5px;">COMPRO & VENDO <span
+                style="color: red;">R</span><span style="color: blue;">D</span>
+            </h4>
+            <button type="button" (click)="openModalShare(null, 'site')" class="btn btn-primary bold pull-right" style="font-size: 18px; border-radius: 10px;"> <span style="margin-right: 5px; margin-left: 5px;">Compartir sitio <i class="fa fa-share-alt"></i> </span> </button>
+    </div>
 </div>
+<br>
+<br>
+
 
 <div class="row center">
     <div class="cold-md-6">
@@ -102,7 +115,7 @@
                         <img class="imgPortada" id="image"
                             src="{{coreURL}}api/market/GetImageByArticleId?id={{item.Id}}&width={{img_Width}}&height={{img_height}}">
 
-                        <i class="view_Icon fa fa-refresh" style="font-size: 45px; color: rgb(238, 238, 248)"></i>
+                        <i class="view_Icon fa fa-picture-o" style="font-size: 45px; color: rgb(255, 255, 255)"></i>
                     </div>
                     <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
                         No.&nbsp;{{item.Id}}</h6>
@@ -134,8 +147,8 @@
                 </div>
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 15px;">
-                    <button (click)="openModalShare(item)" class="btn btn-large btn-block bold"
-                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(95, 216, 216);">Compartir &nbsp; <i class="fa fa-share"></i> </button>
+                    <button (click)="openModalShare(item, 'item')" class="btn btn-large btn-block bold"
+                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(95, 216, 216);">Compartir &nbsp; <i class="fa fa-share-alt"></i> </button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
@@ -778,16 +791,18 @@
     </div>
     <div class="modal-body">
 
-        <div class="col-md-12">
-
-            <div class="center">     
-                <a href="https://api.whatsapp.com/send?text={{shareText}}" target="_blank" class="btn btn-success bold">Whatsapp</a>
-                
-                <a href="https://www.facebook.com/sharer.php?u={{shareText}}" target="_blank" class="btn btn-primary bold">Facebook</a>
-
-                <!-- <a href="https://www.instagram.com/sharer.php?u={{shareText}}" target="_blank" class="btn bold" style="color: white; background-color: rgb(160, 92, 224);">Instagram</a> -->
+        <div class="row" style="text-align: center;">
+            <div class="col-md-4"> 
+                <a href="https://api.whatsapp.com/send?text={{shareText}}" target="_blank" class="btn btn-success bold" style="margin-bottom: 7px;"><i class="fa fa-whatsapp"></i> Whatsapp</a>
             </div>
 
+            <div class="col-md-4">
+                <a href="https://www.facebook.com/sharer.php?u={{shareText}}" target="_blank" class="btn btn-primary bold" style="margin-bottom: 7px;"><i class="fa fa-facebook-square"></i> Facebook</a>
+            </div>
+
+            <div class="col-md-4"> 
+                <a href="https://telegram.me/share/url?url={{shareText}}" target="_blank" class="btn bold" style="color: white; background-color: rgb(128, 97, 185);"><i class="fa fa-telegram"></i> Telegram</a>
+            </div>
         </div>
 
     </div>

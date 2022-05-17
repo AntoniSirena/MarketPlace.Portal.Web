@@ -11,7 +11,7 @@ export const SizeImageArticle ={
 
 export const SizeImageDetailArticle ={
     width: 200,
-    height: 200
+    height: 230
 }
 
 export const SizeImageProfile ={

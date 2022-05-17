@@ -188,7 +188,7 @@ export class ViewMarketComponent implements OnInit {
   }
 
   //Open Modal offert
-  openModalOffert(article: Article){
+  openModalOffert(article: Article) {
 
     if (this.userData.IsVisitorUser) {
       this.modalService.open(this.toPostModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
@@ -203,7 +203,7 @@ export class ViewMarketComponent implements OnInit {
   }
 
   //Send Offert
-  sendOffert(){
+  sendOffert() {
     if (this.offertAmount <= 0) {
       Swal.fire({
         icon: 'warning',
@@ -212,20 +212,28 @@ export class ViewMarketComponent implements OnInit {
         timer: 4000
       }).then(() => {
       });
-
       return;
     }
+
+    alert('Funcionalidad en desarrollo')
   }
 
 
   //Open Modal Share
-  openModalShare(article: Article){
-    this.shareText = this.coreURL + `api/market/ViewItemDetail/${article.Id}`;
-    
+  openModalShare(article: Article, origin: string) {
+
+    if(origin === "item"){
+      this.shareText = this.coreURL + `api/market/ViewItemDetail/${article.Id}/${article.Title}`;
+    }
+
+    if(origin === "site"){
+      this.shareText = this.coreURL + `api/market/ViewSite`;
+    }
+
     this.currentArticle = article;
     this.modalService.open(this.shareModal, { size: 'sm-lg', scrollable: true, backdrop: 'static' });
   }
-  
+
 
   getArticleFullData(article: Article) {
     this.spinnerService.show();
@@ -438,9 +446,9 @@ export class ViewMarketComponent implements OnInit {
       Quantity: quantity,
       ItemNote: itemNote,
     }
-    
+
     this.orderService.create(data).subscribe((response: Iresponse) => {
-      
+
       if (response.Code === '000') {
 
         this.showButtonDeleteItem = response.Data.ShowButtonDeleteItem;
@@ -487,9 +495,9 @@ export class ViewMarketComponent implements OnInit {
       if (result.value) {
 
         this.orderService.deleteArticle(article.Id).subscribe((response: Iresponse) => {
-      
+
           if (response.Code === '000') {
-  
+
             this.currentArticleQuantity = 0;
             this.showButtonDeleteItem = response.Data.ShowButtonDeleteItem;
 
@@ -500,7 +508,7 @@ export class ViewMarketComponent implements OnInit {
               showConfirmButton: true,
               timer: 2000
             }).then(() => {
-    
+
             });
           } else {
             Swal.fire({
@@ -511,7 +519,7 @@ export class ViewMarketComponent implements OnInit {
             }).then(() => {
             });
           }
-    
+
         },
           error => {
             console.log(JSON.stringify(error));
