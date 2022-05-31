@@ -144,8 +144,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-success btn-payment" (click)="checkoutOrden()">Procesar
-                                orden</button>
+                            <button class="btn btn-success btn-payment" (click)="checkoutOrden()">Pagar</button>
                         </div>
                     </div>
 
@@ -189,20 +188,14 @@
 
 <ng-template #buyArticle let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Actualizando artículo</h4>
+        <h4 class="modal-title">
+            {{currentArticle.Title}} <span class="price_Style" style="font-style: italic; font-weight: bold;">Precio: {{currentArticle.Price | currency}} <span style="font-size: 12px; color: red;">{{currentArticle.CurrencyCode}}</span> </span>
+        </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-
-
-        <div class="row">
-            <div class="cold-md-12">
-                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
-                    {{currentArticle.Title}}</div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="cold-md-4">
@@ -211,9 +204,7 @@
             </div>
 
             <div class="cold-md-8">
-                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
-                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
-
+                
                 <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">
                     Existencia:
                     {{currentArticle.Stock}}</h6>
@@ -228,7 +219,7 @@
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px;">Contacto: {{providerPhoneNumber}}</h6>
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad a comprar: <input type="number"
-                        class="bold" style="border-radius: 8px; width: 60px; background-color: rgb(173, 219, 233)"
+                        class="bold price_Style" style="border-radius: 8px; width: 60px;"
                         [(ngModel)]="currentArticleQuantity"></h6>
 
             </div>
@@ -265,7 +256,7 @@
 
 <ng-template #checkoutOrdenModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Procesando orden</h4>
+        <h4 class="modal-title bold">Seleccione un método de pago</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -274,22 +265,19 @@
 
         <div>
 
-            <h4 class="center bold">Seleccione el método de pago</h4>
-
-            <!--<br>
-            <div class="row">
-                <div class="col-md-12">
-                    <button (click)="getPaymentMethod('Effective', 'Efectivo')" class="btn btn-primary center bold"
-                        style="width: 220px; font-size: 20px; border-radius: 15px;">Efectivo</button>
-                </div>
-            </div>-->
-
-            <br>
             <div class="row">
                 <div class="col-md-12">
                     <button (click)="getPaymentMethod('Card', 'Tarjeta')"
                         class="btn btn-primary center bold"
                         style="width: 220px; font-size: 20px; border-radius: 15px;">Tarjeta</button>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <button (click)="getPaymentMethod('Effective', 'Efectivo')" class="btn btn-primary center bold"
+                        style="width: 220px; font-size: 20px; border-radius: 15px;">Efectivo</button>
                 </div>
             </div>
 

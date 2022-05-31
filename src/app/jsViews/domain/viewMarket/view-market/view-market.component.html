@@ -108,7 +108,7 @@
 
     <div class="row card-group">
         <div class="col-md-3" *ngFor="let item of articles">
-            <div style="border-radius: 15px; height: 408px;" class="card shadow bg-white">
+            <div style="border-radius: 15px; height: 412px;" class="card shadow bg-white">
 
                 <div (click)="getArticleFullData(item)">
                     <div class="center" style="margin-top: 3px; margin-bottom: 3px; position: relative;">
@@ -120,11 +120,11 @@
                     <h6 class="center" style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px;">
                         No.&nbsp;{{item.Id}}</h6>
 
-                    <h4 *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px;">{{item.Price |
+                    <h4 class="price_Style" *ngIf="item.Price > 0" style="margin-left: 10px; margin-right: 10px; font-style: italic;">Precio: {{item.Price |
                         currency}} <span class="bold" style="font-size: 12px; color: red;">{{item.CurrencyCode}}</span>
                     </h4>
 
-                    <div style="font-size: 17px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 17px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; font-weight: bold;">
                         {{item.Title}}</div>
                 </div>
 
@@ -146,13 +146,13 @@
                         oferta</button>
                 </div>
 
-                <div style="margin-left: 10px; margin-right: 10px; margin-top: 15px;">
+                <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                     <button (click)="openModalShare(item, 'item')" class="btn btn-large btn-block bold"
                         style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(95, 216, 216);">Compartir &nbsp; <i class="fa fa-share-alt"></i> </button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
-                    style="margin-left: 10px; margin-right: 10px; margin-top: 8px;">
+                    style="margin-left: 10px; margin-right: 10px; margin-top: 8px; color: red; font-style: italic;">
                     No esta disponible para comprar</span>
 
             </div>
@@ -577,8 +577,8 @@
 
                 <h4 style="margin-left: 10px; margin-right: 10px;">{{articleFullData.Article.Title}}</h4>
 
-                <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px;">
-                    {{articleFullData.Article.Price | currency}}
+                <h3 *ngIf="currentArticle.Price > 0" style="margin-left: 10px; margin-right: 10px; font-style: italic;" class="price_Style">
+                   Precio: {{articleFullData.Article.Price | currency}}
                     <span class="bold"
                         style="font-size: 13px; color: red;">{{articleFullData.Article.CurrencyCode}}</span>
                 </h3>
@@ -647,20 +647,14 @@
 
 <ng-template #buyArticle let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Llenando mi carrito</h4>
+        <h4 class="modal-title">
+            {{currentArticle.Title}} <span class="price_Style" style="font-style: italic; font-weight: bold;">Precio: {{currentArticle.Price | currency}} <span style="font-size: 12px; color: red;">{{currentArticle.CurrencyCode}}</span> </span>
+        </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-
-
-        <div class="row">
-            <div class="cold-md-12">
-                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
-                    {{currentArticle.Title}}</div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="cold-md-4">
@@ -669,8 +663,6 @@
             </div>
 
             <div class="cold-md-8" style="margin-top: 3px;">
-                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
-                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
 
                 <h6 *ngIf="currentArticle.UseStock" class="bold" style="margin-left: 15px; margin-right: 5px;">
                     Existencia:
@@ -687,8 +679,8 @@
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Cantidad que desea
                     comprar:
-                    <input type="number" class="bold"
-                        style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
+                    <input type="number" class="bold price_Style"
+                        style="border-radius: 8px; width: 80px;"
                         [(ngModel)]="currentArticleQuantity">
                 </h6>
 
@@ -727,19 +719,15 @@
 
 <ng-template #offertModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Creando mi oferta</h4>
+        <h4 class="modal-title">
+            {{currentArticle.Title}} <span class="price_Style" style="font-style: italic; font-weight: bold;">Precio: {{currentArticle.Price | currency}} <span style="font-size: 12px; color: red;">{{currentArticle.CurrencyCode}}</span> </span>
+        </h4>
+
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-
-        <div class="row">
-            <div class="cold-md-12">
-                <div class="bold" style="font-size: 16px; margin-left: 5px; margin-right: 5px; margin-bottom: 8px;">
-                    {{currentArticle.Title}}</div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="cold-md-4">
@@ -748,12 +736,10 @@
             </div>
 
             <div class="cold-md-8" style="margin-top: 3px;">
-                <h5 class="bold" style="margin-left: 15px; margin-right: 5px;">{{currentArticle.Price |
-                    currency}} <span style="font-size: 10px; color: red;">{{currentArticle.CurrencyCode}}</span> </h5>
 
                 <h6 class="bold" style="margin-left: 15px; margin-right: 5px; margin-top: 12px;">Monto que desea ofertar
-                    <input type="number" class="bold"
-                        style="border-radius: 8px; width: 80px; background-color: rgb(173, 219, 233)"
+                    <input type="number" class="bold price_Style"
+                        style="border-radius: 8px; width: 80px;"
                         [(ngModel)]="offertAmount">
                 </h6>
 
