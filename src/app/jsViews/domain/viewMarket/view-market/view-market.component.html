@@ -142,13 +142,13 @@
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                     <button (click)="openModalOffert(item)" class="btn btn-large btn-block bold"
-                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(119, 201, 37);">Hacer
+                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(100, 174, 27);">Hacer
                         oferta</button>
                 </div>
 
                 <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                     <button (click)="openModalShare(item, 'item')" class="btn btn-large btn-block bold"
-                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(95, 216, 216);">Compartir &nbsp; <i class="fa fa-share-alt"></i> </button>
+                        style="font-size: 13px; border-radius: 15px; color: white; background-color: rgb(61, 133, 133);">Compartir &nbsp; <i class="fa fa-share-alt"></i> </button>
                 </div>
 
                 <span *ngIf="enableShoppingCart && !item.Stock" class="bold"
@@ -593,10 +593,10 @@
                     {{articleFullData.Article.CreationDate}}</h5>
 
                 <br>
-                <h5 *ngIf="articleFullData.Article.Description" style="margin-left: 10px; margin-right: 10px;">
+                <h5 *ngIf="articleFullData.Article.Description" style="color: red; margin-left: 10px; margin-right: 10px; font-weight: bold;">
                     Descripción</h5>
                 <textarea *ngIf="articleFullData.Article.Description" [readonly]="true" rows="6"
-                    style="font-size: 15px;" class="form-control"
+                    style="font-size: 15px; background-color: rgb(186, 249, 239); font-weight: bold;" class="form-control"
                     placeholder="Campo opcional">{{articleFullData.Article.Description}}</textarea>
 
                 <br>
